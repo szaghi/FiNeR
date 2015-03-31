@@ -90,38 +90,46 @@ type, public:: Type_File_INI
   !<
   !< @note The OOP encapsulation allows safe use of parallel paradigms.
   character(len=:),   allocatable:: filename         !< File name
-  character(len=:),   allocatable:: source           !< Raw source.
   type(Type_Section), allocatable:: sections(:)      !< Sections.
   logical::                         parsed = .false. !< Flag for checking the file parsing status.
   contains
-    procedure:: free                                                 !< Procedure for freeing dynamic memory.
-    generic::   free_options => free_options_all,       &
-                                free_options_of_section,&
-                                free_option_of_section               !< Procedure for freeing options.
+    procedure:: free                                                 !< Procedure for freeing dynamic memory destroyng file data.
     procedure:: load                                                 !< Procedure for loading file data.
-    procedure:: parse                                                !< Procedure for parsing file data.
-    procedure:: index        => index_section_file_ini               !< Procedure for returning the index of a section.
+    procedure:: has_option   => has_option_file_ini                  !< Procedure for inquiring the presence of an option.
+    procedure:: has_section  => has_section_file_ini                 !< Procedure for inquiring the presence of a section.
+    generic::   index        => index_section_file_ini, &            !< Procedure for returning the index of a section.
+                                index_option_file_ini                !< Procedure for returning the index of an option.
     procedure:: count_values => count_values_option_section_file_ini !< Procedure for counting option value(s).
     generic::   add          => add_section_file_ini,       &        !< Procedure for adding a section.
                                 add_option_section_file_ini,&        !< Procedure for adding an option to a section (scalar).
                                 add_a_option_section_file_ini        !< Procedure for adding an option to a section (array).
     generic::   get          => get_option_section_file_ini, &       !< Procedure for getting option value (scalar).
                                 get_a_option_section_file_ini        !< Procedure for getting option value (array).
+    generic::   del          => free_option_of_section_file_ini, &   !< Procedure for removing (freeing) an option of a section.
+                                free_section_file_ini                !< Procedure for removing (freeing) a section.
+    procedure:: items        => items_file_ini                       !< Procedure for getting list of couples option name/value.
     procedure:: print        => print_file_ini                       !< Procedure for pretting printing data.
     procedure:: save         => save_file_ini                        !< Procedure for saving data.
     final::     finalize                                             !< Procedure for freeing dynamic memory when finalizing.
     ! operators overloading
     generic:: assignment(=) => assign_file_ini !< Procedure for section assignment overloading.
     ! private procedures
-    procedure,              private:: free_options_all              !< Procedure for freeing all options of all sections.
-    procedure,              private:: free_options_of_section       !< Procedure for freeing all options of a section.
-    procedure,              private:: free_option_of_section        !< Procedure for freeing a option of a section.
-    procedure,              private:: add_section_file_ini          !< Procedure for adding a section.
-    procedure,              private:: add_option_section_file_ini   !< Procedure for adding an option to a section (scalar).
-    procedure,              private:: add_a_option_section_file_ini !< Procedure for adding an option to a section (scalar).
-    procedure,              private:: get_option_section_file_ini   !< Procedure for getting option value (scalar).
-    procedure,              private:: get_a_option_section_file_ini !< Procedure for getting option value (array).
-    procedure, pass(self1), private:: assign_file_ini               !< Procedure for section assignment overloading.
+    procedure,              private:: parse                               !< Procedure for parsing file data.
+    generic,                private:: free_options => free_options_all, & !< Procedure for freeing all options.
+                                      free_options_of_section,          & !< Procedure for freeing all options of a section.
+                                      free_option_of_section_file_ini     !< Procedure for freeing an option of a section.
+    procedure,              private:: free_options_all                    !< Procedure for freeing all options of all sections.
+    procedure,              private:: free_options_of_section             !< Procedure for freeing all options of a section.
+    procedure,              private:: free_option_of_section_file_ini     !< Procedure for freeing an option of a section.
+    procedure,              private:: free_section_file_ini               !< Procedure for freeing a section.
+    procedure,              private:: index_section_file_ini              !< Procedure for returning the index of a section.
+    procedure,              private:: index_option_file_ini               !< Procedure for returning the index of an option.
+    procedure,              private:: add_section_file_ini                !< Procedure for adding a section.
+    procedure,              private:: add_option_section_file_ini         !< Procedure for adding an option to a section (scalar).
+    procedure,              private:: add_a_option_section_file_ini       !< Procedure for adding an option to a section (scalar).
+    procedure,              private:: get_option_section_file_ini         !< Procedure for getting option value (scalar).
+    procedure,              private:: get_a_option_section_file_ini       !< Procedure for getting option value (array).
+    procedure, pass(self1), private:: assign_file_ini                     !< Procedure for section assignment overloading.
 endtype Type_File_INI
 !-----------------------------------------------------------------------------------------------------------------------------------
 contains
@@ -756,8 +764,8 @@ contains
 
   !---------------------------------------------------------------------------------------------------------------------------------
   ind = 0
-  backd = .false. ; if (present(back)) backd = back
   if (allocated(self%options)) then
+    backd = .false. ; if (present(back)) backd = back
     if (backd) then
       do o=size(self%options),1,-1
         if (self%options(o)%oname == trim(adjustl(option))) then
@@ -1057,7 +1065,6 @@ contains
 
   !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self%filename)) deallocate(self%filename)
-  if (allocated(self%source)) deallocate(self%source)
   if (allocated(self%sections)) then
     do s=1,size(self%sections)
       call self%sections(s)%free
@@ -1124,7 +1131,7 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine free_options_of_section
 
-  elemental subroutine free_option_of_section(self,section,option)
+  elemental subroutine free_option_of_section_file_ini(self,section,option)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for freeing all options of a section.
   !---------------------------------------------------------------------------------------------------------------------------------
@@ -1136,19 +1143,44 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
-  if (allocated(self%sections)) then
-    do s=1,size(self%sections)
-      if (self%sections(s)%sname == trim(adjustl(section))) then
-        call self%sections(s)%free_option(option=option)
-        exit
+  s = self%index(section=section)
+  if (s>0) call self%sections(s)%free_option(option=option)
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endsubroutine free_option_of_section_file_ini
+
+  elemental subroutine free_section_file_ini(self,section)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Procedure for freeing all options of a section.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  implicit none
+  class(Type_File_INI), intent(INOUT):: self        !< File data.
+  character(*),         intent(IN)::    section     !< Section name.
+  type(Type_Section), allocatable::     sections(:) !< Temporary sections array.
+  integer(I4P)::                        s           !< Counter.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  s = self%index(section=section)
+  if (s>0) then
+    if (s>0) then
+      allocate(sections(1:size(self%sections)-1))
+      if (s==1) then
+        sections = self%sections(2:)
+      elseif (s==size(self%sections)) then
+        sections = self%sections(:s-1)
+      else
+        sections(:s-1) = self%sections(:s-1)
+        sections(s:  ) = self%sections(s+1:)
       endif
-    enddo
+      call move_alloc(sections,self%sections)
+    endif
   endif
   return
   !---------------------------------------------------------------------------------------------------------------------------------
-  endsubroutine free_option_of_section
+  endsubroutine free_section_file_ini
 
-  subroutine load(self,filename,source)
+  subroutine load(self,filename,source,error)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for getting file data from a file or a source string.
   !<
@@ -1170,17 +1202,24 @@ contains
   class(Type_File_INI),   intent(INOUT):: self     !< File data.
   character(*), optional, intent(IN)::    filename !< File name.
   character(*), optional, intent(IN)::    source   !< File source.
+  integer(I4P), optional, intent(OUT)::   error   !< Error code.
+  integer(I4P)::                          errd    !< Error code.
+  character(len=:), allocatable::         sourced  !< Dummy source string.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
+  errd = err_source_missing
   if (present(filename)) then
     self%filename = trim(adjustl(filename))
-    call read_file_as_stream(filename=self%filename,fast_read=.true.,stream=self%source)
+    call read_file_as_stream(filename=self%filename,fast_read=.true.,stream=sourced)
+    call self%parse(source=sourced,error=errd)
   elseif (present(source)) then
-    self%source = trim(adjustl(source))
+    call self%parse(source=source,error=errd)
   elseif (allocated(self%filename)) then
-    call read_file_as_stream(filename=self%filename,fast_read=.true.,stream=self%source)
+    call read_file_as_stream(filename=self%filename,fast_read=.true.,stream=sourced)
+    call self%parse(source=sourced,error=errd)
   endif
+  if (present(error)) error = errd
   return
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine load
@@ -1190,78 +1229,175 @@ contains
   !< Procedure for parsing file either from the self source data or from a source string.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
-  class(Type_File_INI),   intent(INOUT):: self   !< File data.
-  character(*), optional, intent(IN)::    source !< String source.
-  integer(I4P), optional, intent(OUT)::   error  !< Error code.
-  integer(I4P)::                          errd   !< Error code.
+  class(Type_File_INI),   intent(INOUT)::   self    !< File data.
+  character(*),           intent(IN)::      source  !< String source.
+  integer(I4P), optional, intent(OUT)::     error   !< Error code.
+  integer(I4P)::                            errd    !< Error code.
+  character(len=len(source)), allocatable:: toks(:) !< Dummies tokens.
+  character(len(source))::                  dummy   !< Dummy string for parsing sections.
+  integer(I4P)::                            Ns,s,ss !< Counters.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
-  errd = 0
-  if (present(source)) then
-    call auto_parse(source=source)
-  elseif (allocated(self%source)) then
-    call auto_parse(source=self%source)
-  else
-    errd = err_source_missing
-  endif
-  if (present(error)) error = errd
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
-  contains
-    subroutine auto_parse(source)
-    !-------------------------------------------------------------------------------------------------------------------------------
-    !< Procedure for autoparsing after a self-consistency check.
-    !-------------------------------------------------------------------------------------------------------------------------------
-    implicit none
-    character(*), intent(IN)::                source  !< Source stream.
-    character(len=len(source)), allocatable:: toks(:) !< Dummies tokens.
-    character(len(source))::                  dummy   !< Dummy string for parsing sections.
-    integer(I4P)::                            Ns,s,ss !< Counters.
-    !-------------------------------------------------------------------------------------------------------------------------------
-
-    !-------------------------------------------------------------------------------------------------------------------------------
-    call tokenize(strin=source,delimiter=new_line('A'),toks=toks)
-    Ns = 0
+  errd = err_source_missing
+  call tokenize(strin=source,delimiter=new_line('A'),toks=toks)
+  Ns = 0
+  s = 0
+  do while (s+1<=size(toks))
+    s = s + 1
+    if (scan(adjustl(toks(s)), comments) == 1) cycle
+    if (index(trim(adjustl(toks(s))), "[") == 1) then
+      Ns = Ns + 1
+      dummy = trim(adjustl(toks(s)))//new_line('A')
+      ss = s
+      do while (ss+1<=size(toks))
+        ss = ss + 1
+        if (index(trim(adjustl(toks(ss))), "[") == 1) then
+          ! new section... go back
+          exit
+        else
+          ! continuation of current section
+          dummy = trim(adjustl(dummy))//new_line('A')//trim(adjustl(toks(ss)))
+          toks(ss) = comments ! forcing skip this in the following scan
+        endif
+      enddo
+      toks(s) = trim(adjustl(dummy))
+    endif
+  enddo
+  if (Ns>0) then
+    if (allocated(self%sections)) deallocate(self%sections) ; allocate(self%sections(1:Ns))
     s = 0
+    ss = 0
     do while (s+1<=size(toks))
       s = s + 1
       if (scan(adjustl(toks(s)), comments) == 1) cycle
       if (index(trim(adjustl(toks(s))), "[") == 1) then
-        Ns = Ns + 1
-        dummy = trim(adjustl(toks(s)))//new_line('A')
-        ss = s
-        do while (ss+1<=size(toks))
-          ss = ss + 1
-          if (index(trim(adjustl(toks(ss))), "[") == 1) then
-            ! new section... go back
-            exit
-          else
-            ! continuation of current section
-            dummy = trim(adjustl(dummy))//new_line('A')//trim(adjustl(toks(ss)))
-            toks(ss) = comments ! forcing skip this in the following scan
-          endif
-        enddo
-        toks(s) = trim(adjustl(dummy))
+        ss = ss + 1
+        call self%sections(ss)%parse(source=toks(s),error=errd)
       endif
     enddo
-    if (Ns>0) then
-      if (allocated(self%sections)) deallocate(self%sections) ; allocate(self%sections(1:Ns))
-      s = 0
-      ss = 0
-      do while (s+1<=size(toks))
-        s = s + 1
-        if (scan(adjustl(toks(s)), comments) == 1) cycle
-        if (index(trim(adjustl(toks(s))), "[") == 1) then
-          ss = ss + 1
-          call self%sections(ss)%parse(source=toks(s),error=error)
+  endif
+  if (present(error)) error = errd
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endsubroutine parse
+
+  function has_option_file_ini(self,section,option) result(pres)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Procedure for inquiring the presence of (at least one) option with the name passed.
+  !<
+  !< Optionall, the first matching section name is returned.
+  !<
+  !< @note All sections are searched and the first occurence is returned.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  implicit none
+  class(Type_File_INI),   intent(IN)::    self    !< File data.
+  character(*), optional, intent(INOUT):: section !< Section name.
+  character(*),           intent(IN)::    option  !< Option name.
+  logical::                               pres    !< Inquiring flag.
+  integer(I4P)::                          s       !< Counter.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  pres = .false.
+  if (allocated(self%sections)) then
+    do s=1,size(self%sections)
+      pres = (self%sections(s)%index(option=option)>0)
+      if (pres) then
+        if (present(section)) section = self%sections(s)
+        exit
+      endif
+    enddo
+  endif
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endfunction has_option_file_ini
+
+  elemental function has_section_file_ini(self,section) result(pres)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Procedure for inquiring the presence of (at least one) section with the name passed.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  implicit none
+  class(Type_File_INI), intent(IN):: self    !< File data.
+  character(*),         intent(IN):: section !< Section name.
+  logical::                          pres    !< Inquiring flag.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  pres = (self%index(section=section)>0)
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endfunction has_section_file_ini
+
+  elemental function index_section_file_ini(self,back,section) result(ind)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Procedure for returning the index of the section matching the name passed.
+  !<
+  !< @note The matching index returned is the first found if *back* is not passed or if *back=.false.*. On the contrary the last
+  !< found is returned if *back=.true.*.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  implicit none
+  class(Type_File_INI), intent(IN):: self    !< File data.
+  logical, optional,    intent(IN):: back    !< If back appears with the value true, the last matching index is returned.
+  character(*),         intent(IN):: section !< Section name.
+  integer(I4P)::                     ind     !< Index of searched section.
+  logical::                          backd   !< Dummy back flag.
+  integer(I4P)::                     s       !< Counter.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  ind = 0
+  if (allocated(self%sections)) then
+    backd = .false. ; if (present(back)) backd = back
+    if (backd) then
+      do s=size(self%sections),1,-1
+        if (self%sections(s)%sname == trim(adjustl(section))) then
+          ind = s
+          exit
+        endif
+      enddo
+    else
+      do s=1,size(self%sections)
+        if (self%sections(s)%sname == trim(adjustl(section))) then
+          ind = s
+          exit
         endif
       enddo
     endif
-    return
-    !-------------------------------------------------------------------------------------------------------------------------------
-    endsubroutine auto_parse
-  endsubroutine parse
+  endif
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endfunction index_section_file_ini
+
+  elemental function index_option_file_ini(self,back,section,option) result(ind)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Procedure for returning the index of the option (inside a  section) matching the name(s) passed.
+  !<
+  !< @note The matching index returned is the first found if *back* is not passed or if *back=.false.*. On the contrary the last
+  !< found is returned if *back=.true.*.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  implicit none
+  class(Type_File_INI), intent(IN):: self    !< File data.
+  logical, optional,    intent(IN):: back    !< If back appears with the value true, the last matching index is returned.
+  character(*),         intent(IN):: option  !< Option  name.
+  character(*),         intent(IN):: section !< Section name.
+  integer(I4P)::                     ind     !< Index of searched section.
+  logical::                          backd   !< Dummy back flag.
+  integer(I4P)::                     s       !< Counter.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  ind = 0
+  if (allocated(self%sections)) then
+    backd = .false. ; if (present(back)) backd = back
+    s = self%index(section=section,back=backd)
+    if (s>0) then
+      ind = self%sections(s)%index(option=option,back=backd)
+    endif
+  endif
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endfunction index_option_file_ini
 
   elemental function count_values_option_section_file_ini(self,delimiter,section,option) result(Nv)
   !---------------------------------------------------------------------------------------------------------------------------------
@@ -1289,46 +1425,6 @@ contains
   endif
   !---------------------------------------------------------------------------------------------------------------------------------
   endfunction count_values_option_section_file_ini
-
-  elemental function index_section_file_ini(self,back,section) result(ind)
-  !---------------------------------------------------------------------------------------------------------------------------------
-  !< Procedure for returning the index of the section matching the name passed.
-  !<
-  !< @note The matching index returned is the first found if *back* is not passed or if *back=.false.*. On the contrary the last
-  !< found is returned if *back=.true.*.
-  !---------------------------------------------------------------------------------------------------------------------------------
-  implicit none
-  class(Type_File_INI), intent(IN):: self    !< File data.
-  logical, optional,    intent(IN):: back    !< If back appears with the value true, the last matching index is returned.
-  character(*),         intent(IN):: section !< Section name.
-  integer(I4P)::                     ind     !< Index of searched section.
-  logical::                          backd   !< Dummy back flag.
-  integer(I4P)::                     s       !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
-
-  !---------------------------------------------------------------------------------------------------------------------------------
-  ind = 0
-  backd = .false. ; if (present(back)) backd = back
-  if (allocated(self%sections)) then
-    if (backd) then
-      do s=size(self%sections),1,-1
-        if (self%sections(s)%sname == trim(adjustl(section))) then
-          ind = s
-          exit
-        endif
-      enddo
-    else
-      do s=1,size(self%sections)
-        if (self%sections(s)%sname == trim(adjustl(section))) then
-          ind = s
-          exit
-        endif
-      enddo
-    endif
-  endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
-  endfunction index_section_file_ini
 
   subroutine add_section_file_ini(self,error,section)
   !---------------------------------------------------------------------------------------------------------------------------------
@@ -1487,6 +1583,47 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine get_a_option_section_file_ini
 
+  pure function items_file_ini(self) result(items)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Procedure for getting list of couples option name/value.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  implicit none
+  class(Type_File_INI), intent(IN):: self       !< File data.
+  character(len=:), allocatable::    items(:,:) !< Items, list of couples option name/value for all options [1:No,1:2].
+  integer(I4P)::                     mx_chars   !< Maximum number of chars into name/value within all options.
+  integer(I4P)::                     o,s,No     !< Counters.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  mx_chars = MinI4P
+  if (allocated(self%sections)) then
+    No = 0
+    do s=1,size(self%sections)
+      if (allocated(self%sections(s)%options)) then
+        do o=1,size(self%sections(s)%options)
+          No = No + 1
+          mx_chars = max(mx_chars,len(self%sections(s)%options(o)%oname),len(self%sections(s)%options(o)%ovals))
+        enddo
+      endif
+    enddo
+    if ((mx_chars > 0).and.(No > 0)) then
+      allocate(character(mx_chars):: items(1:No,1:2))
+      No = 0
+      do s=1,size(self%sections)
+        if (allocated(self%sections(s)%options)) then
+          do o=1,size(self%sections(s)%options)
+            No = No + 1
+            items(No,1) = self%sections(s)%options(o)%oname
+            items(No,2) = self%sections(s)%options(o)%ovals
+          enddo
+        endif
+      enddo
+    endif
+  endif
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endfunction items_file_ini
+
   subroutine print_file_ini(self,pref,iostat,iomsg,unit)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for printing data with a pretty format.
@@ -1557,7 +1694,6 @@ contains
 
   !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self2%filename)) self1%filename = self2%filename
-  if (allocated(self2%source)) self1%source = self2%source
   if (allocated(self2%sections)) then
     if (allocated(self1%sections)) deallocate(self1%sections) ; allocate(self1%sections(1:size(self2%sections)))
     self1%sections = self2%sections
@@ -1571,11 +1707,13 @@ contains
   !< Procedure for autotesting the library functionalities.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
-  type(Type_File_INI)::           fini     !< INI File.
-  character(len=:), allocatable:: source   !< Testing string.
-  character(len=:), allocatable:: string   !< String option.
-  real(R4P), allocatable::        array(:) !< Array option.
-  integer(I4P)::                  error    !< Error code.
+  type(Type_File_INI)::           fini       !< INI File.
+  character(len=:), allocatable:: source     !< Testing string.
+  character(len=:), allocatable:: string     !< String option.
+  real(R4P), allocatable::        array(:)   !< Array option.
+  integer(I4P)::                  error      !< Error code.
+  character(len=:), allocatable:: items(:,:) !< List of all options name/value couples.
+  integer(I4P)::                  i          !< Counter.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
@@ -1592,7 +1730,6 @@ contains
   print "(A)", "Source to be parsed:"
   print "(A)", source
   call fini%load(source=source)
-  call fini%parse(error=error)
   print "(A)", ''
   print "(A)", "Result of parsing:"
   string = '   '
@@ -1617,9 +1754,30 @@ contains
   call fini%add(section='sec-foo',option='array',val=[1,2,3,4])
   call fini%add(section='sec-bar')
   call fini%add(section='sec-bar',option='bools',val=[.true.,.false.,.false.])
+  call fini%add(section='sec-bartolomeo')
+  call fini%add(section='sec-bartolomeo',option='help',val='I am Bartolomeo...')
   print "(A)", "The autogenerated INI file will be saved as:"
   call fini%print(pref='  ',unit=stdout)
   call fini%save(filename='foo.ini')
+  print "(A)", ''
+  print "(A)", "Testing removing option baz"
+  call fini%del(section='sec-foo',option='baz')
+  call fini%print(pref='  ',unit=stdout)
+  print "(A)", ''
+  print "(A)", "Testing removing section sec-bar"
+  call fini%del(section='sec-bar')
+  call fini%print(pref='  ',unit=stdout)
+  print "(A)", ''
+  print "(A)", "Testing introspective methods"
+  print "(A,L1)", "Is there option bar? ", fini%has_option(option='bar')
+  print "(A,L1)", "Is there option baz? ", fini%has_option(option='baz')
+  print "(A,L1)", "Is there section sec-bar? ", fini%has_section(section='sec-bar')
+  print "(A,L1)", "Is there section sec-foo? ", fini%has_section(section='sec-foo')
+  print "(A)", "What are all options name/values couples? Can I have a list? Yes, you can..."
+  items = fini%items()
+  do i=1,size(items,dim=1)
+    print "(A)", trim(items(i,1))//' = '//trim(items(i,2))
+  enddo
   return
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine ini_autotest

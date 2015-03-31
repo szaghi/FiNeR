@@ -58,7 +58,7 @@ Go to [Top](#top)
 
 ## Copyrights
 
-FiNeR is an open source project, it is distributed under the [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html). Anyone is interest to use, to develop or to contribute to FiNeR is welcome.
+FiNeR is an open source project, it is distributed under a dual licensing system: the [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html) and the [MIT](http://opensource.org/licenses/MIT) licenses. Anyone is interest to use, to develop or to contribute to FiNeR is welcome: you are free to select the GPL license for FOSS projects or the MIT one for commercial softwares.
 
 Go to [Top](#top)
 
@@ -84,7 +84,6 @@ source='[section-1]'//new_line('A')//    &
        '[section-2]'//new_line('A')//    &
        'option-1 = foo'
 call fini%load(source=source)
-call fini%parse(error=error)
 allocate(array(1:fini%count_values(section='section-1',option='option-2')))
 call fini%get(section='section-1',option='option-2',val=array,error=error)
 if (error==0) then

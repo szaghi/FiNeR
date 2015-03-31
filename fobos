@@ -204,7 +204,7 @@ rule = rm -rf doc/html/*
 
 [rule-maketar]
 help = Rule for making tar archive of the project
-rule = tar -czf BeFoR64.tar.gz *
+rule = tar -czf FiNeR.tar.gz *
 
 [rule-coverage-analysis]
 help   = Rule for performing coverage analysis and saving reports in markdown
