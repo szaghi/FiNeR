@@ -23,11 +23,14 @@ integer(I4P), parameter:: err_section_name      = 4     !< Error flag for trappi
 integer(I4P), parameter:: err_section_options   = 5     !< Error flag for trapping errors in section options.
 integer(I4P), parameter:: err_section           = 6     !< Error flag for trapping errors in section.
 integer(I4P), parameter:: err_source_missing    = 7     !< Error flag for trapping errors in file when source is missing.
+character(1), parameter:: def_opt_sep           = '='   !< Default separator of option name/value.
 character(*), parameter:: comments              = "!;#" !< Characters used for defining a comment line.
+character(1), parameter:: inline_comment        = ';'   !< Inline comment delimiter.
 type:: Type_Option
   !< Derived type for handling option data of sections.
   character(len=:), allocatable:: oname !< Option name.
   character(len=:), allocatable:: ovals !< Option values.
+  character(len=:), allocatable:: ocomm !< Eventual option inline comment.
   contains
     procedure:: free         => free_option         !< Procedure for freeing dynamic memory.
     procedure:: parse        => parse_option        !< Procedure for parsing option data.
@@ -42,13 +45,14 @@ type:: Type_Option
     ! operators overloading
     generic:: assignment(=) => assign_option !< Procedure for option assignment overloading.
     ! private procedures
-    procedure,              private:: parse_name  => parse_name_option  !< Procedure for parsing option name.
-    procedure,              private:: parse_value => parse_value_option !< Procedure for parsing option values.
-    procedure,              private:: set_option                        !< Procedure for setting option value (scalar).
-    procedure,              private:: set_a_option                      !< Procedure for setting option value (array).
-    procedure,              private:: get_option                        !< Procedure for getting option value (scalar).
-    procedure,              private:: get_a_option                      !< Procedure for getting option value (array).
-    procedure, pass(self1), private:: assign_option                     !< Procedure for option assignment overloading.
+    procedure,              private:: parse_name    => parse_name_option    !< Procedure for parsing option name.
+    procedure,              private:: parse_value   => parse_value_option   !< Procedure for parsing option values.
+    procedure,              private:: parse_comment => parse_comment_option !< Procedure for parsing option inline comment.
+    procedure,              private:: set_option                            !< Procedure for setting option value (scalar).
+    procedure,              private:: set_a_option                          !< Procedure for setting option value (array).
+    procedure,              private:: get_option                            !< Procedure for getting option value (scalar).
+    procedure,              private:: get_a_option                          !< Procedure for getting option value (array).
+    procedure, pass(self1), private:: assign_option                         !< Procedure for option assignment overloading.
 endtype Type_Option
 
 type:: Type_Section
@@ -68,6 +72,7 @@ type:: Type_Section
                                 add_a_option_section        !< Procedure for adding an option (array).
     generic::   get          => get_option_section, &       !< Procedure for getting option value (scalar).
                                 get_a_option_section        !< Procedure for getting option value (array).
+    procedure:: loop         => loop_options_section        !< Procedure for looping over options.
     procedure:: print        => print_section               !< Procedure for pretting printing data.
     procedure:: save         => save_section                !< Procedure for saving data.
     final::     finalize_section                            !< Procedure for freeing dynamic memory in finalizing.
@@ -89,14 +94,16 @@ type, public:: Type_File_INI
   !< Derived type for handling INI files.
   !<
   !< @note The OOP encapsulation allows safe use of parallel paradigms.
-  character(len=:),   allocatable:: filename         !< File name
-  type(Type_Section), allocatable:: sections(:)      !< Sections.
-  logical::                         parsed = .false. !< Flag for checking the file parsing status.
+  character(len=:),   allocatable::          filename              !< File name
+  integer(I4P)::                             Ns = 0                !< Number of sections.
+  character(1)::                             opt_sep = def_opt_sep !< Separator character of option name/value.
+  type(Type_Section), allocatable, private:: sections(:)           !< Sections.
   contains
     procedure:: free                                                 !< Procedure for freeing dynamic memory destroyng file data.
     procedure:: load                                                 !< Procedure for loading file data.
     procedure:: has_option   => has_option_file_ini                  !< Procedure for inquiring the presence of an option.
     procedure:: has_section  => has_section_file_ini                 !< Procedure for inquiring the presence of a section.
+    procedure:: section      => section_file_ini                     !< Procedure for getting section name once provided an index.
     generic::   index        => index_section_file_ini, &            !< Procedure for returning the index of a section.
                                 index_option_file_ini                !< Procedure for returning the index of an option.
     procedure:: count_values => count_values_option_section_file_ini !< Procedure for counting option value(s).
@@ -108,6 +115,8 @@ type, public:: Type_File_INI
     generic::   del          => free_option_of_section_file_ini, &   !< Procedure for removing (freeing) an option of a section.
                                 free_section_file_ini                !< Procedure for removing (freeing) a section.
     procedure:: items        => items_file_ini                       !< Procedure for getting list of couples option name/value.
+    generic::   loop         => loop_options_section_file_ini, &     !< Procedure for looping over options of a section.
+                                loop_options_file_ini                !< Procedure for looping over all options.
     procedure:: print        => print_file_ini                       !< Procedure for pretting printing data.
     procedure:: save         => save_file_ini                        !< Procedure for saving data.
     final::     finalize                                             !< Procedure for freeing dynamic memory when finalizing.
@@ -129,6 +138,8 @@ type, public:: Type_File_INI
     procedure,              private:: add_a_option_section_file_ini       !< Procedure for adding an option to a section (scalar).
     procedure,              private:: get_option_section_file_ini         !< Procedure for getting option value (scalar).
     procedure,              private:: get_a_option_section_file_ini       !< Procedure for getting option value (array).
+    procedure,              private:: loop_options_section_file_ini       !< Procedure for looping over options of a section.
+    procedure,              private:: loop_options_file_ini               !< Procedure for looping over all options.
     procedure, pass(self1), private:: assign_file_ini                     !< Procedure for section assignment overloading.
 endtype Type_File_INI
 !-----------------------------------------------------------------------------------------------------------------------------------
@@ -163,12 +174,13 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine finalize_option
 
-  elemental subroutine parse_name_option(self,source,error)
+  elemental subroutine parse_name_option(self,sep,source,error)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for parsing option name from a source string.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
   class(Type_Option), intent(INOUT):: self   !< Option data.
+  character(*),       intent(IN)::    sep    !< Separator of option name/value.
   character(*),       intent(IN)::    source !< String containing option data.
   integer(I4P),       intent(OUT)::   error  !< Error code.
   integer(I4P)::                      pos    !< Characters counter.
@@ -176,7 +188,7 @@ contains
 
   !---------------------------------------------------------------------------------------------------------------------------------
   error = err_option_name
-  pos = index(source, "=")
+  pos = index(source, sep)
   if (pos > 0) then
     self%oname = trim(adjustl(source(:pos-1)))
     error = 0
@@ -185,12 +197,13 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine parse_name_option
 
-  elemental subroutine parse_value_option(self,source,error)
+  elemental subroutine parse_value_option(self,sep,source,error)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for parsing option value from a source string.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
   class(Type_Option), intent(INOUT):: self   !< Option data.
+  character(*),       intent(IN)::    sep    !< Separator of option name/value.
   character(*),       intent(IN)::    source !< String containing option data.
   integer(I4P),       intent(OUT)::   error  !< Error code.
   integer(I4P)::                      pos    !< Characters counter.
@@ -198,7 +211,7 @@ contains
 
   !---------------------------------------------------------------------------------------------------------------------------------
   error = err_option_vals
-  pos = index(source, "=")
+  pos = index(source, sep)
   if (pos > 0) then
     if (pos<len(source)) self%ovals = trim(adjustl(source(pos+1:)))
     error = 0
@@ -207,12 +220,34 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine parse_value_option
 
-  elemental subroutine parse_option(self,source,error)
+  elemental subroutine parse_comment_option(self)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Procedure for parsing eventaul option inline comment trimming it out from pure value string.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  implicit none
+  class(Type_Option), intent(INOUT):: self   !< Option data.
+  integer(I4P)::                      pos    !< Characters counter.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  if (allocated(self%ovals)) then
+    pos = index(self%ovals,inline_comment)
+    if (pos>0) then
+      if (pos<len(self%ovals)) self%ocomm = trim(adjustl(self%ovals(pos+1:)))
+      self%ovals = trim(adjustl(self%ovals(:pos-1)))
+    endif
+  endif
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endsubroutine parse_comment_option
+
+  elemental subroutine parse_option(self,sep,source,error)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for parsing option data from a source string.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
   class(Type_Option), intent(INOUT):: self   !< Option data.
+  character(*),       intent(IN)::    sep    !< Separator of option name/value.
   character(*),       intent(IN)::    source !< String containing option data.
   integer(I4P),       intent(OUT)::   error  !< Error code.
   !---------------------------------------------------------------------------------------------------------------------------------
@@ -220,8 +255,9 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   error = err_option
   if (scan(adjustl(source), comments) == 1) return
-  call self%parse_name(source=source,error=error)
-  call self%parse_value(source=source,error=error)
+  call self%parse_name(sep=sep,source=source,error=error)
+  call self%parse_value(sep=sep,source=source,error=error)
+  call self%parse_comment
   return
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine parse_option
@@ -462,28 +498,31 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine get_a_option
 
-  subroutine print_option(self,pref,iostat,iomsg,unit)
+  subroutine print_option(self,pref,iostat,iomsg,unit,retain_comments)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for printing data with a pretty format.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
-  class(Type_Option),     intent(IN)::  self    !< Option data.
-  character(*), optional, intent(IN)::  pref    !< Prefixing string.
-  integer(I4P), optional, intent(OUT):: iostat  !< IO error.
-  character(*), optional, intent(OUT):: iomsg   !< IO error message.
-  integer(I4P),           intent(IN)::  unit    !< Logic unit.
-  character(len=:), allocatable::       prefd   !< Prefixing string.
-  integer(I4P)::                        iostatd !< IO error.
-  character(500)::                      iomsgd  !< Temporary variable for IO error message.
+  class(Type_Option),     intent(IN)::  self            !< Option data.
+  character(*), optional, intent(IN)::  pref            !< Prefixing string.
+  integer(I4P), optional, intent(OUT):: iostat          !< IO error.
+  character(*), optional, intent(OUT):: iomsg           !< IO error message.
+  integer(I4P),           intent(IN)::  unit            !< Logic unit.
+  logical,                intent(IN)::  retain_comments !< Flag for retaining eventual comments.
+  character(len=:), allocatable::       prefd           !< Prefixing string.
+  integer(I4P)::                        iostatd         !< IO error.
+  character(500)::                      iomsgd          !< Temporary variable for IO error message.
+  character(len=:), allocatable::       comment         !< Eventual option comments.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self%oname)) then
     prefd = '' ; if (present(pref)) prefd = pref
+    comment = '' ; if (allocated(self%ocomm).and.retain_comments) comment = ' ; '//self%ocomm
     if (allocated(self%ovals)) then
-      write(unit=unit,fmt='(A)',iostat=iostatd,iomsg=iomsgd)prefd//self%oname//' = '//self%ovals
+      write(unit=unit,fmt='(A)',iostat=iostatd,iomsg=iomsgd)prefd//self%oname//' = '//self%ovals//comment
     else
-      write(unit=unit,fmt='(A)',iostat=iostatd,iomsg=iomsgd)prefd//self%oname//' = '
+      write(unit=unit,fmt='(A)',iostat=iostatd,iomsg=iomsgd)prefd//self%oname//' = '//comment
     endif
     if (present(iostat)) iostat = iostatd
     if (present(iomsg))  iomsg  = iomsgd
@@ -492,25 +531,28 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine print_option
 
-  subroutine save_option(self,iostat,iomsg,unit)
+  subroutine save_option(self,iostat,iomsg,unit,retain_comments)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for saving data.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
-  class(Type_Option),     intent(IN)::  self    !< Option data.
-  integer(I4P), optional, intent(OUT):: iostat  !< IO error.
-  character(*), optional, intent(OUT):: iomsg   !< IO error message.
-  integer(I4P),           intent(IN)::  unit    !< Logic unit.
-  integer(I4P)::                        iostatd !< IO error.
-  character(500)::                      iomsgd  !< Temporary variable for IO error message.
+  class(Type_Option),     intent(IN)::  self            !< Option data.
+  integer(I4P), optional, intent(OUT):: iostat          !< IO error.
+  character(*), optional, intent(OUT):: iomsg           !< IO error message.
+  integer(I4P),           intent(IN)::  unit            !< Logic unit.
+  logical,                intent(IN)::  retain_comments !< Flag for retaining eventual comments.
+  integer(I4P)::                        iostatd         !< IO error.
+  character(500)::                      iomsgd          !< Temporary variable for IO error message.
+  character(len=:), allocatable::       comment         !< Eventual option comments.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self%oname)) then
+    comment = '' ; if (allocated(self%ocomm).and.retain_comments) comment = ' ; '//self%ocomm
     if (allocated(self%ovals)) then
-      write(unit=unit,fmt='(A)',iostat=iostatd,iomsg=iomsgd)self%oname//' = '//self%ovals
+      write(unit=unit,fmt='(A)',iostat=iostatd,iomsg=iomsgd)self%oname//' = '//self%ovals//comment
     else
-      write(unit=unit,fmt='(A)',iostat=iostatd,iomsg=iomsgd)self%oname//' = '
+      write(unit=unit,fmt='(A)',iostat=iostatd,iomsg=iomsgd)self%oname//' = '//comment
     endif
     if (present(iostat)) iostat = iostatd
     if (present(iomsg))  iomsg  = iomsgd
@@ -530,7 +572,8 @@ contains
 
   !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self2%oname)) self1%oname = self2%oname
-  if (allocated(self2%ovals )) self1%ovals  = self2%ovals
+  if (allocated(self2%ovals)) self1%ovals = self2%ovals
+  if (allocated(self2%ocomm)) self1%ocomm = self2%ocomm
   return
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine assign_option
@@ -645,12 +688,13 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine parse_section_name
 
-  elemental subroutine parse_options_section(self,source,error)
+  elemental subroutine parse_options_section(self,sep,source,error)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for getting section options from a source string.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
   class(Type_Section), intent(INOUT)::  self       !< Section data.
+  character(*),        intent(IN)::     sep        !< Separator of option name/value.
   character(*),        intent(IN)::     source     !< String containing section data.
   integer(I4P),        intent(OUT)::    error      !< Error code.
   character(len(source))::              osource    !< String containing options data.
@@ -668,13 +712,13 @@ contains
   do while (o+1<=size(options))
     o = o + 1
     if (scan(adjustl(options(o)), comments) == 1) cycle
-    if (index(options(o), "=")>0) then
+    if (index(options(o), sep)>0) then
       No = No + 1
       dummy = options(o)
       oo = o
       do while (oo+1<=size(options))
         oo = oo + 1
-        if (index(options(oo), "=")>0) then
+        if (index(options(oo), sep)>0) then
           ! new option... go back
           exit
         else
@@ -693,9 +737,9 @@ contains
     do while (o+1<=size(options))
       o = o + 1
       if (scan(adjustl(options(o)), comments) == 1) cycle
-      if (index(options(o), "=")>0) then
+      if (index(options(o), sep)>0) then
         oo = oo + 1
-        call self%options(oo)%parse(source=options(o),error=error)
+        call self%options(oo)%parse(sep=sep,source=options(o),error=error)
       endif
     enddo
   endif
@@ -703,19 +747,20 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine parse_options_section
 
-  elemental subroutine parse_section(self,source,error)
+  elemental subroutine parse_section(self,sep,source,error)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for getting section data from a source string.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
   class(Type_Section), intent(INOUT):: self   !< Section data.
+  character(*),        intent(IN)::    sep    !< Separator of option name/value.
   character(*),        intent(IN)::    source !< String containing section data.
   integer(I4P),        intent(OUT)::   error  !< Error code.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
   call self%parse_name(source=source,error=error)
-  call self%parse_options(source=source,error=error)
+  call self%parse_options(sep=sep,source=source,error=error)
   return
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine parse_section
@@ -977,20 +1022,59 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine get_a_option_section
 
-  subroutine print_section(self,pref,iostat,iomsg,unit)
+  function loop_options_section(self,option) result(again)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Procedure for performing a while loop returning option name/value defined into section.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  implicit none
+  class(Type_Section),           intent(IN)::  self      !< Section data.
+  character(len=:), allocatable, intent(OUT):: option(:) !< Couples option name/value [1:2].
+  logical::                                    again     !< Flag continuing the loop.
+  integer(I4P), save::                         o=0       !< Counter.
+  integer(I4P)::                               Nc        !< Counter.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  again = .false.
+  if (allocated(self%options)) then
+    if (o==0) then
+      o = lbound(self%options,dim=1)
+      Nc = max(len(self%options(o)%oname),len(self%options(o)%ovals))
+      allocate(character(Nc):: option(1:2))
+      option(1) = self%options(o)%oname
+      option(2) = self%options(o)%ovals
+      again = .true.
+    elseif (o<ubound(self%options,dim=1)) then
+      o = o + 1
+      Nc = max(len(self%options(o)%oname),len(self%options(o)%ovals))
+      allocate(character(Nc):: option(1:2))
+      option(1) = self%options(o)%oname
+      option(2) = self%options(o)%ovals
+      again = .true.
+    else
+      o = 0
+      again = .false.
+    endif
+  endif
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endfunction loop_options_section
+
+  subroutine print_section(self,pref,iostat,iomsg,unit,retain_comments)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for printing data with a pretty format.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
-  class(Type_Section),    intent(IN)::  self    !< Section data.
-  character(*), optional, intent(IN)::  pref    !< Prefixing string.
-  integer(I4P), optional, intent(OUT):: iostat  !< IO error.
-  character(*), optional, intent(OUT):: iomsg   !< IO error message.
-  integer(I4P),           intent(IN)::  unit    !< Logic unit.
-  character(len=:), allocatable::       prefd   !< Prefixing string.
-  integer(I4P)::                        iostatd !< IO error.
-  character(500)::                      iomsgd  !< Temporary variable for IO error message.
-  integer(I4P)::                        o       !< Counter.
+  class(Type_Section),    intent(IN)::  self            !< Section data.
+  character(*), optional, intent(IN)::  pref            !< Prefixing string.
+  integer(I4P), optional, intent(OUT):: iostat          !< IO error.
+  character(*), optional, intent(OUT):: iomsg           !< IO error message.
+  integer(I4P),           intent(IN)::  unit            !< Logic unit.
+  logical,                intent(IN)::  retain_comments !< Flag for retaining eventual comments.
+  character(len=:), allocatable::       prefd           !< Prefixing string.
+  integer(I4P)::                        iostatd         !< IO error.
+  character(500)::                      iomsgd          !< Temporary variable for IO error message.
+  integer(I4P)::                        o               !< Counter.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
@@ -998,7 +1082,7 @@ contains
   if (allocated(self%sname)) write(unit=unit,fmt='(A)',iostat=iostatd,iomsg=iomsgd)prefd//'['//self%sname//']'
   if (allocated(self%options)) then
     do o=1,size(self%options)
-      call self%options(o)%print(pref=prefd//'  ',iostat=iostatd,iomsg=iomsgd,unit=unit)
+      call self%options(o)%print(pref=prefd//'  ',iostat=iostatd,iomsg=iomsgd,unit=unit,retain_comments=retain_comments)
     enddo
   endif
   if (present(iostat)) iostat = iostatd
@@ -1007,25 +1091,26 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine print_section
 
-  subroutine save_section(self,iostat,iomsg,unit)
+  subroutine save_section(self,iostat,iomsg,unit,retain_comments)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for saving data.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
-  class(Type_Section),    intent(IN)::  self    !< Section data.
-  integer(I4P), optional, intent(OUT):: iostat  !< IO error.
-  character(*), optional, intent(OUT):: iomsg   !< IO error message.
-  integer(I4P),           intent(IN)::  unit    !< Logic unit.
-  integer(I4P)::                        iostatd !< IO error.
-  character(500)::                      iomsgd  !< Temporary variable for IO error message.
-  integer(I4P)::                        o       !< Counter.
+  class(Type_Section),    intent(IN)::  self            !< Section data.
+  integer(I4P), optional, intent(OUT):: iostat          !< IO error.
+  character(*), optional, intent(OUT):: iomsg           !< IO error message.
+  integer(I4P),           intent(IN)::  unit            !< Logic unit.
+  logical,                intent(IN)::  retain_comments !< Flag for retaining eventual comments.
+  integer(I4P)::                        iostatd         !< IO error.
+  character(500)::                      iomsgd          !< Temporary variable for IO error message.
+  integer(I4P)::                        o               !< Counter.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self%sname)) write(unit=unit,fmt='(A)',iostat=iostatd,iomsg=iomsgd)'['//self%sname//']'
   if (allocated(self%options)) then
     do o=1,size(self%options)
-      call self%options(o)%save(iostat=iostatd,iomsg=iomsgd,unit=unit)
+      call self%options(o)%save(iostat=iostatd,iomsg=iomsgd,unit=unit,retain_comments=retain_comments)
     enddo
   endif
   if (present(iostat)) iostat = iostatd
@@ -1071,6 +1156,7 @@ contains
     enddo
     deallocate(self%sections)
   endif
+  self%Ns = 0
   return
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine free
@@ -1163,24 +1249,23 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   s = self%index(section=section)
   if (s>0) then
-    if (s>0) then
-      allocate(sections(1:size(self%sections)-1))
-      if (s==1) then
-        sections = self%sections(2:)
-      elseif (s==size(self%sections)) then
-        sections = self%sections(:s-1)
-      else
-        sections(:s-1) = self%sections(:s-1)
-        sections(s:  ) = self%sections(s+1:)
-      endif
-      call move_alloc(sections,self%sections)
+    allocate(sections(1:size(self%sections)-1))
+    if (s==1) then
+      sections = self%sections(2:)
+    elseif (s==size(self%sections)) then
+      sections = self%sections(:s-1)
+    else
+      sections(:s-1) = self%sections(:s-1)
+      sections(s:  ) = self%sections(s+1:)
     endif
+    call move_alloc(sections,self%sections)
+    self%Ns = self%Ns - 1
   endif
   return
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine free_section_file_ini
 
-  subroutine load(self,filename,source,error)
+  subroutine load(self,separator,filename,source,error)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for getting file data from a file or a source string.
   !<
@@ -1199,16 +1284,18 @@ contains
   !<```
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
-  class(Type_File_INI),   intent(INOUT):: self     !< File data.
-  character(*), optional, intent(IN)::    filename !< File name.
-  character(*), optional, intent(IN)::    source   !< File source.
-  integer(I4P), optional, intent(OUT)::   error   !< Error code.
-  integer(I4P)::                          errd    !< Error code.
-  character(len=:), allocatable::         sourced  !< Dummy source string.
+  class(Type_File_INI),   intent(INOUT):: self      !< File data.
+  character(1), optional, intent(IN)::    separator !< Separator of options name/value.
+  character(*), optional, intent(IN)::    filename  !< File name.
+  character(*), optional, intent(IN)::    source    !< File source.
+  integer(I4P), optional, intent(OUT)::   error     !< Error code.
+  integer(I4P)::                          errd      !< Error code.
+  character(len=:), allocatable::         sourced   !< Dummy source string.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
   errd = err_source_missing
+  if (present(separator)) self%opt_sep = separator
   if (present(filename)) then
     self%filename = trim(adjustl(filename))
     call read_file_as_stream(filename=self%filename,fast_read=.true.,stream=sourced)
@@ -1273,10 +1360,11 @@ contains
       if (scan(adjustl(toks(s)), comments) == 1) cycle
       if (index(trim(adjustl(toks(s))), "[") == 1) then
         ss = ss + 1
-        call self%sections(ss)%parse(source=toks(s),error=errd)
+        call self%sections(ss)%parse(sep=self%opt_sep,source=toks(s),error=errd)
       endif
     enddo
   endif
+  self%Ns = size(self%sections,dim=1)
   if (present(error)) error = errd
   return
   !---------------------------------------------------------------------------------------------------------------------------------
@@ -1399,6 +1487,26 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endfunction index_option_file_ini
 
+  elemental function section_file_ini(self,section_index) result(sname)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Procedure for getting section name once an index (valid) is provided.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  implicit none
+  class(Type_File_INI), intent(IN):: self          !< File data.
+  integer(I4P),         intent(IN):: section_index !< Section index.
+  character(len=:), allocatable::    sname         !< Section name.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  if (allocated(self%sections)) then
+    if ((section_index >= lbound(self%sections,dim=1)).and.(section_index <= ubound(self%sections,dim=1))) then
+      if (allocated(self%sections(section_index)%sname)) sname = self%sections(section_index)%sname
+    endif
+  endif
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endfunction section_file_ini
+
   elemental function count_values_option_section_file_ini(self,delimiter,section,option) result(Nv)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for getting the number of values of option into section data.
@@ -1449,10 +1557,12 @@ contains
       sections(1:size(self%sections)) = self%sections
       sections(size(self%sections)+1) = Type_Section(sname=trim(adjustl(section)))
       call move_alloc(sections,self%sections)
+      self%Ns = self%Ns + 1
     endif
   else
     allocate(self%sections(1:1))
     self%sections(1)%sname = section
+    self%Ns = self%Ns + 1
   endif
   if (self%index(section=section)>0) errd = 0
   if (present(error)) error = errd
@@ -1624,27 +1734,89 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endfunction items_file_ini
 
-  subroutine print_file_ini(self,pref,iostat,iomsg,unit)
+  function loop_options_section_file_ini(self,section,option) result(again)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Procedure for performing a while loop returning option name/value defined into section.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  implicit none
+  class(Type_File_INI),          intent(IN)::  self      !< File data.
+  character(*),                  intent(IN)::  section   !< Section name.
+  character(len=:), allocatable, intent(OUT):: option(:) !< Couples option name/value [1:2].
+  logical::                                    again     !< Flag continuing the loop.
+  integer(I4P)::                               s         !< Counter.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  again = .false.
+  s = self%index(section=section)
+  if (s>0) then
+    again = self%sections(s)%loop(option=option)
+  endif
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endfunction loop_options_section_file_ini
+
+  recursive function loop_options_file_ini(self,option) result(again)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Procedure for performing a while loop returning option name/value defined into all sections.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  implicit none
+  class(Type_File_INI),          intent(IN)::  self           !< File data.
+  character(len=:), allocatable, intent(OUT):: option(:)      !< Couples option name/value [1:2].
+  logical::                                    again          !< Flag continuing the loop.
+  logical, save::                              againO=.false. !< Flag continuing the loop.
+  integer(I4P), save::                         s=0            !< Counter.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  again = .false.
+  if (allocated(self%sections)) then
+    if (s==0) then
+      s = lbound(self%sections,dim=1)
+      againO = self%loop(section=self%sections(s)%sname,option=option)
+      again = .true.
+    elseif (s<ubound(self%sections,dim=1)) then
+      if (.not.againO) s = s + 1
+      againO = self%loop(section=self%sections(s)%sname,option=option)
+      if (.not.againO) then
+        again = self%loop(option=option)
+      else
+        again = .true.
+      endif
+    else
+      s = 0
+      againO = .false.
+      again = .false.
+    endif
+  endif
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endfunction loop_options_file_ini
+
+  subroutine print_file_ini(self,pref,retain_comments,iostat,iomsg,unit)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for printing data with a pretty format.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
-  class(Type_File_INI),   intent(IN)::  self    !< File data.
-  character(*), optional, intent(IN)::  pref    !< Prefixing string.
-  integer(I4P), optional, intent(OUT):: iostat  !< IO error.
-  character(*), optional, intent(OUT):: iomsg   !< IO error message.
-  integer(I4P),           intent(IN)::  unit    !< Logic unit.
-  character(len=:), allocatable::       prefd   !< Prefixing string.
-  integer(I4P)::                        iostatd !< IO error.
-  character(500)::                      iomsgd  !< Temporary variable for IO error message.
-  integer(I4P)::                        s       !< Counter.
+  class(Type_File_INI),   intent(IN)::  self            !< File data.
+  character(*), optional, intent(IN)::  pref            !< Prefixing string.
+  logical,      optional, intent(IN)::  retain_comments !< Flag for retaining eventual comments.
+  integer(I4P), optional, intent(OUT):: iostat          !< IO error.
+  character(*), optional, intent(OUT):: iomsg           !< IO error message.
+  integer(I4P),           intent(IN)::  unit            !< Logic unit.
+  character(len=:), allocatable::       prefd           !< Prefixing string.
+  logical::                             rt_comm         !< Flag for retaining eventual comments.
+  integer(I4P)::                        iostatd         !< IO error.
+  character(500)::                      iomsgd          !< Temporary variable for IO error message.
+  integer(I4P)::                        s               !< Counter.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
   prefd = '' ; if (present(pref)) prefd = pref
+  rt_comm = .false. ; if (present(retain_comments)) rt_comm = retain_comments
   if (allocated(self%sections)) then
     do s=1,size(self%sections)
-      call self%sections(s)%print(pref=prefd,iostat=iostatd,iomsg=iomsgd,unit=unit)
+      call self%sections(s)%print(pref=prefd,iostat=iostatd,iomsg=iomsgd,unit=unit,retain_comments=rt_comm)
     enddo
   endif
   if (present(iostat)) iostat = iostatd
@@ -1653,27 +1825,30 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine print_file_ini
 
-  subroutine save_file_ini(self,iostat,iomsg,filename)
+  subroutine save_file_ini(self,retain_comments,iostat,iomsg,filename)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for saving data.
   !---------------------------------------------------------------------------------------------------------------------------------
   implicit none
-  class(Type_File_INI),   intent(INOUT):: self     !< File data.
-  integer(I4P), optional, intent(OUT)::   iostat   !< IO error.
-  character(*), optional, intent(OUT)::   iomsg    !< IO error message.
-  character(*), optional, intent(IN)::    filename !< File name.
-  integer(I4P)::                          unit     !< Logic unit.
-  integer(I4P)::                          iostatd  !< IO error.
-  character(500)::                        iomsgd   !< Temporary variable for IO error message.
-  integer(I4P)::                          s        !< Counter.
+  class(Type_File_INI),   intent(INOUT):: self            !< File data.
+  logical,      optional, intent(IN)::    retain_comments !< Flag for retaining eventual comments.
+  integer(I4P), optional, intent(OUT)::   iostat          !< IO error.
+  character(*), optional, intent(OUT)::   iomsg           !< IO error message.
+  character(*), optional, intent(IN)::    filename        !< File name.
+  logical::                               rt_comm         !< Flag for retaining eventual comments.
+  integer(I4P)::                          unit            !< Logic unit.
+  integer(I4P)::                          iostatd         !< IO error.
+  character(500)::                        iomsgd          !< Temporary variable for IO error message.
+  integer(I4P)::                          s               !< Counter.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
+  rt_comm = .false. ; if (present(retain_comments)) rt_comm = retain_comments
   if (present(filename)) self%filename = filename
   if (allocated(self%filename).and.allocated(self%sections)) then
     open(unit=Get_Unit(unit),file=self%filename,action='WRITE',iostat=iostatd,iomsg=iomsgd)
     do s=1,size(self%sections)
-      call self%sections(s)%save(iostat=iostatd,iomsg=iomsgd,unit=unit)
+      call self%sections(s)%save(iostat=iostatd,iomsg=iomsgd,unit=unit,retain_comments=rt_comm)
     enddo
     close(unit=unit,iostat=iostatd,iomsg=iomsgd)
   endif
@@ -1698,6 +1873,7 @@ contains
     if (allocated(self1%sections)) deallocate(self1%sections) ; allocate(self1%sections(1:size(self2%sections)))
     self1%sections = self2%sections
   endif
+  self1%Ns = self2%Ns
   return
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine assign_file_ini
@@ -1713,15 +1889,16 @@ contains
   real(R4P), allocatable::        array(:)   !< Array option.
   integer(I4P)::                  error      !< Error code.
   character(len=:), allocatable:: items(:,:) !< List of all options name/value couples.
-  integer(I4P)::                  i          !< Counter.
+  character(len=:), allocatable:: item(:)    !< Option name/value couple.
+  integer(I4P)::                  i,s        !< Counters.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
   source='[section-1]'//new_line('A')//   &
          'option-1 = one'//new_line('A')//&
          'option-2 = 2.'//new_line('A')// &
-         '           3.'//new_line('A')// &
-         'option-3 = bar'//new_line('A')//&
+         '           3. ; this is an inline comment'//new_line('A')// &
+         'option-3 = bar ; this is an inline comment'//new_line('A')//&
          '[section-2]'//new_line('A')//   &
          'option-1 = foo'
   print "(A)", ''
@@ -1743,8 +1920,9 @@ contains
   call fini%get(section='section-2',option='option-1',val=string,error=error)
   if (error==0) print "(A,A)", '  option-1 of section-2 has values: ',string
   print "(A)", ''
-  print "(A)", "Parsed data will be saved as:"
-  call fini%print(pref='  ',unit=stdout)
+  print "(A)", "Parsed data will be saved as (having retained inline comments that are trimmed out by default):"
+  call fini%print(pref='  ',unit=stdout,retain_comments=.true.)
+  call fini%save(filename='foo.ini',retain_comments=.true.)
   call fini%free
   print "(A)", ''
   print "(A)", "Testing generating procedures"
@@ -1755,10 +1933,9 @@ contains
   call fini%add(section='sec-bar')
   call fini%add(section='sec-bar',option='bools',val=[.true.,.false.,.false.])
   call fini%add(section='sec-bartolomeo')
-  call fini%add(section='sec-bartolomeo',option='help',val='I am Bartolomeo...')
+  call fini%add(section='sec-bartolomeo',option='help',val='I am Bartolomeo')
   print "(A)", "The autogenerated INI file will be saved as:"
   call fini%print(pref='  ',unit=stdout)
-  call fini%save(filename='foo.ini')
   print "(A)", ''
   print "(A)", "Testing removing option baz"
   call fini%del(section='sec-foo',option='baz')
@@ -1773,11 +1950,42 @@ contains
   print "(A,L1)", "Is there option baz? ", fini%has_option(option='baz')
   print "(A,L1)", "Is there section sec-bar? ", fini%has_section(section='sec-bar')
   print "(A,L1)", "Is there section sec-foo? ", fini%has_section(section='sec-foo')
-  print "(A)", "What are all options name/values couples? Can I have a list? Yes, you can..."
+  print "(A)", ''
+  print "(A)", "What are all options name/values couples? Can I have a list? Yes, you can:"
   items = fini%items()
   do i=1,size(items,dim=1)
     print "(A)", trim(items(i,1))//' = '//trim(items(i,2))
   enddo
+  print "(A)", ''
+  print "(A)", "Testing loop method over options of a section:"
+  do s=1,fini%Ns
+    print "(A)", fini%section(s)
+    do while(fini%loop(section=fini%section(s),option=item))
+      print "(A)", '  '//trim(item(1))//' = '//trim(item(2))
+    enddo
+  enddo
+  print "(A)", ''
+  print "(A)", "Testing loop method over all options:"
+  do while(fini%loop(option=item))
+    print "(A)", '  '//trim(item(1))//' = '//trim(item(2))
+  enddo
+  print "(A)", ''
+  print "(A)", "Testing custom separator of option name/value:, use ':' instead of '='"
+  source='[section-1]'//new_line('A')//   &
+         'option-1 : one'//new_line('A')//&
+         'option-2 : 2.'//new_line('A')// &
+         '           3.'//new_line('A')// &
+         'option-3 : bar'//new_line('A')//&
+         '[section-2]'//new_line('A')//   &
+         'option-1 : foo'
+  print "(A)", ''
+  print "(A)", "Source to be parsed:"
+  print "(A)", source
+  call fini%free
+  call fini%load(separator=':',source=source)
+  print "(A)", ''
+  print "(A)", "Result of parsing:"
+  call fini%print(pref='  ',unit=stdout)
   return
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine ini_autotest

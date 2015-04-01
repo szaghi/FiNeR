@@ -50,6 +50,8 @@ Go to [Top](#top)
     * [x] introspection:
         * [x] self-consistency checks;
         * [x] pretty-printings;
+        * [x] loop over options;
+        * [x] inquiring the presence of sections/options by name;
 * [ ] errors trapping mechanism.
 
 Any feature request is welcome.

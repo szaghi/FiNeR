@@ -1,3 +1,9 @@
+### Version v1.0.2
+
+Stable release. Fully backward compatible.
+
++ improve public API with many news methods;
+
 ### Version v1.0.1
 
 Stable release. Fully backward compatible.
