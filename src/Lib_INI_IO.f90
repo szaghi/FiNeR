@@ -100,6 +100,9 @@ type, public:: Type_File_INI
   type(Type_Section), allocatable, private:: sections(:)           !< Sections.
   contains
     procedure:: free                                                 !< Procedure for freeing dynamic memory destroyng file data.
+    generic::   free_options => free_options_all,        &           !< Procedure for freeing all options.
+                                free_options_of_section, &           !< Procedure for freeing all options of a section.
+                                free_option_of_section_file_ini      !< Procedure for freeing an option of a section.
     procedure:: load                                                 !< Procedure for loading file data.
     procedure:: has_option   => has_option_file_ini                  !< Procedure for inquiring the presence of an option.
     procedure:: has_section  => has_section_file_ini                 !< Procedure for inquiring the presence of a section.
@@ -124,9 +127,6 @@ type, public:: Type_File_INI
     generic:: assignment(=) => assign_file_ini !< Procedure for section assignment overloading.
     ! private procedures
     procedure,              private:: parse                               !< Procedure for parsing file data.
-    generic,                private:: free_options => free_options_all, & !< Procedure for freeing all options.
-                                      free_options_of_section,          & !< Procedure for freeing all options of a section.
-                                      free_option_of_section_file_ini     !< Procedure for freeing an option of a section.
     procedure,              private:: free_options_all                    !< Procedure for freeing all options of all sections.
     procedure,              private:: free_options_of_section             !< Procedure for freeing all options of a section.
     procedure,              private:: free_option_of_section_file_ini     !< Procedure for freeing an option of a section.
@@ -1487,7 +1487,7 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endfunction index_option_file_ini
 
-  elemental function section_file_ini(self,section_index) result(sname)
+  pure function section_file_ini(self, section_index) result(sname)
   !---------------------------------------------------------------------------------------------------------------------------------
   !< Procedure for getting section name once an index (valid) is provided.
   !---------------------------------------------------------------------------------------------------------------------------------
