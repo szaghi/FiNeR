@@ -2,30 +2,29 @@
 module Lib_IO_Misc
 !< Library of miscellanea procedures for input/output operations.
 !-----------------------------------------------------------------------------------------------------------------------------------
-USE IR_Precision                                                                  ! Integers and reals precision definition.
-USE Lib_Strings                                                                   ! Library for strings operations.
-USE, intrinsic:: ISO_FORTRAN_ENV, only: stdout=>OUTPUT_UNIT, stderr=>ERROR_UNIT,& ! Standard output/error logical units.
-                                        IOSTAT_END, IOSTAT_EOR                    ! Standard end-of-file/end-of record parameters.
+use penf
+use Lib_Strings
+use, intrinsic :: ISO_FORTRAN_ENV, only : stdout=>OUTPUT_UNIT, stderr=>ERROR_UNIT, IOSTAT_END, IOSTAT_EOR
 !-----------------------------------------------------------------------------------------------------------------------------------
 
 !-----------------------------------------------------------------------------------------------------------------------------------
 implicit none
 save
 private
-public:: stdout,stderr,iostat_end,iostat_eor
-public:: Get_Unit
-public:: get_extension,set_extension
-public:: read_file_as_stream
-public:: lc_file
-public:: File_Not_Found
-public:: Dir_Not_Found
-public:: inquire_file
-public:: inquire_dir
+public :: stdout,stderr,iostat_end,iostat_eor
+public :: Get_Unit
+public :: get_extension,set_extension
+public :: read_file_as_stream
+public :: lc_file
+public :: File_Not_Found
+public :: Dir_Not_Found
+public :: inquire_file
+public :: inquire_dir
 !-----------------------------------------------------------------------------------------------------------------------------------
 
 !-----------------------------------------------------------------------------------------------------------------------------------
-integer(I4P), public, parameter:: err_file_not_found      = 20100 !< File not found error ID.
-integer(I4P), public, parameter:: err_directory_not_found = 20101 !< Directory not found error ID.
+integer(I4P), public, parameter :: err_file_not_found      = 20100 !< File not found error ID.
+integer(I4P), public, parameter :: err_directory_not_found = 20101 !< Directory not found error ID.
 !-----------------------------------------------------------------------------------------------------------------------------------
 contains
   function Get_Unit(Free_Unit) result(funit)

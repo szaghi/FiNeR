@@ -2,35 +2,36 @@
 module Lib_INI_IO
 !< Library for INI file parsing.
 !-----------------------------------------------------------------------------------------------------------------------------------
-USE IR_Precision                                                                    ! Integers and reals precision definition.
-USE Lib_IO_Misc                                                                     ! Library for miscellanea IO procedures.
-USE Lib_Strings                                                                     ! Library for strings manipulation.
-USE, intrinsic:: ISO_FORTRAN_ENV, only: stdout => OUTPUT_UNIT, stderr => ERROR_UNIT ! Standard output/error logical units.
+use penf
+use Lib_IO_Misc
+use Lib_Strings
+use, intrinsic :: ISO_FORTRAN_ENV, only : stdout => OUTPUT_UNIT, stderr => ERROR_UNIT
 !-----------------------------------------------------------------------------------------------------------------------------------
 
 !-----------------------------------------------------------------------------------------------------------------------------------
 implicit none
 save
 private
-public:: ini_autotest
+public :: ini_autotest
 !-----------------------------------------------------------------------------------------------------------------------------------
 
 !-----------------------------------------------------------------------------------------------------------------------------------
-integer(I4P), parameter:: err_option_name       = 1     !< Error flag for trapping errors in option name.
-integer(I4P), parameter:: err_option_vals       = 2     !< Error flag for trapping errors in option values.
-integer(I4P), parameter:: err_option            = 3     !< Error flag for trapping errors in option.
-integer(I4P), parameter:: err_section_name      = 4     !< Error flag for trapping errors in section name.
-integer(I4P), parameter:: err_section_options   = 5     !< Error flag for trapping errors in section options.
-integer(I4P), parameter:: err_section           = 6     !< Error flag for trapping errors in section.
-integer(I4P), parameter:: err_source_missing    = 7     !< Error flag for trapping errors in file when source is missing.
-character(1), parameter:: def_opt_sep           = '='   !< Default separator of option name/value.
-character(*), parameter:: comments              = "!;#" !< Characters used for defining a comment line.
-character(1), parameter:: inline_comment        = ';'   !< Inline comment delimiter.
-type:: Type_Option
-  !< Derived type for handling option data of sections.
-  character(len=:), allocatable:: oname !< Option name.
-  character(len=:), allocatable:: ovals !< Option values.
-  character(len=:), allocatable:: ocomm !< Eventual option inline comment.
+integer(I4P), parameter :: err_option_name       = 1     !< Error flag for trapping errors in option name.
+integer(I4P), parameter :: err_option_vals       = 2     !< Error flag for trapping errors in option values.
+integer(I4P), parameter :: err_option            = 3     !< Error flag for trapping errors in option.
+integer(I4P), parameter :: err_section_name      = 4     !< Error flag for trapping errors in section name.
+integer(I4P), parameter :: err_section_options   = 5     !< Error flag for trapping errors in section options.
+integer(I4P), parameter :: err_section           = 6     !< Error flag for trapping errors in section.
+integer(I4P), parameter :: err_source_missing    = 7     !< Error flag for trapping errors in file when source is missing.
+character(1), parameter :: def_opt_sep           = '='   !< Default separator of option name/value.
+character(*), parameter :: comments              = "!;#" !< Characters used for defining a comment line.
+character(1), parameter :: inline_comment        = ';'   !< Inline comment delimiter.
+
+type :: Type_Option
+  !< Option data of sections.
+  character(len=:), allocatable :: oname !< Option name.
+  character(len=:), allocatable :: ovals !< Option values.
+  character(len=:), allocatable :: ocomm !< Eventual option inline comment.
   contains
     procedure:: free         => free_option         !< Procedure for freeing dynamic memory.
     procedure:: parse        => parse_option        !< Procedure for parsing option data.
@@ -1370,20 +1371,19 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine parse
 
-  function has_option_file_ini(self,section,option) result(pres)
+  function has_option_file_ini(self, section, option) result(pres)
   !---------------------------------------------------------------------------------------------------------------------------------
-  !< Procedure for inquiring the presence of (at least one) option with the name passed.
+  !< Inquire the presence of (at least one) option with the name passed.
   !<
   !< Optionall, the first matching section name is returned.
   !<
   !< @note All sections are searched and the first occurence is returned.
   !---------------------------------------------------------------------------------------------------------------------------------
-  implicit none
-  class(Type_File_INI),   intent(IN)::    self    !< File data.
-  character(*), optional, intent(INOUT):: section !< Section name.
-  character(*),           intent(IN)::    option  !< Option name.
-  logical::                               pres    !< Inquiring flag.
-  integer(I4P)::                          s       !< Counter.
+  class(Type_File_INI),   intent(in)    :: self    !< File data.
+  character(*), optional, intent(inout) :: section !< Section name.
+  character(*),           intent(in)    :: option  !< Option name.
+  logical                               :: pres    !< Inquiring flag.
+  integer(I4P)                          :: s       !< Counter.
   !---------------------------------------------------------------------------------------------------------------------------------
 
   !---------------------------------------------------------------------------------------------------------------------------------
@@ -1392,7 +1392,7 @@ contains
     do s=1,size(self%sections)
       pres = (self%sections(s)%index(option=option)>0)
       if (pres) then
-        if (present(section)) section = self%sections(s)
+        if (present(section)) section = self%sections(s)%sname
         exit
       endif
     enddo
