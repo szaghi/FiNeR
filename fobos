@@ -220,6 +220,13 @@ help   = Rule for performing coverage analysis and saving reports in markdown
 rule_1 = FoBiS.py clean -mode test-driver-gnu
 rule_2 = FoBiS.py build -mode test-driver-gnu -coverage
 rule_3 = ./Test_Driver/Test_Driver
-rule_4 = gcov -o Test_Driver/obj/ src/*
+rule_4 = gcov -o Test_Driver/obj/ src/lib/finer*
 rule_5 = FoBiS.py rule -gcov_analyzer wiki/ Coverage-Analysis
 rule_6 = rm -f *.gcov
+
+[rule-makecoverage]
+help   = Rule for performing coverage analysis
+rule_1 = FoBiS.py clean -mode test-driver-gnu
+rule_2 = FoBiS.py build -mode test-driver-gnu -coverage
+rule_3 = ./Test_Driver/Test_Driver
+rule_4 = gcov -o Test_Driver/obj/ src/lib/finer*
