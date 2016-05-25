@@ -8,8 +8,8 @@
 [![License](https://img.shields.io/badge/license-MIT-red.svg)]()
 
 [![Status](https://img.shields.io/badge/status-stable-brightgreen.svg)]()
-[![Build Status](https://travis-ci.org/szaghi/StringiFor.svg?branch=master)](https://travis-ci.org/szaghi/StringiFor)
-[![Coverage Status](https://img.shields.io/codecov/c/github/szaghi/StringiFor.svg)](http://codecov.io/github/szaghi/StringiFor?branch=master)
+[![Build Status](https://travis-ci.org/szaghi/FiNeR.svg?branch=master)](https://travis-ci.org/szaghi/FiNeR)
+[![Coverage Status](https://img.shields.io/codecov/c/github/szaghi/FiNeR.svg)](http://codecov.io/github/szaghi/FiNeR?branch=master)
 
 ### FiNeR, Fortran INI ParseR and generator for FoRtraners
 
