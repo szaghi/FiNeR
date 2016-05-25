@@ -3,13 +3,20 @@
 # FiNeR [![GitHub tag](https://img.shields.io/github/tag/szaghi/FiNeR.svg)]()
 
 [![License](https://img.shields.io/badge/license-GNU%20GeneraL%20Public%20License%20v3%20,%20GPLv3-blue.svg)]()
+[![License](https://img.shields.io/badge/license-BSD2-red.svg)]()
+[![License](https://img.shields.io/badge/license-BSD3-red.svg)]()
+[![License](https://img.shields.io/badge/license-MIT-red.svg)]()
 
 [![Status](https://img.shields.io/badge/status-stable-brightgreen.svg)]()
+[![Build Status](https://travis-ci.org/szaghi/FiNeR.svg?branch=master)](https://travis-ci.org/szaghi/FiNeR)
+[![Coverage Status](https://img.shields.io/codecov/c/github/szaghi/FiNeR.svg)](http://codecov.io/github/szaghi/FiNeR?branch=master)
 
-### FiNeR, Fortran INI ParseR and generator for FoRtran poor men
+### FiNeR, Fortran INI ParseR and generator for FoRtraners
 
 + FiNeR is a pure Fortran (KISS) library for IO of INI (config) files for modern (2003+) Fortran projects;
 + FiNeR is Fortran 2003+ standard compliant;
+- FiNeR is OOP designed;
+- FiNeR is TDD designed;
 + FiNeR is a Free, Open Source Project.
 
 #### Issues
@@ -19,17 +26,19 @@
 [![Open bugs](https://badge.waffle.io/szaghi/FiNeR.png?label=bug&title=Open%20Bugs)](https://waffle.io/szaghi/FiNeR)
 
 #### Compiler Support
-[![Compiler](https://img.shields.io/badge/GNU%20Gfortran%20Compiler-build%20fail%20with%20v4.9.x-orange.svg)]()
 
-[![Compiler](https://img.shields.io/badge/Intel%20Fortran%20Compiler-build%20pass%20with%20v12.x+-brightgreen.svg)]()
+[![Compiler](https://img.shields.io/badge/GNU-v5.3.0+-orange.svg)]()
+[![Compiler](https://img.shields.io/badge/Intel-v16.x+-brightgreen.svg)]()
+[![Compiler](https://img.shields.io/badge/IBM%20XL-not%20tested-yellow.svg)]()
+[![Compiler](https://img.shields.io/badge/g95-not%20tested-yellow.svg)]()
+[![Compiler](https://img.shields.io/badge/NAG-not%20tested-yellow.svg)]()
+[![Compiler](https://img.shields.io/badge/PGI-not%20tested-yellow.svg)]()
 
-[![Compiler](https://img.shields.io/badge/IBM%20XL%20Fortran%20Compiler-not%20tested-yellow.svg)]()
+---
 
-[![Compiler](https://img.shields.io/badge/g95%20Fortran%20Compiler-not%20tested-yellow.svg)]()
+[What is FiNeR?](#what-is-finer?) | [Main features](#main-features) | [Copyrights](#copyrights) | [Documentation](#documentation) | [A Taste of FiNeR](#a-taste-of-finer)
 
-[![Compiler](https://img.shields.io/badge/NAG%20Fortran%20Compiler-not%20tested-yellow.svg)]()
-
-[![Compiler](https://img.shields.io/badge/PGI%20Fortran%20Compiler-not%20tested-yellow.svg)]()
+---
 
 ## What is FiNeR?
 
@@ -60,7 +69,18 @@ Go to [Top](#top)
 
 ## Copyrights
 
-FiNeR is an open source project, it is distributed under a dual licensing system: the [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html) and the [MIT](http://opensource.org/licenses/MIT) licenses. Anyone is interest to use, to develop or to contribute to FiNeR is welcome: you are free to select the GPL license for FOSS projects or the MIT one for commercial softwares.
+FiNeR is an open source project, it is distributed under a multi-licensing system:
+
++ for FOSS projects:
+  - [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html);
++ for closed source/commercial projects:
+  - [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause);
+  - [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause);
+  - [MIT](http://opensource.org/licenses/MIT).
+
+Anyone is interest to use, to develop or to contribute to FiNeR is welcome, feel free to select the license that best matches your soul!
+
+More details can be found on [wiki](https://github.com/szaghi/FiNeR/wiki/Copyrights).
 
 Go to [Top](#top)
 
