@@ -66,7 +66,7 @@
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../program/test_driver.html">Program</a></li>
+            <li><a href="../program/autotest.html">Program</a></li>
 				
           </ul>
         
@@ -458,6 +458,8 @@
           <a class="list-group-item" href="../proc/get_option%7E3.html">get_option</a>
           
           <a class="list-group-item" href="../proc/get_pairs.html">get_pairs</a>
+          
+          <a class="list-group-item" href="../proc/get_sections_list.html">get_sections_list</a>
           
           <a class="list-group-item" href="../proc/has_option.html">has_option</a>
           
@@ -938,7 +940,7 @@ private function loop_options_section(self, section_name, option_pairs) result(a
   <td></td>
   
   <td>allocatable</td><td>::</td>
-  <td><strong>option_pairs</strong>(:)</td><td><p>Couples option name/value [1:2].</p></td>
+  <td><strong>option_pairs</strong>(:)</td><td><p>Pairs option name/value [1:2].</p></td>
   
 </tr>
 
@@ -1019,7 +1021,7 @@ private function loop_options_section(self, section_name, option_pairs) result(a
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
   <span class="k">class</span><span class="p">(</span><span class="n">file_ini</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">self</span>            <span class="c">!&lt; File data.</span>
   <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>                  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">section_name</span>    <span class="c">!&lt; Section name.</span>
-  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">option_pairs</span><span class="p">(:)</span> <span class="c">!&lt; Couples option name/value [1:2].</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">option_pairs</span><span class="p">(:)</span> <span class="c">!&lt; Pairs option name/value [1:2].</span>
   <span class="kt">logical</span>                                    <span class="kd">::</span> <span class="n">again</span>           <span class="c">!&lt; Flag continuing the loop.</span>
   <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">s</span>               <span class="c">!&lt; Counter.</span>
   <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>

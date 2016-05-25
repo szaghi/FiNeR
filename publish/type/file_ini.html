@@ -66,7 +66,7 @@
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../program/test_driver.html">Program</a></li>
+            <li><a href="../program/autotest.html">Program</a></li>
 				
           </ul>
         
@@ -177,6 +177,8 @@
           <a class="list-group-item" href="../type/file_ini.html#boundprocedure-get">get</a>
           
           <a class="list-group-item" href="../type/file_ini.html#boundprocedure-get_items">get_items</a>
+          
+          <a class="list-group-item" href="../type/file_ini.html#boundprocedure-get_sections_list">get_sections_list</a>
           
           <a class="list-group-item" href="../type/file_ini.html#boundprocedure-has_option">has_option</a>
           
@@ -1784,7 +1786,7 @@ private subroutine <a href='../proc/get_a_option.html'>get_a_option</a>(self, de
     
 
 
-    <p>Get list of couples option name/value.</p>
+    <p>Get list of pairs option name/value.</p>
   </div>
   
   <ul class="list-group">
@@ -1839,7 +1841,7 @@ private pure subroutine <a href='../proc/get_items.html'>get_items</a>(self, ite
   <td></td>
   
   <td>allocatable</td><td>::</td>
-  <td><strong>items</strong>(:,:)</td><td><p>Items, list of couples option name/value for all options [1:No,1:2].</p></td>
+  <td><strong>items</strong>(:,:)</td><td><p>Items, list of pairs option name/value for all options [1:No,1:2].</p></td>
   
 </tr>
 
@@ -1856,7 +1858,99 @@ private pure subroutine <a href='../proc/get_items.html'>get_items</a>(self, ite
 
 
        
-       <p>Get list of couples option name/value.</p>
+       <p>Get list of pairs option name/value.</p>
+        
+
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-get_sections_list"></span><h3>procedure, public, pass(self) :: <strong>get_sections_list</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p>Get sections names list.</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private pure subroutine <a href='../proc/get_sections_list.html'>get_sections_list</a>(self, list)
+    
+    
+    
+</h3>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/file_ini.html'>file_ini</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>File data.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=:),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>list</strong>(:)</td><td><p>Sections names list.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+       
+
+
+       
+       <p>Get sections names list.</p>
         
 
       
@@ -2535,7 +2629,7 @@ private function <a href='../proc/loop_options_section.html'>loop_options_sectio
   <td></td>
   
   <td>allocatable</td><td>::</td>
-  <td><strong>option_pairs</strong>(:)</td><td><p>Couples option name/value [1:2].</p></td>
+  <td><strong>option_pairs</strong>(:)</td><td><p>Pairs option name/value [1:2].</p></td>
   
 </tr>
 
@@ -2619,7 +2713,7 @@ private recursive function <a href='../proc/loop_options.html'>loop_options</a>(
   <td></td>
   
   <td>allocatable</td><td>::</td>
-  <td><strong>option_pairs</strong>(:)</td><td><p>Couples option name/value [1:2].</p></td>
+  <td><strong>option_pairs</strong>(:)</td><td><p>Pairs option name/value [1:2].</p></td>
   
 </tr>
 
@@ -4490,7 +4584,7 @@ private recursive function <a href='../proc/loop_options.html'>loop_options</a>(
   <td></td>
   
   <td>allocatable</td><td>::</td>
-  <td><strong>option_pairs</strong>(:)</td><td><p>Couples option name/value [1:2].</p></td>
+  <td><strong>option_pairs</strong>(:)</td><td><p>Pairs option name/value [1:2].</p></td>
   
 </tr>
 
@@ -4606,7 +4700,7 @@ private function <a href='../proc/loop_options_section.html'>loop_options_sectio
   <td></td>
   
   <td>allocatable</td><td>::</td>
-  <td><strong>option_pairs</strong>(:)</td><td><p>Couples option name/value [1:2].</p></td>
+  <td><strong>option_pairs</strong>(:)</td><td><p>Pairs option name/value [1:2].</p></td>
   
 </tr>
 
@@ -4868,7 +4962,8 @@ private elemental subroutine <a href='../proc/assign_file_ini.html'>assign_file_
                                              <span class="n">free_option_of_section</span>     <span class="c">!&lt; Free an option of a section.</span>
     <span class="k">generic</span>               <span class="kd">::</span> <span class="n">get</span>          <span class="o">=&gt;</span> <span class="n">get_option</span><span class="p">,</span> <span class="p">&amp;</span>              <span class="c">!&lt; Get option value (scalar).</span>
                                              <span class="n">get_a_option</span>               <span class="c">!&lt; Get option value (array).</span>
-    <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">get_items</span>                                  <span class="c">!&lt; Get list of couples option name/value.</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">get_items</span>                                  <span class="c">!&lt; Get list of pairs option name/value.</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">get_sections_list</span>                          <span class="c">!&lt; Get sections names list.</span>
     <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">has_option</span>                                 <span class="c">!&lt; Inquire the presence of an option.</span>
     <span class="k">procedure</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">has_section</span>                                <span class="c">!&lt; Inquire the presence of a section.</span>
     <span class="k">generic</span>               <span class="kd">::</span> <span class="nb">index</span>        <span class="o">=&gt;</span> <span class="n">index_section</span><span class="p">,</span> <span class="p">&amp;</span>           <span class="c">!&lt; Return the index of a section.</span>

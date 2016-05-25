@@ -10,7 +10,7 @@
     <meta name="author" content="Chris MacMackin" >
     <link rel="icon" href="../favicon.png">
 
-    <title>Test_Driver.f90 &ndash; FiNeR</title>
+    <title>autotest.f90 &ndash; FiNeR</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -66,7 +66,7 @@
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../program/test_driver.html">Program</a></li>
+            <li><a href="../program/autotest.html">Program</a></li>
 				
           </ul>
         
@@ -87,7 +87,7 @@
     
   
   <div class="row">
-    <h1>Test_Driver.f90
+    <h1>autotest.f90
     <small>Source File</small>
     
     </h1>
@@ -102,12 +102,12 @@
      
     
     
-    <li><i class="fa fa-code"></i><a href="../src/Test_Driver.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/autotest.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li class="active">Test_Driver.f90</li>
+     <li class="active">autotest.f90</li>
   </ol>
 </div>
 </div>
@@ -129,7 +129,7 @@
     <div id="progs" class="panel-collapse collapse">
         <div class="list-group">
           
-          <a class="list-group-item" href="../program/test_driver.html">Test_Driver</a>
+          <a class="list-group-item" href="../program/autotest.html">autotest</a>
           
         </div>
     </div>
@@ -153,7 +153,7 @@
   <div class="panel panel-primary">
     <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
     <div class="list-group">
-      <a class="list-group-item" href="../sourcefile/test_driver.f90.html#src">Test_Driver.f90</a>
+      <a class="list-group-item" href="../sourcefile/autotest.f90.html#src">autotest.f90</a>
     </div>
   </div>
   
@@ -163,6 +163,8 @@
     <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles">All Source Files</a></h3></div>
     <div id="allfiles" class="panel-collapse collapse">
         <div class="list-group">
+          
+          <a class="list-group-item" href="../sourcefile/autotest.f90.html">autotest.f90</a>
           
           <a class="list-group-item" href="../sourcefile/befor64.f90.html">befor64.F90</a>
           
@@ -184,8 +186,6 @@
           
           <a class="list-group-item" href="../sourcefile/stringifor_string_t.f90.html">stringifor_string_t.F90</a>
           
-          <a class="list-group-item" href="../sourcefile/test_driver.f90.html">Test_Driver.f90</a>
-          
         </div>
     </div>
   </div>
@@ -194,18 +194,18 @@
 
     </div>
     <div class="col-lg-9" id='text'>
-    <p>Testing program for FiNeR, File INI Parser library for FoRtran poor men</p>
+    <p>FiNeR autotest.</p>
     <br>
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="c">!&lt; Testing program for FiNeR, File INI Parser library for FoRtran poor men</span>
-<a name="ln-2"></a><span class="k">program </span><span class="n">Test_Driver</span>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="c">!&lt; FiNeR autotest.</span>
+<a name="ln-2"></a><span class="k">program </span><span class="n">autotest</span>
 <a name="ln-3"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<a name="ln-4"></a><span class="c">!&lt; Testing program for FiNeR, File INI Parser library for FoRtran poor men</span>
+<a name="ln-4"></a><span class="c">!&lt; FiNeR autotest.</span>
 <a name="ln-5"></a><span class="c">!&lt;</span>
 <a name="ln-6"></a><span class="c">!&lt;### Usage</span>
 <a name="ln-7"></a><span class="c">!&lt;```bash</span>
-<a name="ln-8"></a><span class="c">!&lt; ./Test_Driver</span>
+<a name="ln-8"></a><span class="c">!&lt; ./autotest</span>
 <a name="ln-9"></a><span class="c">!&lt;```</span>
 <a name="ln-10"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
 <a name="ln-11"></a><span class="k">use </span><span class="n">finer</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span>  <span class="n">file_ini_autotest</span>
@@ -216,11 +216,11 @@
 <a name="ln-16"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
 <a name="ln-17"></a>
 <a name="ln-18"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<a name="ln-19"></a><span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;Testing FiNeR&#39;</span>
+<a name="ln-19"></a><span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;FiNeR autotest&#39;</span>
 <a name="ln-20"></a><span class="k">call </span><span class="n">file_ini_autotest</span>
 <a name="ln-21"></a><span class="k">stop</span>
 <a name="ln-22"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<a name="ln-23"></a><span class="n">endprogram</span> <span class="n">Test_Driver</span>
+<a name="ln-23"></a><span class="n">endprogram</span> <span class="n">autotest</span>
 </pre></div>
 
     </section>
