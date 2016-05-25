@@ -1,11 +1,11 @@
-!< Testing program for FiNeR, File INI Parser library for FoRtran poor men
-program Test_Driver
+!< FiNeR autotest.
+program autotest
 !-----------------------------------------------------------------------------------------------------------------------------------
-!< Testing program for FiNeR, File INI Parser library for FoRtran poor men
+!< FiNeR autotest.
 !<
 !<### Usage
 !<```bash
-!< ./Test_Driver
+!< ./autotest
 !<```
 !-----------------------------------------------------------------------------------------------------------------------------------
 use finer, only :  file_ini_autotest
@@ -16,8 +16,8 @@ implicit none
 !-----------------------------------------------------------------------------------------------------------------------------------
 
 !-----------------------------------------------------------------------------------------------------------------------------------
-print "(A)", 'Testing FiNeR'
+print "(A)", 'FiNeR autotest'
 call file_ini_autotest
 stop
 !-----------------------------------------------------------------------------------------------------------------------------------
-endprogram Test_Driver
+endprogram autotest
