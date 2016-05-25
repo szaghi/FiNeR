@@ -3,8 +3,13 @@
 # FiNeR [![GitHub tag](https://img.shields.io/github/tag/szaghi/FiNeR.svg)]()
 
 [![License](https://img.shields.io/badge/license-GNU%20GeneraL%20Public%20License%20v3%20,%20GPLv3-blue.svg)]()
+[![License](https://img.shields.io/badge/license-BSD2-red.svg)]()
+[![License](https://img.shields.io/badge/license-BSD3-red.svg)]()
+[![License](https://img.shields.io/badge/license-MIT-red.svg)]()
 
 [![Status](https://img.shields.io/badge/status-stable-brightgreen.svg)]()
+[![Build Status](https://travis-ci.org/szaghi/StringiFor.svg?branch=master)](https://travis-ci.org/szaghi/StringiFor)
+[![Coverage Status](https://img.shields.io/codecov/c/github/szaghi/StringiFor.svg)](http://codecov.io/github/szaghi/StringiFor?branch=master)
 
 ### FiNeR, Fortran INI ParseR and generator for FoRtraners
 
@@ -64,7 +69,18 @@ Go to [Top](#top)
 
 ## Copyrights
 
-FiNeR is an open source project, it is distributed under a dual licensing system: the [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html) and the [MIT](http://opensource.org/licenses/MIT) licenses. Anyone is interest to use, to develop or to contribute to FiNeR is welcome: you are free to select the GPL license for FOSS projects or the MIT one for commercial softwares.
+FiNeR is an open source project, it is distributed under a multi-licensing system:
+
++ for FOSS projects:
+  - [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html);
++ for closed source/commercial projects:
+  - [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause);
+  - [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause);
+  - [MIT](http://opensource.org/licenses/MIT).
+
+Anyone is interest to use, to develop or to contribute to FiNeR is welcome, feel free to select the license that best matches your soul!
+
+More details can be found on [wiki](https://github.com/szaghi/FiNeR/wiki/Copyrights).
 
 Go to [Top](#top)
 
