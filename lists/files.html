@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	 
-	 <meta name="description" content="<p>A KISS library for IO of INI (config) files for modern (2003+) Fortran projects</p>">
+	 <meta name="description" content="Fortran INI ParseR and generator">
     
     <meta name="author" content="Chris MacMackin" >
     <link rel="icon" href="../favicon.png">
@@ -27,17 +27,21 @@ All Files &ndash; FiNeR
     <![endif]-->
     
     <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
+    
 
   </head>
 
   <body>
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -50,7 +54,8 @@ All Files &ndash; FiNeR
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            
+				
+                
             <li><a href="../lists/files.html">Source Files</a></li>
 				
 				
@@ -59,13 +64,14 @@ All Files &ndash; FiNeR
 				
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
-				
+								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
             <li><a href="../program/test_driver.html">Program</a></li>
-								
+				
           </ul>
+        
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -74,6 +80,7 @@ All Files &ndash; FiNeR
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
+        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -87,13 +94,25 @@ All Files &ndash; FiNeR
 			 <thead><tr><th>File</th><th>Description</th></tr></thead>
 			 <tbody>
 			 
-			   <tr><td><a href='../sourcefile/ir_precision.f90.html'>IR_Precision.f90</a></td><td><p>Pure Fortran (2003+) library for ensuring codes portability</p></td></tr>
+			   <tr><td><a href='../sourcefile/befor64.f90.html'>befor64.F90</a></td><td><p>BeFoR64, Base64 encoding/decoding library for FoRtran poor people.</p></td></tr>
 			 
-			   <tr><td><a href='../sourcefile/lib_ini_io.f90.html'>Lib_INI_IO.f90</a></td><td><p>Library for INI file parsing.</p></td></tr>
+			   <tr><td><a href='../sourcefile/befor64_pack_data_m.f90.html'>befor64_pack_data_m.F90</a></td><td><p>KISS library for packing heterogeneous data into single (homogeneous) packed one.</p></td></tr>
 			 
-			   <tr><td><a href='../sourcefile/lib_io_misc.f90.html'>Lib_IO_Misc.f90</a></td><td><p>Library of miscellanea procedures for input/output operations.</p></td></tr>
+			   <tr><td><a href='../sourcefile/finer.f90.html'>finer.f90</a></td><td><p>FiNeR, Fortran INI ParseR and generator.</p></td></tr>
 			 
-			   <tr><td><a href='../sourcefile/lib_strings.f90.html'>Lib_Strings.f90</a></td><td><p>Library of miscellanea procedures for strings operations.</p></td></tr>
+			   <tr><td><a href='../sourcefile/finer_backend.f90.html'>finer_backend.f90</a></td><td><p>FiNeR backends: globals definition.</p></td></tr>
+			 
+			   <tr><td><a href='../sourcefile/finer_file_ini_t.f90.html'>finer_file_ini_t.f90</a></td><td><p>INI file class definition.</p></td></tr>
+			 
+			   <tr><td><a href='../sourcefile/finer_option_t.f90.html'>finer_option_t.F90</a></td><td><p>Option class definition.</p></td></tr>
+			 
+			   <tr><td><a href='../sourcefile/finer_section_t.f90.html'>finer_section_t.f90</a></td><td><p>Section class definition.</p></td></tr>
+			 
+			   <tr><td><a href='../sourcefile/penf.f90.html'>penf.F90</a></td><td><p>Portability Environment for Fortran poor people.</p></td></tr>
+			 
+			   <tr><td><a href='../sourcefile/stringifor.f90.html'>stringifor.F90</a></td><td><p>StringiFor, Strings Fortran, yet another stringify Fortran module</p></td></tr>
+			 
+			   <tr><td><a href='../sourcefile/stringifor_string_t.f90.html'>stringifor_string_t.F90</a></td><td><p>StringiFor, definition of <code>string</code> type.</p></td></tr>
 			 
 			   <tr><td><a href='../sourcefile/test_driver.f90.html'>Test_Driver.f90</a></td><td><p>Testing program for FiNeR, File INI Parser library for FoRtran poor men</p></td></tr>
 			 
@@ -103,11 +122,18 @@ All Files &ndash; FiNeR
 
     <hr>
     <footer>
-        <div class="row">
-        <div class="col-md-6">&copy; 2015 FiNeR was written by Stefano Zaghi. </div>
-        <div class="col-md-6"><span class="pull-right">Documentation generated by <a href="https://github.com/cmacmackin/ford">FORD</a>.</span></div>
+      <div class="row">
+        <div class="col-md-4">&copy; 2016 </div>
+        <div class="col-md-4"><span class="text-center"> FiNeR was developed by Stefano Zaghi</span></div>
+        <div class="col-md-4">
+          <span class="pull-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </span>
         </div>
-        <br>
+      </div>
+      <br>
     </footer>
     </div> <!-- /container -->
 
@@ -135,6 +161,6 @@ All Files &ndash; FiNeR
         }
       });
     </script>
-    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   </body>
 </html>

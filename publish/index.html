@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	 
-	 <meta name="description" content="<p>A KISS library for IO of INI (config) files for modern (2003+) Fortran projects</p>">
+	 <meta name="description" content="Fortran INI ParseR and generator">
     
     <meta name="author" content="Chris MacMackin" >
     <link rel="icon" href="./favicon.png">
@@ -25,17 +25,21 @@
     <![endif]-->
     
     <script src="./js/jquery-2.1.3.min.js"></script>
+    <script src="./js/svg-pan-zoom.min.js"></script>
+
+    
     <script src="./tipuesearch/tipuesearch_content.js"></script>
     <link  href="./tipuesearch/tipuesearch.css" rel="stylesheet">
     <script src="./tipuesearch/tipuesearch_set.js"></script>
     <script src="./tipuesearch/tipuesearch.js"></script>
+    
 
   </head>
 
   <body>
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -48,7 +52,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            
+				
+                
             <li><a href="./lists/files.html">Source Files</a></li>
 				
 				
@@ -57,13 +62,14 @@
 				
             <li><a href="./lists/procedures.html">Procedures</a></li>
 				
-				
+								
             <li><a href="./lists/types.html">Derived Types</a></li>
 				
 				
             <li><a href="./program/test_driver.html">Program</a></li>
-								
+				
           </ul>
+        
         <form action="./search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -72,6 +78,7 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
+        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -80,7 +87,7 @@
     
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <p>A KISS library for IO of INI (config) files for modern (2003+) Fortran projects</p>
+        <p>Fortran INI ParseR and generator</p>
         	 
 	<p> Find us on&hellip;</p>
         <p>
@@ -101,31 +108,36 @@
 		  
           <h1>FiNeR</h1>
           <p><a name="top"></a></p>
-<h1>FiNeR <a href=""><img alt="GitHub tag" src="https://img.shields.io/github/tag/szaghi/FiNeR.svg"></a></h1>
+<h1 id="finer"><a class="toclink" href="#finer">FiNeR <a href=""><img alt="GitHub tag" src="https://img.shields.io/github/tag/szaghi/FiNeR.svg"></a></a></h1>
 <p><a href=""><img alt="License" src="https://img.shields.io/badge/license-GNU%20GeneraL%20Public%20License%20v3%20,%20GPLv3-blue.svg"></a></p>
 <p><a href=""><img alt="Status" src="https://img.shields.io/badge/status-stable-brightgreen.svg"></a></p>
-<h3>FiNeR, Fortran INI ParseR and generator for FoRtran poor men</h3>
+<h3 id="finer-fortran-ini-parser-and-generator-for-fortraners"><a class="toclink" href="#finer-fortran-ini-parser-and-generator-for-fortraners">FiNeR, Fortran INI ParseR and generator for FoRtraners</a></h3>
 <ul>
 <li>FiNeR is a pure Fortran (KISS) library for IO of INI (config) files for modern (2003+) Fortran projects;</li>
 <li>FiNeR is Fortran 2003+ standard compliant;</li>
+<li>FiNeR is OOP designed;</li>
+<li>FiNeR is TDD designed;</li>
 <li>FiNeR is a Free, Open Source Project.</li>
 </ul>
-<h4>Issues</h4>
+<h4 id="issues"><a class="toclink" href="#issues">Issues</a></h4>
 <p><a href=""><img alt="GitHub issues" src="https://img.shields.io/github/issues/szaghi/FiNeR.svg"></a>
 <a href="https://waffle.io/szaghi/FiNeR"><img alt="Ready in backlog" src="https://badge.waffle.io/szaghi/FiNeR.png?label=ready&amp;title=Ready"></a>
 <a href="https://waffle.io/szaghi/FiNeR"><img alt="In Progress" src="https://badge.waffle.io/szaghi/FiNeR.png?label=in%20progress&amp;title=In%20Progress"></a>
 <a href="https://waffle.io/szaghi/FiNeR"><img alt="Open bugs" src="https://badge.waffle.io/szaghi/FiNeR.png?label=bug&amp;title=Open%20Bugs"></a></p>
-<h4>Compiler Support</h4>
-<p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/GNU%20Gfortran%20Compiler-build%20fail%20with%20v4.9.x-orange.svg"></a></p>
-<p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/Intel%20Fortran%20Compiler-build%20pass%20with%20v12.x+-brightgreen.svg"></a></p>
-<p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/IBM%20XL%20Fortran%20Compiler-not%20tested-yellow.svg"></a></p>
-<p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/g95%20Fortran%20Compiler-not%20tested-yellow.svg"></a></p>
-<p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/NAG%20Fortran%20Compiler-not%20tested-yellow.svg"></a></p>
-<p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/PGI%20Fortran%20Compiler-not%20tested-yellow.svg"></a></p>
-<h2>What is FiNeR?</h2>
+<h4 id="compiler-support"><a class="toclink" href="#compiler-support">Compiler Support</a></h4>
+<p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/GNU-v5.3.0+-orange.svg"></a>
+<a href=""><img alt="Compiler" src="https://img.shields.io/badge/Intel-v16.x+-brightgreen.svg"></a>
+<a href=""><img alt="Compiler" src="https://img.shields.io/badge/IBM%20XL-not%20tested-yellow.svg"></a>
+<a href=""><img alt="Compiler" src="https://img.shields.io/badge/g95-not%20tested-yellow.svg"></a>
+<a href=""><img alt="Compiler" src="https://img.shields.io/badge/NAG-not%20tested-yellow.svg"></a>
+<a href=""><img alt="Compiler" src="https://img.shields.io/badge/PGI-not%20tested-yellow.svg"></a></p>
+<hr>
+<p><a href="#what-is-finer?">What is FiNeR?</a> | <a href="#main-features">Main features</a> | <a href="#copyrights">Copyrights</a> | <a href="#documentation">Documentation</a> | <a href="#a-taste-of-finer">A Taste of FiNeR</a></p>
+<hr>
+<h2 id="what-is-finer"><a class="toclink" href="#what-is-finer">What is FiNeR?</a></h2>
 <p>Modern Fortran standards (2003+) have introduced better support for strings manipulations. Exploiting such new Fortran capabilities, FiNeR provides an easy to use module library for input (parsing) and output (generating) <a href="http://en.wikipedia.org/wiki/INI_file">INI</a> (config) files.</p>
 <p>Go to <a href="#top">Top</a></p>
-<h2>Main features</h2>
+<h2 id="main-features"><a class="toclink" href="#main-features">Main features</a></h2>
 <ul class="checklist">
 <li><input type="checkbox" disabled checked> User-friendly methods for IO INI files:<ul class="checklist">
 <li><input type="checkbox" disabled checked> parsing files:<ul class="checklist">
@@ -142,6 +154,8 @@
 <li><input type="checkbox" disabled checked> introspection:<ul class="checklist">
 <li><input type="checkbox" disabled checked> self-consistency checks;</li>
 <li><input type="checkbox" disabled checked> pretty-printings;</li>
+<li><input type="checkbox" disabled checked> loop over options;</li>
+<li><input type="checkbox" disabled checked> inquiring the presence of sections/options by name;</li>
 </ul>
 </li>
 </ul>
@@ -150,14 +164,14 @@
 </ul>
 <p>Any feature request is welcome.</p>
 <p>Go to <a href="#top">Top</a></p>
-<h2>Copyrights</h2>
-<p>FiNeR is an open source project, it is distributed under the <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL v3</a>. Anyone is interest to use, to develop or to contribute to FiNeR is welcome.</p>
+<h2 id="copyrights"><a class="toclink" href="#copyrights">Copyrights</a></h2>
+<p>FiNeR is an open source project, it is distributed under a dual licensing system: the <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL v3</a> and the <a href="http://opensource.org/licenses/MIT">MIT</a> licenses. Anyone is interest to use, to develop or to contribute to FiNeR is welcome: you are free to select the GPL license for FOSS projects or the MIT one for commercial softwares.</p>
 <p>Go to <a href="#top">Top</a></p>
-<h2>Documentation</h2>
+<h2 id="documentation"><a class="toclink" href="#documentation">Documentation</a></h2>
 <p>Besides this README file the FiNeR documentation is contained into its own <a href="https://github.com/szaghi/FiNeR/wiki">wiki</a>. Detailed documentation of the API is contained into the <a href="http://szaghi.github.io/FiNeR/index.html">GitHub Pages</a> that can also be created locally by means of <a href="https://github.com/cmacmackin/ford">ford tool</a>.</p>
-<h3>A Taste of FiNeR</h3>
+<h3 id="a-taste-of-finer"><a class="toclink" href="#a-taste-of-finer">A Taste of FiNeR</a></h3>
 <p>Let us assume our goal is to parse a config file. It is as simple as</p>
-<div class="codehilite"><pre><span class="k">USE </span><span class="n">Lib_INI_IO</span>
+<div class="codehilite"><pre><span></span><span class="k">USE </span><span class="n">Lib_INI_IO</span>
 <span class="p">...</span>
 <span class="k">type</span><span class="p">(</span><span class="n">Type_File_INI</span><span class="p">)</span><span class="kd">::</span>           <span class="n">fini</span>     <span class="c">! INI File.</span>
 <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="kd">::</span> <span class="n">source</span>   <span class="c">! Testing string.</span>
@@ -172,7 +186,6 @@
        <span class="s1">&#39;[section-2]&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span>    <span class="p">&amp;</span>
        <span class="s1">&#39;option-1 = foo&#39;</span>
 <span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">load</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">parse</span><span class="p">(</span><span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
 <span class="k">allocate</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">fini</span><span class="p">%</span><span class="n">count_values</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;option-2&#39;</span><span class="p">)))</span>
 <span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;option-2&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="k">array</span><span class="p">,</span><span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
@@ -184,7 +197,7 @@
 
 
 <p>And what about the generation of an INI file? It is simple as parsing an old one:</p>
-<div class="codehilite"><pre><span class="k">USE </span><span class="n">Lib_INI_IO</span>
+<div class="codehilite"><pre><span></span><span class="k">USE </span><span class="n">Lib_INI_IO</span>
 <span class="p">...</span>
 <span class="k">type</span><span class="p">(</span><span class="n">Type_File_INI</span><span class="p">)</span><span class="kd">::</span> <span class="n">fini</span> <span class="c">! INI File.</span>
 <span class="p">...</span>
@@ -199,7 +212,7 @@
 
 
 <p>A file named <em>foo.ini</em> is created. It contains something like:</p>
-<div class="codehilite"><pre><span class="k">[sec-foo]</span>
+<div class="codehilite"><pre><span></span><span class="k">[sec-foo]</span>
 <span class="na">bar</span> <span class="o">=</span> <span class="s">-0.321000000000000E+002</span>
 <span class="na">baz</span> <span class="o">=</span>  <span class="s">hello FiNeR!</span>
 <span class="na">array</span> <span class="o">=</span> <span class="s">+1 +2 +3 +4</span>
@@ -209,9 +222,6 @@
 
 
 <p>Go to <a href="#top">Top</a></p>
-<h3>ChangeLog</h3>
-<h3>Version v1.0.0</h3>
-<p>First Stable release.</p>
         </div>
 		  
         <div class="col-lg-4">
@@ -251,23 +261,47 @@
               <ul>
                 
                   
-                    <li><a href='./sourcefile/ir_precision.f90.html'>IR_Precision.f90</a></li>
+                    <li><a href='./sourcefile/befor64.f90.html'>befor64.F90</a></li>
                   
                 
                   
-                    <li><a href='./sourcefile/lib_ini_io.f90.html'>Lib_INI_IO.f90</a></li>
+                    <li><a href='./sourcefile/befor64_pack_data_m.f90.html'>befor64_pack_data_m.F90</a></li>
                   
                 
                   
-                    <li><a href='./sourcefile/lib_io_misc.f90.html'>Lib_IO_Misc.f90</a></li>
+                    <li><a href='./sourcefile/finer.f90.html'>finer.f90</a></li>
                   
                 
                   
-                    <li><a href='./sourcefile/lib_strings.f90.html'>Lib_Strings.f90</a></li>
+                    <li><a href='./sourcefile/finer_backend.f90.html'>finer_backend.f90</a></li>
                   
                 
                   
-                    <li><a href='./sourcefile/test_driver.f90.html'>Test_Driver.f90</a></li>
+                    <li><a href='./sourcefile/finer_file_ini_t.f90.html'>finer_file_ini_t.f90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/finer_option_t.f90.html'>finer_option_t.F90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/finer_section_t.f90.html'>finer_section_t.f90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/penf.f90.html'>penf.F90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/stringifor.f90.html'>stringifor.F90</a></li>
+                  
+                
+                  
+                    <li><a href='./sourcefile/stringifor_string_t.f90.html'>stringifor_string_t.F90</a></li>
+                  
+                
+                  
+                    <li><a href="./lists/files.html"><em>All source files&hellip;</em></a></li>
                   
                 
               </ul>
@@ -278,19 +312,51 @@
               <ul>
                 
                   
-                    <li><a href='./module/ir_precision.html'>IR_Precision</a></li>
+                    <li><a href='./module/befor64.html'>befor64</a></li>
                   
                 
                   
-                    <li><a href='./module/lib_ini_io.html'>Lib_INI_IO</a></li>
+                    <li><a href='./module/befor64_pack_data_m.html'>befor64_pack_data_m</a></li>
                   
                 
                   
-                    <li><a href='./module/lib_io_misc.html'>Lib_IO_Misc</a></li>
+                    <li><a href='./module/finer.html'>finer</a></li>
                   
                 
                   
-                    <li><a href='./module/lib_strings.html'>Lib_Strings</a></li>
+                    <li><a href='./module/finer_backend.html'>finer_backend</a></li>
+                  
+                
+                  
+                    <li><a href='./module/finer_file_ini_t.html'>finer_file_ini_t</a></li>
+                  
+                
+                  
+                    <li><a href='./module/finer_option_t.html'>finer_option_t</a></li>
+                  
+                
+                  
+                    <li><a href='./module/finer_section_t.html'>finer_section_t</a></li>
+                  
+                
+                  
+                    <li><a href='./module/penf.html'>penf</a></li>
+                  
+                
+                  
+                    <li><a href='./module/penf_b_size.html'>penf_b_size</a></li>
+                  
+                
+                  
+                    <li><a href='./module/penf_global_parameters_variables.html'>penf_global_parameters_variables</a></li>
+                  
+                
+                  
+                    <li><a href="./lists/modules.html"><em>All modules&hellip;</em></a></li>
+                  
+                
+                  
+                
                   
                 
               </ul>
@@ -302,23 +368,31 @@
               <ul>
                 
                   
-                    <li><a href='./proc/add_a_option_section.html'>add_a_option_section</a></li>
+                    <li><a href='./proc/add_a_option.html'>add_a_option</a></li>
                   
                 
                   
-                    <li><a href='./proc/add_a_option_section_file_ini.html'>add_a_option_section_file_ini</a></li>
+                    <li><a href='./proc/add_a_option%7E2.html'>add_a_option</a></li>
                   
                 
                   
-                    <li><a href='./proc/add_option_section.html'>add_option_section</a></li>
+                    <li><a href='./proc/add_option.html'>add_option</a></li>
                   
                 
                   
-                    <li><a href='./proc/add_option_section_file_ini.html'>add_option_section_file_ini</a></li>
+                    <li><a href='./proc/add_option%7E2.html'>add_option</a></li>
                   
                 
                   
-                    <li><a href='./proc/add_section_file_ini.html'>add_section_file_ini</a></li>
+                    <li><a href='./proc/add_section.html'>add_section</a></li>
+                  
+                
+                  
+                    <li><a href='./interface/adjustl.html'>adjustl</a></li>
+                  
+                
+                  
+                    <li><a href='./interface/adjustr.html'>adjustr</a></li>
                   
                 
                   
@@ -334,15 +408,415 @@
                   
                 
                   
-                    <li><a href='./proc/bctoi_i1p.html'>bctoi_I1P</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/bctoi_i2p.html'>bctoi_I2P</a></li>
-                  
-                
-                  
                     <li><a href="./lists/procedures.html"><em>All procedures&hellip;</em></a></li>
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+                  
+                
                   
                 
                   
@@ -620,15 +1094,19 @@
               <ul>
                 
                   
-                    <li><a href='./type/type_file_ini.html'>Type_File_INI</a></li>
+                    <li><a href='./type/file_ini.html'>file_ini</a></li>
                   
                 
                   
-                    <li><a href='./type/type_option.html'>Type_Option</a></li>
+                    <li><a href='./type/option.html'>option</a></li>
                   
                 
                   
-                    <li><a href='./type/type_section.html'>Type_Section</a></li>
+                    <li><a href='./type/section.html'>section</a></li>
+                  
+                
+                  
+                    <li><a href='./type/string.html'>string</a></li>
                   
                 
               </ul>
@@ -638,11 +1116,18 @@
 
     <hr>
     <footer>
-        <div class="row">
-        <div class="col-md-6">&copy; 2015 FiNeR was written by Stefano Zaghi. </div>
-        <div class="col-md-6"><span class="pull-right">Documentation generated by <a href="https://github.com/cmacmackin/ford">FORD</a>.</span></div>
+      <div class="row">
+        <div class="col-md-4">&copy; 2016 </div>
+        <div class="col-md-4"><span class="text-center"> FiNeR was developed by Stefano Zaghi</span></div>
+        <div class="col-md-4">
+          <span class="pull-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </span>
         </div>
-        <br>
+      </div>
+      <br>
     </footer>
     </div> <!-- /container -->
 
@@ -670,6 +1155,6 @@
         }
       });
     </script>
-    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   </body>
 </html>

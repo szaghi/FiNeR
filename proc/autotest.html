@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="Fortran INI ParseR and generator">
+    
+    <meta name="author" content="Chris MacMackin" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>autotest &ndash; FiNeR</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">FiNeR </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+                
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+				
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../program/test_driver.html">Program</a></li>
+				
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>autotest
+    <small>Subroutine</small>
+    
+    </h1>
+	 
+<div class="row">
+<div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+    <li><i class="fa fa-code"></i><a href="../src/befor64.F90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/befor64.f90.html'>befor64.F90</a></li>
+  
+     <li><a href='../module/befor64.html'>befor64</a></li>
+  
+     <li class="active">autotest</li>
+  </ol>
+</div>
+</div>
+</div>
+    
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-3">
+    
+<div id="sidebar">
+  
+  
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars">Variables</a></h3></div>
+    <div id="vars" class="panel-collapse collapse">
+      <div class="list-group">
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-code64">code64</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-ok">ok</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-scalar_r8">scalar_R8</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-scalar_r4">scalar_R4</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-scalar_i8">scalar_I8</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-scalar_i4">scalar_I4</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-scalar_i2">scalar_I2</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-scalar_i1">scalar_I1</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-array_r8">array_R8</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-array_r4">array_R4</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-array_i8">array_I8</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-array_i4">array_I4</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-array_i2">array_I2</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-array_i1">array_I1</a>
+        
+        <a class="list-group-item" href="../proc/autotest.html#variable-array_s">array_s</a>
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/autotest.html#src">autotest</a>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprocs">All Procedures</a></h3></div>
+    <div id="allprocs" class="panel-collapse collapse">
+        <div class="list-group">
+          
+          <a class="list-group-item" href="../proc/add_a_option.html">add_a_option</a>
+          
+          <a class="list-group-item" href="../proc/add_a_option%7E2.html">add_a_option</a>
+          
+          <a class="list-group-item" href="../proc/add_option.html">add_option</a>
+          
+          <a class="list-group-item" href="../proc/add_option%7E2.html">add_option</a>
+          
+          <a class="list-group-item" href="../proc/add_section.html">add_section</a>
+          
+          <a class="list-group-item" href="../interface/adjustl.html">adjustl</a>
+          
+          <a class="list-group-item" href="../interface/adjustr.html">adjustr</a>
+          
+          <a class="list-group-item" href="../proc/assign_file_ini.html">assign_file_ini</a>
+          
+          <a class="list-group-item" href="../proc/assign_option.html">assign_option</a>
+          
+          <a class="list-group-item" href="../proc/assign_section.html">assign_section</a>
+          
+          <a class="list-group-item" href="../proc/autotest.html">autotest</a>
+          
+          <a class="list-group-item" href="../interface/b64_decode.html">b64_decode</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_i1.html">b64_decode_I1</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_i1_a.html">b64_decode_I1_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_i2.html">b64_decode_I2</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_i2_a.html">b64_decode_I2_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_i4.html">b64_decode_I4</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_i4_a.html">b64_decode_I4_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_i8.html">b64_decode_I8</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_i8_a.html">b64_decode_I8_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_r16.html">b64_decode_R16</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_r16_a.html">b64_decode_R16_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_r4.html">b64_decode_R4</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_r4_a.html">b64_decode_R4_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_r8.html">b64_decode_R8</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_r8_a.html">b64_decode_R8_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_string.html">b64_decode_string</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_string_a.html">b64_decode_string_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_up.html">b64_decode_up</a>
+          
+          <a class="list-group-item" href="../interface/b64_decode_up.html">b64_decode_up</a>
+          
+          <a class="list-group-item" href="../proc/b64_decode_up_a.html">b64_decode_up_a</a>
+          
+          <a class="list-group-item" href="../interface/b64_encode.html">b64_encode</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_i1.html">b64_encode_I1</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_i1_a.html">b64_encode_I1_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_i2.html">b64_encode_I2</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_i2_a.html">b64_encode_I2_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_i4.html">b64_encode_I4</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_i4_a.html">b64_encode_I4_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_i8.html">b64_encode_I8</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_i8_a.html">b64_encode_I8_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_r16.html">b64_encode_R16</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_r16_a.html">b64_encode_R16_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_r4.html">b64_encode_R4</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_r4_a.html">b64_encode_R4_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_r8.html">b64_encode_R8</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_r8_a.html">b64_encode_R8_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_string.html">b64_encode_string</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_string_a.html">b64_encode_string_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_up.html">b64_encode_up</a>
+          
+          <a class="list-group-item" href="../interface/b64_encode_up.html">b64_encode_up</a>
+          
+          <a class="list-group-item" href="../proc/b64_encode_up_a.html">b64_encode_up_a</a>
+          
+          <a class="list-group-item" href="../proc/b64_init.html">b64_init</a>
+          
+          <a class="list-group-item" href="../proc/basedir.html">basedir</a>
+          
+          <a class="list-group-item" href="../proc/basename.html">basename</a>
+          
+          <a class="list-group-item" href="../proc/bctoi_i1p.html">bctoi_I1P</a>
+          
+          <a class="list-group-item" href="../proc/bctoi_i2p.html">bctoi_I2P</a>
+          
+          <a class="list-group-item" href="../proc/bctoi_i4p.html">bctoi_I4P</a>
+          
+          <a class="list-group-item" href="../proc/bctoi_i8p.html">bctoi_I8P</a>
+          
+          <a class="list-group-item" href="../interface/bcton.html">bcton</a>
+          
+          <a class="list-group-item" href="../proc/bctor_r16p.html">bctor_R16P</a>
+          
+          <a class="list-group-item" href="../proc/bctor_r4p.html">bctor_R4P</a>
+          
+          <a class="list-group-item" href="../proc/bctor_r8p.html">bctor_R8P</a>
+          
+          <a class="list-group-item" href="../interface/bit_size.html">bit_size</a>
+          
+          <a class="list-group-item" href="../proc/bit_size_chr.html">bit_size_chr</a>
+          
+          <a class="list-group-item" href="../proc/bit_size_r16p.html">bit_size_R16P</a>
+          
+          <a class="list-group-item" href="../proc/bit_size_r4p.html">bit_size_R4P</a>
+          
+          <a class="list-group-item" href="../proc/bit_size_r8p.html">bit_size_R8P</a>
+          
+          <a class="list-group-item" href="../interface/bstr.html">bstr</a>
+          
+          <a class="list-group-item" href="../proc/bstr_i1p.html">bstr_I1P</a>
+          
+          <a class="list-group-item" href="../proc/bstr_i2p.html">bstr_I2P</a>
+          
+          <a class="list-group-item" href="../proc/bstr_i4p.html">bstr_I4P</a>
+          
+          <a class="list-group-item" href="../proc/bstr_i8p.html">bstr_I8P</a>
+          
+          <a class="list-group-item" href="../proc/bstr_r16p.html">bstr_R16P</a>
+          
+          <a class="list-group-item" href="../proc/bstr_r4p.html">bstr_R4P</a>
+          
+          <a class="list-group-item" href="../proc/bstr_r8p.html">bstr_R8P</a>
+          
+          <a class="list-group-item" href="../interface/byte_size.html">byte_size</a>
+          
+          <a class="list-group-item" href="../proc/byte_size_chr.html">byte_size_chr</a>
+          
+          <a class="list-group-item" href="../proc/byte_size_i1p.html">byte_size_I1P</a>
+          
+          <a class="list-group-item" href="../proc/byte_size_i2p.html">byte_size_I2P</a>
+          
+          <a class="list-group-item" href="../proc/byte_size_i4p.html">byte_size_I4P</a>
+          
+          <a class="list-group-item" href="../proc/byte_size_i8p.html">byte_size_I8P</a>
+          
+          <a class="list-group-item" href="../proc/byte_size_r16p.html">byte_size_R16P</a>
+          
+          <a class="list-group-item" href="../proc/byte_size_r4p.html">byte_size_R4P</a>
+          
+          <a class="list-group-item" href="../proc/byte_size_r8p.html">byte_size_R8P</a>
+          
+          <a class="list-group-item" href="../proc/camelcase.html">camelcase</a>
+          
+          <a class="list-group-item" href="../proc/capitalize.html">capitalize</a>
+          
+          <a class="list-group-item" href="../proc/character_concat_string.html">character_concat_string</a>
+          
+          <a class="list-group-item" href="../proc/character_concat_string_string.html">character_concat_string_string</a>
+          
+          <a class="list-group-item" href="../proc/character_eq_string.html">character_eq_string</a>
+          
+          <a class="list-group-item" href="../proc/character_ge_string.html">character_ge_string</a>
+          
+          <a class="list-group-item" href="../proc/character_gt_string.html">character_gt_string</a>
+          
+          <a class="list-group-item" href="../proc/character_le_string.html">character_le_string</a>
+          
+          <a class="list-group-item" href="../proc/character_lt_string.html">character_lt_string</a>
+          
+          <a class="list-group-item" href="../proc/character_ne_string.html">character_ne_string</a>
+          
+          <a class="list-group-item" href="../proc/chars.html">chars</a>
+          
+          <a class="list-group-item" href="../proc/check_endian.html">check_endian</a>
+          
+          <a class="list-group-item" href="../interface/count.html">count</a>
+          
+          <a class="list-group-item" href="../proc/count_substring.html">count_substring</a>
+          
+          <a class="list-group-item" href="../proc/count_values.html">count_values</a>
+          
+          <a class="list-group-item" href="../proc/count_values%7E2.html">count_values</a>
+          
+          <a class="list-group-item" href="../proc/count_values%7E3.html">count_values</a>
+          
+          <a class="list-group-item" href="../proc/ctoi_i1p.html">ctoi_I1P</a>
+          
+          <a class="list-group-item" href="../proc/ctoi_i2p.html">ctoi_I2P</a>
+          
+          <a class="list-group-item" href="../proc/ctoi_i4p.html">ctoi_I4P</a>
+          
+          <a class="list-group-item" href="../proc/ctoi_i8p.html">ctoi_I8P</a>
+          
+          <a class="list-group-item" href="../interface/cton.html">cton</a>
+          
+          <a class="list-group-item" href="../proc/ctor_r16p.html">ctor_R16P</a>
+          
+          <a class="list-group-item" href="../proc/ctor_r4p.html">ctor_R4P</a>
+          
+          <a class="list-group-item" href="../proc/ctor_r8p.html">ctor_R8P</a>
+          
+          <a class="list-group-item" href="../proc/decode.html">decode</a>
+          
+          <a class="list-group-item" href="../proc/decode_bits.html">decode_bits</a>
+          
+          <a class="list-group-item" href="../interface/digit.html">digit</a>
+          
+          <a class="list-group-item" href="../proc/digit_i1.html">digit_I1</a>
+          
+          <a class="list-group-item" href="../proc/digit_i2.html">digit_I2</a>
+          
+          <a class="list-group-item" href="../proc/digit_i4.html">digit_I4</a>
+          
+          <a class="list-group-item" href="../proc/digit_i8.html">digit_I8</a>
+          
+          <a class="list-group-item" href="../proc/encode.html">encode</a>
+          
+          <a class="list-group-item" href="../proc/encode_bits.html">encode_bits</a>
+          
+          <a class="list-group-item" href="../proc/end_with.html">end_with</a>
+          
+          <a class="list-group-item" href="../proc/escape.html">escape</a>
+          
+          <a class="list-group-item" href="../proc/extension.html">extension</a>
+          
+          <a class="list-group-item" href="../proc/file_ini_autotest.html">file_ini_autotest</a>
+          
+          <a class="list-group-item" href="../proc/fill.html">fill</a>
+          
+          <a class="list-group-item" href="../proc/free.html">free</a>
+          
+          <a class="list-group-item" href="../proc/free%7E2.html">free</a>
+          
+          <a class="list-group-item" href="../proc/free%7E3.html">free</a>
+          
+          <a class="list-group-item" href="../proc/free%7E4.html">free</a>
+          
+          <a class="list-group-item" href="../proc/free_option.html">free_option</a>
+          
+          <a class="list-group-item" href="../proc/free_option_of_section.html">free_option_of_section</a>
+          
+          <a class="list-group-item" href="../proc/free_options.html">free_options</a>
+          
+          <a class="list-group-item" href="../proc/free_options_all.html">free_options_all</a>
+          
+          <a class="list-group-item" href="../proc/free_options_of_section.html">free_options_of_section</a>
+          
+          <a class="list-group-item" href="../proc/free_section.html">free_section</a>
+          
+          <a class="list-group-item" href="../proc/get_a_option.html">get_a_option</a>
+          
+          <a class="list-group-item" href="../proc/get_a_option%7E2.html">get_a_option</a>
+          
+          <a class="list-group-item" href="../proc/get_a_option%7E3.html">get_a_option</a>
+          
+          <a class="list-group-item" href="../proc/get_decimal_mode.html">get_decimal_mode</a>
+          
+          <a class="list-group-item" href="../proc/get_delimiter_mode.html">get_delimiter_mode</a>
+          
+          <a class="list-group-item" href="../proc/get_items.html">get_items</a>
+          
+          <a class="list-group-item" href="../proc/get_next_non_blank_character_any_record.html">get_next_non_blank_character_any_record</a>
+          
+          <a class="list-group-item" href="../proc/get_next_non_blank_character_this_record.html">get_next_non_blank_character_this_record</a>
+          
+          <a class="list-group-item" href="../proc/get_option.html">get_option</a>
+          
+          <a class="list-group-item" href="../proc/get_option%7E2.html">get_option</a>
+          
+          <a class="list-group-item" href="../proc/get_option%7E3.html">get_option</a>
+          
+          <a class="list-group-item" href="../proc/get_pairs.html">get_pairs</a>
+          
+          <a class="list-group-item" href="../proc/has_option.html">has_option</a>
+          
+          <a class="list-group-item" href="../proc/has_options.html">has_options</a>
+          
+          <a class="list-group-item" href="../proc/has_section.html">has_section</a>
+          
+          <a class="list-group-item" href="../interface/index.html">index</a>
+          
+          <a class="list-group-item" href="../proc/index_option.html">index_option</a>
+          
+          <a class="list-group-item" href="../proc/index_option%7E2.html">index_option</a>
+          
+          <a class="list-group-item" href="../proc/index_section.html">index_section</a>
+          
+          <a class="list-group-item" href="../proc/insert_character.html">insert_character</a>
+          
+          <a class="list-group-item" href="../proc/insert_string.html">insert_string</a>
+          
+          <a class="list-group-item" href="../proc/is_allocated.html">is_allocated</a>
+          
+          <a class="list-group-item" href="../proc/is_digit.html">is_digit</a>
+          
+          <a class="list-group-item" href="../proc/is_integer.html">is_integer</a>
+          
+          <a class="list-group-item" href="../proc/is_lower.html">is_lower</a>
+          
+          <a class="list-group-item" href="../proc/is_number.html">is_number</a>
+          
+          <a class="list-group-item" href="../proc/is_real.html">is_real</a>
+          
+          <a class="list-group-item" href="../proc/is_upper.html">is_upper</a>
+          
+          <a class="list-group-item" href="../proc/join_characters.html">join_characters</a>
+          
+          <a class="list-group-item" href="../proc/join_strings.html">join_strings</a>
+          
+          <a class="list-group-item" href="../interface/len.html">len</a>
+          
+          <a class="list-group-item" href="../interface/len_trim.html">len_trim</a>
+          
+          <a class="list-group-item" href="../proc/load.html">load</a>
+          
+          <a class="list-group-item" href="../proc/loop.html">loop</a>
+          
+          <a class="list-group-item" href="../proc/loop_options.html">loop_options</a>
+          
+          <a class="list-group-item" href="../proc/loop_options_section.html">loop_options_section</a>
+          
+          <a class="list-group-item" href="../proc/lower.html">lower</a>
+          
+          <a class="list-group-item" href="../proc/max_chars_len.html">max_chars_len</a>
+          
+          <a class="list-group-item" href="../proc/name.html">name</a>
+          
+          <a class="list-group-item" href="../proc/name_len.html">name_len</a>
+          
+          <a class="list-group-item" href="../proc/new_option.html">new_option</a>
+          
+          <a class="list-group-item" href="../proc/new_section.html">new_section</a>
+          
+          <a class="list-group-item" href="../interface/option.html">option</a>
+          
+          <a class="list-group-item" href="../proc/option_eq_character.html">option_eq_character</a>
+          
+          <a class="list-group-item" href="../proc/option_eq_string.html">option_eq_string</a>
+          
+          <a class="list-group-item" href="../proc/option_pairs.html">option_pairs</a>
+          
+          <a class="list-group-item" href="../proc/options_number.html">options_number</a>
+          
+          <a class="list-group-item" href="../interface/pack_data.html">pack_data</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i1_i2.html">pack_data_I1_I2</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i1_i4.html">pack_data_I1_I4</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i1_i8.html">pack_data_I1_I8</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i1_r4.html">pack_data_I1_R4</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i1_r8.html">pack_data_I1_R8</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i2_i1.html">pack_data_I2_I1</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i2_i4.html">pack_data_I2_I4</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i2_i8.html">pack_data_I2_I8</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i2_r4.html">pack_data_I2_R4</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i2_r8.html">pack_data_I2_R8</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i4_i1.html">pack_data_I4_I1</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i4_i2.html">pack_data_I4_I2</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i4_i8.html">pack_data_I4_I8</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i4_r4.html">pack_data_I4_R4</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i4_r8.html">pack_data_I4_R8</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i8_i1.html">pack_data_I8_I1</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i8_i2.html">pack_data_I8_I2</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i8_i4.html">pack_data_I8_I4</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i8_r4.html">pack_data_I8_R4</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_i8_r8.html">pack_data_I8_R8</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_r4_i1.html">pack_data_R4_I1</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_r4_i2.html">pack_data_R4_I2</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_r4_i4.html">pack_data_R4_I4</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_r4_i8.html">pack_data_R4_I8</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_r4_r8.html">pack_data_R4_R8</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_r8_i1.html">pack_data_R8_I1</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_r8_i2.html">pack_data_R8_I2</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_r8_i4.html">pack_data_R8_I4</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_r8_i8.html">pack_data_R8_I8</a>
+          
+          <a class="list-group-item" href="../proc/pack_data_r8_r4.html">pack_data_R8_R4</a>
+          
+          <a class="list-group-item" href="../proc/parse.html">parse</a>
+          
+          <a class="list-group-item" href="../proc/parse%7E2.html">parse</a>
+          
+          <a class="list-group-item" href="../proc/parse%7E3.html">parse</a>
+          
+          <a class="list-group-item" href="../proc/parse_comment.html">parse_comment</a>
+          
+          <a class="list-group-item" href="../proc/parse_name.html">parse_name</a>
+          
+          <a class="list-group-item" href="../proc/parse_name%7E2.html">parse_name</a>
+          
+          <a class="list-group-item" href="../proc/parse_options.html">parse_options</a>
+          
+          <a class="list-group-item" href="../proc/parse_value.html">parse_value</a>
+          
+          <a class="list-group-item" href="../proc/partition.html">partition</a>
+          
+          <a class="list-group-item" href="../proc/penf_init.html">penf_init</a>
+          
+          <a class="list-group-item" href="../proc/penf_print.html">penf_print</a>
+          
+          <a class="list-group-item" href="../proc/print_file_ini.html">print_file_ini</a>
+          
+          <a class="list-group-item" href="../proc/print_option.html">print_option</a>
+          
+          <a class="list-group-item" href="../proc/print_section.html">print_section</a>
+          
+          <a class="list-group-item" href="../proc/read_delimited.html">read_delimited</a>
+          
+          <a class="list-group-item" href="../proc/read_file.html">read_file</a>
+          
+          <a class="list-group-item" href="../proc/read_file%7E2.html">read_file</a>
+          
+          <a class="list-group-item" href="../proc/read_formatted.html">read_formatted</a>
+          
+          <a class="list-group-item" href="../proc/read_line.html">read_line</a>
+          
+          <a class="list-group-item" href="../proc/read_lines.html">read_lines</a>
+          
+          <a class="list-group-item" href="../proc/read_lines%7E2.html">read_lines</a>
+          
+          <a class="list-group-item" href="../proc/read_undelimited.html">read_undelimited</a>
+          
+          <a class="list-group-item" href="../proc/read_undelimited_listdirected.html">read_undelimited_listdirected</a>
+          
+          <a class="list-group-item" href="../proc/read_unformatted.html">read_unformatted</a>
+          
+          <a class="list-group-item" href="../interface/repeat.html">repeat</a>
+          
+          <a class="list-group-item" href="../proc/replace.html">replace</a>
+          
+          <a class="list-group-item" href="../proc/replace_one_occurrence.html">replace_one_occurrence</a>
+          
+          <a class="list-group-item" href="../proc/reverse.html">reverse</a>
+          
+          <a class="list-group-item" href="../proc/sadjustl.html">sadjustl</a>
+          
+          <a class="list-group-item" href="../proc/sadjustl_character.html">sadjustl_character</a>
+          
+          <a class="list-group-item" href="../proc/sadjustr.html">sadjustr</a>
+          
+          <a class="list-group-item" href="../proc/sadjustr_character.html">sadjustr_character</a>
+          
+          <a class="list-group-item" href="../proc/save_file_ini.html">save_file_ini</a>
+          
+          <a class="list-group-item" href="../proc/save_option.html">save_option</a>
+          
+          <a class="list-group-item" href="../proc/save_section.html">save_section</a>
+          
+          <a class="list-group-item" href="../interface/scan.html">scan</a>
+          
+          <a class="list-group-item" href="../proc/scount.html">scount</a>
+          
+          <a class="list-group-item" href="../proc/search.html">search</a>
+          
+          <a class="list-group-item" href="../interface/section.html">section</a>
+          
+          <a class="list-group-item" href="../proc/section_eq_character.html">section_eq_character</a>
+          
+          <a class="list-group-item" href="../proc/section_eq_string.html">section_eq_string</a>
+          
+          <a class="list-group-item" href="../proc/section_file_ini.html">section_file_ini</a>
+          
+          <a class="list-group-item" href="../proc/set_a_option.html">set_a_option</a>
+          
+          <a class="list-group-item" href="../proc/set_a_option%7E2.html">set_a_option</a>
+          
+          <a class="list-group-item" href="../proc/set_option.html">set_option</a>
+          
+          <a class="list-group-item" href="../proc/set_option%7E2.html">set_option</a>
+          
+          <a class="list-group-item" href="../proc/sindex_character_string.html">sindex_character_string</a>
+          
+          <a class="list-group-item" href="../proc/sindex_string_character.html">sindex_string_character</a>
+          
+          <a class="list-group-item" href="../proc/sindex_string_string.html">sindex_string_string</a>
+          
+          <a class="list-group-item" href="../proc/slen.html">slen</a>
+          
+          <a class="list-group-item" href="../proc/slen_trim.html">slen_trim</a>
+          
+          <a class="list-group-item" href="../proc/slice.html">slice</a>
+          
+          <a class="list-group-item" href="../proc/snakecase.html">snakecase</a>
+          
+          <a class="list-group-item" href="../proc/split.html">split</a>
+          
+          <a class="list-group-item" href="../proc/srepeat_character_string.html">srepeat_character_string</a>
+          
+          <a class="list-group-item" href="../proc/srepeat_string_string.html">srepeat_string_string</a>
+          
+          <a class="list-group-item" href="../proc/sscan_character_string.html">sscan_character_string</a>
+          
+          <a class="list-group-item" href="../proc/sscan_string_character.html">sscan_string_character</a>
+          
+          <a class="list-group-item" href="../proc/sscan_string_string.html">sscan_string_string</a>
+          
+          <a class="list-group-item" href="../proc/start_with.html">start_with</a>
+          
+          <a class="list-group-item" href="../proc/startcase.html">startcase</a>
+          
+          <a class="list-group-item" href="../interface/str.html">str</a>
+          
+          <a class="list-group-item" href="../proc/str_a_i1p.html">str_a_I1P</a>
+          
+          <a class="list-group-item" href="../proc/str_a_i2p.html">str_a_I2P</a>
+          
+          <a class="list-group-item" href="../proc/str_a_i4p.html">str_a_I4P</a>
+          
+          <a class="list-group-item" href="../proc/str_a_i8p.html">str_a_I8P</a>
+          
+          <a class="list-group-item" href="../proc/str_a_r16p.html">str_a_R16P</a>
+          
+          <a class="list-group-item" href="../proc/str_a_r4p.html">str_a_R4P</a>
+          
+          <a class="list-group-item" href="../proc/str_a_r8p.html">str_a_R8P</a>
+          
+          <a class="list-group-item" href="../proc/str_bol.html">str_bol</a>
+          
+          <a class="list-group-item" href="../proc/str_i1p.html">str_I1P</a>
+          
+          <a class="list-group-item" href="../proc/str_i2p.html">str_I2P</a>
+          
+          <a class="list-group-item" href="../proc/str_i4p.html">str_I4P</a>
+          
+          <a class="list-group-item" href="../proc/str_i8p.html">str_I8P</a>
+          
+          <a class="list-group-item" href="../proc/str_r16p.html">str_R16P</a>
+          
+          <a class="list-group-item" href="../proc/str_r4p.html">str_R4P</a>
+          
+          <a class="list-group-item" href="../proc/str_r8p.html">str_R8P</a>
+          
+          <a class="list-group-item" href="../proc/strf_i1p.html">strf_I1P</a>
+          
+          <a class="list-group-item" href="../proc/strf_i2p.html">strf_I2P</a>
+          
+          <a class="list-group-item" href="../proc/strf_i4p.html">strf_I4P</a>
+          
+          <a class="list-group-item" href="../proc/strf_i8p.html">strf_I8P</a>
+          
+          <a class="list-group-item" href="../proc/strf_r16p.html">strf_R16P</a>
+          
+          <a class="list-group-item" href="../proc/strf_r4p.html">strf_R4P</a>
+          
+          <a class="list-group-item" href="../proc/strf_r8p.html">strf_R8P</a>
+          
+          <a class="list-group-item" href="../proc/strim.html">strim</a>
+          
+          <a class="list-group-item" href="../proc/string_assign_character.html">string_assign_character</a>
+          
+          <a class="list-group-item" href="../proc/string_assign_integer_i1p.html">string_assign_integer_I1P</a>
+          
+          <a class="list-group-item" href="../proc/string_assign_integer_i2p.html">string_assign_integer_I2P</a>
+          
+          <a class="list-group-item" href="../proc/string_assign_integer_i4p.html">string_assign_integer_I4P</a>
+          
+          <a class="list-group-item" href="../proc/string_assign_integer_i8p.html">string_assign_integer_I8P</a>
+          
+          <a class="list-group-item" href="../proc/string_assign_real_r16p.html">string_assign_real_R16P</a>
+          
+          <a class="list-group-item" href="../proc/string_assign_real_r4p.html">string_assign_real_R4P</a>
+          
+          <a class="list-group-item" href="../proc/string_assign_real_r8p.html">string_assign_real_R8P</a>
+          
+          <a class="list-group-item" href="../proc/string_assign_string.html">string_assign_string</a>
+          
+          <a class="list-group-item" href="../proc/string_concat_character.html">string_concat_character</a>
+          
+          <a class="list-group-item" href="../proc/string_concat_character_string.html">string_concat_character_string</a>
+          
+          <a class="list-group-item" href="../proc/string_concat_string.html">string_concat_string</a>
+          
+          <a class="list-group-item" href="../proc/string_concat_string_string.html">string_concat_string_string</a>
+          
+          <a class="list-group-item" href="../proc/string_eq_character.html">string_eq_character</a>
+          
+          <a class="list-group-item" href="../proc/string_eq_string.html">string_eq_string</a>
+          
+          <a class="list-group-item" href="../proc/string_ge_character.html">string_ge_character</a>
+          
+          <a class="list-group-item" href="../proc/string_ge_string.html">string_ge_string</a>
+          
+          <a class="list-group-item" href="../proc/string_gt_character.html">string_gt_character</a>
+          
+          <a class="list-group-item" href="../proc/string_gt_string.html">string_gt_string</a>
+          
+          <a class="list-group-item" href="../proc/string_le_character.html">string_le_character</a>
+          
+          <a class="list-group-item" href="../proc/string_le_string.html">string_le_string</a>
+          
+          <a class="list-group-item" href="../proc/string_lt_character.html">string_lt_character</a>
+          
+          <a class="list-group-item" href="../proc/string_lt_string.html">string_lt_string</a>
+          
+          <a class="list-group-item" href="../proc/string_ne_character.html">string_ne_character</a>
+          
+          <a class="list-group-item" href="../proc/string_ne_string.html">string_ne_string</a>
+          
+          <a class="list-group-item" href="../proc/strip.html">strip</a>
+          
+          <a class="list-group-item" href="../interface/strz.html">strz</a>
+          
+          <a class="list-group-item" href="../proc/strz_i1p.html">strz_I1P</a>
+          
+          <a class="list-group-item" href="../proc/strz_i2p.html">strz_I2P</a>
+          
+          <a class="list-group-item" href="../proc/strz_i4p.html">strz_I4P</a>
+          
+          <a class="list-group-item" href="../proc/strz_i8p.html">strz_I8P</a>
+          
+          <a class="list-group-item" href="../proc/sverify.html">sverify</a>
+          
+          <a class="list-group-item" href="../proc/swapcase.html">swapcase</a>
+          
+          <a class="list-group-item" href="../proc/to_integer_i1p.html">to_integer_I1P</a>
+          
+          <a class="list-group-item" href="../proc/to_integer_i2p.html">to_integer_I2P</a>
+          
+          <a class="list-group-item" href="../proc/to_integer_i4p.html">to_integer_I4P</a>
+          
+          <a class="list-group-item" href="../proc/to_integer_i8p.html">to_integer_I8P</a>
+          
+          <a class="list-group-item" href="../proc/to_real_r16p.html">to_real_R16P</a>
+          
+          <a class="list-group-item" href="../proc/to_real_r4p.html">to_real_R4P</a>
+          
+          <a class="list-group-item" href="../proc/to_real_r8p.html">to_real_R8P</a>
+          
+          <a class="list-group-item" href="../interface/trim.html">trim</a>
+          
+          <a class="list-group-item" href="../proc/unescape.html">unescape</a>
+          
+          <a class="list-group-item" href="../proc/unique.html">unique</a>
+          
+          <a class="list-group-item" href="../proc/upper.html">upper</a>
+          
+          <a class="list-group-item" href="../proc/values_len.html">values_len</a>
+          
+          <a class="list-group-item" href="../proc/write_file.html">write_file</a>
+          
+          <a class="list-group-item" href="../proc/write_file%7E2.html">write_file</a>
+          
+          <a class="list-group-item" href="../proc/write_formatted.html">write_formatted</a>
+          
+          <a class="list-group-item" href="../proc/write_line.html">write_line</a>
+          
+          <a class="list-group-item" href="../proc/write_lines.html">write_lines</a>
+          
+          <a class="list-group-item" href="../proc/write_lines%7E2.html">write_lines</a>
+          
+          <a class="list-group-item" href="../proc/write_unformatted.html">write_unformatted</a>
+          
+        </div>
+    </div>
+  </div>
+  
+</div>
+
+    </div>
+    
+    <div class="col-lg-9" id='text'>
+    <h2>
+public subroutine autotest()
+    
+    
+    
+</h2>
+    
+  
+
+
+
+    <h3>Arguments</h3>
+    
+      <em>None</em>
+    
+    
+    
+    <h3>Description</h3>
+    <p>Procedure for autotesting the library functionalities.</p>
+<p></p><div class="alert alert-info" role="alert"><h4>Note</h4>Into the <em>src</em> directory there is a small python script (<em>validation.py</em>) that can be used to validate the library
+ correctness by a comparison with other widely used tools such as the python builtin module <em>struct</em>.</div>
+    
+    
+     <h3>Calls</h3>
+     
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.36.0 (20140111.2315)
+ -->
+<!-- Title: proc~~autotest~~CallsGraph Pages: 1 -->
+<svg id="procautotestCallsGraph" width="548pt" height="1940pt"
+ viewBox="0.00 0.00 548.00 1940.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~autotest~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 1936)">
+<title>proc~~autotest~~CallsGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-1936 544,-1936 544,4 -4,4"/>
+<!-- proc~autotest -->
+<g id="proc~~autotest~~CallsGraph_node1" class="node"><title>proc~autotest</title>
+<polygon fill="none" stroke="black" points="54,-739 0,-739 0,-715 54,-715 54,-739"/>
+<text text-anchor="middle" x="27" y="-724.6" font-family="Helvetica,sans-Serif" font-size="10.50">autotest</text>
+</g>
+<!-- interface~b64_decode -->
+<g id="proc~~autotest~~CallsGraph_node2" class="node"><title>interface~b64_decode</title>
+<g id="a_proc~~autotest~~CallsGraph_node2"><a xlink:href="../interface/b64_decode.html" xlink:title="b64_decode">
+<polygon fill="#a7506f" stroke="#a7506f" points="162,-1638 90,-1638 90,-1614 162,-1614 162,-1638"/>
+<text text-anchor="middle" x="126" y="-1623.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode</text>
+</a>
+</g>
+</g>
+<!-- proc~autotest&#45;&gt;interface~b64_decode -->
+<g id="proc~~autotest~~CallsGraph_edge93" class="edge"><title>proc~autotest&#45;&gt;interface~b64_decode</title>
+<path fill="none" stroke="#000000" d="M29.2979,-739.029C39.6419,-834.898 108.682,-1474.77 122.569,-1603.47"/>
+<polygon fill="#000000" stroke="#000000" points="119.12,-1604.13 123.673,-1613.7 126.08,-1603.38 119.12,-1604.13"/>
+</g>
+<!-- interface~str -->
+<g id="proc~~autotest~~CallsGraph_node3" class="node"><title>interface~str</title>
+<g id="a_proc~~autotest~~CallsGraph_node3"><a xlink:href="../interface/str.html" xlink:title="str">
+<polygon fill="#a7506f" stroke="#a7506f" points="153,-428 99,-428 99,-404 153,-404 153,-428"/>
+<text text-anchor="middle" x="126" y="-413.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str</text>
+</a>
+</g>
+</g>
+<!-- proc~autotest&#45;&gt;interface~str -->
+<g id="proc~~autotest~~CallsGraph_edge94" class="edge"><title>proc~autotest&#45;&gt;interface~str</title>
+<path fill="none" stroke="#000000" d="M31.8025,-714.808C46.4406,-667.876 99.2733,-498.484 118.197,-437.81"/>
+<polygon fill="#000000" stroke="#000000" points="121.587,-438.696 121.224,-428.107 114.905,-436.612 121.587,-438.696"/>
+</g>
+<!-- proc~b64_init -->
+<g id="proc~~autotest~~CallsGraph_node4" class="node"><title>proc~b64_init</title>
+<g id="a_proc~~autotest~~CallsGraph_node4"><a xlink:href="../proc/b64_init.html" xlink:title="b64_init">
+<polygon fill="#d9534f" stroke="#d9534f" points="153,-386 99,-386 99,-362 153,-362 153,-386"/>
+<text text-anchor="middle" x="126" y="-371.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_init</text>
+</a>
+</g>
+</g>
+<!-- proc~autotest&#45;&gt;proc~b64_init -->
+<g id="proc~~autotest~~CallsGraph_edge95" class="edge"><title>proc~autotest&#45;&gt;proc~b64_init</title>
+<path fill="none" stroke="#000000" d="M28.9356,-714.907C33.2462,-661.714 52.5973,-448.801 90,-395 90.4399,-394.367 90.9056,-393.75 91.394,-393.149"/>
+<polygon fill="#000000" stroke="#000000" points="93.8984,-395.599 98.7859,-386.198 89.1031,-390.499 93.8984,-395.599"/>
+</g>
+<!-- interface~b64_encode -->
+<g id="proc~~autotest~~CallsGraph_node5" class="node"><title>interface~b64_encode</title>
+<g id="a_proc~~autotest~~CallsGraph_node5"><a xlink:href="../interface/b64_encode.html" xlink:title="b64_encode">
+<polygon fill="#a7506f" stroke="#a7506f" points="162,-1050 90,-1050 90,-1026 162,-1026 162,-1050"/>
+<text text-anchor="middle" x="126" y="-1035.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode</text>
+</a>
+</g>
+</g>
+<!-- proc~autotest&#45;&gt;interface~b64_encode -->
+<g id="proc~~autotest~~CallsGraph_edge96" class="edge"><title>proc~autotest&#45;&gt;interface~b64_encode</title>
+<path fill="none" stroke="#000000" d="M31.8025,-739.192C46.4406,-786.124 99.2733,-955.516 118.197,-1016.19"/>
+<polygon fill="#000000" stroke="#000000" points="114.905,-1017.39 121.224,-1025.89 121.587,-1015.3 114.905,-1017.39"/>
+</g>
+<!-- proc~b64_decode_string -->
+<g id="proc~~autotest~~CallsGraph_node6" class="node"><title>proc~b64_decode_string</title>
+<g id="a_proc~~autotest~~CallsGraph_node6"><a xlink:href="../proc/b64_decode_string.html" xlink:title="b64_decode_string">
+<polygon fill="#d9534f" stroke="#d9534f" points="308,-1386 204,-1386 204,-1362 308,-1362 308,-1386"/>
+<text text-anchor="middle" x="256" y="-1371.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_string</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_string -->
+<g id="proc~~autotest~~CallsGraph_edge24" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_string</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M127.144,-1613.87C128.249,-1576.17 136.708,-1459.75 198,-1395 199.042,-1393.9 200.147,-1392.86 201.304,-1391.87"/>
+<polygon fill="#000000" stroke="#000000" points="203.384,-1394.68 209.592,-1386.1 199.385,-1388.94 203.384,-1394.68"/>
+</g>
+<!-- proc~b64_decode_i8_a -->
+<g id="proc~~autotest~~CallsGraph_node7" class="node"><title>proc~b64_decode_i8_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node7"><a xlink:href="../proc/b64_decode_i8_a.html" xlink:title="b64_decode_I8_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="305.5,-1680 206.5,-1680 206.5,-1656 305.5,-1656 305.5,-1680"/>
+<text text-anchor="middle" x="256" y="-1665.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_I8_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_i8_a -->
+<g id="proc~~autotest~~CallsGraph_edge25" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_i8_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M162.315,-1637.59C176.52,-1642.25 193.101,-1647.69 208.28,-1652.67"/>
+<polygon fill="#000000" stroke="#000000" points="207.421,-1656.07 218.013,-1655.86 209.603,-1649.42 207.421,-1656.07"/>
+</g>
+<!-- proc~b64_decode_r8_a -->
+<g id="proc~~autotest~~CallsGraph_node8" class="node"><title>proc~b64_decode_r8_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node8"><a xlink:href="../proc/b64_decode_r8_a.html" xlink:title="b64_decode_R8_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="307.5,-1638 204.5,-1638 204.5,-1614 307.5,-1614 307.5,-1638"/>
+<text text-anchor="middle" x="256" y="-1623.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_R8_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_r8_a -->
+<g id="proc~~autotest~~CallsGraph_edge26" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_r8_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M162.315,-1626C172.287,-1626 183.429,-1626 194.436,-1626"/>
+<polygon fill="#000000" stroke="#000000" points="194.468,-1629.5 204.468,-1626 194.468,-1622.5 194.468,-1629.5"/>
+</g>
+<!-- proc~b64_decode_i2_a -->
+<g id="proc~~autotest~~CallsGraph_node9" class="node"><title>proc~b64_decode_i2_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node9"><a xlink:href="../proc/b64_decode_i2_a.html" xlink:title="b64_decode_I2_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="305.5,-1596 206.5,-1596 206.5,-1572 305.5,-1572 305.5,-1596"/>
+<text text-anchor="middle" x="256" y="-1581.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_I2_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_i2_a -->
+<g id="proc~~autotest~~CallsGraph_edge27" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_i2_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M162.315,-1614.41C176.52,-1609.75 193.101,-1604.31 208.28,-1599.33"/>
+<polygon fill="#000000" stroke="#000000" points="209.603,-1602.58 218.013,-1596.14 207.421,-1595.93 209.603,-1602.58"/>
+</g>
+<!-- proc~b64_decode_string_a -->
+<g id="proc~~autotest~~CallsGraph_node10" class="node"><title>proc~b64_decode_string_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node10"><a xlink:href="../proc/b64_decode_string_a.html" xlink:title="b64_decode_string_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="314,-1428 198,-1428 198,-1404 314,-1404 314,-1428"/>
+<text text-anchor="middle" x="256" y="-1413.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_string_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_string_a -->
+<g id="proc~~autotest~~CallsGraph_edge28" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_string_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M128.098,-1613.98C131.735,-1581.04 146.283,-1488.39 198,-1437 199.099,-1435.91 200.259,-1434.87 201.47,-1433.89"/>
+<polygon fill="#000000" stroke="#000000" points="203.706,-1436.61 210.089,-1428.15 199.826,-1430.78 203.706,-1436.61"/>
+</g>
+<!-- proc~b64_decode_i1 -->
+<g id="proc~~autotest~~CallsGraph_node11" class="node"><title>proc~b64_decode_i1</title>
+<g id="a_proc~~autotest~~CallsGraph_node11"><a xlink:href="../proc/b64_decode_i1.html" xlink:title="b64_decode_I1">
+<polygon fill="#d9534f" stroke="#d9534f" points="299.5,-1554 212.5,-1554 212.5,-1530 299.5,-1530 299.5,-1554"/>
+<text text-anchor="middle" x="256" y="-1539.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_I1</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_i1 -->
+<g id="proc~~autotest~~CallsGraph_edge29" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_i1</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M137.98,-1613.83C151.091,-1599.91 174.245,-1577.22 198,-1563 200.805,-1561.32 203.767,-1559.74 206.806,-1558.26"/>
+<polygon fill="#000000" stroke="#000000" points="208.375,-1561.39 216.076,-1554.12 205.518,-1555 208.375,-1561.39"/>
+</g>
+<!-- proc~b64_decode_i4 -->
+<g id="proc~~autotest~~CallsGraph_node12" class="node"><title>proc~b64_decode_i4</title>
+<g id="a_proc~~autotest~~CallsGraph_node12"><a xlink:href="../proc/b64_decode_i4.html" xlink:title="b64_decode_I4">
+<polygon fill="#d9534f" stroke="#d9534f" points="299.5,-1512 212.5,-1512 212.5,-1488 299.5,-1488 299.5,-1512"/>
+<text text-anchor="middle" x="256" y="-1497.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_I4</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_i4 -->
+<g id="proc~~autotest~~CallsGraph_edge30" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_i4</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M132.162,-1613.8C141.92,-1592.13 165.089,-1546.79 198,-1521 199.821,-1519.57 201.749,-1518.24 203.751,-1516.99"/>
+<polygon fill="#000000" stroke="#000000" points="205.781,-1519.87 212.912,-1512.03 202.451,-1513.71 205.781,-1519.87"/>
+</g>
+<!-- proc~b64_decode_r4_a -->
+<g id="proc~~autotest~~CallsGraph_node13" class="node"><title>proc~b64_decode_r4_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node13"><a xlink:href="../proc/b64_decode_r4_a.html" xlink:title="b64_decode_R4_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="307.5,-1470 204.5,-1470 204.5,-1446 307.5,-1446 307.5,-1470"/>
+<text text-anchor="middle" x="256" y="-1455.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_R4_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_r4_a -->
+<g id="proc~~autotest~~CallsGraph_edge31" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_r4_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M129.582,-1613.86C136.104,-1586.07 155.814,-1517.28 198,-1479 199.464,-1477.67 201.02,-1476.42 202.646,-1475.25"/>
+<polygon fill="#000000" stroke="#000000" points="204.527,-1478.21 211.259,-1470.03 200.895,-1472.22 204.527,-1478.21"/>
+</g>
+<!-- proc~b64_decode_r8 -->
+<g id="proc~~autotest~~CallsGraph_node14" class="node"><title>proc~b64_decode_r8</title>
+<g id="a_proc~~autotest~~CallsGraph_node14"><a xlink:href="../proc/b64_decode_r8.html" xlink:title="b64_decode_R8">
+<polygon fill="#d9534f" stroke="#d9534f" points="301.5,-1932 210.5,-1932 210.5,-1908 301.5,-1908 301.5,-1932"/>
+<text text-anchor="middle" x="256" y="-1917.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_R8</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_r8 -->
+<g id="proc~~autotest~~CallsGraph_edge32" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_r8</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M126.457,-1638.17C125.259,-1680.15 126.977,-1820.61 198,-1899 199.193,-1900.32 200.475,-1901.55 201.83,-1902.71"/>
+<polygon fill="#000000" stroke="#000000" points="200.051,-1905.73 210.271,-1908.53 204.024,-1899.97 200.051,-1905.73"/>
+</g>
+<!-- proc~b64_decode_i4_a -->
+<g id="proc~~autotest~~CallsGraph_node15" class="node"><title>proc~b64_decode_i4_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node15"><a xlink:href="../proc/b64_decode_i4_a.html" xlink:title="b64_decode_I4_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="305.5,-1890 206.5,-1890 206.5,-1866 305.5,-1866 305.5,-1890"/>
+<text text-anchor="middle" x="256" y="-1875.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_I4_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_i4_a -->
+<g id="proc~~autotest~~CallsGraph_edge33" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_i4_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M127.144,-1638.13C128.249,-1675.83 136.708,-1792.25 198,-1857 199.042,-1858.1 200.147,-1859.14 201.304,-1860.13"/>
+<polygon fill="#000000" stroke="#000000" points="199.385,-1863.06 209.592,-1865.9 203.384,-1857.32 199.385,-1863.06"/>
+</g>
+<!-- proc~b64_decode_i2 -->
+<g id="proc~~autotest~~CallsGraph_node16" class="node"><title>proc~b64_decode_i2</title>
+<g id="a_proc~~autotest~~CallsGraph_node16"><a xlink:href="../proc/b64_decode_i2.html" xlink:title="b64_decode_I2">
+<polygon fill="#d9534f" stroke="#d9534f" points="299.5,-1848 212.5,-1848 212.5,-1824 299.5,-1824 299.5,-1848"/>
+<text text-anchor="middle" x="256" y="-1833.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_I2</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_i2 -->
+<g id="proc~~autotest~~CallsGraph_edge34" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_i2</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M128.098,-1638.02C131.735,-1670.96 146.283,-1763.61 198,-1815 199.672,-1816.66 201.485,-1818.19 203.404,-1819.6"/>
+<polygon fill="#000000" stroke="#000000" points="202.008,-1822.85 212.372,-1825.05 205.644,-1816.87 202.008,-1822.85"/>
+</g>
+<!-- proc~b64_decode_r4 -->
+<g id="proc~~autotest~~CallsGraph_node17" class="node"><title>proc~b64_decode_r4</title>
+<g id="a_proc~~autotest~~CallsGraph_node17"><a xlink:href="../proc/b64_decode_r4.html" xlink:title="b64_decode_R4">
+<polygon fill="#d9534f" stroke="#d9534f" points="301.5,-1806 210.5,-1806 210.5,-1782 301.5,-1782 301.5,-1806"/>
+<text text-anchor="middle" x="256" y="-1791.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_R4</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_r4 -->
+<g id="proc~~autotest~~CallsGraph_edge35" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_r4</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M129.582,-1638.14C136.104,-1665.93 155.814,-1734.72 198,-1773 199.464,-1774.33 201.02,-1775.58 202.646,-1776.75"/>
+<polygon fill="#000000" stroke="#000000" points="200.895,-1779.78 211.259,-1781.97 204.527,-1773.79 200.895,-1779.78"/>
+</g>
+<!-- proc~b64_decode_i1_a -->
+<g id="proc~~autotest~~CallsGraph_node18" class="node"><title>proc~b64_decode_i1_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node18"><a xlink:href="../proc/b64_decode_i1_a.html" xlink:title="b64_decode_I1_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="305.5,-1764 206.5,-1764 206.5,-1740 305.5,-1740 305.5,-1764"/>
+<text text-anchor="middle" x="256" y="-1749.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_I1_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_i1_a -->
+<g id="proc~~autotest~~CallsGraph_edge36" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_i1_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M132.162,-1638.2C141.92,-1659.87 165.089,-1705.21 198,-1731 199.821,-1732.43 201.749,-1733.76 203.751,-1735.01"/>
+<polygon fill="#000000" stroke="#000000" points="202.451,-1738.29 212.912,-1739.97 205.781,-1732.13 202.451,-1738.29"/>
+</g>
+<!-- proc~b64_decode_i8 -->
+<g id="proc~~autotest~~CallsGraph_node19" class="node"><title>proc~b64_decode_i8</title>
+<g id="a_proc~~autotest~~CallsGraph_node19"><a xlink:href="../proc/b64_decode_i8.html" xlink:title="b64_decode_I8">
+<polygon fill="#d9534f" stroke="#d9534f" points="299.5,-1722 212.5,-1722 212.5,-1698 299.5,-1698 299.5,-1722"/>
+<text text-anchor="middle" x="256" y="-1707.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_decode_I8</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_decode&#45;&gt;proc~b64_decode_i8 -->
+<g id="proc~~autotest~~CallsGraph_edge37" class="edge"><title>interface~b64_decode&#45;&gt;proc~b64_decode_i8</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M137.98,-1638.17C151.091,-1652.09 174.245,-1674.78 198,-1689 200.805,-1690.68 203.767,-1692.26 206.806,-1693.74"/>
+<polygon fill="#000000" stroke="#000000" points="205.518,-1697 216.076,-1697.88 208.375,-1690.61 205.518,-1697"/>
+</g>
+<!-- proc~strf_r4p -->
+<g id="proc~~autotest~~CallsGraph_node29" class="node"><title>proc~strf_r4p</title>
+<g id="a_proc~~autotest~~CallsGraph_node29"><a xlink:href="../proc/strf_r4p.html" xlink:title="strf_R4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="283,-428 229,-428 229,-404 283,-404 283,-428"/>
+<text text-anchor="middle" x="256" y="-413.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">strf_R4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_r4p -->
+<g id="proc~~autotest~~CallsGraph_edge44" class="edge"><title>interface~str&#45;&gt;proc~strf_r4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M153.212,-416C172.108,-416 197.851,-416 218.72,-416"/>
+<polygon fill="#000000" stroke="#000000" points="218.824,-419.5 228.823,-416 218.823,-412.5 218.824,-419.5"/>
+</g>
+<!-- proc~strf_i1p -->
+<g id="proc~~autotest~~CallsGraph_node30" class="node"><title>proc~strf_i1p</title>
+<g id="a_proc~~autotest~~CallsGraph_node30"><a xlink:href="../proc/strf_i1p.html" xlink:title="strf_I1P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="283,-386 229,-386 229,-362 283,-362 283,-386"/>
+<text text-anchor="middle" x="256" y="-371.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">strf_I1P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_i1p -->
+<g id="proc~~autotest~~CallsGraph_edge45" class="edge"><title>interface~str&#45;&gt;proc~strf_i1p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M153.212,-407.399C172.28,-401.142 198.322,-392.598 219.29,-385.717"/>
+<polygon fill="#000000" stroke="#000000" points="220.413,-389.033 228.823,-382.589 218.231,-382.381 220.413,-389.033"/>
+</g>
+<!-- proc~str_a_r8p -->
+<g id="proc~~autotest~~CallsGraph_node31" class="node"><title>proc~str_a_r8p</title>
+<g id="a_proc~~autotest~~CallsGraph_node31"><a xlink:href="../proc/str_a_r8p.html" xlink:title="str_a_R8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="287.5,-306 224.5,-306 224.5,-282 287.5,-282 287.5,-306"/>
+<text text-anchor="middle" x="256" y="-291.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_a_R8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_r8p -->
+<g id="proc~~autotest~~CallsGraph_edge46" class="edge"><title>interface~str&#45;&gt;proc~str_a_r8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M151.377,-403.938C155.231,-401.341 158.946,-398.352 162,-395 186.903,-367.669 171.601,-345.888 198,-320 202.957,-315.139 208.985,-311.086 215.243,-307.74"/>
+<polygon fill="#000000" stroke="#000000" points="216.96,-310.798 224.477,-303.332 213.944,-304.481 216.96,-310.798"/>
+</g>
+<!-- proc~str_a_i2p -->
+<g id="proc~~autotest~~CallsGraph_node32" class="node"><title>proc~str_a_i2p</title>
+<g id="a_proc~~autotest~~CallsGraph_node32"><a xlink:href="../proc/str_a_i2p.html" xlink:title="str_a_I2P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="285,-226 227,-226 227,-202 285,-202 285,-226"/>
+<text text-anchor="middle" x="256" y="-211.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_a_I2P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_i2p -->
+<g id="proc~~autotest~~CallsGraph_edge47" class="edge"><title>interface~str&#45;&gt;proc~str_a_i2p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M152.733,-403.965C156.245,-401.417 159.498,-398.437 162,-395 203.625,-337.825 153.227,-294.745 198,-240 203.132,-233.725 210.107,-228.9 217.417,-225.212"/>
+<polygon fill="#000000" stroke="#000000" points="218.988,-228.346 226.742,-221.126 216.178,-221.934 218.988,-228.346"/>
+</g>
+<!-- proc~str_a_i1p -->
+<g id="proc~~autotest~~CallsGraph_node33" class="node"><title>proc~str_a_i1p</title>
+<g id="a_proc~~autotest~~CallsGraph_node33"><a xlink:href="../proc/str_a_i1p.html" xlink:title="str_a_I1P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="285,-146 227,-146 227,-122 285,-122 285,-146"/>
+<text text-anchor="middle" x="256" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_a_I1P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_i1p -->
+<g id="proc~~autotest~~CallsGraph_edge48" class="edge"><title>interface~str&#45;&gt;proc~str_a_i1p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M153.313,-403.869C156.66,-401.357 159.709,-398.412 162,-395 220.891,-307.271 134.271,-244.281 198,-160 202.982,-153.412 210.023,-148.445 217.464,-144.716"/>
+<polygon fill="#000000" stroke="#000000" points="219.173,-147.791 226.979,-140.627 216.409,-141.36 219.173,-147.791"/>
+</g>
+<!-- proc~strf_i8p -->
+<g id="proc~~autotest~~CallsGraph_node34" class="node"><title>proc~strf_i8p</title>
+<g id="a_proc~~autotest~~CallsGraph_node34"><a xlink:href="../proc/strf_i8p.html" xlink:title="strf_I8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="283,-104 229,-104 229,-80 283,-80 283,-104"/>
+<text text-anchor="middle" x="256" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">strf_I8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_i8p -->
+<g id="proc~~autotest~~CallsGraph_edge49" class="edge"><title>interface~str&#45;&gt;proc~strf_i8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M153.044,-404.18C156.517,-401.604 159.675,-398.56 162,-395 231.103,-289.221 119.302,-211.848 198,-113 203.324,-106.313 210.99,-101.755 218.981,-98.6491"/>
+<polygon fill="#000000" stroke="#000000" points="220.29,-101.905 228.755,-95.534 218.164,-95.236 220.29,-101.905"/>
+</g>
+<!-- proc~str_a_i8p -->
+<g id="proc~~autotest~~CallsGraph_node35" class="node"><title>proc~str_a_i8p</title>
+<g id="a_proc~~autotest~~CallsGraph_node35"><a xlink:href="../proc/str_a_i8p.html" xlink:title="str_a_I8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="285,-24 227,-24 227,-0 285,-0 285,-24"/>
+<text text-anchor="middle" x="256" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_a_I8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_i8p -->
+<g id="proc~~autotest~~CallsGraph_edge50" class="edge"><title>interface~str&#45;&gt;proc~str_a_i8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M153.127,-404.233C156.589,-401.651 159.722,-398.59 162,-395 247.443,-260.35 105.124,-167.635 198,-38 202.81,-31.2858 209.782,-26.2672 217.21,-22.5289"/>
+<polygon fill="#000000" stroke="#000000" points="218.922,-25.6035 226.734,-18.4474 216.164,-19.1694 218.922,-25.6035"/>
+</g>
+<!-- proc~str_r4p -->
+<g id="proc~~autotest~~CallsGraph_node36" class="node"><title>proc~str_r4p</title>
+<g id="a_proc~~autotest~~CallsGraph_node36"><a xlink:href="../proc/str_r4p.html" xlink:title="str_R4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="412,-738 358,-738 358,-714 412,-714 412,-738"/>
+<text text-anchor="middle" x="385" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_R4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_r4p -->
+<g id="proc~~autotest~~CallsGraph_edge51" class="edge"><title>interface~str&#45;&gt;proc~str_r4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M127.828,-428.252C131.678,-481.086 149.72,-688.5 198,-727 240.361,-760.78 307.09,-749.852 348.051,-738.309"/>
+<polygon fill="#000000" stroke="#000000" points="349.29,-741.592 357.879,-735.388 347.296,-734.882 349.29,-741.592"/>
+</g>
+<!-- proc~str_i2p -->
+<g id="proc~~autotest~~CallsGraph_node37" class="node"><title>proc~str_i2p</title>
+<g id="a_proc~~autotest~~CallsGraph_node37"><a xlink:href="../proc/str_i2p.html" xlink:title="str_I2P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="412,-245 358,-245 358,-221 412,-221 412,-245"/>
+<text text-anchor="middle" x="385" y="-230.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_I2P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_i2p -->
+<g id="proc~~autotest~~CallsGraph_edge52" class="edge"><title>interface~str&#45;&gt;proc~str_i2p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M152.557,-403.833C156.093,-401.302 159.398,-398.362 162,-395 196.602,-350.292 156.552,-311.446 198,-273 219.433,-253.12 300.154,-241.608 347.926,-236.396"/>
+<polygon fill="#000000" stroke="#000000" points="348.294,-239.877 357.873,-235.35 347.562,-232.915 348.294,-239.877"/>
+</g>
+<!-- proc~strf_i4p -->
+<g id="proc~~autotest~~CallsGraph_node38" class="node"><title>proc~strf_i4p</title>
+<g id="a_proc~~autotest~~CallsGraph_node38"><a xlink:href="../proc/strf_i4p.html" xlink:title="strf_I4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="283,-676 229,-676 229,-652 283,-652 283,-676"/>
+<text text-anchor="middle" x="256" y="-661.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">strf_I4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_i4p -->
+<g id="proc~~autotest~~CallsGraph_edge53" class="edge"><title>interface~str&#45;&gt;proc~strf_i4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M127.224,-428.192C128.568,-465.524 137.662,-579.576 198,-643 203.788,-649.084 211.49,-653.415 219.355,-656.495"/>
+<polygon fill="#000000" stroke="#000000" points="218.319,-659.838 228.912,-659.665 220.522,-653.194 218.319,-659.838"/>
+</g>
+<!-- proc~strf_r8p -->
+<g id="proc~~autotest~~CallsGraph_node39" class="node"><title>proc~strf_r8p</title>
+<g id="a_proc~~autotest~~CallsGraph_node39"><a xlink:href="../proc/strf_r8p.html" xlink:title="strf_R8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="283,-634 229,-634 229,-610 283,-610 283,-634"/>
+<text text-anchor="middle" x="256" y="-619.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">strf_R8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_r8p -->
+<g id="proc~~autotest~~CallsGraph_edge54" class="edge"><title>interface~str&#45;&gt;proc~strf_r8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M128.236,-428.241C132.173,-460.896 147.307,-550.985 198,-601 203.859,-606.781 211.444,-610.989 219.157,-614.045"/>
+<polygon fill="#000000" stroke="#000000" points="218.281,-617.444 228.876,-617.333 220.525,-610.813 218.281,-617.444"/>
+</g>
+<!-- proc~str_i1p -->
+<g id="proc~~autotest~~CallsGraph_node40" class="node"><title>proc~str_i1p</title>
+<g id="a_proc~~autotest~~CallsGraph_node40"><a xlink:href="../proc/str_i1p.html" xlink:title="str_I1P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="412,-165 358,-165 358,-141 412,-141 412,-165"/>
+<text text-anchor="middle" x="385" y="-150.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_I1P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_i1p -->
+<g id="proc~~autotest~~CallsGraph_edge55" class="edge"><title>interface~str&#45;&gt;proc~str_i1p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M153.239,-403.819C156.596,-401.313 159.668,-398.384 162,-395 213.745,-319.91 134.671,-258.616 198,-193 218.355,-171.91 299.883,-160.837 347.982,-156.029"/>
+<polygon fill="#000000" stroke="#000000" points="348.372,-159.508 357.993,-155.07 347.705,-152.539 348.372,-159.508"/>
+</g>
+<!-- proc~str_bol -->
+<g id="proc~~autotest~~CallsGraph_node41" class="node"><title>proc~str_bol</title>
+<g id="a_proc~~autotest~~CallsGraph_node41"><a xlink:href="../proc/str_bol.html" xlink:title="str_bol">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="283,-592 229,-592 229,-568 283,-568 283,-592"/>
+<text text-anchor="middle" x="256" y="-577.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_bol</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_bol -->
+<g id="proc~~autotest~~CallsGraph_edge56" class="edge"><title>interface~str&#45;&gt;proc~str_bol</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M130.338,-428.371C138.036,-454.763 159.397,-517.179 198,-554 204.155,-559.871 211.869,-564.581 219.614,-568.292"/>
+<polygon fill="#000000" stroke="#000000" points="218.407,-571.583 228.976,-572.334 221.182,-565.157 218.407,-571.583"/>
+</g>
+<!-- proc~str_a_i4p -->
+<g id="proc~~autotest~~CallsGraph_node42" class="node"><title>proc~str_a_i4p</title>
+<g id="a_proc~~autotest~~CallsGraph_node42"><a xlink:href="../proc/str_a_i4p.html" xlink:title="str_a_I4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="285,-512 227,-512 227,-488 285,-488 285,-512"/>
+<text text-anchor="middle" x="256" y="-497.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_a_I4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_i4p -->
+<g id="proc~~autotest~~CallsGraph_edge57" class="edge"><title>interface~str&#45;&gt;proc~str_a_i4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M137.98,-428.174C151.091,-442.092 174.245,-464.781 198,-479 203.958,-482.566 210.622,-485.687 217.235,-488.356"/>
+<polygon fill="#000000" stroke="#000000" points="216.206,-491.708 226.798,-491.942 218.663,-485.154 216.206,-491.708"/>
+</g>
+<!-- proc~str_r8p -->
+<g id="proc~~autotest~~CallsGraph_node43" class="node"><title>proc~str_r8p</title>
+<g id="a_proc~~autotest~~CallsGraph_node43"><a xlink:href="../proc/str_r8p.html" xlink:title="str_R8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="412,-326 358,-326 358,-302 412,-302 412,-326"/>
+<text text-anchor="middle" x="385" y="-311.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_R8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_r8p -->
+<g id="proc~~autotest~~CallsGraph_edge58" class="edge"><title>interface~str&#45;&gt;proc~str_r8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M149.579,-403.92C153.876,-401.221 158.21,-398.2 162,-395 180.783,-379.137 176.843,-365.523 198,-353 244.686,-325.368 308.131,-317.142 347.547,-314.794"/>
+<polygon fill="#000000" stroke="#000000" points="347.938,-318.279 357.752,-314.285 347.59,-311.287 347.938,-318.279"/>
+</g>
+<!-- proc~str_a_r4p -->
+<g id="proc~~autotest~~CallsGraph_node44" class="node"><title>proc~str_a_r4p</title>
+<g id="a_proc~~autotest~~CallsGraph_node44"><a xlink:href="../proc/str_a_r4p.html" xlink:title="str_a_R4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="287.5,-718 224.5,-718 224.5,-694 287.5,-694 287.5,-718"/>
+<text text-anchor="middle" x="256" y="-703.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_a_R4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_a_r4p -->
+<g id="proc~~autotest~~CallsGraph_edge59" class="edge"><title>interface~str&#45;&gt;proc~str_a_r4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M126.511,-428.285C125.531,-470.014 127.974,-607.989 198,-685 202.624,-690.085 208.588,-693.942 214.909,-696.867"/>
+<polygon fill="#000000" stroke="#000000" points="213.725,-700.161 224.313,-700.519 216.259,-693.636 213.725,-700.161"/>
+</g>
+<!-- proc~str_i8p -->
+<g id="proc~~autotest~~CallsGraph_node45" class="node"><title>proc~str_i8p</title>
+<g id="a_proc~~autotest~~CallsGraph_node45"><a xlink:href="../proc/str_i8p.html" xlink:title="str_I8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="412,-44 358,-44 358,-20 412,-20 412,-44"/>
+<text text-anchor="middle" x="385" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_I8P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_i8p -->
+<g id="proc~~autotest~~CallsGraph_edge60" class="edge"><title>interface~str&#45;&gt;proc~str_i8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M153.095,-404.213C156.561,-401.633 159.704,-398.578 162,-395 201.124,-334.03 149.293,-124.624 198,-71 217.685,-49.3273 299.473,-38.9603 347.793,-34.6397"/>
+<polygon fill="#000000" stroke="#000000" points="348.184,-38.1192 357.852,-33.7842 347.591,-31.1443 348.184,-38.1192"/>
+</g>
+<!-- proc~strf_i2p -->
+<g id="proc~~autotest~~CallsGraph_node46" class="node"><title>proc~strf_i2p</title>
+<g id="a_proc~~autotest~~CallsGraph_node46"><a xlink:href="../proc/strf_i2p.html" xlink:title="strf_I2P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="283,-470 229,-470 229,-446 283,-446 283,-470"/>
+<text text-anchor="middle" x="256" y="-455.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">strf_I2P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~strf_i2p -->
+<g id="proc~~autotest~~CallsGraph_edge61" class="edge"><title>interface~str&#45;&gt;proc~strf_i2p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M153.212,-424.601C172.28,-430.858 198.322,-439.402 219.29,-446.283"/>
+<polygon fill="#000000" stroke="#000000" points="218.231,-449.619 228.823,-449.411 220.413,-442.967 218.231,-449.619"/>
+</g>
+<!-- proc~str_i4p -->
+<g id="proc~~autotest~~CallsGraph_node47" class="node"><title>proc~str_i4p</title>
+<g id="a_proc~~autotest~~CallsGraph_node47"><a xlink:href="../proc/str_i4p.html" xlink:title="str_I4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="412,-532 358,-532 358,-508 412,-508 412,-532"/>
+<text text-anchor="middle" x="385" y="-517.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">str_I4P</text>
+</a>
+</g>
+</g>
+<!-- interface~str&#45;&gt;proc~str_i4p -->
+<g id="proc~~autotest~~CallsGraph_edge62" class="edge"><title>interface~str&#45;&gt;proc~str_i4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M130.968,-428.329C139.183,-451.518 160.489,-501.083 198,-521 244.996,-545.953 308.551,-538.37 347.88,-529.796"/>
+<polygon fill="#000000" stroke="#000000" points="348.86,-533.162 357.813,-527.497 347.282,-526.342 348.86,-533.162"/>
+</g>
+<!-- proc~b64_encode_string -->
+<g id="proc~~autotest~~CallsGraph_node48" class="node"><title>proc~b64_encode_string</title>
+<g id="a_proc~~autotest~~CallsGraph_node48"><a xlink:href="../proc/b64_encode_string.html" xlink:title="b64_encode_string">
+<polygon fill="#d9534f" stroke="#d9534f" points="308,-1302 204,-1302 204,-1278 308,-1278 308,-1302"/>
+<text text-anchor="middle" x="256" y="-1287.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_string</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_string -->
+<g id="proc~~autotest~~CallsGraph_edge79" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_string</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M127.144,-1050.13C128.249,-1087.83 136.708,-1204.25 198,-1269 199.042,-1270.1 200.147,-1271.14 201.304,-1272.13"/>
+<polygon fill="#000000" stroke="#000000" points="199.385,-1275.06 209.592,-1277.9 203.384,-1269.32 199.385,-1275.06"/>
+</g>
+<!-- proc~b64_encode_i8 -->
+<g id="proc~~autotest~~CallsGraph_node49" class="node"><title>proc~b64_encode_i8</title>
+<g id="a_proc~~autotest~~CallsGraph_node49"><a xlink:href="../proc/b64_encode_i8.html" xlink:title="b64_encode_I8">
+<polygon fill="#d9534f" stroke="#d9534f" points="299.5,-1260 212.5,-1260 212.5,-1236 299.5,-1236 299.5,-1260"/>
+<text text-anchor="middle" x="256" y="-1245.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_I8</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_i8 -->
+<g id="proc~~autotest~~CallsGraph_edge80" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_i8</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M128.098,-1050.02C131.735,-1082.96 146.283,-1175.61 198,-1227 199.672,-1228.66 201.485,-1230.19 203.404,-1231.6"/>
+<polygon fill="#000000" stroke="#000000" points="202.008,-1234.85 212.372,-1237.05 205.644,-1228.87 202.008,-1234.85"/>
+</g>
+<!-- proc~b64_encode_i2_a -->
+<g id="proc~~autotest~~CallsGraph_node50" class="node"><title>proc~b64_encode_i2_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node50"><a xlink:href="../proc/b64_encode_i2_a.html" xlink:title="b64_encode_I2_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="305.5,-1218 206.5,-1218 206.5,-1194 305.5,-1194 305.5,-1218"/>
+<text text-anchor="middle" x="256" y="-1203.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_I2_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_i2_a -->
+<g id="proc~~autotest~~CallsGraph_edge81" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_i2_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M129.582,-1050.14C136.104,-1077.93 155.814,-1146.72 198,-1185 199.464,-1186.33 201.02,-1187.58 202.646,-1188.75"/>
+<polygon fill="#000000" stroke="#000000" points="200.895,-1191.78 211.259,-1193.97 204.527,-1185.79 200.895,-1191.78"/>
+</g>
+<!-- proc~b64_encode_i8_a -->
+<g id="proc~~autotest~~CallsGraph_node51" class="node"><title>proc~b64_encode_i8_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node51"><a xlink:href="../proc/b64_encode_i8_a.html" xlink:title="b64_encode_I8_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="305.5,-1176 206.5,-1176 206.5,-1152 305.5,-1152 305.5,-1176"/>
+<text text-anchor="middle" x="256" y="-1161.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_I8_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_i8_a -->
+<g id="proc~~autotest~~CallsGraph_edge82" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_i8_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M132.162,-1050.2C141.92,-1071.87 165.089,-1117.21 198,-1143 199.821,-1144.43 201.749,-1145.76 203.751,-1147.01"/>
+<polygon fill="#000000" stroke="#000000" points="202.451,-1150.29 212.912,-1151.97 205.781,-1144.13 202.451,-1150.29"/>
+</g>
+<!-- proc~b64_encode_i4 -->
+<g id="proc~~autotest~~CallsGraph_node52" class="node"><title>proc~b64_encode_i4</title>
+<g id="a_proc~~autotest~~CallsGraph_node52"><a xlink:href="../proc/b64_encode_i4.html" xlink:title="b64_encode_I4">
+<polygon fill="#d9534f" stroke="#d9534f" points="299.5,-1134 212.5,-1134 212.5,-1110 299.5,-1110 299.5,-1134"/>
+<text text-anchor="middle" x="256" y="-1119.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_I4</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_i4 -->
+<g id="proc~~autotest~~CallsGraph_edge83" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_i4</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M137.98,-1050.17C151.091,-1064.09 174.245,-1086.78 198,-1101 200.805,-1102.68 203.767,-1104.26 206.806,-1105.74"/>
+<polygon fill="#000000" stroke="#000000" points="205.518,-1109 216.076,-1109.88 208.375,-1102.61 205.518,-1109"/>
+</g>
+<!-- proc~b64_encode_i4_a -->
+<g id="proc~~autotest~~CallsGraph_node53" class="node"><title>proc~b64_encode_i4_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node53"><a xlink:href="../proc/b64_encode_i4_a.html" xlink:title="b64_encode_I4_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="305.5,-1092 206.5,-1092 206.5,-1068 305.5,-1068 305.5,-1092"/>
+<text text-anchor="middle" x="256" y="-1077.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_I4_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_i4_a -->
+<g id="proc~~autotest~~CallsGraph_edge84" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_i4_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M162.315,-1049.59C176.52,-1054.25 193.101,-1059.69 208.28,-1064.67"/>
+<polygon fill="#000000" stroke="#000000" points="207.421,-1068.07 218.013,-1067.86 209.603,-1061.42 207.421,-1068.07"/>
+</g>
+<!-- proc~b64_encode_i1 -->
+<g id="proc~~autotest~~CallsGraph_node54" class="node"><title>proc~b64_encode_i1</title>
+<g id="a_proc~~autotest~~CallsGraph_node54"><a xlink:href="../proc/b64_encode_i1.html" xlink:title="b64_encode_I1">
+<polygon fill="#d9534f" stroke="#d9534f" points="299.5,-1050 212.5,-1050 212.5,-1026 299.5,-1026 299.5,-1050"/>
+<text text-anchor="middle" x="256" y="-1035.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_I1</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_i1 -->
+<g id="proc~~autotest~~CallsGraph_edge85" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_i1</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M162.315,-1038C174.581,-1038 188.618,-1038 201.995,-1038"/>
+<polygon fill="#000000" stroke="#000000" points="202.055,-1041.5 212.055,-1038 202.055,-1034.5 202.055,-1041.5"/>
+</g>
+<!-- proc~b64_encode_r8 -->
+<g id="proc~~autotest~~CallsGraph_node55" class="node"><title>proc~b64_encode_r8</title>
+<g id="a_proc~~autotest~~CallsGraph_node55"><a xlink:href="../proc/b64_encode_r8.html" xlink:title="b64_encode_R8">
+<polygon fill="#d9534f" stroke="#d9534f" points="301.5,-1008 210.5,-1008 210.5,-984 301.5,-984 301.5,-1008"/>
+<text text-anchor="middle" x="256" y="-993.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_R8</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_r8 -->
+<g id="proc~~autotest~~CallsGraph_edge86" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_r8</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M162.315,-1026.41C176.52,-1021.75 193.101,-1016.31 208.28,-1011.33"/>
+<polygon fill="#000000" stroke="#000000" points="209.603,-1014.58 218.013,-1008.14 207.421,-1007.93 209.603,-1014.58"/>
+</g>
+<!-- proc~b64_encode_i1_a -->
+<g id="proc~~autotest~~CallsGraph_node56" class="node"><title>proc~b64_encode_i1_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node56"><a xlink:href="../proc/b64_encode_i1_a.html" xlink:title="b64_encode_I1_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="305.5,-966 206.5,-966 206.5,-942 305.5,-942 305.5,-966"/>
+<text text-anchor="middle" x="256" y="-951.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_I1_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_i1_a -->
+<g id="proc~~autotest~~CallsGraph_edge87" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_i1_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M137.98,-1025.83C151.091,-1011.91 174.245,-989.219 198,-975 200.805,-973.321 203.767,-971.74 206.806,-970.26"/>
+<polygon fill="#000000" stroke="#000000" points="208.375,-973.392 216.076,-966.116 205.518,-967.001 208.375,-973.392"/>
+</g>
+<!-- proc~b64_encode_r4_a -->
+<g id="proc~~autotest~~CallsGraph_node57" class="node"><title>proc~b64_encode_r4_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node57"><a xlink:href="../proc/b64_encode_r4_a.html" xlink:title="b64_encode_R4_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="307.5,-924 204.5,-924 204.5,-900 307.5,-900 307.5,-924"/>
+<text text-anchor="middle" x="256" y="-909.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_R4_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_r4_a -->
+<g id="proc~~autotest~~CallsGraph_edge88" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_r4_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M132.162,-1025.8C141.92,-1004.13 165.089,-958.787 198,-933 199.821,-931.573 201.749,-930.237 203.751,-928.985"/>
+<polygon fill="#000000" stroke="#000000" points="205.781,-931.867 212.912,-924.03 202.451,-925.71 205.781,-931.867"/>
+</g>
+<!-- proc~b64_encode_r4 -->
+<g id="proc~~autotest~~CallsGraph_node58" class="node"><title>proc~b64_encode_r4</title>
+<g id="a_proc~~autotest~~CallsGraph_node58"><a xlink:href="../proc/b64_encode_r4.html" xlink:title="b64_encode_R4">
+<polygon fill="#d9534f" stroke="#d9534f" points="301.5,-882 210.5,-882 210.5,-858 301.5,-858 301.5,-882"/>
+<text text-anchor="middle" x="256" y="-867.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_R4</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_r4 -->
+<g id="proc~~autotest~~CallsGraph_edge89" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_r4</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M129.582,-1025.86C136.104,-998.071 155.814,-929.282 198,-891 199.464,-889.671 201.02,-888.424 202.646,-887.255"/>
+<polygon fill="#000000" stroke="#000000" points="204.527,-890.207 211.259,-882.026 200.895,-884.223 204.527,-890.207"/>
+</g>
+<!-- proc~b64_encode_r8_a -->
+<g id="proc~~autotest~~CallsGraph_node59" class="node"><title>proc~b64_encode_r8_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node59"><a xlink:href="../proc/b64_encode_r8_a.html" xlink:title="b64_encode_R8_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="307.5,-840 204.5,-840 204.5,-816 307.5,-816 307.5,-840"/>
+<text text-anchor="middle" x="256" y="-825.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_R8_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_r8_a -->
+<g id="proc~~autotest~~CallsGraph_edge90" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_r8_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M128.098,-1025.98C131.735,-993.04 146.283,-900.389 198,-849 199.099,-847.908 200.259,-846.873 201.47,-845.89"/>
+<polygon fill="#000000" stroke="#000000" points="203.706,-848.607 210.089,-840.15 199.826,-842.78 203.706,-848.607"/>
+</g>
+<!-- proc~b64_encode_i2 -->
+<g id="proc~~autotest~~CallsGraph_node60" class="node"><title>proc~b64_encode_i2</title>
+<g id="a_proc~~autotest~~CallsGraph_node60"><a xlink:href="../proc/b64_encode_i2.html" xlink:title="b64_encode_I2">
+<polygon fill="#d9534f" stroke="#d9534f" points="299.5,-798 212.5,-798 212.5,-774 299.5,-774 299.5,-798"/>
+<text text-anchor="middle" x="256" y="-783.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_I2</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_i2 -->
+<g id="proc~~autotest~~CallsGraph_edge91" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_i2</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M127.144,-1025.87C128.249,-988.169 136.708,-871.746 198,-807 199.776,-805.124 201.735,-803.414 203.824,-801.857"/>
+<polygon fill="#000000" stroke="#000000" points="205.736,-804.79 212.424,-796.572 202.071,-798.826 205.736,-804.79"/>
+</g>
+<!-- proc~b64_encode_string_a -->
+<g id="proc~~autotest~~CallsGraph_node61" class="node"><title>proc~b64_encode_string_a</title>
+<g id="a_proc~~autotest~~CallsGraph_node61"><a xlink:href="../proc/b64_encode_string_a.html" xlink:title="b64_encode_string_a">
+<polygon fill="#d9534f" stroke="#d9534f" points="314,-1344 198,-1344 198,-1320 314,-1320 314,-1344"/>
+<text text-anchor="middle" x="256" y="-1329.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">b64_encode_string_a</text>
+</a>
+</g>
+</g>
+<!-- interface~b64_encode&#45;&gt;proc~b64_encode_string_a -->
+<g id="proc~~autotest~~CallsGraph_edge92" class="edge"><title>interface~b64_encode&#45;&gt;proc~b64_encode_string_a</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M126.457,-1050.17C125.259,-1092.15 126.977,-1232.61 198,-1311 198.896,-1311.99 199.843,-1312.93 200.833,-1313.83"/>
+<polygon fill="#000000" stroke="#000000" points="199.013,-1316.83 209.158,-1319.89 203.131,-1311.17 199.013,-1316.83"/>
+</g>
+<!-- interface~byte_size -->
+<g id="proc~~autotest~~CallsGraph_node20" class="node"><title>interface~byte_size</title>
+<g id="a_proc~~autotest~~CallsGraph_node20"><a xlink:href="../interface/byte_size.html" xlink:title="byte_size">
+<polygon fill="#a7506f" stroke="#a7506f" points="414,-1365 356,-1365 356,-1341 414,-1341 414,-1365"/>
+<text text-anchor="middle" x="385" y="-1350.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">byte_size</text>
+</a>
+</g>
+</g>
+<!-- proc~b64_decode_string&#45;&gt;interface~byte_size -->
+<g id="proc~~autotest~~CallsGraph_edge8" class="edge"><title>proc~b64_decode_string&#45;&gt;interface~byte_size</title>
+<path fill="none" stroke="#000000" d="M308.29,-1365.52C320.856,-1363.44 334.084,-1361.25 345.906,-1359.3"/>
+<polygon fill="#000000" stroke="#000000" points="346.586,-1362.73 355.881,-1357.65 345.444,-1355.83 346.586,-1362.73"/>
+</g>
+<!-- proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_node21" class="node"><title>proc~decode_bits</title>
+<g id="a_proc~~autotest~~CallsGraph_node21"><a xlink:href="../proc/decode_bits.html" xlink:title="decode_bits">
+<polygon fill="#d9534f" stroke="#d9534f" points="420,-1659 350,-1659 350,-1635 420,-1635 420,-1659"/>
+<text text-anchor="middle" x="385" y="-1644.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">decode_bits</text>
+</a>
+</g>
+</g>
+<!-- proc~b64_decode_string&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge9" class="edge"><title>proc~b64_decode_string&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M302.505,-1386.01C306.767,-1388.47 310.713,-1391.43 314,-1395 375.09,-1461.32 383.525,-1576.38 384.235,-1624.66"/>
+<polygon fill="#000000" stroke="#000000" points="380.736,-1624.94 384.28,-1634.93 387.736,-1624.91 380.736,-1624.94"/>
+</g>
+<!-- proc~b64_decode_i8_a&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge10" class="edge"><title>proc~b64_decode_i8_a&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M305.738,-1659.94C316.87,-1658.1 328.643,-1656.15 339.583,-1654.34"/>
+<polygon fill="#000000" stroke="#000000" points="340.473,-1657.75 349.768,-1652.66 339.331,-1650.84 340.473,-1657.75"/>
+</g>
+<!-- proc~b64_decode_r8_a&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge11" class="edge"><title>proc~b64_decode_r8_a&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M307.559,-1634.36C318.246,-1636.13 329.444,-1637.98 339.871,-1639.7"/>
+<polygon fill="#000000" stroke="#000000" points="339.557,-1643.2 349.994,-1641.38 340.699,-1636.29 339.557,-1643.2"/>
+</g>
+<!-- proc~b64_decode_i2_a&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge12" class="edge"><title>proc~b64_decode_i2_a&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M293.001,-1596.1C300.064,-1598.8 307.342,-1601.81 314,-1605 328.811,-1612.09 344.555,-1621.37 357.354,-1629.4"/>
+<polygon fill="#000000" stroke="#000000" points="355.784,-1632.55 366.097,-1634.98 359.549,-1626.65 355.784,-1632.55"/>
+</g>
+<!-- proc~b64_decode_string_a&#45;&gt;interface~byte_size -->
+<g id="proc~~autotest~~CallsGraph_edge13" class="edge"><title>proc~b64_decode_string_a&#45;&gt;interface~byte_size</title>
+<path fill="none" stroke="#000000" d="M293.001,-1403.9C300.064,-1401.2 307.342,-1398.19 314,-1395 328.811,-1387.91 344.555,-1378.63 357.354,-1370.6"/>
+<polygon fill="#000000" stroke="#000000" points="359.549,-1373.35 366.097,-1365.02 355.784,-1367.45 359.549,-1373.35"/>
+</g>
+<!-- proc~b64_decode_string_a&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge14" class="edge"><title>proc~b64_decode_string_a&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M302.044,-1428.02C306.446,-1430.48 310.55,-1433.44 314,-1437 365.683,-1490.32 379.226,-1582.79 382.76,-1624.93"/>
+<polygon fill="#000000" stroke="#000000" points="379.273,-1625.24 383.488,-1634.96 386.255,-1624.73 379.273,-1625.24"/>
+</g>
+<!-- proc~b64_decode_i1&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge15" class="edge"><title>proc~b64_decode_i1&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M297.877,-1554.06C303.538,-1556.57 309.089,-1559.53 314,-1563 338.259,-1580.12 359.005,-1607.67 371.475,-1626.52"/>
+<polygon fill="#000000" stroke="#000000" points="368.564,-1628.47 376.911,-1634.99 374.455,-1624.69 368.564,-1628.47"/>
+</g>
+<!-- proc~b64_decode_i4&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge16" class="edge"><title>proc~b64_decode_i4&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M299.675,-1511.81C304.825,-1514.33 309.755,-1517.36 314,-1521 347.029,-1549.29 367.474,-1597.24 377.199,-1625.12"/>
+<polygon fill="#000000" stroke="#000000" points="373.922,-1626.36 380.405,-1634.74 380.563,-1624.15 373.922,-1626.36"/>
+</g>
+<!-- proc~b64_decode_r4_a&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge17" class="edge"><title>proc~b64_decode_r4_a&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M301.504,-1470.12C306.059,-1472.57 310.347,-1475.5 314,-1479 356.184,-1519.46 373.954,-1589.16 380.567,-1624.73"/>
+<polygon fill="#000000" stroke="#000000" points="377.189,-1625.73 382.339,-1634.99 384.087,-1624.54 377.189,-1625.73"/>
+</g>
+<!-- proc~b64_decode_r8&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge18" class="edge"><title>proc~b64_decode_r8&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M301.667,-1908.47C306.25,-1905.92 310.499,-1902.8 314,-1899 375.09,-1832.68 383.525,-1717.62 384.235,-1669.34"/>
+<polygon fill="#000000" stroke="#000000" points="387.736,-1669.09 384.28,-1659.07 380.736,-1669.06 387.736,-1669.09"/>
+</g>
+<!-- proc~b64_decode_i4_a&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge19" class="edge"><title>proc~b64_decode_i4_a&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M302.044,-1865.98C306.446,-1863.52 310.55,-1860.56 314,-1857 365.683,-1803.68 379.226,-1711.21 382.76,-1669.07"/>
+<polygon fill="#000000" stroke="#000000" points="386.255,-1669.27 383.488,-1659.04 379.273,-1668.76 386.255,-1669.27"/>
+</g>
+<!-- proc~b64_decode_i2&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge20" class="edge"><title>proc~b64_decode_i2&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M299.784,-1824.77C304.977,-1822.16 309.89,-1818.94 314,-1815 356.184,-1774.54 373.954,-1704.84 380.567,-1669.27"/>
+<polygon fill="#000000" stroke="#000000" points="384.087,-1669.46 382.339,-1659.01 377.189,-1668.27 384.087,-1669.46"/>
+</g>
+<!-- proc~b64_decode_r4&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge21" class="edge"><title>proc~b64_decode_r4&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M300.257,-1781.9C305.196,-1779.44 309.915,-1776.5 314,-1773 347.029,-1744.71 367.474,-1696.76 377.199,-1668.88"/>
+<polygon fill="#000000" stroke="#000000" points="380.563,-1669.85 380.405,-1659.26 373.922,-1667.64 380.563,-1669.85"/>
+</g>
+<!-- proc~b64_decode_i1_a&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge22" class="edge"><title>proc~b64_decode_i1_a&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M297.877,-1739.94C303.538,-1737.43 309.089,-1734.47 314,-1731 338.259,-1713.88 359.005,-1686.33 371.475,-1667.48"/>
+<polygon fill="#000000" stroke="#000000" points="374.455,-1669.31 376.911,-1659.01 368.564,-1665.53 374.455,-1669.31"/>
+</g>
+<!-- proc~b64_decode_i8&#45;&gt;proc~decode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge23" class="edge"><title>proc~b64_decode_i8&#45;&gt;proc~decode_bits</title>
+<path fill="none" stroke="#000000" d="M293.001,-1697.9C300.064,-1695.2 307.342,-1692.19 314,-1689 328.811,-1681.91 344.555,-1672.63 357.354,-1664.6"/>
+<polygon fill="#000000" stroke="#000000" points="359.549,-1667.35 366.097,-1659.02 355.784,-1661.45 359.549,-1667.35"/>
+</g>
+<!-- proc~byte_size_i8p -->
+<g id="proc~~autotest~~CallsGraph_node22" class="node"><title>proc~byte_size_i8p</title>
+<g id="a_proc~~autotest~~CallsGraph_node22"><a xlink:href="../proc/byte_size_i8p.html" xlink:title="byte_size_I8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="537.5,-1491 458.5,-1491 458.5,-1467 537.5,-1467 537.5,-1491"/>
+<text text-anchor="middle" x="498" y="-1476.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">byte_size_I8P</text>
+</a>
+</g>
+</g>
+<!-- interface~byte_size&#45;&gt;proc~byte_size_i8p -->
+<g id="proc~~autotest~~CallsGraph_edge1" class="edge"><title>interface~byte_size&#45;&gt;proc~byte_size_i8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M391.523,-1365.15C401.667,-1386.35 425.091,-1430.45 456,-1458 457.272,-1459.13 458.617,-1460.23 460.013,-1461.27"/>
+<polygon fill="#000000" stroke="#000000" points="458.143,-1464.23 468.426,-1466.78 461.979,-1458.38 458.143,-1464.23"/>
+</g>
+<!-- proc~byte_size_r8p -->
+<g id="proc~~autotest~~CallsGraph_node23" class="node"><title>proc~byte_size_r8p</title>
+<g id="a_proc~~autotest~~CallsGraph_node23"><a xlink:href="../proc/byte_size_r8p.html" xlink:title="byte_size_R8P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="540,-1449 456,-1449 456,-1425 540,-1425 540,-1449"/>
+<text text-anchor="middle" x="498" y="-1434.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">byte_size_R8P</text>
+</a>
+</g>
+</g>
+<!-- interface~byte_size&#45;&gt;proc~byte_size_r8p -->
+<g id="proc~~autotest~~CallsGraph_edge2" class="edge"><title>interface~byte_size&#45;&gt;proc~byte_size_r8p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M397.584,-1365.18C410.85,-1378.69 433.647,-1400.61 456,-1416 457.873,-1417.29 459.836,-1418.55 461.846,-1419.78"/>
+<polygon fill="#000000" stroke="#000000" points="460.399,-1422.98 470.822,-1424.88 463.858,-1416.9 460.399,-1422.98"/>
+</g>
+<!-- proc~byte_size_i4p -->
+<g id="proc~~autotest~~CallsGraph_node24" class="node"><title>proc~byte_size_i4p</title>
+<g id="a_proc~~autotest~~CallsGraph_node24"><a xlink:href="../proc/byte_size_i4p.html" xlink:title="byte_size_I4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="537.5,-1407 458.5,-1407 458.5,-1383 537.5,-1383 537.5,-1407"/>
+<text text-anchor="middle" x="498" y="-1392.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">byte_size_I4P</text>
+</a>
+</g>
+</g>
+<!-- interface~byte_size&#45;&gt;proc~byte_size_i4p -->
+<g id="proc~~autotest~~CallsGraph_edge3" class="edge"><title>interface~byte_size&#45;&gt;proc~byte_size_i4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M414.01,-1363.6C426.638,-1368.38 441.806,-1374.12 455.702,-1379.37"/>
+<polygon fill="#000000" stroke="#000000" points="454.48,-1382.65 465.071,-1382.92 456.957,-1376.11 454.48,-1382.65"/>
+</g>
+<!-- proc~byte_size_r4p -->
+<g id="proc~~autotest~~CallsGraph_node25" class="node"><title>proc~byte_size_r4p</title>
+<g id="a_proc~~autotest~~CallsGraph_node25"><a xlink:href="../proc/byte_size_r4p.html" xlink:title="byte_size_R4P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="540,-1365 456,-1365 456,-1341 540,-1341 540,-1365"/>
+<text text-anchor="middle" x="498" y="-1350.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">byte_size_R4P</text>
+</a>
+</g>
+</g>
+<!-- interface~byte_size&#45;&gt;proc~byte_size_r4p -->
+<g id="proc~~autotest~~CallsGraph_edge4" class="edge"><title>interface~byte_size&#45;&gt;proc~byte_size_r4p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M414.01,-1353C423.647,-1353 434.763,-1353 445.663,-1353"/>
+<polygon fill="#000000" stroke="#000000" points="445.993,-1356.5 455.993,-1353 445.993,-1349.5 445.993,-1356.5"/>
+</g>
+<!-- proc~byte_size_chr -->
+<g id="proc~~autotest~~CallsGraph_node26" class="node"><title>proc~byte_size_chr</title>
+<g id="a_proc~~autotest~~CallsGraph_node26"><a xlink:href="../proc/byte_size_chr.html" xlink:title="byte_size_chr">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="537.5,-1323 458.5,-1323 458.5,-1299 537.5,-1299 537.5,-1323"/>
+<text text-anchor="middle" x="498" y="-1308.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">byte_size_chr</text>
+</a>
+</g>
+</g>
+<!-- interface~byte_size&#45;&gt;proc~byte_size_chr -->
+<g id="proc~~autotest~~CallsGraph_edge5" class="edge"><title>interface~byte_size&#45;&gt;proc~byte_size_chr</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M414.01,-1342.4C426.638,-1337.62 441.806,-1331.88 455.702,-1326.63"/>
+<polygon fill="#000000" stroke="#000000" points="456.957,-1329.89 465.071,-1323.08 454.48,-1323.35 456.957,-1329.89"/>
+</g>
+<!-- proc~byte_size_i1p -->
+<g id="proc~~autotest~~CallsGraph_node27" class="node"><title>proc~byte_size_i1p</title>
+<g id="a_proc~~autotest~~CallsGraph_node27"><a xlink:href="../proc/byte_size_i1p.html" xlink:title="byte_size_I1P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="537.5,-1281 458.5,-1281 458.5,-1257 537.5,-1257 537.5,-1281"/>
+<text text-anchor="middle" x="498" y="-1266.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">byte_size_I1P</text>
+</a>
+</g>
+</g>
+<!-- interface~byte_size&#45;&gt;proc~byte_size_i1p -->
+<g id="proc~~autotest~~CallsGraph_edge6" class="edge"><title>interface~byte_size&#45;&gt;proc~byte_size_i1p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M397.584,-1340.82C410.85,-1327.31 433.647,-1305.39 456,-1290 457.873,-1288.71 459.836,-1287.45 461.846,-1286.22"/>
+<polygon fill="#000000" stroke="#000000" points="463.858,-1289.1 470.822,-1281.12 460.399,-1283.02 463.858,-1289.1"/>
+</g>
+<!-- proc~byte_size_i2p -->
+<g id="proc~~autotest~~CallsGraph_node28" class="node"><title>proc~byte_size_i2p</title>
+<g id="a_proc~~autotest~~CallsGraph_node28"><a xlink:href="../proc/byte_size_i2p.html" xlink:title="byte_size_I2P">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="537.5,-1239 458.5,-1239 458.5,-1215 537.5,-1215 537.5,-1239"/>
+<text text-anchor="middle" x="498" y="-1224.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">byte_size_I2P</text>
+</a>
+</g>
+</g>
+<!-- interface~byte_size&#45;&gt;proc~byte_size_i2p -->
+<g id="proc~~autotest~~CallsGraph_edge7" class="edge"><title>interface~byte_size&#45;&gt;proc~byte_size_i2p</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M391.523,-1340.85C401.667,-1319.65 425.091,-1275.55 456,-1248 457.272,-1246.87 458.617,-1245.77 460.013,-1244.73"/>
+<polygon fill="#000000" stroke="#000000" points="461.979,-1247.62 468.426,-1239.22 458.143,-1241.77 461.979,-1247.62"/>
+</g>
+<!-- proc~str_a_r8p&#45;&gt;proc~str_r8p -->
+<g id="proc~~autotest~~CallsGraph_edge38" class="edge"><title>proc~str_a_r8p&#45;&gt;proc~str_r8p</title>
+<path fill="none" stroke="#000000" d="M287.743,-298.841C305.83,-301.69 328.798,-305.307 347.763,-308.293"/>
+<polygon fill="#000000" stroke="#000000" points="347.407,-311.78 357.83,-309.879 348.496,-304.866 347.407,-311.78"/>
+</g>
+<!-- proc~str_a_i2p&#45;&gt;proc~str_i2p -->
+<g id="proc~~autotest~~CallsGraph_edge39" class="edge"><title>proc~str_a_i2p&#45;&gt;proc~str_i2p</title>
+<path fill="none" stroke="#000000" d="M285.185,-218.217C303.605,-220.972 327.838,-224.598 347.696,-227.569"/>
+<polygon fill="#000000" stroke="#000000" points="347.22,-231.036 357.628,-229.055 348.256,-224.113 347.22,-231.036"/>
+</g>
+<!-- proc~str_a_i1p&#45;&gt;proc~str_i1p -->
+<g id="proc~~autotest~~CallsGraph_edge40" class="edge"><title>proc~str_a_i1p&#45;&gt;proc~str_i1p</title>
+<path fill="none" stroke="#000000" d="M285.185,-138.217C303.605,-140.972 327.838,-144.598 347.696,-147.569"/>
+<polygon fill="#000000" stroke="#000000" points="347.22,-151.036 357.628,-149.055 348.256,-144.113 347.22,-151.036"/>
+</g>
+<!-- proc~str_a_i8p&#45;&gt;proc~str_i8p -->
+<g id="proc~~autotest~~CallsGraph_edge41" class="edge"><title>proc~str_a_i8p&#45;&gt;proc~str_i8p</title>
+<path fill="none" stroke="#000000" d="M285.185,-16.4386C303.605,-19.3394 327.838,-23.1556 347.696,-26.2828"/>
+<polygon fill="#000000" stroke="#000000" points="347.205,-29.7486 357.628,-27.8469 348.294,-22.8338 347.205,-29.7486"/>
+</g>
+<!-- proc~str_a_i4p&#45;&gt;proc~str_i4p -->
+<g id="proc~~autotest~~CallsGraph_edge42" class="edge"><title>proc~str_a_i4p&#45;&gt;proc~str_i4p</title>
+<path fill="none" stroke="#000000" d="M285.185,-504.439C303.605,-507.339 327.838,-511.156 347.696,-514.283"/>
+<polygon fill="#000000" stroke="#000000" points="347.205,-517.749 357.628,-515.847 348.294,-510.834 347.205,-517.749"/>
+</g>
+<!-- proc~str_a_r4p&#45;&gt;proc~str_r4p -->
+<g id="proc~~autotest~~CallsGraph_edge43" class="edge"><title>proc~str_a_r4p&#45;&gt;proc~str_r4p</title>
+<path fill="none" stroke="#000000" d="M287.743,-710.841C305.83,-713.69 328.798,-717.307 347.763,-720.293"/>
+<polygon fill="#000000" stroke="#000000" points="347.407,-723.78 357.83,-721.879 348.496,-716.866 347.407,-723.78"/>
+</g>
+<!-- proc~b64_encode_string&#45;&gt;interface~byte_size -->
+<g id="proc~~autotest~~CallsGraph_edge63" class="edge"><title>proc~b64_encode_string&#45;&gt;interface~byte_size</title>
+<path fill="none" stroke="#000000" d="M293.001,-1302.1C300.064,-1304.8 307.342,-1307.81 314,-1311 328.811,-1318.09 344.555,-1327.37 357.354,-1335.4"/>
+<polygon fill="#000000" stroke="#000000" points="355.784,-1338.55 366.097,-1340.98 359.549,-1332.65 355.784,-1338.55"/>
+</g>
+<!-- proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_node62" class="node"><title>proc~encode_bits</title>
+<g id="a_proc~~autotest~~CallsGraph_node62"><a xlink:href="../proc/encode_bits.html" xlink:title="encode_bits">
+<polygon fill="#d9534f" stroke="#d9534f" points="420,-1071 350,-1071 350,-1047 420,-1047 420,-1071"/>
+<text text-anchor="middle" x="385" y="-1056.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">encode_bits</text>
+</a>
+</g>
+</g>
+<!-- proc~b64_encode_string&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge64" class="edge"><title>proc~b64_encode_string&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M302.044,-1277.98C306.446,-1275.52 310.55,-1272.56 314,-1269 365.683,-1215.68 379.226,-1123.21 382.76,-1081.07"/>
+<polygon fill="#000000" stroke="#000000" points="386.255,-1081.27 383.488,-1071.04 379.273,-1080.76 386.255,-1081.27"/>
+</g>
+<!-- proc~b64_encode_i8&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge65" class="edge"><title>proc~b64_encode_i8&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M299.784,-1236.77C304.977,-1234.16 309.89,-1230.94 314,-1227 356.184,-1186.54 373.954,-1116.84 380.567,-1081.27"/>
+<polygon fill="#000000" stroke="#000000" points="384.087,-1081.46 382.339,-1071.01 377.189,-1080.27 384.087,-1081.46"/>
+</g>
+<!-- proc~b64_encode_i2_a&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge66" class="edge"><title>proc~b64_encode_i2_a&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M300.257,-1193.9C305.196,-1191.44 309.915,-1188.5 314,-1185 347.029,-1156.71 367.474,-1108.76 377.199,-1080.88"/>
+<polygon fill="#000000" stroke="#000000" points="380.563,-1081.85 380.405,-1071.26 373.922,-1079.64 380.563,-1081.85"/>
+</g>
+<!-- proc~b64_encode_i8_a&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge67" class="edge"><title>proc~b64_encode_i8_a&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M297.877,-1151.94C303.538,-1149.43 309.089,-1146.47 314,-1143 338.259,-1125.88 359.005,-1098.33 371.475,-1079.48"/>
+<polygon fill="#000000" stroke="#000000" points="374.455,-1081.31 376.911,-1071.01 368.564,-1077.53 374.455,-1081.31"/>
+</g>
+<!-- proc~b64_encode_i4&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge68" class="edge"><title>proc~b64_encode_i4&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M293.001,-1109.9C300.064,-1107.2 307.342,-1104.19 314,-1101 328.811,-1093.91 344.555,-1084.63 357.354,-1076.6"/>
+<polygon fill="#000000" stroke="#000000" points="359.549,-1079.35 366.097,-1071.02 355.784,-1073.45 359.549,-1079.35"/>
+</g>
+<!-- proc~b64_encode_i4_a&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge69" class="edge"><title>proc~b64_encode_i4_a&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M305.738,-1071.94C316.87,-1070.1 328.643,-1068.15 339.583,-1066.34"/>
+<polygon fill="#000000" stroke="#000000" points="340.473,-1069.75 349.768,-1064.66 339.331,-1062.84 340.473,-1069.75"/>
+</g>
+<!-- proc~b64_encode_i1&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge70" class="edge"><title>proc~b64_encode_i1&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M299.642,-1045.05C312.493,-1047.18 326.625,-1049.51 339.588,-1051.66"/>
+<polygon fill="#000000" stroke="#000000" points="339.249,-1055.15 349.686,-1053.33 340.391,-1048.24 339.249,-1055.15"/>
+</g>
+<!-- proc~b64_encode_r8&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge71" class="edge"><title>proc~b64_encode_r8&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M293.001,-1008.1C300.064,-1010.8 307.342,-1013.81 314,-1017 328.811,-1024.09 344.555,-1033.37 357.354,-1041.4"/>
+<polygon fill="#000000" stroke="#000000" points="355.784,-1044.55 366.097,-1046.98 359.549,-1038.65 355.784,-1044.55"/>
+</g>
+<!-- proc~b64_encode_i1_a&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge72" class="edge"><title>proc~b64_encode_i1_a&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M297.877,-966.057C303.538,-968.57 309.089,-971.534 314,-975 338.259,-992.119 359.005,-1019.67 371.475,-1038.52"/>
+<polygon fill="#000000" stroke="#000000" points="368.564,-1040.47 376.911,-1046.99 374.455,-1036.69 368.564,-1040.47"/>
+</g>
+<!-- proc~b64_encode_r4_a&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge73" class="edge"><title>proc~b64_encode_r4_a&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M300.257,-924.1C305.196,-926.562 309.915,-929.501 314,-933 347.029,-961.294 367.474,-1009.24 377.199,-1037.12"/>
+<polygon fill="#000000" stroke="#000000" points="373.922,-1038.36 380.405,-1046.74 380.563,-1036.15 373.922,-1038.36"/>
+</g>
+<!-- proc~b64_encode_r4&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge74" class="edge"><title>proc~b64_encode_r4&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M301.504,-882.123C306.059,-884.568 310.347,-887.496 314,-891 356.184,-931.457 373.954,-1001.16 380.567,-1036.73"/>
+<polygon fill="#000000" stroke="#000000" points="377.189,-1037.73 382.339,-1046.99 384.087,-1036.54 377.189,-1037.73"/>
+</g>
+<!-- proc~b64_encode_r8_a&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge75" class="edge"><title>proc~b64_encode_r8_a&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M302.044,-840.02C306.446,-842.481 310.55,-845.441 314,-849 365.683,-902.324 379.226,-994.795 382.76,-1036.93"/>
+<polygon fill="#000000" stroke="#000000" points="379.273,-1037.24 383.488,-1046.96 386.255,-1036.73 379.273,-1037.24"/>
+</g>
+<!-- proc~b64_encode_i2&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge76" class="edge"><title>proc~b64_encode_i2&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M299.684,-796.471C305.02,-799.208 309.999,-802.656 314,-807 375.09,-873.32 383.525,-988.383 384.235,-1036.66"/>
+<polygon fill="#000000" stroke="#000000" points="380.736,-1036.94 384.28,-1046.93 387.736,-1036.91 380.736,-1036.94"/>
+</g>
+<!-- proc~b64_encode_string_a&#45;&gt;interface~byte_size -->
+<g id="proc~~autotest~~CallsGraph_edge77" class="edge"><title>proc~b64_encode_string_a&#45;&gt;interface~byte_size</title>
+<path fill="none" stroke="#000000" d="M314.184,-1341.46C324.934,-1343.23 335.928,-1345.05 345.917,-1346.7"/>
+<polygon fill="#000000" stroke="#000000" points="345.474,-1350.18 355.911,-1348.36 346.616,-1343.27 345.474,-1350.18"/>
+</g>
+<!-- proc~b64_encode_string_a&#45;&gt;proc~encode_bits -->
+<g id="proc~~autotest~~CallsGraph_edge78" class="edge"><title>proc~b64_encode_string_a&#45;&gt;proc~encode_bits</title>
+<path fill="none" stroke="#000000" d="M302.505,-1319.99C306.767,-1317.53 310.713,-1314.57 314,-1311 375.09,-1244.68 383.525,-1129.62 384.235,-1081.34"/>
+<polygon fill="#000000" stroke="#000000" points="387.736,-1081.09 384.28,-1071.07 380.736,-1081.06 387.736,-1081.09"/>
+</g>
+</g>
+</svg>
+</div>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+Nodes of different colours represent the following:
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.36.0 (20140111.2315)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="26pt"
+ viewBox="0.00 0.00 641.00 26.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.812421 0.812421) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28 785,-28 785,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node"><title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,-0 54,-0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node"><title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="139.25,-24 72.75,-24 72.75,-0 139.25,-0 139.25,-24"/>
+<text text-anchor="middle" x="106" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Type -->
+<g id="node3" class="node"><title>Type</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="212,-24 158,-24 158,-0 212,-0 212,-24"/>
+<text text-anchor="middle" x="185" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
+</g>
+<!-- Subroutine -->
+<g id="node4" class="node"><title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="294,-24 230,-24 230,-0 294,-0 294,-24"/>
+<text text-anchor="middle" x="262" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node5" class="node"><title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="366,-24 312,-24 312,-0 366,-0 366,-24"/>
+<text text-anchor="middle" x="339" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node6" class="node"><title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="439.25,-24 384.75,-24 384.75,-0 439.25,-0 439.25,-24"/>
+<text text-anchor="middle" x="412" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node7" class="node"><title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="594,-24 458,-24 458,-0 594,-0 594,-24"/>
+<text text-anchor="middle" x="526" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node8" class="node"><title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="666,-24 612,-24 612,-0 666,-0 666,-24"/>
+<text text-anchor="middle" x="639" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node9" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="781.25,-24 684.75,-24 684.75,-0 781.25,-0 781.25,-24"/>
+<text text-anchor="middle" x="733" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+Where possible, edges connecting nodes are given different colours to make them
+easier to distinguish in large graphs.
+<h5>Module Graph</h5>
+<p>Solid arrows point from a parent (sub)module to the submodule which is
+descended from it. Dashed arrows point from a module being used to the
+module using it.</p>
+<h5>Type Graph</h5>
+<p>Solid arrows point from one derived type to another which extends
+(inherits from) it. Dashed arrows point from a derived type to another
+type containing it as a components, with a label listing the name(s) of
+said component(s).</p>
+<h5>Call Graph</h5>
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+     
+     
+    <br>
+    
+    <section>
+    <h2>Variables</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-code64"></span>character(len=:),</td>
+  
+  <td>public,</td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>code64</strong></td><td></td><td></td><td><p>Base64 code.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ok"></span>logical,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>ok</strong></td><td></td><td></td><td><p>Flag for checking the result of encoding/decoding.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-scalar_r8"></span>real(kind=R8P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>scalar_R8</strong></td><td></td><td></td><td><p>Decoded scalar.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-scalar_r4"></span>real(kind=R4P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>scalar_R4</strong></td><td></td><td></td><td><p>Decoded scalar.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-scalar_i8"></span>integer(kind=I8P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>scalar_I8</strong></td><td></td><td></td><td><p>Decoded scalar.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-scalar_i4"></span>integer(kind=I4P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>scalar_I4</strong></td><td></td><td></td><td><p>Decoded scalar.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-scalar_i2"></span>integer(kind=I2P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>scalar_I2</strong></td><td></td><td></td><td><p>Decoded scalar.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-scalar_i1"></span>integer(kind=I1P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>scalar_I1</strong></td><td></td><td></td><td><p>Decoded scalar.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-array_r8"></span>real(kind=R8P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>array_R8</strong>(1:2)</td><td></td><td></td><td><p>Decoded array.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-array_r4"></span>real(kind=R4P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>array_R4</strong>(1:2)</td><td></td><td></td><td><p>Decoded array.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-array_i8"></span>integer(kind=I8P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>array_I8</strong>(1:4)</td><td></td><td></td><td><p>Decoded array.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-array_i4"></span>integer(kind=I4P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>array_I4</strong>(1:2)</td><td></td><td></td><td><p>Decoded array.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-array_i2"></span>integer(kind=I2P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>array_I2</strong>(1:2)</td><td></td><td></td><td><p>Decoded array.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-array_i1"></span>integer(kind=I1P),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>array_I1</strong>(1:2)</td><td></td><td></td><td><p>Decoded array.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-array_s"></span>character(len=5),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>array_s</strong>(1:2)</td><td></td><td></td><td><p>Decoded array.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">autotest</span><span class="p">()</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
+  <span class="c">!&lt; Procedure for autotesting the library functionalities.</span>
+  <span class="c">!&lt;</span>
+  <span class="c">!&lt; @note Into the *src* directory there is a small python script (*validation.py*) that can be used to validate the library</span>
+  <span class="c">!&lt; correctness by a comparison with other widely used tools such as the python builtin module *struct*.</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
+  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">code64</span>        <span class="c">!&lt; Base64 code.</span>
+  <span class="kt">logical</span>                       <span class="kd">::</span> <span class="n">ok</span>            <span class="c">!&lt; Flag for checking the result of encoding/decoding.</span>
+<span class="cp">#ifdef r16p</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">R16P</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">scalar_R16</span>    <span class="c">!&lt; Decoded scalar.</span>
+<span class="cp">#endif</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">scalar_R8</span>     <span class="c">!&lt; Decoded scalar.</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">R4P</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">scalar_R4</span>     <span class="c">!&lt; Decoded scalar.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I8P</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">scalar_I8</span>     <span class="c">!&lt; Decoded scalar.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">scalar_I4</span>     <span class="c">!&lt; Decoded scalar.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I2P</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">scalar_I2</span>     <span class="c">!&lt; Decoded scalar.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I1P</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">scalar_I1</span>     <span class="c">!&lt; Decoded scalar.</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">R8P</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">array_R8</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span> <span class="c">!&lt; Decoded array.</span>
+  <span class="kt">real</span><span class="p">(</span><span class="n">R4P</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">array_R4</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span> <span class="c">!&lt; Decoded array.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I8P</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">array_I8</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span> <span class="c">!&lt; Decoded array.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">array_I4</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span> <span class="c">!&lt; Decoded array.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I2P</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">array_I2</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span> <span class="c">!&lt; Decoded array.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I1P</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">array_I1</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span> <span class="c">!&lt; Decoded array.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">array_s</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span>  <span class="c">!&lt; Decoded array.</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
+
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
+  <span class="k">call </span><span class="n">b64_Init</span>
+
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;Encoders&#39;</span>
+
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;Scalars&#39;</span>
+
+<span class="cp">#ifdef r16p</span>
+  <span class="k">call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">13</span><span class="mf">4.231_R16P</span><span class="p">,</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;CKwcWmTHYEA=&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">13</span><span class="mf">4.231_R16P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;CKwcWmTHYEA=&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+<span class="cp">#endif</span>
+
+  <span class="k">call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mf">1._R8P</span><span class="p">,</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;AAAAAAAA8D8=&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mf">1._R8P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;AAAAAAAA8D8=&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mf">0._R4P</span><span class="p">,</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;AAAAAA==&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mf">0._R4P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;AAAAAA==&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">23_I8P</span><span class="p">,</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;FwAAAAAAAAA=&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">23_I8P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;FwAAAAAAAAA=&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2023_I4P</span><span class="p">,</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;5wcAAA==&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2023_I4P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;5wcAAA==&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=-</span><span class="mi">203_I2P</span><span class="p">,</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;Nf8=&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=-</span><span class="mi">203_I2P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;Nf8=&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">120_I1P</span><span class="p">,</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;eA==&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">120_I1P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;eA==&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;aGVsbG8=&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of hello: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;aGVsbG8=&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;Arrays&#39;</span>
+
+<span class="cp">#ifdef r16p</span>
+  <span class="k">call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="mf">1._R16P</span><span class="p">,</span><span class="mf">2.32_R16P</span><span class="p">],</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;AAAAAABAXkCPwvUoXI8CQA==&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="mf">1._R16P</span><span class="p">,</span><span class="mf">2.32_R16P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;AAAAAABAXkCPwvUoXI8CQA==&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+<span class="cp">#endif</span>
+
+  <span class="k">call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mf">1._R8P</span><span class="p">,</span><span class="mf">2._R8P</span><span class="p">],</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;AAAAAAAA8D8AAAAAAAAAQA==&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mf">1._R8P</span><span class="p">,</span><span class="mf">2._R8P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;AAAAAAAA8D8AAAAAAAAAQA==&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mf">0._R4P</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="mf">2.12_R4P</span><span class="p">],</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;AAAAAOF6AMI=&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mf">0._R4P</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="mf">2.12_R4P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;AAAAAOF6AMI=&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">23_I8P</span><span class="p">,</span><span class="mi">324_I8P</span><span class="p">,</span><span class="mi">25456656_I8P</span><span class="p">,</span><span class="mi">2_I8P</span><span class="p">],</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;FwAAAAAAAABEAQAAAAAAABBwhAEAAAAAAgAAAAAAAAA=&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">23_I8P</span><span class="p">,</span><span class="mi">324_I8P</span><span class="p">,</span><span class="mi">25456656_I8P</span><span class="p">,</span><span class="mi">2_I8P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;FwAAAAAAAABEAQAAAAAAABBwhAEAAAAAAgAAAAAAAAA=&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">2023_I4P</span><span class="p">,</span><span class="o">-</span><span class="mi">24_I4P</span><span class="p">],</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;5wcAAOj///8=&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">2023_I4P</span><span class="p">,</span><span class="o">-</span><span class="mi">24_I4P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;5wcAAOj///8=&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">203_I2P</span><span class="p">,</span><span class="o">-</span><span class="mi">10_I2P</span><span class="p">],</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;Nf/2/w==&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">203_I2P</span><span class="p">,</span><span class="o">-</span><span class="mi">10_I2P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;Nf/2/w==&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">120_I1P</span><span class="p">,</span><span class="o">-</span><span class="mi">1_I1P</span><span class="p">],</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;eP8=&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">120_I1P</span><span class="p">,</span><span class="o">-</span><span class="mi">1_I1P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;eP8=&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_encode</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span><span class="s1">&#39;world&#39;</span><span class="p">],</span><span class="n">code</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">code64</span><span class="o">==</span><span class="s1">&#39;aGVsbG93b3JsZA==&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Code of [hello,world]: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected code: &quot;&#39;</span><span class="o">//</span><span class="s1">&#39;aGVsbG93b3JsZA==&#39;</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;Decoders&#39;</span>
+
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;Scalars&#39;</span>
+
+  <span class="k">call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;AAAAAAAA8D8=&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_R8</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_R8</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mf">1._R8P</span><span class="p">)</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;AAAAAAAA8D8=&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_R8</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mf">1._R8P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;AAAAAA==&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_R4</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_R4</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mf">0._R4P</span><span class="p">)</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;AAAAAA==&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_R4</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mf">0._R4P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;FwAAAAAAAAA=&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I8</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I8</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">23_I8P</span><span class="p">)</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;FwAAAAAAAAA=&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I8</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">23_I8P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;5wcAAA==&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I4</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I4</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2023_I4P</span><span class="p">)</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;5wcAAA==&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I4</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2023_I4P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;Nf8=&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I2</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I2</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=-</span><span class="mi">203_I2P</span><span class="p">)</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;Nf8=&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I2</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=-</span><span class="mi">203_I2P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;eA==&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I1</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I1</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">120_I1P</span><span class="p">)</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;eA==&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">scalar_I1</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">120_I1P</span><span class="p">))</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  </span><span class="n">code64</span> <span class="o">=</span> <span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+  <span class="k">call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;aGVsbG8=&#39;</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="n">code64</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="o">==</span><span class="n">code64</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;aGVsbG8=&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">code64</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;hello&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;Arrays&#39;</span>
+
+  <span class="k">call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;AAAAAAAA8D8AAAAAAAAAQA==&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">array_R8</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_R8</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mf">1._R8P</span><span class="p">,</span><span class="mf">2._R8P</span><span class="p">])</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;AAAAAAAA8D8AAAAAAAAAQA==&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_R8</span><span class="p">,</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mf">1._R8P</span><span class="p">,</span><span class="mf">2._R8P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;AAAAAOF6AMI=&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">array_R4</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_R4</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mf">0._R4P</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="mf">2.12_R4P</span><span class="p">])</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;AAAAAOF6AMI=&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_R4</span><span class="p">,</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mf">0._R4P</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="mf">2.12_R4P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+  <span class="c">! ok = test_decode_array(code=, input=) ; if (.not.ok) stop</span>
+  <span class="k">call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;FwAAAAAAAABEAQAAAAAAABBwhAEAAAAAAgAAAAAAAAA=&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">array_I8</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_I8</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">23_I8P</span><span class="p">,</span><span class="mi">324_I8P</span><span class="p">,</span><span class="mi">25456656_I8P</span><span class="p">,</span><span class="mi">2_I8P</span><span class="p">])</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;FwAAAAAAAABEAQAAAAAAABBwhAEAAAAAAgAAAAAAAAA=&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="p">&amp;</span>
+    <span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_I8</span><span class="p">,</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">23_I8P</span><span class="p">,</span><span class="mi">324_I8P</span><span class="p">,</span><span class="mi">25456656_I8P</span><span class="p">,</span><span class="mi">2_I8P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="p">&amp;</span>
+    <span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;5wcAAOj///8=&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">array_I4</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_I4</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">2023_I4P</span><span class="p">,</span><span class="o">-</span><span class="mi">24_I4P</span><span class="p">])</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;5wcAAOj///8=&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_I4</span><span class="p">,</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">2023_I4P</span><span class="p">,</span><span class="o">-</span><span class="mi">24_I4P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;Nf/2/w==&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">array_I2</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_I2</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">203_I2P</span><span class="p">,</span><span class="o">-</span><span class="mi">10_I2P</span><span class="p">])</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;Nf/2/w==&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_I2</span><span class="p">,</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">203_I2P</span><span class="p">,</span><span class="o">-</span><span class="mi">10_I2P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;eP8=&#39;</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="n">array_I1</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_I1</span><span class="p">)</span><span class="o">==</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">120_I1P</span><span class="p">,</span><span class="o">-</span><span class="mi">1_I1P</span><span class="p">])</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;eP8=&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">array_I1</span><span class="p">,</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="mi">120_I1P</span><span class="p">,</span><span class="o">-</span><span class="mi">1_I1P</span><span class="p">],</span> <span class="n">delimiters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;[&#39;</span><span class="p">,</span><span class="s1">&#39;]&#39;</span><span class="p">]))</span><span class="o">//</span><span class="s1">&#39;&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+
+<span class="k">  call </span><span class="n">b64_decode</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="s1">&#39;aGVsbG93b3JsZA==&#39;</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="n">array_s</span><span class="p">)</span>
+  <span class="n">ok</span> <span class="o">=</span> <span class="n">array_s</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="n">array_s</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">==</span><span class="s1">&#39;helloworld&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;+ Decode of &#39;</span><span class="o">//</span><span class="s1">&#39;aGVsbG93b3JsZA==&#39;</span><span class="o">//</span><span class="s1">&#39;: &quot;&#39;</span><span class="o">//</span><span class="n">array_s</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="n">array_s</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;&quot;&#39;</span>
+  <span class="k">print</span> <span class="s2">&quot;(A,1X,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;  Expected value: &quot;helloworld&quot;, Is it correct?&#39;</span><span class="p">,</span><span class="n">ok</span>
+  <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span> <span class="k">stop</span>
+<span class="k">  return</span>
+  <span class="c">!---------------------------------------------------------------------------------------------------------------------------------</span>
+  <span class="n">endsubroutine</span> <span class="n">autotest</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    
+    </div>
+  </div>
+
+    <hr>
+    <footer>
+      <div class="row">
+        <div class="col-md-4">&copy; 2016 </div>
+        <div class="col-md-4"><span class="text-center"> FiNeR was developed by Stefano Zaghi</span></div>
+        <div class="col-md-4">
+          <span class="pull-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </span>
+        </div>
+      </div>
+      <br>
+    </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

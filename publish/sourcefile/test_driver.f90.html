@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	 
-	 <meta name="description" content="<p>A KISS library for IO of INI (config) files for modern (2003+) Fortran projects</p>">
+	 <meta name="description" content="Fortran INI ParseR and generator">
     
     <meta name="author" content="Chris MacMackin" >
     <link rel="icon" href="../favicon.png">
@@ -25,17 +25,21 @@
     <![endif]-->
     
     <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
+    
 
   </head>
 
   <body>
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -48,7 +52,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            
+				
+                
             <li><a href="../lists/files.html">Source Files</a></li>
 				
 				
@@ -57,13 +62,14 @@
 				
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
-				
+								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
             <li><a href="../program/test_driver.html">Program</a></li>
-								
+				
           </ul>
+        
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -72,6 +78,7 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
+        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -86,9 +93,9 @@
     </h1>
 	 
 <div class="row">
-<div class="col-lg-7">
+<div class="col-lg-12">
 <div class="well well-sm">
-  <ul class="list-inline" style="margin-bottom:0px">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
      
      
      
@@ -98,29 +105,33 @@
     <li><i class="fa fa-code"></i><a href="../src/Test_Driver.f90"> Source File</a></li>
      
   </ul>
-  </div>
-  </div>
-  <div class="col-lg-5">
-  <ol class="breadcrumb hierarchy text-right">
+  <ol class="breadcrumb in-well text-right">
   
      <li class="active">Test_Driver.f90</li>
   </ol>
-  </div>
+</div>
+</div>
 </div>
     
   </div>
   <div class="row">
     <div class="col-lg-3">
     
+<div id="sidebar">
+  
+  
+  
   
   
   
   <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title">Programs</h3></div>
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../sourcefile/test_driver.f90.html#prog-Test_Driver">Test_Driver</a>
-      
+    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#progs">Programs</a></h3></div>
+    <div id="progs" class="panel-collapse collapse">
+        <div class="list-group">
+          
+          <a class="list-group-item" href="../program/test_driver.html">Test_Driver</a>
+          
+        </div>
     </div>
   </div>
   
@@ -131,66 +142,105 @@
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+    <div class="list-group">
+      <a class="list-group-item" href="../sourcefile/test_driver.f90.html#src">Test_Driver.f90</a>
+    </div>
+  </div>
   
   <hr>
   
   <div class="panel panel-default">
-    <div class="panel-heading text-left"><h3 class="panel-title">All Source Files</h3></div>
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../sourcefile/ir_precision.f90.html">IR_Precision.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/lib_ini_io.f90.html">Lib_INI_IO.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/lib_io_misc.f90.html">Lib_IO_Misc.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/lib_strings.f90.html">Lib_Strings.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_driver.f90.html">Test_Driver.f90</a>
-      
+    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles">All Source Files</a></h3></div>
+    <div id="allfiles" class="panel-collapse collapse">
+        <div class="list-group">
+          
+          <a class="list-group-item" href="../sourcefile/befor64.f90.html">befor64.F90</a>
+          
+          <a class="list-group-item" href="../sourcefile/befor64_pack_data_m.f90.html">befor64_pack_data_m.F90</a>
+          
+          <a class="list-group-item" href="../sourcefile/finer.f90.html">finer.f90</a>
+          
+          <a class="list-group-item" href="../sourcefile/finer_backend.f90.html">finer_backend.f90</a>
+          
+          <a class="list-group-item" href="../sourcefile/finer_file_ini_t.f90.html">finer_file_ini_t.f90</a>
+          
+          <a class="list-group-item" href="../sourcefile/finer_option_t.f90.html">finer_option_t.F90</a>
+          
+          <a class="list-group-item" href="../sourcefile/finer_section_t.f90.html">finer_section_t.f90</a>
+          
+          <a class="list-group-item" href="../sourcefile/penf.f90.html">penf.F90</a>
+          
+          <a class="list-group-item" href="../sourcefile/stringifor.f90.html">stringifor.F90</a>
+          
+          <a class="list-group-item" href="../sourcefile/stringifor_string_t.f90.html">stringifor_string_t.F90</a>
+          
+          <a class="list-group-item" href="../sourcefile/test_driver.f90.html">Test_Driver.f90</a>
+          
+        </div>
     </div>
   </div>
   
-  
+</div>
+
     </div>
     <div class="col-lg-9" id='text'>
     <p>Testing program for FiNeR, File INI Parser library for FoRtran poor men</p>
     <br>
-    <div class="highlight"><pre><span class="c">!&lt; Testing program for FiNeR, File INI Parser library for FoRtran poor men</span>
-<span class="k">program </span><span class="n">Test_Driver</span>
-<span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<span class="c">!&lt; Testing program for FiNeR, File INI Parser library for FoRtran poor men</span>
-<span class="c">!&lt;</span>
-<span class="c">!&lt;### Usage</span>
-<span class="c">!&lt;```bash</span>
-<span class="c">!&lt; ./Test_Driver</span>
-<span class="c">!&lt;```</span>
-<span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<span class="k">USE </span><span class="n">Lib_INI_IO</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">ini_autotest</span> <span class="c">! Autotesting procedure.</span>
-<span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<span class="k">implicit none</span>
-<span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-
-<span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;Testing FiNeR&#39;</span>
-<span class="k">call </span><span class="n">ini_autotest</span>
-<span class="k">stop</span>
-<span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
-<span class="n">endprogram</span> <span class="n">Test_Driver</span>
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="c">!&lt; Testing program for FiNeR, File INI Parser library for FoRtran poor men</span>
+<a name="ln-2"></a><span class="k">program </span><span class="n">Test_Driver</span>
+<a name="ln-3"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
+<a name="ln-4"></a><span class="c">!&lt; Testing program for FiNeR, File INI Parser library for FoRtran poor men</span>
+<a name="ln-5"></a><span class="c">!&lt;</span>
+<a name="ln-6"></a><span class="c">!&lt;### Usage</span>
+<a name="ln-7"></a><span class="c">!&lt;```bash</span>
+<a name="ln-8"></a><span class="c">!&lt; ./Test_Driver</span>
+<a name="ln-9"></a><span class="c">!&lt;```</span>
+<a name="ln-10"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
+<a name="ln-11"></a><span class="k">use </span><span class="n">finer</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span>  <span class="n">file_ini_autotest</span>
+<a name="ln-12"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
+<a name="ln-13"></a>
+<a name="ln-14"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
+<a name="ln-15"></a><span class="k">implicit none</span>
+<a name="ln-16"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
+<a name="ln-17"></a>
+<a name="ln-18"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
+<a name="ln-19"></a><span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;Testing FiNeR&#39;</span>
+<a name="ln-20"></a><span class="k">call </span><span class="n">file_ini_autotest</span>
+<a name="ln-21"></a><span class="k">stop</span>
+<a name="ln-22"></a><span class="c">!-----------------------------------------------------------------------------------------------------------------------------------</span>
+<a name="ln-23"></a><span class="n">endprogram</span> <span class="n">Test_Driver</span>
 </pre></div>
 
+    </section>
     </div>
   </div>
 
     <hr>
     <footer>
-        <div class="row">
-        <div class="col-md-6">&copy; 2015 FiNeR was written by Stefano Zaghi. </div>
-        <div class="col-md-6"><span class="pull-right">Documentation generated by <a href="https://github.com/cmacmackin/ford">FORD</a>.</span></div>
+      <div class="row">
+        <div class="col-md-4">&copy; 2016 </div>
+        <div class="col-md-4"><span class="text-center"> FiNeR was developed by Stefano Zaghi</span></div>
+        <div class="col-md-4">
+          <span class="pull-right">
+            Documentation generated by 
+            <a href="https://github.com/cmacmackin/ford">FORD</a>
+            
+          </span>
         </div>
-        <br>
+      </div>
+      <br>
     </footer>
     </div> <!-- /container -->
 
@@ -218,6 +268,6 @@
         }
       });
     </script>
-    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   </body>
 </html>
