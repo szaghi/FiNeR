@@ -40,7 +40,8 @@ type :: file_ini
                                              free_option_of_section     !< Free an option of a section.
     generic               :: get          => get_option, &              !< Get option value (scalar).
                                              get_a_option               !< Get option value (array).
-    procedure, pass(self) :: get_items                                  !< Get list of couples option name/value.
+    procedure, pass(self) :: get_items                                  !< Get list of pairs option name/value.
+    procedure, pass(self) :: get_sections_list                          !< Get sections names list.
     procedure, pass(self) :: has_option                                 !< Inquire the presence of an option.
     procedure, pass(self) :: has_section                                !< Inquire the presence of a section.
     generic               :: index        => index_section, &           !< Return the index of a section.
@@ -121,10 +122,10 @@ contains
 
   pure subroutine get_items(self, items)
   !---------------------------------------------------------------------------------------------------------------------------------
-  !< Get list of couples option name/value.
+  !< Get list of pairs option name/value.
   !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),               intent(in)  :: self       !< File data.
-  character(len=:), allocatable, intent(out) :: items(:,:) !< Items, list of couples option name/value for all options [1:No,1:2].
+  character(len=:), allocatable, intent(out) :: items(:,:) !< Items, list of pairs option name/value for all options [1:No,1:2].
   character(len=:), allocatable              :: pairs(:)   !< Option name/values pairs.
   integer(I4P)                               :: mx_chars   !< Maximum number of chars into name/value within all options.
   integer(I4P)                               :: o          !< Counter.
@@ -160,6 +161,33 @@ contains
   return
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine get_items
+
+  pure subroutine get_sections_list(self, list)
+  !---------------------------------------------------------------------------------------------------------------------------------
+  !< Get sections names list.
+  !---------------------------------------------------------------------------------------------------------------------------------
+  class(file_ini),               intent(in)  :: self    !< File data.
+  character(len=:), allocatable, intent(out) :: list(:) !< Sections names list.
+  integer                                    :: max_len !< Max length of section name.
+  integer                                    :: s       !< Counter.
+  !---------------------------------------------------------------------------------------------------------------------------------
+
+  !---------------------------------------------------------------------------------------------------------------------------------
+  if (allocated(self%sections)) then
+    max_len = MinI_P
+    do s=1, self%Ns
+      max_len = max(max_len, len(self%sections(s)%name()))
+    enddo
+    if (max_len>0) then
+      allocate(character(len=max_len) :: list(1:self%Ns))
+      do s=1, self%Ns
+        list(s) = self%sections(s)%name()
+      enddo
+    endif
+  endif
+  return
+  !---------------------------------------------------------------------------------------------------------------------------------
+  endsubroutine get_sections_list
 
   function has_option(self, option_name, section_name) result(pres)
   !---------------------------------------------------------------------------------------------------------------------------------
@@ -651,7 +679,7 @@ contains
   !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),               intent(in)  :: self            !< File data.
   character(*),                  intent(in)  :: section_name    !< Section name.
-  character(len=:), allocatable, intent(out) :: option_pairs(:) !< Couples option name/value [1:2].
+  character(len=:), allocatable, intent(out) :: option_pairs(:) !< Pairs option name/value [1:2].
   logical                                    :: again           !< Flag continuing the loop.
   integer(I4P)                               :: s               !< Counter.
   !---------------------------------------------------------------------------------------------------------------------------------
@@ -671,7 +699,7 @@ contains
   !< Loop returning option name/value defined into all sections.
   !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),               intent(IN)  :: self            !< File data.
-  character(len=:), allocatable, intent(OUT) :: option_pairs(:) !< Couples option name/value [1:2].
+  character(len=:), allocatable, intent(OUT) :: option_pairs(:) !< Pairs option name/value [1:2].
   logical                                    :: again           !< Flag continuing the loop.
   logical,      save                         :: againO=.false.  !< Flag continuing the loop.
   integer(I4P), save                         :: s=0             !< Counter.
@@ -802,8 +830,9 @@ contains
   character(len=:), allocatable :: string     !< String option.
   real(R4P), allocatable        :: array(:)   !< Array option.
   integer(I4P)                  :: error      !< Error code.
-  character(len=:), allocatable :: items(:,:) !< List of all options name/value couples.
+  character(len=:), allocatable :: items(:,:) !< List of all options name/value pairs.
   character(len=:), allocatable :: item(:)    !< Option name/value couple.
+  character(len=:), allocatable :: list(:)    !< Sections names list.
   integer(I4P)                  :: i          !< Counter.
   integer(I4P)                  :: s          !< Counter.
   !---------------------------------------------------------------------------------------------------------------------------------
@@ -866,7 +895,7 @@ contains
   print "(A,L1)", "Is there section sec-bar? ", fini%has_section(section_name='sec-bar')
   print "(A,L1)", "Is there section sec-foo? ", fini%has_section(section_name='sec-foo')
   print "(A)", ''
-  print "(A)", "What are all options name/values couples? Can I have a list? Yes, you can:"
+  print "(A)", "What are all options name/values pairs? Can I have a list? Yes, you can:"
   call fini%get_items(items=items)
   do i=1, size(items, dim=1)
     print "(A)", trim(items(i, 1))//' = '//trim(items(i, 2))
@@ -878,6 +907,11 @@ contains
     do while(fini%loop(section_name=fini%section(s), option_pairs=item))
       print "(A)", '  '//trim(item(1))//' = '//trim(item(2))
     enddo
+  enddo
+  print "(A)", "Testing sections names list inquire:"
+  call fini%get_sections_list(list)
+  do s=1, fini%Ns
+    print "(A)", 'Sec. '//trim(str(s, .true.))//': '//trim(list(s))
   enddo
   print "(A)", ''
   print "(A)", "Testing loop method over all options:"
@@ -901,6 +935,8 @@ contains
   print "(A)", ''
   print "(A)", "Result of parsing:"
   call fini%print(pref='  ', unit=stdout)
+  ! remove "foo.ini"
+  open(newunit=i, file='foo.ini') ; close(unit=i, status='DELETE')
   return
   !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine file_ini_autotest
