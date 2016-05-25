@@ -1,7 +1,6 @@
 [submodule "src/third_party/PENF"]
 	path = src/third_party/PENF
-	; url = git@github.com:szaghi/PENF.git
 	url = https://github.com/szaghi/PENF
 [submodule "src/third_party/StringiFor"]
 	path = src/third_party/StringiFor
-	url = git@github.com:szaghi/StringiFor.git
+	url = https://github.com/szaghi/StringiFor
