@@ -6,10 +6,12 @@
 
 [![Status](https://img.shields.io/badge/status-stable-brightgreen.svg)]()
 
-### FiNeR, Fortran INI ParseR and generator for FoRtran poor men
+### FiNeR, Fortran INI ParseR and generator for FoRtraners
 
 + FiNeR is a pure Fortran (KISS) library for IO of INI (config) files for modern (2003+) Fortran projects;
 + FiNeR is Fortran 2003+ standard compliant;
+- FiNeR is OOP designed;
+- FiNeR is TDD designed;
 + FiNeR is a Free, Open Source Project.
 
 #### Issues
@@ -19,17 +21,19 @@
 [![Open bugs](https://badge.waffle.io/szaghi/FiNeR.png?label=bug&title=Open%20Bugs)](https://waffle.io/szaghi/FiNeR)
 
 #### Compiler Support
-[![Compiler](https://img.shields.io/badge/GNU%20Gfortran%20Compiler-build%20fail%20with%20v4.9.x-orange.svg)]()
 
-[![Compiler](https://img.shields.io/badge/Intel%20Fortran%20Compiler-build%20pass%20with%20v12.x+-brightgreen.svg)]()
+[![Compiler](https://img.shields.io/badge/GNU-v5.3.0+-orange.svg)]()
+[![Compiler](https://img.shields.io/badge/Intel-v16.x+-brightgreen.svg)]()
+[![Compiler](https://img.shields.io/badge/IBM%20XL-not%20tested-yellow.svg)]()
+[![Compiler](https://img.shields.io/badge/g95-not%20tested-yellow.svg)]()
+[![Compiler](https://img.shields.io/badge/NAG-not%20tested-yellow.svg)]()
+[![Compiler](https://img.shields.io/badge/PGI-not%20tested-yellow.svg)]()
 
-[![Compiler](https://img.shields.io/badge/IBM%20XL%20Fortran%20Compiler-not%20tested-yellow.svg)]()
+---
 
-[![Compiler](https://img.shields.io/badge/g95%20Fortran%20Compiler-not%20tested-yellow.svg)]()
+[What is FiNeR?](#what-is-finer?) | [Main features](#main-features) | [Copyrights](#copyrights) | [Documentation](#documentation) | [A Taste of FiNeR](#a-taste-of-finer)
 
-[![Compiler](https://img.shields.io/badge/NAG%20Fortran%20Compiler-not%20tested-yellow.svg)]()
-
-[![Compiler](https://img.shields.io/badge/PGI%20Fortran%20Compiler-not%20tested-yellow.svg)]()
+---
 
 ## What is FiNeR?
 
