@@ -10,3 +10,7 @@
   path = src/third_party/BeFoR64
   url = https://github.com/szaghi/BeFoR64
   branch = master
+[submodule "src/third_party/FLAP"]
+  path = src/third_party/FLAP
+  url = https://github.com/szaghi/FLAP
+  branch = master
