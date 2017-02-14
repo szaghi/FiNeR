@@ -128,15 +128,14 @@ contains
   ! private methods
   subroutine get_option(self, val, error)
   !< for getting option data value (scalar).
-  class(option),          intent(in)    :: self   !< Option data.
-  class(*),               intent(inout) :: val    !< Value.
-  integer(I4P), optional, intent(out)   :: error  !< Error code.
-  integer(I4P)                          :: errd   !< Error code.
-  character(len=:), allocatable         :: buffer !< Dummy buffer.
+  class(option), intent(in)            :: self   !< Option data.
+  class(*),      intent(inout)         :: val    !< Value.
+  integer(I4P),  intent(out), optional :: error  !< Error code.
+  integer(I4P)                         :: errd   !< Error code.
+  character(len=:), allocatable        :: buffer !< Dummy buffer.
 
-  errd = err_option_vals
+  errd = ERR_OPTION_VALS
   if (self%ovals%is_allocated()) then
-    errd = 0
     select type(val)
 #ifdef r16p
     type is(real(R16P))
@@ -160,27 +159,27 @@ contains
     type is(character(*))
       val = self%ovals%chars()
     endselect
+    errd = 0
   endif
   if (present(error)) error = errd
   endsubroutine get_option
 
   subroutine get_a_option(self, val, delimiter, error)
   !< Get option data values (array).
-  class(option),          intent(in)    :: self      !< Option data.
-  class(*),               intent(inout) :: val(1:)   !< Value.
-  character(*), optional, intent(in)    :: delimiter !< Delimiter used for separating values.
-  integer(I4P), optional, intent(out)   :: error     !< Error code.
-  character(len=:), allocatable         :: dlm       !< Dummy string for delimiter handling.
-  integer(I4P)                          :: Nv        !< Number of values.
-  type(string), allocatable             :: valsV(:)  !< String array of values.
-  integer(I4P)                          :: errd      !< Error code.
-  character(len=:), allocatable         :: buffer    !< Dummy buffer.
-  integer(I4P)                          :: v         !< Counter.
+  class(option), intent(in)            :: self      !< Option data.
+  class(*),      intent(inout)         :: val(1:)   !< Value.
+  character(*),  intent(in),  optional :: delimiter !< Delimiter used for separating values.
+  integer(I4P),  intent(out), optional :: error     !< Error code.
+  character(len=:), allocatable        :: dlm       !< Dummy string for delimiter handling.
+  integer(I4P)                         :: Nv        !< Number of values.
+  type(string), allocatable            :: valsV(:)  !< String array of values.
+  integer(I4P)                         :: errd      !< Error code.
+  character(len=:), allocatable        :: buffer    !< Dummy buffer.
+  integer(I4P)                         :: v         !< Counter.
 
-  errd = err_option_vals
+  errd = ERR_OPTION_VALS
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
   if (self%ovals%is_allocated()) then
-    errd = 0
     call self%ovals%split(tokens=valsV, sep=dlm)
     Nv = size(valsV, dim=1)
     select type(val)
@@ -224,6 +223,7 @@ contains
         val(v) = valsV(v)%chars()
       enddo
     endselect
+    errd = 0
   endif
   if (present(error)) error = errd
   endsubroutine get_a_option
