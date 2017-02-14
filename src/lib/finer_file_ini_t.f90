@@ -432,49 +432,51 @@ contains
   endif
   endsubroutine free_section
 
-  subroutine get_a_option(self, delimiter, error, section_name, option_name, val)
+  subroutine get_a_option(self, section_name, option_name, val, delimiter, error)
   !< Get option value (array)
-  class(file_ini),        intent(in)    :: self         !< File data.
-  character(*), optional, intent(in)    :: delimiter    !< Delimiter used for separating values.
-  integer(I4P), optional, intent(out)   :: error        !< Error code.
-  character(*),           intent(in)    :: section_name !< Section name.
-  character(*),           intent(in)    :: option_name  !< Option name.
-  class(*),               intent(inout) :: val(1:)      !< Value.
-  character(len=:), allocatable         :: dlm          !< Dummy string for delimiter handling.
-  integer(I4P)                          :: errd         !< Error code.
-  integer(I4P)                          :: s            !< Counter.
+  class(file_ini), intent(in)            :: self         !< File data.
+  character(*),    intent(in)            :: section_name !< Section name.
+  character(*),    intent(in)            :: option_name  !< Option name.
+  class(*),        intent(inout)         :: val(1:)      !< Value.
+  character(*),    intent(in),  optional :: delimiter    !< Delimiter used for separating values.
+  integer(I4P),    intent(out), optional :: error        !< Error code.
+  character(len=:), allocatable          :: dlm          !< Dummy string for delimiter handling.
+  integer(I4P)                           :: errd         !< Error code.
+  integer(I4P)                           :: s            !< Counter.
 
+  errd = ERR_OPTION
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
   if (allocated(self%sections)) then
     do s=1, size(self%sections, dim=1)
       if (self%sections(s) == trim(adjustl(section_name))) then
         call self%sections(s)%get(delimiter=dlm, error=errd, option_name=option_name, val=val)
-        if (present(error)) error = errd
         exit
       endif
     enddo
   endif
+  if (present(error)) error = errd
   endsubroutine get_a_option
 
-  subroutine get_option(self, error, section_name, option_name, val)
+  subroutine get_option(self, section_name, option_name, val, error)
   !< Get option value (scalar).
-  class(file_ini),        intent(in)    :: self         !< File data.
-  integer(I4P), optional, intent(out)   :: error        !< Error code.
-  character(*),           intent(in)    :: section_name !< Section name.
-  character(*),           intent(in)    :: option_name  !< Option name.
-  class(*),               intent(inout) :: val          !< Value.
-  integer(I4P)                          :: errd         !< Error code.
-  integer(I4P)                          :: s            !< Counter.
+  class(file_ini), intent(in)            :: self         !< File data.
+  character(*),    intent(in)            :: section_name !< Section name.
+  character(*),    intent(in)            :: option_name  !< Option name.
+  class(*),        intent(inout)         :: val          !< Value.
+  integer(I4P),    intent(out), optional :: error        !< Error code.
+  integer(I4P)                           :: errd         !< Error code.
+  integer(I4P)                           :: s            !< Counter.
 
+  errd = ERR_OPTION
   if (allocated(self%sections)) then
     do s=1, size(self%sections, dim=1)
       if (self%sections(s) == trim(adjustl(section_name))) then
         call self%sections(s)%get(error=errd, option_name=option_name, val=val)
-        if (present(error)) error = errd
         exit
       endif
     enddo
   endif
+  if (present(error)) error = errd
   endsubroutine get_option
 
   elemental function index_option(self, back, section_name, option_name) result(ind)

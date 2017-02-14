@@ -355,45 +355,47 @@ contains
 
   subroutine get_option(self, option_name, val, error)
   !< Get option value (scalar).
-  class(section),         intent(in)    :: self        !< Section data.
-  character(*),           intent(in)    :: option_name !< Option name.
-  class(*),               intent(inout) :: val         !< Value.
-  integer(I4P), optional, intent(out)   :: error       !< Error code.
+  class(section), intent(in)            :: self        !< Section data.
+  character(*),   intent(in)            :: option_name !< Option name.
+  class(*),       intent(inout)         :: val         !< Value.
+  integer(I4P),   intent(out), optional :: error       !< Error code.
   integer(I4P)                          :: errd        !< Error code.
   integer(I4P)                          :: o           !< Counter.
 
+  errd = ERR_OPTION
   if (allocated(self%options)) then
     do o=1, size(self%options, dim=1)
       if (self%options(o) == trim(adjustl(option_name))) then
         call self%options(o)%get(error=errd, val=val)
-        if (present(error)) error = errd
         exit
       endif
     enddo
   endif
+  if (present(error)) error = errd
   endsubroutine get_option
 
   subroutine get_a_option(self, option_name, val, delimiter, error)
   !< Procedure for getting option value (array).
-  class(section),         intent(in)    :: self        !< Section data.
-  character(*),           intent(in)    :: option_name !< Option name.
-  class(*),               intent(inout) :: val(1:)     !< Value.
-  character(*), optional, intent(in)    :: delimiter   !< Delimiter used for separating values.
-  integer(I4P), optional, intent(out)   :: error       !< Error code.
+  class(section), intent(in)            :: self        !< Section data.
+  character(*),   intent(in)            :: option_name !< Option name.
+  class(*),       intent(inout)         :: val(1:)     !< Value.
+  character(*),   intent(in),  optional :: delimiter   !< Delimiter used for separating values.
+  integer(I4P),   intent(out), optional :: error       !< Error code.
   character(len=:), allocatable         :: dlm         !< Dummy string for delimiter handling.
   integer(I4P)                          :: errd        !< Error code.
   integer(I4P)                          :: o           !< Counter.
 
+  errd = ERR_OPTION
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
   if (allocated(self%options)) then
     do o=1, size(self%options, dim=1)
       if (self%options(o) == trim(adjustl(option_name))) then
         call self%options(o)%get(delimiter=dlm, error=errd, val=val)
-        if (present(error)) error = errd
         exit
       endif
     enddo
   endif
+  if (present(error)) error = errd
   endsubroutine get_a_option
 
   elemental subroutine parse_name(self, source, error)
