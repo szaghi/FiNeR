@@ -221,13 +221,13 @@ contains
   if (present(separator)) self%opt_sep = separator
   if (present(filename)) then
     self%filename = trim(adjustl(filename))
-    call source_%read_file(file=self%filename)
+    call source_%read_file(file=self%filename, iostat=errd)
   elseif (present(source)) then
     source_ = source
   elseif (allocated(self%filename)) then
-    call source_%read_file(file=self%filename)
+    call source_%read_file(file=self%filename, iostat=errd)
   endif
-  call self%parse(source=source_, error=errd)
+  if (errd == 0) call self%parse(source=source_, error=errd)
   if (present(error)) error = errd
   endsubroutine load
 
