@@ -227,7 +227,7 @@ contains
   elseif (allocated(self%filename)) then
     call source_%read_file(file=self%filename, iostat=errd)
   endif
-  if (errd == 0) call self%parse(source=source_, error=errd)
+  if (errd <= 0) call self%parse(source=source_, error=errd)
   if (present(error)) error = errd
   endsubroutine load
 
