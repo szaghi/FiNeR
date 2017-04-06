@@ -7,7 +7,7 @@
 	 
 	 <meta name="description" content="Fortran INI ParseR and generator">
     
-    <meta name="author" content="Chris MacMackin" >
+    <meta name="author" content="Stefano Zaghi" >
     <link rel="icon" href="./favicon.png">
 
     <title> FiNeR </title>
@@ -53,21 +53,46 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
 				
-                
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
             <li><a href="./lists/files.html">Source Files</a></li>
 				
 				
             <li><a href="./lists/modules.html">Modules</a></li>
 				
-				
+            
+                                
             <li><a href="./lists/procedures.html">Procedures</a></li>
 				
 								
             <li><a href="./lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="./program/autotest.html">Program</a></li>
+            <li><a href="./lists/programs.html">Programs</a></li>
 				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/programs.html">Programs</a></li>
+
           </ul>
         
         <form action="./search.html" class="navbar-form navbar-right" role="search">
@@ -104,7 +129,7 @@
 
       <div class="row" id='text'>
 		  
-        <div class="col-lg-8">
+        <div class="col-md-8">
 		  
           <h1>FiNeR</h1>
           <p><a name="top"></a></p>
@@ -236,10 +261,10 @@
 </pre></div>
 
 
-<p>Go to <a href="#top">Top</a></p>
+<h2 id="go-to-top"><a class="toclink" href="#go-to-top">Go to <a href="#top">Top</a></a></h2>
         </div>
 		  
-        <div class="col-lg-4">
+        <div class="col-md-4">
 	  <div class="well">
           <h2>Developer Info</h2>
           <h4>Stefano Zaghi</h4>
@@ -271,20 +296,12 @@
       
 		
       <div class="row">
-          <div class="col-lg-3">
+        <div class="col-xs-6 col-sm-3">
               <h3>Source Files</h3>
               <ul>
                 
                   
                     <li><a href='./sourcefile/autotest.f90.html'>autotest.f90</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/befor64.f90.html'>befor64.F90</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/befor64_pack_data_m.f90.html'>befor64_pack_data_m.F90</a></li>
                   
                 
                   
@@ -308,31 +325,23 @@
                   
                 
                   
-                    <li><a href='./sourcefile/penf.f90.html'>penf.F90</a></li>
+                    <li><a href='./sourcefile/finer_test_get.f90.html'>finer_test_get.f90</a></li>
                   
                 
                   
-                    <li><a href='./sourcefile/stringifor.f90.html'>stringifor.F90</a></li>
+                    <li><a href='./sourcefile/finer_test_load.f90.html'>finer_test_load.f90</a></li>
                   
                 
                   
-                    <li><a href="./lists/files.html"><em>All source files&hellip;</em></a></li>
+                    <li><a href='./sourcefile/finer_test_parse.f90.html'>finer_test_parse.f90</a></li>
                   
                 
               </ul>
           </div>
           
-          <div class="col-lg-3">
+		  <div class="col-xs-6 col-sm-3">
               <h3>Modules</h3>
               <ul>
-                
-                  
-                    <li><a href='./module/befor64.html'>befor64</a></li>
-                  
-                
-                  
-                    <li><a href='./module/befor64_pack_data_m.html'>befor64_pack_data_m</a></li>
-                  
                 
                   
                     <li><a href='./module/finer.html'>finer</a></li>
@@ -354,31 +363,11 @@
                     <li><a href='./module/finer_section_t.html'>finer_section_t</a></li>
                   
                 
-                  
-                    <li><a href='./module/penf.html'>penf</a></li>
-                  
-                
-                  
-                    <li><a href='./module/penf_b_size.html'>penf_b_size</a></li>
-                  
-                
-                  
-                    <li><a href='./module/penf_global_parameters_variables.html'>penf_global_parameters_variables</a></li>
-                  
-                
-                  
-                    <li><a href="./lists/modules.html"><em>All modules&hellip;</em></a></li>
-                  
-                
-                  
-                
-                  
-                
               </ul>
           </div>
           
           
-          <div class="col-lg-3">
+		  <div class="col-xs-6 col-sm-3">
               <h3>Procedures</h3>
               <ul>
                 
@@ -403,14 +392,6 @@
                   
                 
                   
-                    <li><a href='./interface/adjustl.html'>adjustl</a></li>
-                  
-                
-                  
-                    <li><a href='./interface/adjustr.html'>adjustr</a></li>
-                  
-                
-                  
                     <li><a href='./proc/assign_file_ini.html'>assign_file_ini</a></li>
                   
                 
@@ -420,6 +401,14 @@
                 
                   
                     <li><a href='./proc/assign_section.html'>assign_section</a></li>
+                  
+                
+                  
+                    <li><a href='./proc/cli_parse.html'>cli_parse</a></li>
+                  
+                
+                  
+                    <li><a href='./proc/count_values.html'>count_values</a></li>
                   
                 
                   
@@ -554,559 +543,11 @@
                 
                   
                 
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
               </ul>
           </div>
           
           
-          <div class="col-lg-3">
+		  <div class="col-xs-6 col-sm-3">
               <h3>Derived Types</h3>
               <ul>
                 
@@ -1122,32 +563,29 @@
                     <li><a href='./type/section.html'>section</a></li>
                   
                 
-                  
-                    <li><a href='./type/string.html'>string</a></li>
-                  
-                
               </ul>
           </div>
           
       </div>
 
-    <hr>
+    <hr>    
+    </div> <!-- /container -->
     <footer>
+      <div class="container">
       <div class="row">
-        <div class="col-md-4">&copy; 2016 </div>
-        <div class="col-md-4"><span class="text-center"> FiNeR was developed by Stefano Zaghi</span></div>
-        <div class="col-md-4">
-          <span class="pull-right">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-            
-          </span>
+             on 2017-04-06 14:12  
+          </p>
         </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FiNeR was developed by Stefano Zaghi</p></div>
       </div>
       <br>
+      </div> <!-- /container -->    
     </footer>
-    </div> <!-- /container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

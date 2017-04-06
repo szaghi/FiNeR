@@ -7,7 +7,7 @@
 	 
 	 <meta name="description" content="Fortran INI ParseR and generator">
     
-    <meta name="author" content="Chris MacMackin" >
+    <meta name="author" content="Stefano Zaghi" >
     <link rel="icon" href="../favicon.png">
 
     <title>finer_backend &ndash; FiNeR</title>
@@ -53,21 +53,46 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
 				
-                
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
             <li><a href="../lists/files.html">Source Files</a></li>
 				
 				
             <li><a href="../lists/modules.html">Modules</a></li>
 				
-				
+            
+                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../program/autotest.html">Program</a></li>
+            <li><a href="../lists/programs.html">Programs</a></li>
 				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
           </ul>
         
         <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -91,9 +116,9 @@
     <small>Module</small>
     
     </h1>
-	 
+    
 <div class="row">
-<div class="col-lg-12">
+  <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
      
@@ -102,6 +127,13 @@
      
     
     
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title=" 1.1% of total for modules and submodules.">16 statements</a>
+     </li> 
+     
+     
     <li><i class="fa fa-code"></i><a href="../src/finer_backend.f90"> Source File</a></li>
      
   </ul>
@@ -114,115 +146,106 @@
 </div>
 </div>
 </div>
-    
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
   </div>
   
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
     
 <div id="sidebar">
   
-  
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars">Variables</a></h3></div>
-    <div id="vars" class="panel-collapse collapse">
-      <div class="list-group">
-        
-        <a class="list-group-item" href="../module/finer_backend.html#variable-err_option_name">err_option_name</a>
-        
-        <a class="list-group-item" href="../module/finer_backend.html#variable-err_option_vals">err_option_vals</a>
-        
-        <a class="list-group-item" href="../module/finer_backend.html#variable-err_option">err_option</a>
-        
-        <a class="list-group-item" href="../module/finer_backend.html#variable-err_section_name">err_section_name</a>
-        
-        <a class="list-group-item" href="../module/finer_backend.html#variable-err_section_options">err_section_options</a>
-        
-        <a class="list-group-item" href="../module/finer_backend.html#variable-err_section">err_section</a>
-        
-        <a class="list-group-item" href="../module/finer_backend.html#variable-err_source_missing">err_source_missing</a>
-        
-        <a class="list-group-item" href="../module/finer_backend.html#variable-def_opt_sep">def_opt_sep</a>
-        
-        <a class="list-group-item" href="../module/finer_backend.html#variable-comments">comments</a>
-        
-        <a class="list-group-item" href="../module/finer_backend.html#variable-inline_comment">inline_comment</a>
-        
-      </div>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-comments">COMMENTS</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-def_opt_sep">DEF_OPT_SEP</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_option">ERR_OPTION</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_option_name">ERR_OPTION_NAME</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_option_vals">ERR_OPTION_VALS</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_section">ERR_SECTION</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_section_name">ERR_SECTION_NAME</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_section_options">ERR_SECTION_OPTIONS</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_source_missing">ERR_SOURCE_MISSING</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-inline_comment">INLINE_COMMENT</a>
+      
     </div>
   </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <hr>
   
-  <div class="panel panel-default">
-    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods">All Modules</a></h3></div>
-    <div id="allmods" class="panel-collapse collapse">
-        <div class="list-group">
-          
-          <a class="list-group-item" href="../module/befor64.html">befor64</a>
-          
-          <a class="list-group-item" href="../module/befor64_pack_data_m.html">befor64_pack_data_m</a>
-          
-          <a class="list-group-item" href="../module/finer.html">finer</a>
-          
-          <a class="list-group-item" href="../module/finer_backend.html">finer_backend</a>
-          
-          <a class="list-group-item" href="../module/finer_file_ini_t.html">finer_file_ini_t</a>
-          
-          <a class="list-group-item" href="../module/finer_option_t.html">finer_option_t</a>
-          
-          <a class="list-group-item" href="../module/finer_section_t.html">finer_section_t</a>
-          
-          <a class="list-group-item" href="../module/penf.html">penf</a>
-          
-          <a class="list-group-item" href="../module/penf_b_size.html">penf_b_size</a>
-          
-          <a class="list-group-item" href="../module/penf_global_parameters_variables.html">penf_global_parameters_variables</a>
-          
-          <a class="list-group-item" href="../module/penf_stringify.html">penf_stringify</a>
-          
-          <a class="list-group-item" href="../module/stringifor.html">stringifor</a>
-          
-          <a class="list-group-item" href="../module/stringifor_string_t.html">stringifor_string_t</a>
-          
-        </div>
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-0">All Modules</a></h3></div>
+  <div id="allmods-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/finer.html">finer</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html">finer_backend</a>
+      
+      <a class="list-group-item" href="../module/finer_file_ini_t.html">finer_file_ini_t</a>
+      
+      <a class="list-group-item" href="../module/finer_option_t.html">finer_option_t</a>
+      
+      <a class="list-group-item" href="../module/finer_section_t.html">finer_section_t</a>
+      
     </div>
   </div>
-  
 </div>
+
+
+</div>  
 
     </div>
     
-    <div class="col-lg-9" id='text'>
-    
+    <div class="col-md-9" id='text'>
+      
     
   
     <ul class="list-inline">
       <li><h4>Uses:</h4></li>
       
-      <li><a href='../module/penf.html'>penf</a></li>
+      <li>penf</li>
       
     </ul>
-  
-
     
                 <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -230,90 +253,25 @@
 <!-- Generated by graphviz version 2.26.3 (20100126.1600)
  -->
 <!-- Title: module~~finer_backend~~UsesGraph Pages: 1 -->
-<svg id="modulefiner_backendUsesGraph" width="628pt" height="144pt"
- viewBox="0.00 0.00 628.00 144.34" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~finer_backend~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 140.337)">
+<svg id="modulefiner_backendUsesGraph" width="178pt" height="34pt"
+ viewBox="0.00 0.00 178.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~finer_backend~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
 <title>module~~finer_backend~~UsesGraph</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-140.337 625,-140.337 625,5 -4,5"/>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 175,-30 175,5 -4,5"/>
 <!-- module~finer_backend -->
 <g id="node1" class="node"><title>module~finer_backend</title>
-<polygon fill="none" stroke="black" points="620,-128 540,-128 540,-102 620,-102 620,-128"/>
-<text text-anchor="middle" x="580" y="-112.55" font-family="Helvetica,sans-Serif" font-size="10.50">finer_backend</text>
+<polygon fill="none" stroke="black" points="170,-26 90,-26 90,-1.24345e-14 170,-3.55271e-15 170,-26"/>
+<text text-anchor="middle" x="130" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">finer_backend</text>
 </g>
-<!-- module~penf -->
-<g id="node2" class="node"><title>module~penf</title>
-<a xlink:href="../module/penf.html" xlink:title="penf">
-<polygon fill="#337ab7" stroke="#337ab7" points="504,-128 450,-128 450,-102 504,-102 504,-128"/>
-<text text-anchor="middle" x="477" y="-112.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">penf</text>
-</a>
+<!-- penf -->
+<g id="node2" class="node"><title>penf</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
+<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">penf</text>
 </g>
-<!-- module~penf&#45;&gt;module~finer_backend -->
-<g id="edge16" class="edge"><title>module~penf&#45;&gt;module~finer_backend</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M504.062,-115C511.945,-115 520.822,-115 529.653,-115"/>
-<polygon fill="#000000" stroke="#000000" points="529.938,-118.5 539.938,-115 529.938,-111.5 529.938,-118.5"/>
-</g>
-<!-- module~penf_global_parameters_variables -->
-<g id="node3" class="node"><title>module~penf_global_parameters_variables</title>
-<a xlink:href="../module/penf_global_parameters_variables.html" xlink:title="penf_global_parameters_variables">
-<polygon fill="#337ab7" stroke="#337ab7" points="178,-108 8.52651e-14,-108 0,-82 178,-82 178,-108"/>
-<text text-anchor="middle" x="89" y="-92.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">penf_global_parameters_variables</text>
-</a>
-</g>
-<!-- module~penf_global_parameters_variables&#45;&gt;module~penf -->
-<g id="edge10" class="edge"><title>module~penf_global_parameters_variables&#45;&gt;module~penf</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M143.427,-108.01C200.911,-120.517 294.347,-137.347 376,-136"/>
-</g>
-<!-- module~penf_b_size -->
-<g id="node4" class="node"><title>module~penf_b_size</title>
-<a xlink:href="../module/penf_b_size.html" xlink:title="penf_b_size">
-<polygon fill="#337ab7" stroke="#337ab7" points="293,-108 223,-108 223,-82 293,-82 293,-108"/>
-<text text-anchor="middle" x="258" y="-92.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">penf_b_size</text>
-</a>
-</g>
-<!-- module~penf_global_parameters_variables&#45;&gt;module~penf_b_size -->
-<g id="edge2" class="edge"><title>module~penf_global_parameters_variables&#45;&gt;module~penf_b_size</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M178.449,-95C190.206,-95 201.835,-95 212.422,-95"/>
-<polygon fill="#000000" stroke="#000000" points="212.627,-98.5001 222.627,-95 212.627,-91.5001 212.627,-98.5001"/>
-</g>
-<!-- module~penf_stringify -->
-<g id="node5" class="node"><title>module~penf_stringify</title>
-<a xlink:href="../module/penf_stringify.html" xlink:title="penf_stringify">
-<polygon fill="#337ab7" stroke="#337ab7" points="414,-87 338,-87 338,-61 414,-61 414,-87"/>
-<text text-anchor="middle" x="376" y="-71.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">penf_stringify</text>
-</a>
-</g>
-<!-- module~penf_global_parameters_variables&#45;&gt;module~penf_stringify -->
-<g id="edge8" class="edge"><title>module~penf_global_parameters_variables&#45;&gt;module~penf_stringify</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M150.709,-81.9431C170.794,-78.2835 193.256,-74.8116 214,-73 252.963,-69.5974 262.89,-72.7358 302,-73 310.312,-73.0562 319.149,-73.1478 327.715,-73.2534"/>
-<polygon fill="#000000" stroke="#000000" points="327.93,-76.7564 337.975,-73.3877 328.022,-69.757 327.93,-76.7564"/>
-</g>
-<!-- module~penf_b_size&#45;&gt;module~penf -->
-<g id="edge12" class="edge"><title>module~penf_b_size&#45;&gt;module~penf</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M280.699,-108.214C303.885,-120.414 341.305,-136.572 376,-136"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M376,-136C397.555,-135.644 421.168,-130.981 440.14,-126.139"/>
-<polygon fill="#000000" stroke="#000000" points="441.123,-129.499 449.88,-123.535 439.315,-122.736 441.123,-129.499"/>
-</g>
-<!-- module~penf_b_size&#45;&gt;module~penf_stringify -->
-<g id="edge6" class="edge"><title>module~penf_b_size&#45;&gt;module~penf_stringify</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M293.084,-88.7562C304.014,-86.8111 316.261,-84.6316 327.919,-82.5569"/>
-<polygon fill="#000000" stroke="#000000" points="328.732,-85.9672 337.964,-80.7692 327.505,-79.0755 328.732,-85.9672"/>
-</g>
-<!-- module~penf_stringify&#45;&gt;module~penf -->
-<g id="edge14" class="edge"><title>module~penf_stringify&#45;&gt;module~penf</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M408.235,-87.0854C418.489,-91.2481 429.905,-95.8822 440.442,-100.16"/>
-<polygon fill="#000000" stroke="#000000" points="439.231,-103.445 449.813,-103.964 441.864,-96.9595 439.231,-103.445"/>
-</g>
-<!-- iso_fortran_env -->
-<g id="node7" class="node"><title>iso_fortran_env</title>
-<a xlink:href="https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html" xlink:title="iso_fortran_env">
-<polygon fill="#337ab7" stroke="#337ab7" points="301,-26 215,-26 215,-1.24345e-14 301,-3.55271e-15 301,-26"/>
-<text text-anchor="middle" x="258" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
-</a>
-</g>
-<!-- iso_fortran_env&#45;&gt;module~penf_stringify -->
-<g id="edge4" class="edge"><title>iso_fortran_env&#45;&gt;module~penf_stringify</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M283.314,-26.086C300.346,-34.8907 323.01,-46.607 341.663,-56.2498"/>
-<polygon fill="#000000" stroke="#000000" points="340.237,-59.4525 350.728,-60.9356 343.452,-53.2342 340.237,-59.4525"/>
+<!-- penf&#45;&gt;module~finer_backend -->
+<g id="edge2" class="edge"><title>penf&#45;&gt;module~finer_backend</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M54.062,-13C61.9446,-13 70.8216,-13 79.6533,-13"/>
+<polygon fill="#000000" stroke="#000000" points="79.9379,-16.5001 89.9379,-13 79.9379,-9.5001 79.9379,-16.5001"/>
 </g>
 </g>
 </svg>
@@ -328,18 +286,18 @@
                       </div>
                       <div class="modal-body">
                         
-Nodes of different colours represent the following:
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.26.3 (20100126.1600)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="641pt" height="28pt"
- viewBox="0.00 0.00 641.00 27.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph1" class="graph" transform="scale(0.817602 0.817602) rotate(0) translate(4 30)">
+<svg width="486pt" height="34pt"
+ viewBox="0.00 0.00 486.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-30 781,-30 781,5 -4,5"/>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 483,-30 483,5 -4,5"/>
 <!-- Module -->
 <g id="node1" class="node"><title>Module</title>
 <polygon fill="#337ab7" stroke="#337ab7" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
@@ -350,66 +308,42 @@ Nodes of different colours represent the following:
 <polygon fill="#5bc0de" stroke="#5bc0de" points="138,-26 72,-26 72,-1.24345e-14 138,-3.55271e-15 138,-26"/>
 <text text-anchor="middle" x="105" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
 </g>
-<!-- Type -->
-<g id="node3" class="node"><title>Type</title>
-<polygon fill="#5cb85c" stroke="#5cb85c" points="210,-26 156,-26 156,-1.24345e-14 210,-3.55271e-15 210,-26"/>
-<text text-anchor="middle" x="183" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
-</g>
 <!-- Subroutine -->
-<g id="node4" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="292,-26 228,-26 228,-1.24345e-14 292,-3.55271e-15 292,-26"/>
-<text text-anchor="middle" x="260" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+<g id="node3" class="node"><title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="220,-26 156,-26 156,-1.24345e-14 220,-3.55271e-15 220,-26"/>
+<text text-anchor="middle" x="188" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
 </g>
 <!-- Function -->
-<g id="node5" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
-<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
-</g>
-<!-- Interface -->
-<g id="node6" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="436,-26 382,-26 382,-1.24345e-14 436,-3.55271e-15 436,-26"/>
-<text text-anchor="middle" x="409" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
-</g>
-<!-- Unknown Procedure Type -->
-<g id="node7" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="590,-26 454,-26 454,-1.24345e-14 590,-3.55271e-15 590,-26"/>
-<text text-anchor="middle" x="522" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+<g id="node4" class="node"><title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="292,-26 238,-26 238,-1.24345e-14 292,-3.55271e-15 292,-26"/>
+<text text-anchor="middle" x="265" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
 </g>
 <!-- Program -->
-<g id="node8" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="662,-26 608,-26 608,-1.24345e-14 662,-3.55271e-15 662,-26"/>
-<text text-anchor="middle" x="635" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<g id="node5" class="node"><title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
+<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
 </g>
 <!-- This Page&#39;s Entity -->
-<g id="node9" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="776,-26 680,-26 680,-1.24345e-14 776,-3.55271e-15 776,-26"/>
-<text text-anchor="middle" x="728" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<g id="node6" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="478,-26 382,-26 382,-1.24345e-14 478,-3.55271e-15 478,-26"/>
+<text text-anchor="middle" x="430" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
 
-Where possible, edges connecting nodes are given different colours to make them
-easier to distinguish in large graphs.
-<h5>Module Graph</h5>
-<p>Solid arrows point from a parent (sub)module to the submodule which is
-descended from it. Dashed arrows point from a module being used to the
-module using it.</p>
-<h5>Type Graph</h5>
-<p>Solid arrows point from one derived type to another which extends
-(inherits from) it. Dashed arrows point from a derived type to another
-type containing it as a components, with a label listing the name(s) of
-said component(s).</p>
-<h5>Call Graph</h5>
-<p>Solid arrows point from a procedure to one which it calls. Dashed 
-arrows point from an interface to procedures which implement that interface.
-This could include the module procedures in a generic interface or the
-implementation in a submodule of an interface in a parent module.</p>
-
+    
+    <p>Solid arrows point from a parent (sub)module to the submodule which is
+    descended from it. Dashed arrows point from a module being used to the
+    module or program unit using it.
+    </p>
+    
                       </div>
                     </div>
                   </div>
                 </div>
                 
+    
+
     
     <p>FiNeR backends: globals definition.</p>
     
@@ -422,100 +356,142 @@ implementation in a submodule of an interface in a parent module.</p>
 <!-- Generated by graphviz version 2.26.3 (20100126.1600)
  -->
 <!-- Title: module~~finer_backend~~UsedByGraph Pages: 1 -->
-<svg id="modulefiner_backendUsedByGraph" width="616pt" height="104pt"
- viewBox="0.00 0.00 616.00 104.49" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~finer_backend~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 100.491)">
+<svg id="modulefiner_backendUsedByGraph" width="641pt" height="163pt"
+ viewBox="0.00 0.00 641.00 163.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~finer_backend~~UsedByGraph" class="graph" transform="scale(0.983129 0.983129) rotate(0) translate(4 162)">
 <title>module~~finer_backend~~UsedByGraph</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-100.491 613,-100.491 613,5 -4,5"/>
+<polygon fill="white" stroke="white" points="-4,5 -4,-162 649,-162 649,5 -4,5"/>
 <!-- module~finer_backend -->
 <g id="node1" class="node"><title>module~finer_backend</title>
-<polygon fill="none" stroke="black" points="80,-67 3.55271e-14,-67 0,-41 80,-41 80,-67"/>
-<text text-anchor="middle" x="40" y="-51.55" font-family="Helvetica,sans-Serif" font-size="10.50">finer_backend</text>
-</g>
-<!-- module~finer_file_ini_t -->
-<g id="node2" class="node"><title>module~finer_file_ini_t</title>
-<a xlink:href="../module/finer_file_ini_t.html" xlink:title="finer_file_ini_t">
-<polygon fill="#337ab7" stroke="#337ab7" points="427,-67 349,-67 349,-41 427,-41 427,-67"/>
-<text text-anchor="middle" x="388" y="-51.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">finer_file_ini_t</text>
-</a>
-</g>
-<!-- module~finer_backend&#45;&gt;module~finer_file_ini_t -->
-<g id="edge12" class="edge"><title>module~finer_backend&#45;&gt;module~finer_file_ini_t</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M78.1432,-67.0531C123.718,-81.1845 202.423,-100.962 271,-95"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M271,-95C300.545,-93.8337 332.073,-82.1127 354.947,-71.5006"/>
-<polygon fill="#000000" stroke="#000000" points="356.696,-74.5435 364.19,-67.0544 353.661,-68.2354 356.696,-74.5435"/>
-</g>
-<!-- module~finer -->
-<g id="node3" class="node"><title>module~finer</title>
-<a xlink:href="../module/finer.html" xlink:title="finer">
-<polygon fill="#337ab7" stroke="#337ab7" points="518,-87 464,-87 464,-61 518,-61 518,-87"/>
-<text text-anchor="middle" x="491" y="-71.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">finer</text>
-</a>
-</g>
-<!-- module~finer_backend&#45;&gt;module~finer -->
-<g id="edge14" class="edge"><title>module~finer_backend&#45;&gt;module~finer</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M271,-95C335.461,-92.4554 410.148,-84.1947 453.823,-78.8239"/>
-<polygon fill="#000000" stroke="#000000" points="454.48,-82.2692 463.97,-77.5592 453.614,-75.3229 454.48,-82.2692"/>
+<polygon fill="none" stroke="black" points="80,-113 3.55271e-14,-113 0,-87 80,-87 80,-113"/>
+<text text-anchor="middle" x="40" y="-97.55" font-family="Helvetica,sans-Serif" font-size="10.50">finer_backend</text>
 </g>
 <!-- module~finer_section_t -->
-<g id="node4" class="node"><title>module~finer_section_t</title>
+<g id="node2" class="node"><title>module~finer_section_t</title>
 <a xlink:href="../module/finer_section_t.html" xlink:title="finer_section_t">
-<polygon fill="#337ab7" stroke="#337ab7" points="312,-26 230,-26 230,-1.24345e-14 312,-3.55271e-15 312,-26"/>
-<text text-anchor="middle" x="271" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">finer_section_t</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="312,-113 230,-113 230,-87 312,-87 312,-113"/>
+<text text-anchor="middle" x="271" y="-97.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">finer_section_t</text>
 </a>
 </g>
 <!-- module~finer_backend&#45;&gt;module~finer_section_t -->
-<g id="edge16" class="edge"><title>module~finer_backend&#45;&gt;module~finer_section_t</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M80.3264,-41.0283C91.7646,-37.7045 104.292,-34.3961 116,-32 150.213,-24.9979 189.24,-20.2319 219.573,-17.2244"/>
-<polygon fill="#000000" stroke="#000000" points="220.297,-20.6712 229.918,-16.2332 219.63,-13.7031 220.297,-20.6712"/>
+<g id="edge18" class="edge"><title>module~finer_backend&#45;&gt;module~finer_section_t</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M155,-59C185.68,-56.4237 218.586,-69.7465 241.485,-81.8813"/>
+<polygon fill="#000000" stroke="#000000" points="239.904,-85.0063 250.348,-86.7847 243.293,-78.8811 239.904,-85.0063"/>
+</g>
+<!-- module~finer_file_ini_t -->
+<g id="node3" class="node"><title>module~finer_file_ini_t</title>
+<a xlink:href="../module/finer_file_ini_t.html" xlink:title="finer_file_ini_t">
+<polygon fill="#337ab7" stroke="#337ab7" points="427,-113 349,-113 349,-87 427,-87 427,-113"/>
+<text text-anchor="middle" x="388" y="-97.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">finer_file_ini_t</text>
+</a>
+</g>
+<!-- module~finer_backend&#45;&gt;module~finer_file_ini_t -->
+<g id="edge20" class="edge"><title>module~finer_backend&#45;&gt;module~finer_file_ini_t</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M78.5372,-113.043C124.161,-127.037 202.594,-146.558 271,-141"/>
+</g>
+<!-- module~finer -->
+<g id="node4" class="node"><title>module~finer</title>
+<a xlink:href="../module/finer.html" xlink:title="finer">
+<polygon fill="#337ab7" stroke="#337ab7" points="518,-92 464,-92 464,-66 518,-66 518,-92"/>
+<text text-anchor="middle" x="491" y="-76.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">finer</text>
+</a>
+</g>
+<!-- module~finer_backend&#45;&gt;module~finer -->
+<g id="edge22" class="edge"><title>module~finer_backend&#45;&gt;module~finer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M64.7299,-86.9611C87.4636,-76.0136 122.472,-61.7315 155,-59"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M155,-59C263.443,-49.8936 391.917,-64.6197 453.893,-73.3234"/>
+<polygon fill="#000000" stroke="#000000" points="453.57,-76.8127 463.965,-74.7677 454.563,-69.8835 453.57,-76.8127"/>
 </g>
 <!-- module~finer_option_t -->
 <g id="node5" class="node"><title>module~finer_option_t</title>
 <a xlink:href="../module/finer_option_t.html" xlink:title="finer_option_t">
-<polygon fill="#337ab7" stroke="#337ab7" points="194,-67 116,-67 116,-41 194,-41 194,-67"/>
-<text text-anchor="middle" x="155" y="-51.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">finer_option_t</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="194,-113 116,-113 116,-87 194,-87 194,-113"/>
+<text text-anchor="middle" x="155" y="-97.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">finer_option_t</text>
 </a>
 </g>
 <!-- module~finer_backend&#45;&gt;module~finer_option_t -->
-<g id="edge18" class="edge"><title>module~finer_backend&#45;&gt;module~finer_option_t</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M80.2214,-54C88.418,-54 97.1309,-54 105.604,-54"/>
-<polygon fill="#000000" stroke="#000000" points="105.77,-57.5001 115.77,-54 105.77,-50.5001 105.77,-57.5001"/>
+<g id="edge24" class="edge"><title>module~finer_backend&#45;&gt;module~finer_option_t</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M80.2214,-100C88.418,-100 97.1309,-100 105.604,-100"/>
+<polygon fill="#000000" stroke="#000000" points="105.77,-103.5 115.77,-100 105.77,-96.5001 105.77,-103.5"/>
+</g>
+<!-- module~finer_section_t&#45;&gt;module~finer_file_ini_t -->
+<g id="edge2" class="edge"><title>module~finer_section_t&#45;&gt;module~finer_file_ini_t</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M312.25,-100C320.667,-100 329.607,-100 338.284,-100"/>
+<polygon fill="#000000" stroke="#000000" points="338.301,-103.5 348.301,-100 338.301,-96.5001 338.301,-103.5"/>
 </g>
 <!-- module~finer_file_ini_t&#45;&gt;module~finer -->
-<g id="edge2" class="edge"><title>module~finer_file_ini_t&#45;&gt;module~finer</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M427.528,-61.6753C436.159,-63.3513 445.265,-65.1195 453.802,-66.7771"/>
-<polygon fill="#000000" stroke="#000000" points="453.378,-70.2601 463.862,-68.7305 454.713,-63.3885 453.378,-70.2601"/>
+<g id="edge4" class="edge"><title>module~finer_file_ini_t&#45;&gt;module~finer</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M427.528,-91.9409C436.159,-90.1812 445.265,-88.3246 453.802,-86.5841"/>
+<polygon fill="#000000" stroke="#000000" points="454.763,-89.9602 463.862,-84.5329 453.365,-83.1013 454.763,-89.9602"/>
+</g>
+<!-- program~finer_test_get -->
+<g id="node8" class="node"><title>program~finer_test_get</title>
+<a xlink:href="../program/finer_test_get.html" xlink:title="finer_test_get">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="638,-158 560,-158 560,-132 638,-132 638,-158"/>
+<text text-anchor="middle" x="599" y="-142.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">finer_test_get</text>
+</a>
+</g>
+<!-- module~finer&#45;&gt;program~finer_test_get -->
+<g id="edge6" class="edge"><title>module~finer&#45;&gt;program~finer_test_get</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M508.17,-92.0776C520.573,-101.252 537.906,-113.523 554,-123 556.459,-124.448 559.027,-125.886 561.635,-127.293"/>
+<polygon fill="#000000" stroke="#000000" points="560.073,-130.426 570.561,-131.927 563.298,-124.213 560.073,-130.426"/>
 </g>
 <!-- program~autotest -->
-<g id="node7" class="node"><title>program~autotest</title>
+<g id="node9" class="node"><title>program~autotest</title>
 <a xlink:href="../program/autotest.html" xlink:title="autotest">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="608,-87 554,-87 554,-61 608,-61 608,-87"/>
-<text text-anchor="middle" x="581" y="-71.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">autotest</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="626,-114 572,-114 572,-88 626,-88 626,-114"/>
+<text text-anchor="middle" x="599" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">autotest</text>
 </a>
 </g>
 <!-- module~finer&#45;&gt;program~autotest -->
-<g id="edge4" class="edge"><title>module~finer&#45;&gt;program~autotest</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M518.003,-74C526.028,-74 534.967,-74 543.531,-74"/>
-<polygon fill="#000000" stroke="#000000" points="543.705,-77.5001 553.705,-74 543.705,-70.5001 543.705,-77.5001"/>
+<g id="edge8" class="edge"><title>module~finer&#45;&gt;program~autotest</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M518.253,-84.5515C531.427,-87.2352 547.443,-90.4977 561.727,-93.4073"/>
+<polygon fill="#000000" stroke="#000000" points="561.258,-96.8837 571.756,-95.4502 562.656,-90.0246 561.258,-96.8837"/>
 </g>
-<!-- module~finer_section_t&#45;&gt;module~finer_file_ini_t -->
-<g id="edge6" class="edge"><title>module~finer_section_t&#45;&gt;module~finer_file_ini_t</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M308.341,-26.0854C318.684,-29.7098 330.047,-33.6916 340.87,-37.4842"/>
-<polygon fill="#000000" stroke="#000000" points="340.017,-40.8942 350.612,-40.8983 342.332,-34.2881 340.017,-40.8942"/>
+<!-- program~finer_test_parse -->
+<g id="node10" class="node"><title>program~finer_test_parse</title>
+<a xlink:href="../program/finer_test_parse.html" xlink:title="finer_test_parse">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="644,-70 554,-70 554,-44 644,-44 644,-70"/>
+<text text-anchor="middle" x="599" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">finer_test_parse</text>
+</a>
 </g>
-<!-- module~finer_option_t&#45;&gt;module~finer_file_ini_t -->
-<g id="edge8" class="edge"><title>module~finer_option_t&#45;&gt;module~finer_file_ini_t</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M194.262,-54C233.801,-54 294.943,-54 337.943,-54"/>
-<polygon fill="#000000" stroke="#000000" points="338.187,-57.5001 348.187,-54 338.187,-50.5001 338.187,-57.5001"/>
+<!-- module~finer&#45;&gt;program~finer_test_parse -->
+<g id="edge10" class="edge"><title>module~finer&#45;&gt;program~finer_test_parse</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M518.253,-73.4485C526.062,-71.8577 534.87,-70.0636 543.723,-68.2602"/>
+<polygon fill="#000000" stroke="#000000" points="544.587,-71.6561 553.687,-66.2304 543.19,-64.7969 544.587,-71.6561"/>
+</g>
+<!-- program~finer_test_load -->
+<g id="node11" class="node"><title>program~finer_test_load</title>
+<a xlink:href="../program/finer_test_load.html" xlink:title="finer_test_load">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="640,-26 558,-26 558,-1.24345e-14 640,-3.55271e-15 640,-26"/>
+<text text-anchor="middle" x="599" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">finer_test_load</text>
+</a>
+</g>
+<!-- module~finer&#45;&gt;program~finer_test_load -->
+<g id="edge12" class="edge"><title>module~finer&#45;&gt;program~finer_test_load</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M508.17,-65.9224C520.573,-56.748 537.906,-44.4773 554,-35 556.459,-33.5521 559.027,-32.114 561.635,-30.7068"/>
+<polygon fill="#000000" stroke="#000000" points="563.298,-33.787 570.561,-26.0731 560.073,-27.5743 563.298,-33.787"/>
 </g>
 <!-- module~finer_option_t&#45;&gt;module~finer_section_t -->
-<g id="edge10" class="edge"><title>module~finer_option_t&#45;&gt;module~finer_section_t</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M192.022,-40.9146C202.277,-37.2902 213.542,-33.3084 224.272,-29.5158"/>
-<polygon fill="#000000" stroke="#000000" points="225.67,-32.7342 233.932,-26.1017 223.337,-26.1343 225.67,-32.7342"/>
+<g id="edge16" class="edge"><title>module~finer_option_t&#45;&gt;module~finer_section_t</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M194.272,-100C202.403,-100 211.084,-100 219.574,-100"/>
+<polygon fill="#000000" stroke="#000000" points="219.786,-103.5 229.786,-100 219.786,-96.5001 219.786,-103.5"/>
+</g>
+<!-- module~finer_option_t&#45;&gt;module~finer_file_ini_t -->
+<g id="edge14" class="edge"><title>module~finer_option_t&#45;&gt;module~finer_file_ini_t</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M175.649,-113.179C198.298,-126.212 236.085,-143.837 271,-141"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M271,-141C299.908,-138.651 330.8,-127.416 353.578,-117.299"/>
+<polygon fill="#000000" stroke="#000000" points="355.184,-120.413 362.813,-113.061 352.265,-114.051 355.184,-120.413"/>
 </g>
 </g>
 </svg>
 </div>
+                <script>var panmodulefiner_backendUsedByGraph = svgPanZoom('#modulefiner_backendUsedByGraph', {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,});
+                    </script>
                 <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
                 <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
                   <div class="modal-dialog modal-lg" role="document">
@@ -526,18 +502,18 @@ implementation in a submodule of an interface in a parent module.</p>
                       </div>
                       <div class="modal-body">
                         
-Nodes of different colours represent the following:
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.26.3 (20100126.1600)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="641pt" height="28pt"
- viewBox="0.00 0.00 641.00 27.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph1" class="graph" transform="scale(0.817602 0.817602) rotate(0) translate(4 30)">
+<svg width="486pt" height="34pt"
+ viewBox="0.00 0.00 486.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-30 781,-30 781,5 -4,5"/>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 483,-30 483,5 -4,5"/>
 <!-- Module -->
 <g id="node1" class="node"><title>Module</title>
 <polygon fill="#337ab7" stroke="#337ab7" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
@@ -548,67 +524,98 @@ Nodes of different colours represent the following:
 <polygon fill="#5bc0de" stroke="#5bc0de" points="138,-26 72,-26 72,-1.24345e-14 138,-3.55271e-15 138,-26"/>
 <text text-anchor="middle" x="105" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
 </g>
-<!-- Type -->
-<g id="node3" class="node"><title>Type</title>
-<polygon fill="#5cb85c" stroke="#5cb85c" points="210,-26 156,-26 156,-1.24345e-14 210,-3.55271e-15 210,-26"/>
-<text text-anchor="middle" x="183" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
-</g>
 <!-- Subroutine -->
-<g id="node4" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="292,-26 228,-26 228,-1.24345e-14 292,-3.55271e-15 292,-26"/>
-<text text-anchor="middle" x="260" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+<g id="node3" class="node"><title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="220,-26 156,-26 156,-1.24345e-14 220,-3.55271e-15 220,-26"/>
+<text text-anchor="middle" x="188" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
 </g>
 <!-- Function -->
-<g id="node5" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
-<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
-</g>
-<!-- Interface -->
-<g id="node6" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="436,-26 382,-26 382,-1.24345e-14 436,-3.55271e-15 436,-26"/>
-<text text-anchor="middle" x="409" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
-</g>
-<!-- Unknown Procedure Type -->
-<g id="node7" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="590,-26 454,-26 454,-1.24345e-14 590,-3.55271e-15 590,-26"/>
-<text text-anchor="middle" x="522" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+<g id="node4" class="node"><title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="292,-26 238,-26 238,-1.24345e-14 292,-3.55271e-15 292,-26"/>
+<text text-anchor="middle" x="265" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
 </g>
 <!-- Program -->
-<g id="node8" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="662,-26 608,-26 608,-1.24345e-14 662,-3.55271e-15 662,-26"/>
-<text text-anchor="middle" x="635" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<g id="node5" class="node"><title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
+<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
 </g>
 <!-- This Page&#39;s Entity -->
-<g id="node9" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="776,-26 680,-26 680,-1.24345e-14 776,-3.55271e-15 776,-26"/>
-<text text-anchor="middle" x="728" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<g id="node6" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="478,-26 382,-26 382,-1.24345e-14 478,-3.55271e-15 478,-26"/>
+<text text-anchor="middle" x="430" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
 
-Where possible, edges connecting nodes are given different colours to make them
-easier to distinguish in large graphs.
-<h5>Module Graph</h5>
-<p>Solid arrows point from a parent (sub)module to the submodule which is
-descended from it. Dashed arrows point from a module being used to the
-module using it.</p>
-<h5>Type Graph</h5>
-<p>Solid arrows point from one derived type to another which extends
-(inherits from) it. Dashed arrows point from a derived type to another
-type containing it as a components, with a label listing the name(s) of
-said component(s).</p>
-<h5>Call Graph</h5>
-<p>Solid arrows point from a procedure to one which it calls. Dashed 
-arrows point from an interface to procedures which implement that interface.
-This could include the module procedures in a generic interface or the
-implementation in a submodule of an interface in a parent module.</p>
-
+    
+    <p>Solid arrows point from a parent (sub)module to the submodule which is
+    descended from it. Dashed arrows point from a module being used to the
+    module or program unit using it.
+    </p>
+    
                       </div>
                     </div>
                   </div>
                 </div>
                 
     <br>
+    
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-comments">COMMENTS</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-def_opt_sep">DEF_OPT_SEP</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_option">ERR_OPTION</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_option_name">ERR_OPTION_NAME</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_option_vals">ERR_OPTION_VALS</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_section">ERR_SECTION</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_section_name">ERR_SECTION_NAME</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_section_options">ERR_SECTION_OPTIONS</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-err_source_missing">ERR_SOURCE_MISSING</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html#variable-inline_comment">INLINE_COMMENT</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
     
 
     
@@ -630,95 +637,11 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-err_option_name"></span>integer(kind=I4P),</td>
+  <td><span class="anchor" id="variable-comments"></span>character(len=*),</td>
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>err_option_name</strong></td><td> =</td><td>1</td><td><p>Error flag for trapping errors in option name.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-err_option_vals"></span>integer(kind=I4P),</td>
-  
-  <td>public,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>err_option_vals</strong></td><td> =</td><td>2</td><td><p>Error flag for trapping errors in option values.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-err_option"></span>integer(kind=I4P),</td>
-  
-  <td>public,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>err_option</strong></td><td> =</td><td>3</td><td><p>Error flag for trapping errors in option.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-err_section_name"></span>integer(kind=I4P),</td>
-  
-  <td>public,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>err_section_name</strong></td><td> =</td><td>4</td><td><p>Error flag for trapping errors in section name.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-err_section_options"></span>integer(kind=I4P),</td>
-  
-  <td>public,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>err_section_options</strong></td><td> =</td><td>5</td><td><p>Error flag for trapping errors in section options.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-err_section"></span>integer(kind=I4P),</td>
-  
-  <td>public,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>err_section</strong></td><td> =</td><td>6</td><td><p>Error flag for trapping errors in section.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-err_source_missing"></span>integer(kind=I4P),</td>
-  
-  <td>public,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>err_source_missing</strong></td><td> =</td><td>7</td><td><p>Error flag for trapping errors in file when source is missing.</p></td>
+  <td><strong>COMMENTS</strong></td><td> =</td><td>"!;#"</td><td><p>Characters used for defining a comment line.</p></td>
   
 </tr>
 
@@ -732,7 +655,7 @@ implementation in a submodule of an interface in a parent module.</p>
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>def_opt_sep</strong></td><td> =</td><td>'='</td><td><p>Default separator of option name/value.</p></td>
+  <td><strong>DEF_OPT_SEP</strong></td><td> =</td><td>'='</td><td><p>Default separator of option name/value.</p></td>
   
 </tr>
 
@@ -742,11 +665,95 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-comments"></span>character(len=*),</td>
+  <td><span class="anchor" id="variable-err_option"></span>integer(kind=I4P),</td>
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>comments</strong></td><td> =</td><td>"!;#"</td><td><p>Characters used for defining a comment line.</p></td>
+  <td><strong>ERR_OPTION</strong></td><td> =</td><td>3</td><td><p>Error flag for trapping errors in option.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-err_option_name"></span>integer(kind=I4P),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>ERR_OPTION_NAME</strong></td><td> =</td><td>1</td><td><p>Error flag for trapping errors in option name.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-err_option_vals"></span>integer(kind=I4P),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>ERR_OPTION_VALS</strong></td><td> =</td><td>2</td><td><p>Error flag for trapping errors in option values.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-err_section"></span>integer(kind=I4P),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>ERR_SECTION</strong></td><td> =</td><td>6</td><td><p>Error flag for trapping errors in section.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-err_section_name"></span>integer(kind=I4P),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>ERR_SECTION_NAME</strong></td><td> =</td><td>4</td><td><p>Error flag for trapping errors in section name.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-err_section_options"></span>integer(kind=I4P),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>ERR_SECTION_OPTIONS</strong></td><td> =</td><td>5</td><td><p>Error flag for trapping errors in section options.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-err_source_missing"></span>integer(kind=I4P),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>ERR_SOURCE_MISSING</strong></td><td> =</td><td>7</td><td><p>Error flag for trapping errors in file when source is missing.</p></td>
   
 </tr>
 
@@ -760,7 +767,7 @@ implementation in a submodule of an interface in a parent module.</p>
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>inline_comment</strong></td><td> =</td><td>';'</td><td><p>Inline comment delimiter.</p></td>
+  <td><strong>INLINE_COMMENT</strong></td><td> =</td><td>';'</td><td><p>Inline comment delimiter.</p></td>
   
 </tr>
 
@@ -787,23 +794,50 @@ implementation in a submodule of an interface in a parent module.</p>
     </div>
   </div>
 
+  <section class="visible-xs visible-sm hidden-md">
     <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allmods-1">All Modules</a></h3></div>
+  <div id="allmods-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/finer.html">finer</a>
+      
+      <a class="list-group-item" href="../module/finer_backend.html">finer_backend</a>
+      
+      <a class="list-group-item" href="../module/finer_file_ini_t.html">finer_file_ini_t</a>
+      
+      <a class="list-group-item" href="../module/finer_option_t.html">finer_option_t</a>
+      
+      <a class="list-group-item" href="../module/finer_section_t.html">finer_section_t</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  
+    <hr>    
+    </div> <!-- /container -->
     <footer>
+      <div class="container">
       <div class="row">
-        <div class="col-md-4">&copy; 2016 </div>
-        <div class="col-md-4"><span class="text-center"> FiNeR was developed by Stefano Zaghi</span></div>
-        <div class="col-md-4">
-          <span class="pull-right">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-            
-          </span>
+             on 2017-04-06 14:12  
+          </p>
         </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FiNeR was developed by Stefano Zaghi</p></div>
       </div>
       <br>
+      </div> <!-- /container -->    
     </footer>
-    </div> <!-- /container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

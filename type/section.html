@@ -7,7 +7,7 @@
 	 
 	 <meta name="description" content="Fortran INI ParseR and generator">
     
-    <meta name="author" content="Chris MacMackin" >
+    <meta name="author" content="Stefano Zaghi" >
     <link rel="icon" href="../favicon.png">
 
     <title>section &ndash; FiNeR </title>
@@ -53,21 +53,46 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
 				
-                
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
             <li><a href="../lists/files.html">Source Files</a></li>
 				
 				
             <li><a href="../lists/modules.html">Modules</a></li>
 				
-				
+            
+                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../program/autotest.html">Program</a></li>
+            <li><a href="../lists/programs.html">Programs</a></li>
 				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
           </ul>
         
         <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -91,9 +116,9 @@
     <small>Derived Type</small>
     
     </h1>
-	 
+    
 <div class="row">
-<div class="col-lg-12">
+  <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
      
@@ -102,6 +127,13 @@
      
     
     
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title="<p>35.7% of total for derived types.</p>Including implementation: 589 statements, 31.2% of total for derived types.">37 statements</a>
+     </li> 
+     
+     
     <li><i class="fa fa-code"></i><a href="../src/finer_section_t.f90"> Source File</a></li>
      
   </ul>
@@ -116,159 +148,165 @@
 </div>
 </div>
 </div>
-    
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
   </div>
   
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
     
 <div id="sidebar">
   
-  
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars">Variables</a></h3></div>
-    <div id="vars" class="panel-collapse collapse">
-      <div class="list-group">
-        
-        <a class="list-group-item" href="../type/section.html#variable-sname">sname</a>
-        
-        <a class="list-group-item" href="../type/section.html#variable-options">options</a>
-        
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#cons">Constructor</a></h3></div>
-    <div id="cons" class="panel-collapse collapse">
-        <div class="list-group">
-          <a class="list-group-item" href="../type/section.html#interface-section">section</a>
-        </div>
-    </div>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs">Type-Bound Procedures</a></h3></div>
-    <div id="boundprocs" class="panel-collapse collapse">
-        <div class="list-group">
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-add%7E2">add</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-count_values%7E3">count_values</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-free%7E3">free</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-free_options%7E2">free_options</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-free_option">free_option</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-get%7E3">get</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-has_options">has_options</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-index%7E2">index</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-loop%7E2">loop</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-max_chars_len">max_chars_len</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-name">name</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-options_number">options_number</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-option_pairs">option_pairs</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-parse%7E3">parse</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-print%7E3">print</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-set%7E2">set</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-save%7E3">save</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-assignment%28%3D%29%7E3">assignment(=)</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-operator%28%3D%3D%29%7E2">operator(==)</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-add_option%7E2">add_option</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-add_a_option%7E2">add_a_option</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-get_option%7E3">get_option</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-get_a_option%7E3">get_a_option</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-parse_name%7E2">parse_name</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-parse_options">parse_options</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-set_option%7E2">set_option</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-set_a_option%7E2">set_a_option</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-assign_section">assign_section</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-section_eq_string">section_eq_string</a>
-          
-          <a class="list-group-item" href="../type/section.html#boundprocedure-section_eq_character">section_eq_character</a>
-          
-        </div>
-    </div>
-  </div>
-  
-  
-  
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
     <div class="list-group">
-      <a class="list-group-item" href="../type/section.html#src">section</a>
+      
+      <a class="list-group-item" href="../type/section.html#variable-options">options</a>
+      
+      <a class="list-group-item" href="../type/section.html#variable-sname">sname</a>
+      
     </div>
   </div>
-  
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#cons-0">Constructor</a></h3></div>
+  <div id="cons-0" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../type/section.html#interface-section">section</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs-0">Type-Bound Procedures</a></h3></div>
+  <div id="boundprocs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-add%7E2">add</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-add_a_option%7E2">add_a_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-add_option%7E2">add_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-assign_section">assign_section</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-assignment%28%3D%29%7E3">assignment(=)</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-count_values%7E3">count_values</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-free%7E3">free</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-free_option">free_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-free_options%7E2">free_options</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-get%7E3">get</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-get_a_option%7E3">get_a_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-get_option%7E3">get_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-has_options">has_options</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-index%7E2">index</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-loop%7E2">loop</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-max_chars_len">max_chars_len</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-name">name</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-operator%28%3D%3D%29%7E2">operator(==)</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-option_pairs">option_pairs</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-options_number">options_number</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-parse%7E3">parse</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-parse_name%7E2">parse_name</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-parse_options">parse_options</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-print%7E3">print</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-sanitize_source">sanitize_source</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-save%7E3">save</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-section_eq_character">section_eq_character</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-section_eq_string">section_eq_string</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-set%7E2">set</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-set_a_option%7E2">set_a_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-set_option%7E2">set_option</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/section.html#src">section</a>
+  </div>
+</div>
+
+
   <hr>
   
-  <div class="panel panel-default">
-    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#alltypes">All Derived Types</a></h3></div>
-    <div id="alltypes" class="panel-collapse collapse">
-        <div class="list-group">
-          
-          <a class="list-group-item" href="../type/file_ini.html">file_ini</a>
-          
-          <a class="list-group-item" href="../type/option.html">option</a>
-          
-          <a class="list-group-item" href="../type/section.html">section</a>
-          
-          <a class="list-group-item" href="../type/string.html">string</a>
-          
-        </div>
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#alltypes-0">All Derived Types</a></h3></div>
+  <div id="alltypes-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/file_ini.html">file_ini</a>
+      
+      <a class="list-group-item" href="../type/option.html">option</a>
+      
+      <a class="list-group-item" href="../type/section.html">section</a>
+      
     </div>
   </div>
-  
 </div>
+
+
+</div>  
 
     </div>
     
-    <div class="col-lg-9" id='text'>
-    <h2>type, public :: section</h2>
+    <div class="col-md-9" id='text'>
+      <h2>type, public :: section</h2>
     
     
                 <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -300,18 +338,16 @@
 <polygon fill="#000000" stroke="#000000" points="298,-16.5001 308,-13 298,-9.5001 298,-16.5001"/>
 <text text-anchor="middle" x="274" y="-17.45" font-family="Helvetica,sans-Serif" font-size="9.50">options</text>
 </g>
-<!-- type~string -->
-<g id="node3" class="node"><title>type~string</title>
-<a xlink:href="../type/string.html" xlink:title="string">
+<!-- string -->
+<g id="node3" class="node"><title>string</title>
 <polygon fill="#5cb85c" stroke="#5cb85c" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
 <text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">string</text>
-</a>
 </g>
-<!-- type~string&#45;&gt;type~option -->
-<g id="edge2" class="edge"><title>type~string&#45;&gt;type~option</title>
+<!-- string&#45;&gt;type~option -->
+<g id="edge2" class="edge"><title>string&#45;&gt;type~option</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M54.046,-13C86.142,-13 139.831,-13 175.819,-13"/>
 <polygon fill="#000000" stroke="#000000" points="175.921,-16.5001 185.921,-13 175.921,-9.5001 175.921,-16.5001"/>
-<text text-anchor="middle" x="120" y="-17.45" font-family="Helvetica,sans-Serif" font-size="9.50">oname, ovals, ocomm</text>
+<text text-anchor="middle" x="120" y="-17.45" font-family="Helvetica,sans-Serif" font-size="9.50">ocomm, oname, ovals</text>
 </g>
 </g>
 </svg>
@@ -326,83 +362,38 @@
                       </div>
                       <div class="modal-body">
                         
-Nodes of different colours represent the following:
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.26.3 (20100126.1600)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="641pt" height="28pt"
- viewBox="0.00 0.00 641.00 27.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph1" class="graph" transform="scale(0.817602 0.817602) rotate(0) translate(4 30)">
+<svg width="176pt" height="34pt"
+ viewBox="0.00 0.00 176.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-30 781,-30 781,5 -4,5"/>
-<!-- Module -->
-<g id="node1" class="node"><title>Module</title>
-<polygon fill="#337ab7" stroke="#337ab7" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
-<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
-</g>
-<!-- Submodule -->
-<g id="node2" class="node"><title>Submodule</title>
-<polygon fill="#5bc0de" stroke="#5bc0de" points="138,-26 72,-26 72,-1.24345e-14 138,-3.55271e-15 138,-26"/>
-<text text-anchor="middle" x="105" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
-</g>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 173,-30 173,5 -4,5"/>
 <!-- Type -->
-<g id="node3" class="node"><title>Type</title>
-<polygon fill="#5cb85c" stroke="#5cb85c" points="210,-26 156,-26 156,-1.24345e-14 210,-3.55271e-15 210,-26"/>
-<text text-anchor="middle" x="183" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
-</g>
-<!-- Subroutine -->
-<g id="node4" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="292,-26 228,-26 228,-1.24345e-14 292,-3.55271e-15 292,-26"/>
-<text text-anchor="middle" x="260" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
-</g>
-<!-- Function -->
-<g id="node5" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
-<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
-</g>
-<!-- Interface -->
-<g id="node6" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="436,-26 382,-26 382,-1.24345e-14 436,-3.55271e-15 436,-26"/>
-<text text-anchor="middle" x="409" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
-</g>
-<!-- Unknown Procedure Type -->
-<g id="node7" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="590,-26 454,-26 454,-1.24345e-14 590,-3.55271e-15 590,-26"/>
-<text text-anchor="middle" x="522" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
-</g>
-<!-- Program -->
-<g id="node8" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="662,-26 608,-26 608,-1.24345e-14 662,-3.55271e-15 662,-26"/>
-<text text-anchor="middle" x="635" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<g id="node1" class="node"><title>Type</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
+<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
 </g>
 <!-- This Page&#39;s Entity -->
-<g id="node9" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="776,-26 680,-26 680,-1.24345e-14 776,-3.55271e-15 776,-26"/>
-<text text-anchor="middle" x="728" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<g id="node2" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="168,-26 72,-26 72,-1.24345e-14 168,-3.55271e-15 168,-26"/>
+<text text-anchor="middle" x="120" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
 
-Where possible, edges connecting nodes are given different colours to make them
-easier to distinguish in large graphs.
-<h5>Module Graph</h5>
-<p>Solid arrows point from a parent (sub)module to the submodule which is
-descended from it. Dashed arrows point from a module being used to the
-module using it.</p>
-<h5>Type Graph</h5>
-<p>Solid arrows point from one derived type to another which extends
-(inherits from) it. Dashed arrows point from a derived type to another
-type containing it as a components, with a label listing the name(s) of
-said component(s).</p>
-<h5>Call Graph</h5>
-<p>Solid arrows point from a procedure to one which it calls. Dashed 
-arrows point from an interface to procedures which implement that interface.
-This could include the module procedures in a generic interface or the
-implementation in a submodule of an interface in a parent module.</p>
-
+    
+    <p>Solid arrows point from one derived type to another which extends
+    (inherits from) it. Dashed arrows point from a derived type to another
+    type containing it as a components, with a label listing the name(s) of
+    said component(s).
+    </p>
+    
                       </div>
                     </div>
                   </div>
@@ -457,89 +448,171 @@ implementation in a submodule of an interface in a parent module.</p>
                       </div>
                       <div class="modal-body">
                         
-Nodes of different colours represent the following:
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.26.3 (20100126.1600)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="641pt" height="28pt"
- viewBox="0.00 0.00 641.00 27.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph1" class="graph" transform="scale(0.817602 0.817602) rotate(0) translate(4 30)">
+<svg width="176pt" height="34pt"
+ viewBox="0.00 0.00 176.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-30 781,-30 781,5 -4,5"/>
-<!-- Module -->
-<g id="node1" class="node"><title>Module</title>
-<polygon fill="#337ab7" stroke="#337ab7" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
-<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
-</g>
-<!-- Submodule -->
-<g id="node2" class="node"><title>Submodule</title>
-<polygon fill="#5bc0de" stroke="#5bc0de" points="138,-26 72,-26 72,-1.24345e-14 138,-3.55271e-15 138,-26"/>
-<text text-anchor="middle" x="105" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
-</g>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 173,-30 173,5 -4,5"/>
 <!-- Type -->
-<g id="node3" class="node"><title>Type</title>
-<polygon fill="#5cb85c" stroke="#5cb85c" points="210,-26 156,-26 156,-1.24345e-14 210,-3.55271e-15 210,-26"/>
-<text text-anchor="middle" x="183" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
-</g>
-<!-- Subroutine -->
-<g id="node4" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="292,-26 228,-26 228,-1.24345e-14 292,-3.55271e-15 292,-26"/>
-<text text-anchor="middle" x="260" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
-</g>
-<!-- Function -->
-<g id="node5" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
-<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
-</g>
-<!-- Interface -->
-<g id="node6" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="436,-26 382,-26 382,-1.24345e-14 436,-3.55271e-15 436,-26"/>
-<text text-anchor="middle" x="409" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
-</g>
-<!-- Unknown Procedure Type -->
-<g id="node7" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="590,-26 454,-26 454,-1.24345e-14 590,-3.55271e-15 590,-26"/>
-<text text-anchor="middle" x="522" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
-</g>
-<!-- Program -->
-<g id="node8" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="662,-26 608,-26 608,-1.24345e-14 662,-3.55271e-15 662,-26"/>
-<text text-anchor="middle" x="635" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<g id="node1" class="node"><title>Type</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
+<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
 </g>
 <!-- This Page&#39;s Entity -->
-<g id="node9" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="776,-26 680,-26 680,-1.24345e-14 776,-3.55271e-15 776,-26"/>
-<text text-anchor="middle" x="728" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<g id="node2" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="168,-26 72,-26 72,-1.24345e-14 168,-3.55271e-15 168,-26"/>
+<text text-anchor="middle" x="120" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
 
-Where possible, edges connecting nodes are given different colours to make them
-easier to distinguish in large graphs.
-<h5>Module Graph</h5>
-<p>Solid arrows point from a parent (sub)module to the submodule which is
-descended from it. Dashed arrows point from a module being used to the
-module using it.</p>
-<h5>Type Graph</h5>
-<p>Solid arrows point from one derived type to another which extends
-(inherits from) it. Dashed arrows point from a derived type to another
-type containing it as a components, with a label listing the name(s) of
-said component(s).</p>
-<h5>Call Graph</h5>
-<p>Solid arrows point from a procedure to one which it calls. Dashed 
-arrows point from an interface to procedures which implement that interface.
-This could include the module procedures in a generic interface or the
-implementation in a submodule of an interface in a parent module.</p>
-
+    
+    <p>Solid arrows point from one derived type to another which extends
+    (inherits from) it. Dashed arrows point from a derived type to another
+    type containing it as a components, with a label listing the name(s) of
+    said component(s).
+    </p>
+    
                       </div>
                     </div>
                   </div>
                 </div>
                 
     
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/section.html#variable-options">options</a>
+      
+      <a class="list-group-item" href="../type/section.html#variable-sname">sname</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#cons-1">Constructor</a></h3></div>
+  <div id="cons-1" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../type/section.html#interface-section">section</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs-1">Type-Bound Procedures</a></h3></div>
+  <div id="boundprocs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-add%7E2">add</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-add_a_option%7E2">add_a_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-add_option%7E2">add_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-assign_section">assign_section</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-assignment%28%3D%29%7E3">assignment(=)</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-count_values%7E3">count_values</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-free%7E3">free</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-free_option">free_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-free_options%7E2">free_options</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-get%7E3">get</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-get_a_option%7E3">get_a_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-get_option%7E3">get_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-has_options">has_options</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-index%7E2">index</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-loop%7E2">loop</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-max_chars_len">max_chars_len</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-name">name</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-operator%28%3D%3D%29%7E2">operator(==)</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-option_pairs">option_pairs</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-options_number">options_number</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-parse%7E3">parse</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-parse_name%7E2">parse_name</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-parse_options">parse_options</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-print%7E3">print</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-sanitize_source">sanitize_source</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-save%7E3">save</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-section_eq_character">section_eq_character</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-section_eq_string">section_eq_string</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-set%7E2">set</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-set_a_option%7E2">set_a_option</a>
+      
+      <a class="list-group-item" href="../type/section.html#boundprocedure-set_option%7E2">set_option</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/section.html#src">section</a>
+  </div>
+</div>
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
     
     <section>
     <h2>Components</h2>
@@ -559,11 +632,11 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-sname"></span>character(len=:),</td>
+  <td><span class="anchor" id="variable-options"></span>type(<a href='../type/option.html'>option</a>),</td>
   
   <td>private,</td>
   <td>allocatable</td><td>::</td>
-  <td><strong>sname</strong></td><td></td><td></td><td><p>Section name.</p></td>
+  <td><strong>options</strong>(:)</td><td></td><td></td><td><p>Section options.</p></td>
   
 </tr>
 
@@ -573,11 +646,11 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-options"></span>type(<a href='../type/option.html'>option</a>),</td>
+  <td><span class="anchor" id="variable-sname"></span>character(len=:),</td>
   
   <td>private,</td>
   <td>allocatable</td><td>::</td>
-  <td><strong>options</strong>(:)</td><td></td><td></td><td><p>Section options.</p></td>
+  <td><strong>sname</strong></td><td></td><td></td><td><p>Section name.</p></td>
   
 </tr>
 
@@ -614,8 +687,17 @@ implementation in a submodule of an interface in a parent module.</p>
 private elemental function <a href='../proc/new_section.html'>new_section</a>(section_name)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Return a new (initiliazed) section instance.</p>
     
     <h4>Arguments</h4>
     
@@ -660,15 +742,6 @@ private elemental function <a href='../proc/new_section.html'>new_section</a>(se
   </small></h4>
   <p>New (initiliazed) section instance.</p>
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Return a new (initiliazed) section instance.</p>
-        
 
     </li>
   
@@ -712,8 +785,17 @@ private elemental function <a href='../proc/new_section.html'>new_section</a>(se
 private pure subroutine <a href='../proc/add_option%7E2.html'>add_option</a>(self, option_name, val, error)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Add an option (with scalar value).</p>
     
     <h4>Arguments</h4>
     
@@ -794,15 +876,6 @@ private pure subroutine <a href='../proc/add_option%7E2.html'>add_option</a>(sel
       
     
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Add an option (with scalar value).</p>
-        
 
          
       
@@ -817,8 +890,17 @@ private pure subroutine <a href='../proc/add_option%7E2.html'>add_option</a>(sel
 private pure subroutine <a href='../proc/add_a_option%7E2.html'>add_a_option</a>(self, option_name, val, delimiter, error)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Add an option (with array value).</p>
     
     <h4>Arguments</h4>
     
@@ -914,15 +996,451 @@ private pure subroutine <a href='../proc/add_a_option%7E2.html'>add_a_option</a>
       
     
     
+
+         
+      
+      </li>
     
-    <h4>Description</h4>
-       
-       
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-add_a_option%7E2"></span><h3>procedure, private, pass(self) :: <strong>add_a_option</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
 
 
-       
-       <p>Add an option (with array value).</p>
-        
+    <p>Add an option (array).</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private pure subroutine <a href='../proc/add_a_option%7E2.html'>add_a_option</a>(self, option_name, val, delimiter, error)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Add an option (with array value).</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Section data.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong>(:)</td><td><p>Option value.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>delimiter</strong></td><td><p>Delimiter used for separating values.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=I4P),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>error</strong></td><td><p>Error code.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-add_option%7E2"></span><h3>procedure, private, pass(self) :: <strong>add_option</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p>Add an option (scalar).</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private pure subroutine <a href='../proc/add_option%7E2.html'>add_option</a>(self, option_name, val, error)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Add an option (with scalar value).</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Section data.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong></td><td><p>Option value.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=I4P),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>error</strong></td><td><p>Error code.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-assign_section"></span><h3>procedure, private, pass(lhs) :: <strong>assign_section</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p>Assignment overloading.</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private elemental subroutine <a href='../proc/assign_section.html'>assign_section</a>(lhs, rhs)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Assignment between two sections.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rhs</strong></td><td><p>Rigth hand side.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-assignment%28%3D%29%7E3"></span><h3>generic, public :: <strong>assignment(=)</strong>  => <a href='../type/section.html#boundprocedure-assign_section'>assign_section</a> 
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p>Assignment overloading.</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+            
+    
+    <h3>
+private elemental subroutine <a href='../proc/assign_section.html'>assign_section</a>(lhs, rhs)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Assignment between two sections.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rhs</strong></td><td><p>Rigth hand side.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
 
          
       
@@ -955,8 +1473,17 @@ private pure subroutine <a href='../proc/add_a_option%7E2.html'>add_a_option</a>
 private elemental function <a href='../proc/count_values%7E3.html'>count_values</a>(self, option_name, delimiter) result(Nv)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Get the number of values of option into section data.</p>
     
     <h4>Arguments</h4>
     
@@ -1031,15 +1558,6 @@ private elemental function <a href='../proc/count_values%7E3.html'>count_values<
   </small></h4>
   <p>Number of values.</p>
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Get the number of values of option into section data.</p>
-        
 
       
       </li>
@@ -1071,8 +1589,17 @@ private elemental function <a href='../proc/count_values%7E3.html'>count_values<
 private elemental subroutine <a href='../proc/free%7E3.html'>free</a>(self)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Free dynamic memory.</p>
     
     <h4>Arguments</h4>
     
@@ -1108,92 +1635,6 @@ private elemental subroutine <a href='../proc/free%7E3.html'>free</a>(self)
       
     
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Free dynamic memory.</p>
-        
-
-      
-      </li>
-    
-  </ul>
-</div>
-
-    
-	   
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-free_options%7E2"></span><h3>procedure, public, pass(self) :: <strong>free_options</strong>  
-    
-  </h3></div>
-  
-  <div class="panel-body">
-    
-
-
-    <p>Free all options.</p>
-  </div>
-  
-  <ul class="list-group">
-    
-      <li class="list-group-item">
-      
-         
-    
-    <h3>
-private elemental subroutine <a href='../proc/free_options.html'>free_options</a>(self)
-    
-    
-    
-</h3>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Section data.</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Free all options.</p>
-        
 
       
       </li>
@@ -1225,8 +1666,17 @@ private elemental subroutine <a href='../proc/free_options.html'>free_options</a
 private elemental subroutine <a href='../proc/free_option.html'>free_option</a>(self, option_name)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Free an option.</p>
     
     <h4>Arguments</h4>
     
@@ -1277,15 +1727,83 @@ private elemental subroutine <a href='../proc/free_option.html'>free_option</a>(
       
     
     
+
+      
+      </li>
     
-    <h4>Description</h4>
-       
-       
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-free_options%7E2"></span><h3>procedure, public, pass(self) :: <strong>free_options</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
 
 
-       
-       <p>Free an option.</p>
-        
+    <p>Free all options.</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private elemental subroutine <a href='../proc/free_options.html'>free_options</a>(self)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Free all options.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Section data.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
 
       
       </li>
@@ -1319,8 +1837,17 @@ private elemental subroutine <a href='../proc/free_option.html'>free_option</a>(
 private subroutine <a href='../proc/get_option%7E3.html'>get_option</a>(self, option_name, val, error)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Get option value (scalar).</p>
     
     <h4>Arguments</h4>
     
@@ -1401,15 +1928,6 @@ private subroutine <a href='../proc/get_option%7E3.html'>get_option</a>(self, op
       
     
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Get option value (scalar).</p>
-        
 
          
       
@@ -1424,8 +1942,17 @@ private subroutine <a href='../proc/get_option%7E3.html'>get_option</a>(self, op
 private subroutine <a href='../proc/get_a_option%7E3.html'>get_a_option</a>(self, option_name, val, delimiter, error)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Procedure for getting option value (array).</p>
     
     <h4>Arguments</h4>
     
@@ -1521,17 +2048,267 @@ private subroutine <a href='../proc/get_a_option%7E3.html'>get_a_option</a>(self
       
     
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Procedure for getting option value (array).</p>
-        
 
          
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-get_a_option%7E3"></span><h3>procedure, private, pass(self) :: <strong>get_a_option</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p>Get option value (array).</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private subroutine <a href='../proc/get_a_option%7E3.html'>get_a_option</a>(self, option_name, val, delimiter, error)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Procedure for getting option value (array).</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Section data.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(*),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong>(1:)</td><td><p>Value.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>delimiter</strong></td><td><p>Delimiter used for separating values.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=I4P),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>error</strong></td><td><p>Error code.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-get_option%7E3"></span><h3>procedure, private, pass(self) :: <strong>get_option</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p>Get option value (scalar).</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private subroutine <a href='../proc/get_option%7E3.html'>get_option</a>(self, option_name, val, error)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Get option value (scalar).</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Section data.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(*),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong></td><td><p>Value.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=I4P),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>error</strong></td><td><p>Error code.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
       
       </li>
     
@@ -1562,8 +2339,17 @@ private subroutine <a href='../proc/get_a_option%7E3.html'>get_a_option</a>(self
 private elemental function <a href='../proc/has_options.html'>has_options</a>(self)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Inquire is section has options (at least one).</p>
     
     <h4>Arguments</h4>
     
@@ -1608,15 +2394,6 @@ private elemental function <a href='../proc/has_options.html'>has_options</a>(se
   </small></h4>
   <p>Inquire result.</p>
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Inquire is section has options (at least one).</p>
-        
 
       
       </li>
@@ -1648,8 +2425,17 @@ private elemental function <a href='../proc/has_options.html'>has_options</a>(se
 private elemental function <a href='../proc/index_option%7E2.html'>index_option</a>(self, option_name, back) result(ind)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Return the index of the option matching the name passed.</p>
     
     <h4>Arguments</h4>
     
@@ -1724,15 +2510,6 @@ private elemental function <a href='../proc/index_option%7E2.html'>index_option<
   </small></h4>
   <p>Index of searched section.</p>
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Return the index of the option matching the name passed.</p>
-        
 
       
       </li>
@@ -1764,8 +2541,17 @@ private elemental function <a href='../proc/index_option%7E2.html'>index_option<
 private function <a href='../proc/loop.html'>loop</a>(self, option_pairs) result(again)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Loop returning option name/value defined into section.</p>
     
     <h4>Arguments</h4>
     
@@ -1825,15 +2611,6 @@ private function <a href='../proc/loop.html'>loop</a>(self, option_pairs) result
   </small></h4>
   <p>Flag continuing the loop.</p>
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Loop returning option name/value defined into section.</p>
-        
 
       
       </li>
@@ -1865,8 +2642,17 @@ private function <a href='../proc/loop.html'>loop</a>(self, option_pairs) result
 private elemental function <a href='../proc/max_chars_len.html'>max_chars_len</a>(self)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Return the maximum number of characters between option-name/option-values on all options.</p>
     
     <h4>Arguments</h4>
     
@@ -1911,15 +2697,6 @@ private elemental function <a href='../proc/max_chars_len.html'>max_chars_len</a
   </small></h4>
   <p>Inquire result.</p>
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Return the maximum number of characters between option-name/option-values on all options.</p>
-        
 
       
       </li>
@@ -1951,8 +2728,17 @@ private elemental function <a href='../proc/max_chars_len.html'>max_chars_len</a
 private pure function <a href='../proc/name.html'>name</a>(self)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Return section name.</p>
     
     <h4>Arguments</h4>
     
@@ -1997,15 +2783,6 @@ private pure function <a href='../proc/name.html'>name</a>(self)
   </small></h4>
   <p>Section data.</p>
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Return section name.</p>
-        
 
       
       </li>
@@ -2016,7 +2793,7 @@ private pure function <a href='../proc/name.html'>name</a>(self)
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-options_number"></span><h3>procedure, public, pass(self) :: <strong>options_number</strong>  
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-operator%28%3D%3D%29%7E2"></span><h3>generic, public :: <strong>operator(==)</strong>  => <a href='../type/section.html#boundprocedure-section_eq_string'>section_eq_string</a>, <a href='../type/section.html#boundprocedure-section_eq_character'>section_eq_character</a> 
     
   </h3></div>
   
@@ -2024,7 +2801,7 @@ private pure function <a href='../proc/name.html'>name</a>(self)
     
 
 
-    <p>Return the options number.</p>
+    <p>Equal operator overloading.</p>
   </div>
   
   <ul class="list-group">
@@ -2032,13 +2809,23 @@ private pure function <a href='../proc/name.html'>name</a>(self)
       <li class="list-group-item">
       
          
+            
     
     <h3>
-private elemental function <a href='../proc/options_number.html'>options_number</a>(self)
+private elemental function <a href='../proc/section_eq_string.html'>section_eq_string</a>(lhs, rhs) result(is_it)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Equal to string logical operator.</p>
     
     <h4>Arguments</h4>
     
@@ -2064,7 +2851,22 @@ private elemental function <a href='../proc/options_number.html'>options_number<
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Section data.</p></td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(string),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
   
 </tr>
 
@@ -2079,20 +2881,96 @@ private elemental function <a href='../proc/options_number.html'>options_number<
   
   
   
-     <h4>Return Value <small>integer
+     <h4>Return Value <small>logical
   </small></h4>
-  <p>Options number.</p>
+  <p>Opreator test result.</p>
+    
+
+         
+      
+      </li>
+    
+      <li class="list-group-item">
+      
+         
+            
+    
+    <h3>
+private elemental function <a href='../proc/section_eq_character.html'>section_eq_character</a>(lhs, rhs) result(is_it)
     
     
-    <h4>Description</h4>
-       
-       
+	 
+</h3>
+    
 
 
-       
-       <p>Return the options number.</p>
-        
 
+
+
+
+
+<p>Equal to character logical operator.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(kind=CK,len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  <p>Opreator test result.</p>
+    
+
+         
       
       </li>
     
@@ -2123,8 +3001,17 @@ private elemental function <a href='../proc/options_number.html'>options_number<
 private pure subroutine <a href='../proc/option_pairs.html'>option_pairs</a>(self, option_index, pairs)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Return an option pairs.</p>
     
     <h4>Arguments</h4>
     
@@ -2190,15 +3077,92 @@ private pure subroutine <a href='../proc/option_pairs.html'>option_pairs</a>(sel
       
     
     
+
+      
+      </li>
     
-    <h4>Description</h4>
-       
-       
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-options_number"></span><h3>procedure, public, pass(self) :: <strong>options_number</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
 
 
-       
-       <p>Return an option pairs.</p>
-        
+    <p>Return the options number.</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private elemental function <a href='../proc/options_number.html'>options_number</a>(self)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Return the options number.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Section data.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>integer
+  </small></h4>
+  <p>Options number.</p>
+    
 
       
       </li>
@@ -2230,8 +3194,17 @@ private pure subroutine <a href='../proc/option_pairs.html'>option_pairs</a>(sel
 private elemental subroutine <a href='../proc/parse%7E3.html'>parse</a>(self, sep, source, error)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Gett section data from a source string.</p>
     
     <h4>Arguments</h4>
     
@@ -2282,7 +3255,114 @@ private elemental subroutine <a href='../proc/parse%7E3.html'>parse</a>(self, se
   
 <tr>
   
-  <td><span class="anchor" ></span>character(len=*),</td>
+  <td><span class="anchor" ></span>type(string),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>source</strong></td><td><p>String containing section data.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=I4P),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>error</strong></td><td><p>Error code.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-parse_name%7E2"></span><h3>procedure, private, pass(self) :: <strong>parse_name</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+
+
+    <p>Get section name.</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private elemental subroutine <a href='../proc/parse_name%7E2.html'>parse_name</a>(self, source, error)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Get section name from a source string.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Section data.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(string),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -2312,15 +3392,128 @@ private elemental subroutine <a href='../proc/parse%7E3.html'>parse</a>(self, se
       
     
     
+
+      
+      </li>
     
-    <h4>Description</h4>
-       
-       
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-parse_options"></span><h3>procedure, private, pass(self) :: <strong>parse_options</strong>  
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
 
 
-       
-       <p>Gett section data from a source string.</p>
-        
+    <p>Get section options.</p>
+  </div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private elemental subroutine <a href='../proc/parse_options.html'>parse_options</a>(self, sep, source, error)
+    
+    
+	 
+</h3>
+    
+
+
+
+
+
+
+
+<p>Get section options from a source string.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Section data.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>sep</strong></td><td><p>Separator of option name/value.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(string),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>source</strong></td><td><p>String containing section data.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=I4P),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>error</strong></td><td><p>Error code.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
 
       
       </li>
@@ -2352,8 +3545,17 @@ private elemental subroutine <a href='../proc/parse%7E3.html'>parse</a>(self, se
 private subroutine <a href='../proc/print_section.html'>print_section</a>(self, unit, retain_comments, pref, iostat, iomsg)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Print data with a pretty format.</p>
     
     <h4>Arguments</h4>
     
@@ -2464,15 +3666,6 @@ private subroutine <a href='../proc/print_section.html'>print_section</a>(self, 
       
     
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Print data with a pretty format.</p>
-        
 
       
       </li>
@@ -2483,7 +3676,7 @@ private subroutine <a href='../proc/print_section.html'>print_section</a>(self, 
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-set%7E2"></span><h3>generic, public :: <strong>set</strong>  => <a href='../type/section.html#boundprocedure-set_option%7E2'>set_option</a>, <a href='../type/section.html#boundprocedure-set_a_option%7E2'>set_a_option</a> 
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-sanitize_source"></span><h3>procedure, private, nopass :: <strong>sanitize_source</strong>  
     
   </h3></div>
   
@@ -2491,8 +3684,7 @@ private subroutine <a href='../proc/print_section.html'>print_section</a>(self, 
     
 
 
-    <p>Set option value (scalar).
- Set option value (array).</p>
+    <p>Sanitize source.</p>
   </div>
   
   <ul class="list-group">
@@ -2500,14 +3692,22 @@ private subroutine <a href='../proc/print_section.html'>print_section</a>(self, 
       <li class="list-group-item">
       
          
-            
     
     <h3>
-private pure subroutine <a href='../proc/set_option%7E2.html'>set_option</a>(self, option_name, val, error)
+private elemental subroutine <a href='../proc/sanitize_source.html'>sanitize_source</a>(sep, source, error)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Sanitize source.</p>
     
     <h4>Arguments</h4>
     
@@ -2528,27 +3728,12 @@ private pure subroutine <a href='../proc/set_option%7E2.html'>set_option</a>(sel
   
 <tr>
   
-  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Section data.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
   <td><span class="anchor" ></span>character(len=*),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
+  <td><strong>sep</strong></td><td><p>Separator of option name/value.</p></td>
   
 </tr>
 
@@ -2558,12 +3743,12 @@ private pure subroutine <a href='../proc/set_option%7E2.html'>set_option</a>(sel
   
 <tr>
   
-  <td><span class="anchor" ></span>class(*),</td>
-  <td>intent(in)</td>
+  <td><span class="anchor" ></span>type(string),</td>
+  <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>val</strong></td><td><p>Value.</p></td>
+  <td><strong>source</strong></td><td><p>String containing option data.</p></td>
   
 </tr>
 
@@ -2574,8 +3759,8 @@ private pure subroutine <a href='../proc/set_option%7E2.html'>set_option</a>(sel
 <tr>
   
   <td><span class="anchor" ></span>integer(kind=I4P),</td>
-  <td>intent(out),</td>
-  <td>optional</td>
+  <td>intent(out)</td>
+  <td></td>
   
   <td></td><td>::</td>
   <td><strong>error</strong></td><td><p>Error code.</p></td>
@@ -2588,137 +3773,7 @@ private pure subroutine <a href='../proc/set_option%7E2.html'>set_option</a>(sel
       
     
     
-    
-    <h4>Description</h4>
-       
-       
 
-
-       
-       <p>Set option value (scalar).</p>
-        
-
-         
-      
-      </li>
-    
-      <li class="list-group-item">
-      
-         
-            
-    
-    <h3>
-private pure subroutine <a href='../proc/set_a_option%7E2.html'>set_a_option</a>(self, option_name, val, delimiter, error)
-    
-    
-    
-</h3>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Section data.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>val</strong>(:)</td><td><p>Value.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>delimiter</strong></td><td><p>Delimiter used for separating values.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=I4P),</td>
-  <td>intent(out),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>error</strong></td><td><p>Error code.</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Set option value (array).</p>
-        
-
-         
       
       </li>
     
@@ -2749,8 +3804,17 @@ private pure subroutine <a href='../proc/set_a_option%7E2.html'>set_a_option</a>
 private subroutine <a href='../proc/save_section.html'>save_section</a>(self, unit, retain_comments, iostat, iomsg)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Save data.</p>
     
     <h4>Arguments</h4>
     
@@ -2846,15 +3910,6 @@ private subroutine <a href='../proc/save_section.html'>save_section</a>(self, un
       
     
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Save data.</p>
-        
 
       
       </li>
@@ -2865,7 +3920,7 @@ private subroutine <a href='../proc/save_section.html'>save_section</a>(self, un
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-assignment%28%3D%29%7E3"></span><h3>generic, public :: <strong>assignment(=)</strong>  => <a href='../type/section.html#boundprocedure-assign_section'>assign_section</a> 
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-section_eq_character"></span><h3>procedure, private, pass(lhs) :: <strong>section_eq_character</strong>  
     
   </h3></div>
   
@@ -2873,7 +3928,7 @@ private subroutine <a href='../proc/save_section.html'>save_section</a>(self, un
     
 
 
-    <p>Assignment overloading.</p>
+    <p>Equal to character logical operator.</p>
   </div>
   
   <ul class="list-group">
@@ -2881,192 +3936,22 @@ private subroutine <a href='../proc/save_section.html'>save_section</a>(self, un
       <li class="list-group-item">
       
          
-            
-    
-    <h3>
-private elemental subroutine <a href='../proc/assign_section.html'>assign_section</a>(lhs, rhs)
-    
-    
-    
-</h3>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>type(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>rhs</strong></td><td><p>Rigth hand side.</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Assignment between two sections.</p>
-        
-
-         
-      
-      </li>
-    
-  </ul>
-</div>
-
-    
-	   
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-operator%28%3D%3D%29%7E2"></span><h3>generic, public :: <strong>operator(==)</strong>  => <a href='../type/section.html#boundprocedure-section_eq_string'>section_eq_string</a>, <a href='../type/section.html#boundprocedure-section_eq_character'>section_eq_character</a> 
-    
-  </h3></div>
-  
-  <div class="panel-body">
-    
-
-
-    <p>Equal operator overloading.</p>
-  </div>
-  
-  <ul class="list-group">
-    
-      <li class="list-group-item">
-      
-         
-            
-    
-    <h3>
-private elemental function <a href='../proc/section_eq_string.html'>section_eq_string</a>(lhs, rhs) result(is_it)
-    
-    
-    
-</h3>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>type(<a href='../type/string.html'>string</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>logical
-  </small></h4>
-  <p>Opreator test result.</p>
-    
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Equal to string logical operator.</p>
-        
-
-         
-      
-      </li>
-    
-      <li class="list-group-item">
-      
-         
-            
     
     <h3>
 private elemental function <a href='../proc/section_eq_character.html'>section_eq_character</a>(lhs, rhs) result(is_it)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Equal to character logical operator.</p>
     
     <h4>Arguments</h4>
     
@@ -3126,138 +4011,6 @@ private elemental function <a href='../proc/section_eq_character.html'>section_e
   </small></h4>
   <p>Opreator test result.</p>
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Equal to character logical operator.</p>
-        
-
-         
-      
-      </li>
-    
-  </ul>
-</div>
-
-    
-	   
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-add_option%7E2"></span><h3>procedure, private, pass(self) :: <strong>add_option</strong>  
-    
-  </h3></div>
-  
-  <div class="panel-body">
-    
-
-
-    <p>Add an option (scalar).</p>
-  </div>
-  
-  <ul class="list-group">
-    
-      <li class="list-group-item">
-      
-         
-    
-    <h3>
-private pure subroutine <a href='../proc/add_option%7E2.html'>add_option</a>(self, option_name, val, error)
-    
-    
-    
-</h3>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Section data.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>val</strong></td><td><p>Option value.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=I4P),</td>
-  <td>intent(out),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>error</strong></td><td><p>Error code.</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Add an option (with scalar value).</p>
-        
 
       
       </li>
@@ -3268,7 +4021,7 @@ private pure subroutine <a href='../proc/add_option%7E2.html'>add_option</a>(sel
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-add_a_option%7E2"></span><h3>procedure, private, pass(self) :: <strong>add_a_option</strong>  
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-section_eq_string"></span><h3>procedure, private, pass(lhs) :: <strong>section_eq_string</strong>  
     
   </h3></div>
   
@@ -3276,7 +4029,7 @@ private pure subroutine <a href='../proc/add_option%7E2.html'>add_option</a>(sel
     
 
 
-    <p>Add an option (array).</p>
+    <p>Equal to string logical operator.</p>
   </div>
   
   <ul class="list-group">
@@ -3286,148 +4039,20 @@ private pure subroutine <a href='../proc/add_option%7E2.html'>add_option</a>(sel
          
     
     <h3>
-private pure subroutine <a href='../proc/add_a_option%7E2.html'>add_a_option</a>(self, option_name, val, delimiter, error)
+private elemental function <a href='../proc/section_eq_string.html'>section_eq_string</a>(lhs, rhs) result(is_it)
     
     
-    
+	 
 </h3>
     
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
 
 
 
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Section data.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>val</strong>(:)</td><td><p>Option value.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>delimiter</strong></td><td><p>Delimiter used for separating values.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=I4P),</td>
-  <td>intent(out),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>error</strong></td><td><p>Error code.</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-    
-    <h4>Description</h4>
-       
-       
 
 
-       
-       <p>Add an option (with array value).</p>
-        
-
-      
-      </li>
-    
-  </ul>
-</div>
-
-    
-	   
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-get_option%7E3"></span><h3>procedure, private, pass(self) :: <strong>get_option</strong>  
-    
-  </h3></div>
-  
-  <div class="panel-body">
-    
 
 
-    <p>Get option value (scalar).</p>
-  </div>
-  
-  <ul class="list-group">
-    
-      <li class="list-group-item">
-      
-         
-    
-    <h3>
-private subroutine <a href='../proc/get_option%7E3.html'>get_option</a>(self, option_name, val, error)
-    
-    
-    
-</h3>
+<p>Equal to string logical operator.</p>
     
     <h4>Arguments</h4>
     
@@ -3453,7 +4078,7 @@ private subroutine <a href='../proc/get_option%7E3.html'>get_option</a>(self, op
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Section data.</p></td>
+  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
   
 </tr>
 
@@ -3463,42 +4088,12 @@ private subroutine <a href='../proc/get_option%7E3.html'>get_option</a>(self, op
   
 <tr>
   
-  <td><span class="anchor" ></span>character(len=*),</td>
+  <td><span class="anchor" ></span>type(string),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(*),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>val</strong></td><td><p>Value.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=I4P),</td>
-  <td>intent(out),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>error</strong></td><td><p>Error code.</p></td>
+  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
   
 </tr>
 
@@ -3508,15 +4103,15 @@ private subroutine <a href='../proc/get_option%7E3.html'>get_option</a>(self, op
       
     
     
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  <p>Opreator test result.</p>
     
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Get option value (scalar).</p>
-        
 
       
       </li>
@@ -3527,7 +4122,7 @@ private subroutine <a href='../proc/get_option%7E3.html'>get_option</a>(self, op
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-get_a_option%7E3"></span><h3>procedure, private, pass(self) :: <strong>get_a_option</strong>  
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-set%7E2"></span><h3>generic, public :: <strong>set</strong>  => <a href='../type/section.html#boundprocedure-set_option%7E2'>set_option</a>, <a href='../type/section.html#boundprocedure-set_a_option%7E2'>set_a_option</a> 
     
   </h3></div>
   
@@ -3535,7 +4130,8 @@ private subroutine <a href='../proc/get_option%7E3.html'>get_option</a>(self, op
     
 
 
-    <p>Get option value (array).</p>
+    <p>Set option value (scalar).
+ Set option value (array).</p>
   </div>
   
   <ul class="list-group">
@@ -3543,379 +4139,23 @@ private subroutine <a href='../proc/get_option%7E3.html'>get_option</a>(self, op
       <li class="list-group-item">
       
          
-    
-    <h3>
-private subroutine <a href='../proc/get_a_option%7E3.html'>get_a_option</a>(self, option_name, val, delimiter, error)
-    
-    
-    
-</h3>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Section data.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(*),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>val</strong>(1:)</td><td><p>Value.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>delimiter</strong></td><td><p>Delimiter used for separating values.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=I4P),</td>
-  <td>intent(out),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>error</strong></td><td><p>Error code.</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Procedure for getting option value (array).</p>
-        
-
-      
-      </li>
-    
-  </ul>
-</div>
-
-    
-	   
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-parse_name%7E2"></span><h3>procedure, private, pass(self) :: <strong>parse_name</strong>  
-    
-  </h3></div>
-  
-  <div class="panel-body">
-    
-
-
-    <p>Get section name.</p>
-  </div>
-  
-  <ul class="list-group">
-    
-      <li class="list-group-item">
-      
-         
-    
-    <h3>
-private elemental subroutine <a href='../proc/parse_name%7E2.html'>parse_name</a>(self, source, error)
-    
-    
-    
-</h3>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Section data.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>source</strong></td><td><p>String containing section data.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=I4P),</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>error</strong></td><td><p>Error code.</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Get section name from a source string.</p>
-        
-
-      
-      </li>
-    
-  </ul>
-</div>
-
-    
-	   
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-parse_options"></span><h3>procedure, private, pass(self) :: <strong>parse_options</strong>  
-    
-  </h3></div>
-  
-  <div class="panel-body">
-    
-
-
-    <p>Get section options.</p>
-  </div>
-  
-  <ul class="list-group">
-    
-      <li class="list-group-item">
-      
-         
-    
-    <h3>
-private elemental subroutine <a href='../proc/parse_options.html'>parse_options</a>(self, sep, source, error)
-    
-    
-    
-</h3>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Section data.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>sep</strong></td><td><p>Separator of option name/value.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(len=*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>source</strong></td><td><p>String containing section data.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer(kind=I4P),</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>error</strong></td><td><p>Error code.</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Get section options from a source string.</p>
-        
-
-      
-      </li>
-    
-  </ul>
-</div>
-
-    
-	   
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-set_option%7E2"></span><h3>procedure, private, pass(self) :: <strong>set_option</strong>  
-    
-  </h3></div>
-  
-  <div class="panel-body">
-    
-
-
-    <p>Set option value (scalar).</p>
-  </div>
-  
-  <ul class="list-group">
-    
-      <li class="list-group-item">
-      
-         
+            
     
     <h3>
 private pure subroutine <a href='../proc/set_option%7E2.html'>set_option</a>(self, option_name, val, error)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Set option value (scalar).</p>
     
     <h4>Arguments</h4>
     
@@ -3996,48 +4236,31 @@ private pure subroutine <a href='../proc/set_option%7E2.html'>set_option</a>(sel
       
     
     
-    
-    <h4>Description</h4>
-       
-       
 
-
-       
-       <p>Set option value (scalar).</p>
-        
-
+         
       
       </li>
-    
-  </ul>
-</div>
-
-    
-	   
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-set_a_option%7E2"></span><h3>procedure, private, pass(self) :: <strong>set_a_option</strong>  
-    
-  </h3></div>
-  
-  <div class="panel-body">
-    
-
-
-    <p>Set option value (array).</p>
-  </div>
-  
-  <ul class="list-group">
     
       <li class="list-group-item">
       
          
+            
     
     <h3>
 private pure subroutine <a href='../proc/set_a_option%7E2.html'>set_a_option</a>(self, option_name, val, delimiter, error)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Set option value (array).</p>
     
     <h4>Arguments</h4>
     
@@ -4133,16 +4356,8 @@ private pure subroutine <a href='../proc/set_a_option%7E2.html'>set_a_option</a>
       
     
     
-    
-    <h4>Description</h4>
-       
-       
 
-
-       
-       <p>Set option value (array).</p>
-        
-
+         
       
       </li>
     
@@ -4152,7 +4367,7 @@ private pure subroutine <a href='../proc/set_a_option%7E2.html'>set_a_option</a>
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-assign_section"></span><h3>procedure, private, pass(lhs) :: <strong>assign_section</strong>  
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-set_a_option%7E2"></span><h3>procedure, private, pass(self) :: <strong>set_a_option</strong>  
     
   </h3></div>
   
@@ -4160,7 +4375,7 @@ private pure subroutine <a href='../proc/set_a_option%7E2.html'>set_a_option</a>
     
 
 
-    <p>Assignment overloading.</p>
+    <p>Set option value (array).</p>
   </div>
   
   <ul class="list-group">
@@ -4170,11 +4385,20 @@ private pure subroutine <a href='../proc/set_a_option%7E2.html'>set_a_option</a>
          
     
     <h3>
-private elemental subroutine <a href='../proc/assign_section.html'>assign_section</a>(lhs, rhs)
+private pure subroutine <a href='../proc/set_a_option%7E2.html'>set_a_option</a>(self, option_name, val, delimiter, error)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Set option value (array).</p>
     
     <h4>Arguments</h4>
     
@@ -4200,7 +4424,7 @@ private elemental subroutine <a href='../proc/assign_section.html'>assign_sectio
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  <td><strong>self</strong></td><td><p>Section data.</p></td>
   
 </tr>
 
@@ -4210,12 +4434,57 @@ private elemental subroutine <a href='../proc/assign_section.html'>assign_sectio
   
 <tr>
   
-  <td><span class="anchor" ></span>type(<a href='../type/section.html'>section</a>),</td>
+  <td><span class="anchor" ></span>character(len=*),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>rhs</strong></td><td><p>Rigth hand side.</p></td>
+  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong>(:)</td><td><p>Value.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>delimiter</strong></td><td><p>Delimiter used for separating values.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=I4P),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>error</strong></td><td><p>Error code.</p></td>
   
 </tr>
 
@@ -4225,15 +4494,6 @@ private elemental subroutine <a href='../proc/assign_section.html'>assign_sectio
       
     
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Assignment between two sections.</p>
-        
 
       
       </li>
@@ -4244,7 +4504,7 @@ private elemental subroutine <a href='../proc/assign_section.html'>assign_sectio
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-section_eq_string"></span><h3>procedure, private, pass(lhs) :: <strong>section_eq_string</strong>  
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-set_option%7E2"></span><h3>procedure, private, pass(self) :: <strong>set_option</strong>  
     
   </h3></div>
   
@@ -4252,7 +4512,7 @@ private elemental subroutine <a href='../proc/assign_section.html'>assign_sectio
     
 
 
-    <p>Equal to string logical operator.</p>
+    <p>Set option value (scalar).</p>
   </div>
   
   <ul class="list-group">
@@ -4262,11 +4522,20 @@ private elemental subroutine <a href='../proc/assign_section.html'>assign_sectio
          
     
     <h3>
-private elemental function <a href='../proc/section_eq_string.html'>section_eq_string</a>(lhs, rhs) result(is_it)
+private pure subroutine <a href='../proc/set_option%7E2.html'>set_option</a>(self, option_name, val, error)
     
     
-    
+	 
 </h3>
+    
+
+
+
+
+
+
+
+<p>Set option value (scalar).</p>
     
     <h4>Arguments</h4>
     
@@ -4288,11 +4557,11 @@ private elemental function <a href='../proc/section_eq_string.html'>section_eq_s
 <tr>
   
   <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(in)</td>
+  <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
+  <td><strong>self</strong></td><td><p>Section data.</p></td>
   
 </tr>
 
@@ -4302,12 +4571,42 @@ private elemental function <a href='../proc/section_eq_string.html'>section_eq_s
   
 <tr>
   
-  <td><span class="anchor" ></span>type(<a href='../type/string.html'>string</a>),</td>
+  <td><span class="anchor" ></span>character(len=*),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
+  <td><strong>option_name</strong></td><td><p>Option name.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong></td><td><p>Value.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer(kind=I4P),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>error</strong></td><td><p>Error code.</p></td>
   
 </tr>
 
@@ -4317,125 +4616,6 @@ private elemental function <a href='../proc/section_eq_string.html'>section_eq_s
       
     
     
-
-  
-  
-  
-  
-     <h4>Return Value <small>logical
-  </small></h4>
-  <p>Opreator test result.</p>
-    
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Equal to string logical operator.</p>
-        
-
-      
-      </li>
-    
-  </ul>
-</div>
-
-    
-	   
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-section_eq_character"></span><h3>procedure, private, pass(lhs) :: <strong>section_eq_character</strong>  
-    
-  </h3></div>
-  
-  <div class="panel-body">
-    
-
-
-    <p>Equal to character logical operator.</p>
-  </div>
-  
-  <ul class="list-group">
-    
-      <li class="list-group-item">
-      
-         
-    
-    <h3>
-private elemental function <a href='../proc/section_eq_character.html'>section_eq_character</a>(lhs, rhs) result(is_it)
-    
-    
-    
-</h3>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/section.html'>section</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>lhs</strong></td><td><p>Left hand side.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>character(kind=CK,len=*),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>rhs</strong></td><td><p>Right hand side.</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>logical
-  </small></h4>
-  <p>Opreator test result.</p>
-    
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>Equal to character logical operator.</p>
-        
 
       
       </li>
@@ -4482,14 +4662,15 @@ private elemental function <a href='../proc/section_eq_character.html'>section_e
     <span class="k">generic</span> <span class="kd">::</span> <span class="n">operator</span><span class="p">(</span><span class="o">==</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">section_eq_string</span><span class="p">,</span> <span class="p">&amp;</span>
                                <span class="n">section_eq_character</span> <span class="c">!&lt; Equal operator overloading.</span>
     <span class="c">! private methods</span>
-    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">add_option</span>    <span class="c">!&lt; Add an option (scalar).</span>
-    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">add_a_option</span>  <span class="c">!&lt; Add an option (array).</span>
-    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">get_option</span>    <span class="c">!&lt; Get option value (scalar).</span>
-    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">get_a_option</span>  <span class="c">!&lt; Get option value (array).</span>
-    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">parse_name</span>    <span class="c">!&lt; Get section name.</span>
-    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">parse_options</span> <span class="c">!&lt; Get section options.</span>
-    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">set_option</span>    <span class="c">!&lt; Set option value (scalar).</span>
-    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">set_a_option</span>  <span class="c">!&lt; Set option value (array).</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">add_option</span>      <span class="c">!&lt; Add an option (scalar).</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">add_a_option</span>    <span class="c">!&lt; Add an option (array).</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">get_option</span>      <span class="c">!&lt; Get option value (scalar).</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">get_a_option</span>    <span class="c">!&lt; Get option value (array).</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">parse_name</span>      <span class="c">!&lt; Get section name.</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">parse_options</span>   <span class="c">!&lt; Get section options.</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">nopass</span>     <span class="kd">::</span> <span class="n">sanitize_source</span> <span class="c">!&lt; Sanitize source.</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">set_option</span>      <span class="c">!&lt; Set option value (scalar).</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="kd">::</span> <span class="n">set_a_option</span>    <span class="c">!&lt; Set option value (array).</span>
     <span class="c">! assignments</span>
     <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span><span class="p">,</span> <span class="k">pass</span><span class="p">(</span><span class="n">lhs</span><span class="p">)</span> <span class="kd">::</span> <span class="n">assign_section</span> <span class="c">!&lt; Assignment overloading.</span>
     <span class="c">! logical operators</span>
@@ -4504,23 +4685,46 @@ private elemental function <a href='../proc/section_eq_character.html'>section_e
     </div>
   </div>
 
+  <section class="visible-xs visible-sm hidden-md">
     <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#alltypes-1">All Derived Types</a></h3></div>
+  <div id="alltypes-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/file_ini.html">file_ini</a>
+      
+      <a class="list-group-item" href="../type/option.html">option</a>
+      
+      <a class="list-group-item" href="../type/section.html">section</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+
+    <hr>    
+    </div> <!-- /container -->
     <footer>
+      <div class="container">
       <div class="row">
-        <div class="col-md-4">&copy; 2016 </div>
-        <div class="col-md-4"><span class="text-center"> FiNeR was developed by Stefano Zaghi</span></div>
-        <div class="col-md-4">
-          <span class="pull-right">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-            
-          </span>
+             on 2017-04-06 14:12  
+          </p>
         </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FiNeR was developed by Stefano Zaghi</p></div>
       </div>
       <br>
+      </div> <!-- /container -->    
     </footer>
-    </div> <!-- /container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

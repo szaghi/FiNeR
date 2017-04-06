@@ -7,7 +7,7 @@
 	 
 	 <meta name="description" content="Fortran INI ParseR and generator">
     
-    <meta name="author" content="Chris MacMackin" >
+    <meta name="author" content="Stefano Zaghi" >
     <link rel="icon" href="../favicon.png">
 
     <title>
@@ -55,21 +55,46 @@ All Types &ndash; FiNeR
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
 				
-                
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
             <li><a href="../lists/files.html">Source Files</a></li>
 				
 				
             <li><a href="../lists/modules.html">Modules</a></li>
 				
-				
+            
+                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../program/autotest.html">Program</a></li>
+            <li><a href="../lists/programs.html">Programs</a></li>
 				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
           </ul>
         
         <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -101,8 +126,6 @@ All Types &ndash; FiNeR
 			 
 			   <tr><td><a href='../type/section.html'>section</a></td><td><a href='../module/finer_section_t.html'>finer_section_t</a></td><td>None</td><td><p>Section data of file INI.</p></td></tr>
 			 
-			   <tr><td><a href='../type/string.html'>string</a></td><td><a href='../module/stringifor_string_t.html'>stringifor_string_t</a></td><td>None</td><td><p>OOP designed string class.</p></td></tr>
-			 
 			 </tbody></table>
              
                 <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -123,12 +146,18 @@ All Types &ndash; FiNeR
 <text text-anchor="middle" x="461" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">file_ini</text>
 </a>
 </g>
-<!-- type~string -->
-<g id="node2" class="node"><title>type~string</title>
-<a xlink:href="../type/string.html" xlink:title="string">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
-<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">string</text>
+<!-- type~section -->
+<g id="node2" class="node"><title>type~section</title>
+<a xlink:href="../type/section.html" xlink:title="section">
+<polygon fill="#5cb85c" stroke="#5cb85c" points="362,-26 308,-26 308,-1.24345e-14 362,-3.55271e-15 362,-26"/>
+<text text-anchor="middle" x="335" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">section</text>
 </a>
+</g>
+<!-- type~section&#45;&gt;type~file_ini -->
+<g id="edge2" class="edge"><title>type~section&#45;&gt;type~file_ini</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M362.03,-13C379.928,-13 403.651,-13 423.384,-13"/>
+<polygon fill="#000000" stroke="#000000" points="423.58,-16.5001 433.58,-13 423.58,-9.5001 423.58,-16.5001"/>
+<text text-anchor="middle" x="398" y="-17.45" font-family="Helvetica,sans-Serif" font-size="9.50">sections</text>
 </g>
 <!-- type~option -->
 <g id="node3" class="node"><title>type~option</title>
@@ -137,30 +166,22 @@ All Types &ndash; FiNeR
 <text text-anchor="middle" x="213" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">option</text>
 </a>
 </g>
-<!-- type~string&#45;&gt;type~option -->
-<g id="edge4" class="edge"><title>type~string&#45;&gt;type~option</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M54.046,-13C86.142,-13 139.831,-13 175.819,-13"/>
-<polygon fill="#000000" stroke="#000000" points="175.921,-16.5001 185.921,-13 175.921,-9.5001 175.921,-16.5001"/>
-<text text-anchor="middle" x="120" y="-17.45" font-family="Helvetica,sans-Serif" font-size="9.50">oname, ovals, ocomm</text>
-</g>
-<!-- type~section -->
-<g id="node4" class="node"><title>type~section</title>
-<a xlink:href="../type/section.html" xlink:title="section">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="362,-26 308,-26 308,-1.24345e-14 362,-3.55271e-15 362,-26"/>
-<text text-anchor="middle" x="335" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">section</text>
-</a>
-</g>
 <!-- type~option&#45;&gt;type~section -->
-<g id="edge6" class="edge"><title>type~option&#45;&gt;type~section</title>
+<g id="edge4" class="edge"><title>type~option&#45;&gt;type~section</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M240.076,-13C257.055,-13 279.177,-13 297.792,-13"/>
 <polygon fill="#000000" stroke="#000000" points="298,-16.5001 308,-13 298,-9.5001 298,-16.5001"/>
 <text text-anchor="middle" x="274" y="-17.45" font-family="Helvetica,sans-Serif" font-size="9.50">options</text>
 </g>
-<!-- type~section&#45;&gt;type~file_ini -->
-<g id="edge2" class="edge"><title>type~section&#45;&gt;type~file_ini</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M362.03,-13C379.928,-13 403.651,-13 423.384,-13"/>
-<polygon fill="#000000" stroke="#000000" points="423.58,-16.5001 433.58,-13 423.58,-9.5001 423.58,-16.5001"/>
-<text text-anchor="middle" x="398" y="-17.45" font-family="Helvetica,sans-Serif" font-size="9.50">sections</text>
+<!-- string -->
+<g id="node6" class="node"><title>string</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
+<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">string</text>
+</g>
+<!-- string&#45;&gt;type~option -->
+<g id="edge6" class="edge"><title>string&#45;&gt;type~option</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M54.046,-13C86.142,-13 139.831,-13 175.819,-13"/>
+<polygon fill="#000000" stroke="#000000" points="175.921,-16.5001 185.921,-13 175.921,-9.5001 175.921,-16.5001"/>
+<text text-anchor="middle" x="120" y="-17.45" font-family="Helvetica,sans-Serif" font-size="9.50">ocomm, oname, ovals</text>
 </g>
 </g>
 </svg>
@@ -175,83 +196,38 @@ All Types &ndash; FiNeR
                       </div>
                       <div class="modal-body">
                         
-Nodes of different colours represent the following:
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.26.3 (20100126.1600)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="641pt" height="28pt"
- viewBox="0.00 0.00 641.00 27.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph1" class="graph" transform="scale(0.817602 0.817602) rotate(0) translate(4 30)">
+<svg width="176pt" height="34pt"
+ viewBox="0.00 0.00 176.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-30 781,-30 781,5 -4,5"/>
-<!-- Module -->
-<g id="node1" class="node"><title>Module</title>
-<polygon fill="#337ab7" stroke="#337ab7" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
-<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
-</g>
-<!-- Submodule -->
-<g id="node2" class="node"><title>Submodule</title>
-<polygon fill="#5bc0de" stroke="#5bc0de" points="138,-26 72,-26 72,-1.24345e-14 138,-3.55271e-15 138,-26"/>
-<text text-anchor="middle" x="105" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
-</g>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 173,-30 173,5 -4,5"/>
 <!-- Type -->
-<g id="node3" class="node"><title>Type</title>
-<polygon fill="#5cb85c" stroke="#5cb85c" points="210,-26 156,-26 156,-1.24345e-14 210,-3.55271e-15 210,-26"/>
-<text text-anchor="middle" x="183" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
-</g>
-<!-- Subroutine -->
-<g id="node4" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="292,-26 228,-26 228,-1.24345e-14 292,-3.55271e-15 292,-26"/>
-<text text-anchor="middle" x="260" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
-</g>
-<!-- Function -->
-<g id="node5" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
-<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
-</g>
-<!-- Interface -->
-<g id="node6" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="436,-26 382,-26 382,-1.24345e-14 436,-3.55271e-15 436,-26"/>
-<text text-anchor="middle" x="409" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
-</g>
-<!-- Unknown Procedure Type -->
-<g id="node7" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="590,-26 454,-26 454,-1.24345e-14 590,-3.55271e-15 590,-26"/>
-<text text-anchor="middle" x="522" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
-</g>
-<!-- Program -->
-<g id="node8" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="662,-26 608,-26 608,-1.24345e-14 662,-3.55271e-15 662,-26"/>
-<text text-anchor="middle" x="635" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<g id="node1" class="node"><title>Type</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
+<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
 </g>
 <!-- This Page&#39;s Entity -->
-<g id="node9" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="776,-26 680,-26 680,-1.24345e-14 776,-3.55271e-15 776,-26"/>
-<text text-anchor="middle" x="728" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<g id="node2" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="168,-26 72,-26 72,-1.24345e-14 168,-3.55271e-15 168,-26"/>
+<text text-anchor="middle" x="120" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
 
-Where possible, edges connecting nodes are given different colours to make them
-easier to distinguish in large graphs.
-<h5>Module Graph</h5>
-<p>Solid arrows point from a parent (sub)module to the submodule which is
-descended from it. Dashed arrows point from a module being used to the
-module using it.</p>
-<h5>Type Graph</h5>
-<p>Solid arrows point from one derived type to another which extends
-(inherits from) it. Dashed arrows point from a derived type to another
-type containing it as a components, with a label listing the name(s) of
-said component(s).</p>
-<h5>Call Graph</h5>
-<p>Solid arrows point from a procedure to one which it calls. Dashed 
-arrows point from an interface to procedures which implement that interface.
-This could include the module procedures in a generic interface or the
-implementation in a submodule of an interface in a parent module.</p>
-
+    
+    <p>Solid arrows point from one derived type to another which extends
+    (inherits from) it. Dashed arrows point from a derived type to another
+    type containing it as a components, with a label listing the name(s) of
+    said component(s).
+    </p>
+    
                       </div>
                     </div>
                   </div>
@@ -260,23 +236,24 @@ implementation in a submodule of an interface in a parent module.</p>
         </div>
       </div>
 
-    <hr>
+    <hr>    
+    </div> <!-- /container -->
     <footer>
+      <div class="container">
       <div class="row">
-        <div class="col-md-4">&copy; 2016 </div>
-        <div class="col-md-4"><span class="text-center"> FiNeR was developed by Stefano Zaghi</span></div>
-        <div class="col-md-4">
-          <span class="pull-right">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-            
-          </span>
+             on 2017-04-06 14:12  
+          </p>
         </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FiNeR was developed by Stefano Zaghi</p></div>
       </div>
       <br>
+      </div> <!-- /container -->    
     </footer>
-    </div> <!-- /container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -1,24 +1,18 @@
 !< INI file class definition.
 module finer_file_ini_t
-!-----------------------------------------------------------------------------------------------------------------------------------
 !< INI file class definition.
-!-----------------------------------------------------------------------------------------------------------------------------------
 use finer_backend
 use finer_option_t, only : option
 use finer_section_t, only : section
 use penf
 use stringifor
 use, intrinsic :: iso_fortran_env, only : stdout => output_unit
-!-----------------------------------------------------------------------------------------------------------------------------------
 
-!-----------------------------------------------------------------------------------------------------------------------------------
 implicit none
 private
 public :: file_ini
 public :: file_ini_autotest
-!-----------------------------------------------------------------------------------------------------------------------------------
 
-!-----------------------------------------------------------------------------------------------------------------------------------
 type :: file_ini
   !< INI file class.
   private
@@ -72,13 +66,11 @@ type :: file_ini
     ! assignments
     procedure, private, pass(lhs) :: assign_file_ini !< Assignment overloading.
 endtype file_ini
-!-----------------------------------------------------------------------------------------------------------------------------------
+
 contains
   ! public methods
   elemental function count_values(self, delimiter, section_name, option_name) result(Nv)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Get the number of values of option into section data.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),        intent(in) :: self         !< File data.
   character(*), optional, intent(in) :: delimiter    !< Delimiter used for separating values.
   character(*),           intent(in) :: section_name !< Section name.
@@ -86,9 +78,7 @@ contains
   integer(I4P)                       :: Nv           !< Number of values.
   character(len=:), allocatable      :: dlm          !< Dummy string for delimiter handling.
   integer(I4P)                       :: s            !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self%sections)) then
     dlm = ' ' ; if (present(delimiter)) dlm = delimiter
     do s=1, size(self%sections, dim=1)
@@ -98,17 +88,12 @@ contains
       endif
     enddo
   endif
-  !---------------------------------------------------------------------------------------------------------------------------------
   endfunction count_values
 
   elemental subroutine free(self)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Free dynamic memory.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini), intent(inout) :: self !< File data.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self%filename)) deallocate(self%filename)
   if (allocated(self%sections)) then
     call self%sections%free
@@ -116,14 +101,10 @@ contains
   endif
   self%Ns = 0
   self%opt_sep = def_opt_sep
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine free
 
   pure subroutine get_items(self, items)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Get list of pairs option name/value.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),               intent(in)  :: self       !< File data.
   character(len=:), allocatable, intent(out) :: items(:,:) !< Items, list of pairs option name/value for all options [1:No,1:2].
   character(len=:), allocatable              :: pairs(:)   !< Option name/values pairs.
@@ -131,9 +112,7 @@ contains
   integer(I4P)                               :: o          !< Counter.
   integer(I4P)                               :: s          !< Counter.
   integer(I4P)                               :: No         !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   mx_chars = MinI4P
   if (allocated(self%sections)) then
     No = 0
@@ -158,21 +137,15 @@ contains
       enddo
     endif
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine get_items
 
   pure subroutine get_sections_list(self, list)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Get sections names list.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),               intent(in)  :: self    !< File data.
   character(len=:), allocatable, intent(out) :: list(:) !< Sections names list.
   integer                                    :: max_len !< Max length of section name.
   integer                                    :: s       !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self%sections)) then
     max_len = MinI_P
     do s=1, self%Ns
@@ -185,26 +158,20 @@ contains
       enddo
     endif
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine get_sections_list
 
   function has_option(self, option_name, section_name) result(pres)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Inquire the presence of (at least one) option with the name passed.
   !<
-  !< Optionall, the first matching section name is returned.
+  !< Optional, the first matching section name is returned.
   !<
   !< @note All sections are searched and the first occurence is returned.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),        intent(in)    :: self         !< File data.
   character(*),           intent(in)    :: option_name  !< Option name.
   character(*), optional, intent(inout) :: section_name !< Section name.
   logical                               :: pres         !< Inquiring flag.
   integer(I4P)                          :: s            !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   pres = .false.
   if (allocated(self%sections)) then
     do s=1, size(self%sections, dim=1)
@@ -215,27 +182,18 @@ contains
       endif
     enddo
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endfunction has_option
 
   elemental function has_section(self, section_name) result(pres)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Inquire the presence of (at least one) section with the name passed.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini), intent(in) :: self         !< File data.
   character(*),    intent(in) :: section_name !< Section name.
   logical                     :: pres         !< Inquiring flag.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   pres = (self%index(section_name=section_name)>0)
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endfunction has_section
 
   subroutine load(self, separator, filename, source, error)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Get file data from a file or a source string.
   !<
   !<### Usage
@@ -251,46 +209,30 @@ contains
   !<type(file_ini):: fini
   !<call fini%load(source='[section-1] option-1=one [section-2] option-2=due')
   !<```
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),        intent(inout) :: self      !< File data.
   character(1), optional, intent(in)    :: separator !< Separator of options name/value.
   character(*), optional, intent(in)    :: filename  !< File name.
-  character(*), optional, intent(in)    :: source    !< File source.
+  character(*), optional, intent(in)    :: source    !< File source contents.
   integer(I4P), optional, intent(out)   :: error     !< Error code.
   integer(I4P)                          :: errd      !< Error code.
-  character(len=:), allocatable         :: sourced   !< Dummy source string.
-  type(string)                          :: source_   !< Dummy source string.
-  !---------------------------------------------------------------------------------------------------------------------------------
+  type(string)                          :: source_   !< File source contents, local variable.
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   errd = err_source_missing
   if (present(separator)) self%opt_sep = separator
   if (present(filename)) then
     self%filename = trim(adjustl(filename))
-    ! to remove after StringiFor adoption
-    call source_%read_file(file=self%filename)
-    sourced = source_%chars()
-    ! call read_file_as_stream(filename=self%filename, fast_read=.true., stream=sourced)
-    ! to remove after StringiFor adoption
-    call self%parse(source=sourced, error=errd)
+    call source_%read_file(file=self%filename, iostat=errd)
   elseif (present(source)) then
-    call self%parse(source=source, error=errd)
+    source_ = source
   elseif (allocated(self%filename)) then
-    ! to remove after StringiFor adoption
-    call source_%read_file(file=self%filename)
-    sourced = source_%chars()
-    ! call read_file_as_stream(filename=self%filename, fast_read=.true., stream=sourced)
-    call self%parse(source=sourced, error=errd)
+    call source_%read_file(file=self%filename, iostat=errd)
   endif
+  if (errd <= 0) call self%parse(source=source_, error=errd)
   if (present(error)) error = errd
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine load
 
   subroutine print_file_ini(self, unit, pref, retain_comments, iostat, iomsg)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Print data with a pretty format.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),        intent(in)  :: self            !< File data.
   integer(I4P),           intent(in)  :: unit            !< Logic unit.
   character(*), optional, intent(in)  :: pref            !< Prefixing string.
@@ -302,9 +244,7 @@ contains
   integer(I4P)                        :: iostatd         !< IO error.
   character(500)                      :: iomsgd          !< Temporary variable for IO error message.
   integer(I4P)                        :: s               !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   prefd = '' ; if (present(pref)) prefd = pref
   rt_comm = .false. ; if (present(retain_comments)) rt_comm = retain_comments
   if (allocated(self%sections)) then
@@ -314,14 +254,10 @@ contains
   endif
   if (present(iostat)) iostat = iostatd
   if (present(iomsg))  iomsg  = iomsgd
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine print_file_ini
 
   subroutine save_file_ini(self, retain_comments, iostat, iomsg, filename)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Save data.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),        intent(inout) :: self            !< File data.
   logical,      optional, intent(in)    :: retain_comments !< Flag for retaining eventual comments.
   integer(I4P), optional, intent(out)   :: iostat          !< IO error.
@@ -332,9 +268,7 @@ contains
   integer(I4P)                          :: iostatd         !< IO error.
   character(500)                        :: iomsgd          !< Temporary variable for IO error message.
   integer(I4P)                          :: s               !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   rt_comm = .false. ; if (present(retain_comments)) rt_comm = retain_comments
   if (present(filename)) self%filename = filename
   if (allocated(self%filename).and.allocated(self%sections)) then
@@ -346,36 +280,26 @@ contains
   endif
   if (present(iostat)) iostat = iostatd
   if (present(iomsg))  iomsg  = iomsgd
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine save_file_ini
 
   pure function section_file_ini(self, section_index) result(sname)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Get section name once an index (valid) is provided.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini), intent(in)   :: self          !< File data.
   integer(I4P),    intent(in)   :: section_index !< Section index.
   character(len=:), allocatable :: sname         !< Section name.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self%sections)) then
     if ((section_index >= lbound(self%sections, dim=1)).and.(section_index <= ubound(self%sections, dim=1))) then
       sname = self%sections(section_index)%name()
     endif
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endfunction section_file_ini
 
   ! private methods
   pure subroutine add_a_option(self, error, section_name, option_name, val)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Add an option (with array value).
   !<
   !< If the option already exists, its value is updated.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),        intent(inout) :: self         !< File data.
   integer(I4P), optional, intent(out)   :: error        !< Error code.
   character(*),           intent(in)    :: section_name !< Section name.
@@ -383,9 +307,7 @@ contains
   class(*),               intent(in)    :: val(1:)      !< Option value.
   integer(I4P)                          :: errd         !< Error code.
   integer(I4P)                          :: s            !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   errd = err_section_options
   call self%add(section_name=section_name, error=errd)
   if (errd==0) then
@@ -397,16 +319,12 @@ contains
     enddo
   endif
   if (present(error)) error = errd
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine add_a_option
 
   pure subroutine add_option(self, error, section_name, option_name, val)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Add an option (with scalar value).
   !<
   !< If the option already exists, its value is updated.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),        intent(inout) :: self         !< File data.
   integer(I4P), optional, intent(out)   :: error        !< Error code.
   character(*),           intent(in)    :: section_name !< Section name.
@@ -414,9 +332,7 @@ contains
   class(*),               intent(in)    :: val          !< Option value.
   integer(I4P)                          :: errd         !< Error code.
   integer(I4P)                          :: s            !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   errd = err_section_options
   call self%add(section_name=section_name, error=errd)
   if (errd==0) then
@@ -428,24 +344,18 @@ contains
     enddo
   endif
   if (present(error)) error = errd
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine add_option
 
   pure subroutine add_section(self, error, section_name)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Add a section.
   !<
   !< If the section already exists, it is left unchanged.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),        intent(inout) :: self         !< File data.
   integer(I4P), optional, intent(out)   :: error        !< Error code.
   character(*),           intent(in)    :: section_name !< Section name.
   type(section), allocatable            :: sections(:)  !< Temporary sections array.
   integer(I4P)                          :: errd         !< Error code.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   errd = err_section
   if (allocated(self%sections)) then
     if (self%index(section_name=section_name)==0) then
@@ -463,50 +373,32 @@ contains
   endif
   if (self%index(section_name=section_name)>0) errd = 0
   if (present(error)) error = errd
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine add_section
 
   elemental subroutine free_options_all(self)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Free all options of all sections.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini), intent(inout):: self !< File data.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self%sections)) call self%sections%free_options
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine free_options_all
 
   elemental subroutine free_option_of_section(self, section_name, option_name)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Free all options of a section.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini), intent(inout) :: self         !< File data.
   character(*),    intent(in)    :: section_name !< Section name.
   character(*),    intent(in)    :: option_name  !< Option  name.
   integer(I4P)                   :: s            !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   s = self%index(section_name=section_name)
   if (s>0) call self%sections(s)%free_option(option_name=option_name)
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine free_option_of_section
 
   elemental subroutine free_options_of_section(self, section_name)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Free all options of a section.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini), intent(inout) :: self         !< File data.
   character(*),    intent(in)    :: section_name !< Section name.
   integer(I4P)                   :: s            !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(self%sections)) then
     do s=1, size(self%sections, dim=1)
       if (self%sections(s) == section_name) then
@@ -515,21 +407,15 @@ contains
       endif
     enddo
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine free_options_of_section
 
   elemental subroutine free_section(self, section_name)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Free all options of a section.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini), intent(inout) :: self         !< File data.
   character(*),    intent(in)    :: section_name !< Section name.
   type(section), allocatable     :: sections(:)  !< Temporary sections array.
   integer(I4P)                   :: s            !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   s = self%index(section_name=section_name)
   if (s>0) then
     allocate(sections(1:size(self%sections, dim=1)-1))
@@ -544,74 +430,60 @@ contains
     call move_alloc(sections, self%sections)
     self%Ns = self%Ns - 1
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine free_section
 
-  subroutine get_a_option(self, delimiter, error, section_name, option_name, val)
-  !---------------------------------------------------------------------------------------------------------------------------------
+  subroutine get_a_option(self, section_name, option_name, val, delimiter, error)
   !< Get option value (array)
-  !---------------------------------------------------------------------------------------------------------------------------------
-  class(file_ini),        intent(in)    :: self         !< File data.
-  character(*), optional, intent(in)    :: delimiter    !< Delimiter used for separating values.
-  integer(I4P), optional, intent(out)   :: error        !< Error code.
-  character(*),           intent(in)    :: section_name !< Section name.
-  character(*),           intent(in)    :: option_name  !< Option name.
-  class(*),               intent(inout) :: val(1:)      !< Value.
-  character(len=:), allocatable         :: dlm          !< Dummy string for delimiter handling.
-  integer(I4P)                          :: errd         !< Error code.
-  integer(I4P)                          :: s            !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
+  class(file_ini), intent(in)            :: self         !< File data.
+  character(*),    intent(in)            :: section_name !< Section name.
+  character(*),    intent(in)            :: option_name  !< Option name.
+  class(*),        intent(inout)         :: val(1:)      !< Value.
+  character(*),    intent(in),  optional :: delimiter    !< Delimiter used for separating values.
+  integer(I4P),    intent(out), optional :: error        !< Error code.
+  character(len=:), allocatable          :: dlm          !< Dummy string for delimiter handling.
+  integer(I4P)                           :: errd         !< Error code.
+  integer(I4P)                           :: s            !< Counter.
 
-  !---------------------------------------------------------------------------------------------------------------------------------
+  errd = ERR_OPTION
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
   if (allocated(self%sections)) then
     do s=1, size(self%sections, dim=1)
       if (self%sections(s) == trim(adjustl(section_name))) then
         call self%sections(s)%get(delimiter=dlm, error=errd, option_name=option_name, val=val)
-        if (present(error)) error = errd
         exit
       endif
     enddo
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
+  if (present(error)) error = errd
   endsubroutine get_a_option
 
-  subroutine get_option(self, error, section_name, option_name, val)
-  !---------------------------------------------------------------------------------------------------------------------------------
+  subroutine get_option(self, section_name, option_name, val, error)
   !< Get option value (scalar).
-  !---------------------------------------------------------------------------------------------------------------------------------
-  class(file_ini),        intent(in)    :: self         !< File data.
-  integer(I4P), optional, intent(out)   :: error        !< Error code.
-  character(*),           intent(in)    :: section_name !< Section name.
-  character(*),           intent(in)    :: option_name  !< Option name.
-  class(*),               intent(inout) :: val          !< Value.
-  integer(I4P)                          :: errd         !< Error code.
-  integer(I4P)                          :: s            !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
+  class(file_ini), intent(in)            :: self         !< File data.
+  character(*),    intent(in)            :: section_name !< Section name.
+  character(*),    intent(in)            :: option_name  !< Option name.
+  class(*),        intent(inout)         :: val          !< Value.
+  integer(I4P),    intent(out), optional :: error        !< Error code.
+  integer(I4P)                           :: errd         !< Error code.
+  integer(I4P)                           :: s            !< Counter.
 
-  !---------------------------------------------------------------------------------------------------------------------------------
+  errd = ERR_OPTION
   if (allocated(self%sections)) then
     do s=1, size(self%sections, dim=1)
       if (self%sections(s) == trim(adjustl(section_name))) then
         call self%sections(s)%get(error=errd, option_name=option_name, val=val)
-        if (present(error)) error = errd
         exit
       endif
     enddo
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
+  if (present(error)) error = errd
   endsubroutine get_option
 
   elemental function index_option(self, back, section_name, option_name) result(ind)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Return the index of the option (inside a  section) matching the name(s) passed.
   !<
   !< @note The matching index returned is the first found if *back* is not passed or if *back=.false.*. On the contrary the last
   !< found is returned if *back=.true.*.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),   intent(in) :: self         !< File data.
   logical, optional, intent(in) :: back         !< If back appears with the value true, the last matching index is returned.
   character(*),      intent(in) :: option_name  !< Option  name.
@@ -619,9 +491,7 @@ contains
   integer(I4P)                  :: ind          !< Index of searched section.
   logical                       :: backd        !< Dummy back flag.
   integer(I4P)                  :: s            !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   ind = 0
   if (allocated(self%sections)) then
     backd = .false. ; if (present(back)) backd = back
@@ -630,26 +500,20 @@ contains
       ind = self%sections(s)%index(option_name=option_name, back=backd)
     endif
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endfunction index_option
 
   elemental function index_section(self, back, section_name) result(ind)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Return the index of the section matching the name passed.
   !<
   !< @note The matching index returned is the first found if *back* is not passed or if *back=.false.*. On the contrary the last
   !< found is returned if *back=.true.*.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),   intent(IN) :: self         !< File data.
   logical, optional, intent(IN) :: back         !< If back appears with the value true, the last matching index is returned.
   character(*),      intent(IN) :: section_name !< Section name.
   integer(I4P)                  :: ind          !< Index of searched section.
   logical                       :: backd        !< Dummy back flag.
   integer(I4P)                  :: s            !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   ind = 0
   if (allocated(self%sections)) then
     backd = .false. ; if (present(back)) backd = back
@@ -669,43 +533,31 @@ contains
       enddo
     endif
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endfunction index_section
 
   function loop_options_section(self, section_name, option_pairs) result(again)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Loop returning option name/value defined into section.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),               intent(in)  :: self            !< File data.
   character(*),                  intent(in)  :: section_name    !< Section name.
   character(len=:), allocatable, intent(out) :: option_pairs(:) !< Pairs option name/value [1:2].
   logical                                    :: again           !< Flag continuing the loop.
   integer(I4P)                               :: s               !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   again = .false.
   s = self%index(section_name=section_name)
   if (s>0) then
     again = self%sections(s)%loop(option_pairs=option_pairs)
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endfunction loop_options_section
 
   recursive function loop_options(self, option_pairs) result(again)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Loop returning option name/value defined into all sections.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),               intent(IN)  :: self            !< File data.
   character(len=:), allocatable, intent(OUT) :: option_pairs(:) !< Pairs option name/value [1:2].
   logical                                    :: again           !< Flag continuing the loop.
   logical,      save                         :: againO=.false.  !< Flag continuing the loop.
   integer(I4P), save                         :: s=0             !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   again = .false.
   if (allocated(self%sections)) then
     if (s==0) then
@@ -726,105 +578,82 @@ contains
       again = .false.
     endif
   endif
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endfunction loop_options
 
   subroutine parse(self, source, error)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Parse file either from the self source data or from a source string.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini),        intent(inout)   :: self      !< File data.
-  character(*),           intent(in)      :: source    !< String source.
+  type(string),           intent(in)      :: source    !< String source.
   integer(I4P), optional, intent(out)     :: error     !< Error code.
   integer(I4P)                            :: errd      !< Error code.
   type(string), allocatable               :: tokens(:) !< Options strings tokenized.
-  type(string)                            :: dummy_str !< Dummy string.
-  character(len=len(source)), allocatable :: toks(:)   !< Dummies tokens.
-  character(len(source))                  :: dummy     !< Dummy string for parsing sections.
+  type(string)                            :: dummy     !< Dummy string for parsing sections.
   integer(I4P)                            :: Ns        !< Counter.
   integer(I4P)                            :: s         !< Counter.
   integer(I4P)                            :: ss        !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   errd = err_source_missing
-  ! to remove after StringiFor adoption
-  dummy_str = source
-  call dummy_str%split(tokens=tokens, sep=new_line('a'))
-  allocate(toks(1:size(tokens, dim=1)))
-  do s =1, size(tokens, dim=1)
-    toks(s) = tokens(s)%chars()
-  enddo
-  ! call tokenize(strin=source, delimiter=new_line('A'), toks=toks)
-  ! to remove after StringiFor adoption
+  call source%split(tokens=tokens, sep=new_line('a'))
+
   Ns = 0
   s = 0
-  do while (s+1<=size(toks, dim=1))
+  do while (s+1<=size(tokens, dim=1))
     s = s + 1
-    if (scan(adjustl(toks(s)), comments) == 1) cycle
-    if (index(trim(adjustl(toks(s))), "[") == 1) then
+    if (scan(adjustl(tokens(s)), comments) == 1) cycle
+    if (index(trim(adjustl(tokens(s))), "[") == 1) then
       Ns = Ns + 1
-      dummy = trim(adjustl(toks(s)))//new_line('A')
+      dummy = trim(adjustl(tokens(s)))//new_line('a')
       ss = s
-      do while (ss+1<=size(toks, dim=1))
+      do while (ss+1<=size(tokens, dim=1))
         ss = ss + 1
-        if (index(trim(adjustl(toks(ss))), "[") == 1) then
+        if (index(trim(adjustl(tokens(ss))), "[") == 1) then
           ! new section... go back
           exit
         else
           ! continuation of current section
-          dummy = trim(adjustl(dummy))//new_line('A')//trim(adjustl(toks(ss)))
-          toks(ss) = comments ! forcing skip this in the following scan
+          dummy = trim(adjustl(dummy))//new_line('a')//trim(adjustl(tokens(ss)))
+          tokens(ss) = comments ! forcing skip this in the following scan
         endif
       enddo
-      toks(s) = trim(adjustl(dummy))
+      tokens(s) = trim(adjustl(dummy))
     endif
   enddo
+
   if (Ns>0) then
     if (allocated(self%sections)) deallocate(self%sections) ; allocate(self%sections(1:Ns))
     s = 0
     ss = 0
-    do while (s+1<=size(toks, dim=1))
+    do while (s+1<=size(tokens, dim=1))
       s = s + 1
-      if (scan(adjustl(toks(s)), comments) == 1) cycle
-      if (index(trim(adjustl(toks(s))), "[") == 1) then
+      if (scan(adjustl(tokens(s)), comments) == 1) cycle
+      if (index(trim(adjustl(tokens(s))), "[") == 1) then
         ss = ss + 1
-        call self%sections(ss)%parse(sep=self%opt_sep, source=toks(s), error=errd)
+        call self%sections(ss)%parse(sep=self%opt_sep, source=tokens(s), error=errd)
       endif
     enddo
   endif
-  self%Ns = size(self%sections, dim=1)
+  self%Ns = Ns
+
   if (present(error)) error = errd
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine parse
 
   ! assignments
   elemental subroutine assign_file_ini(lhs, rhs)
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Assignment between two INI files.
-  !---------------------------------------------------------------------------------------------------------------------------------
   class(file_ini), intent(inout) :: lhs !< Left hand side.
   type(file_ini),  intent(in)    :: rhs !< Rigth hand side.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   if (allocated(rhs%filename)) lhs%filename = rhs%filename
   if (allocated(rhs%sections)) then
     if (allocated(lhs%sections)) deallocate(lhs%sections) ; allocate(lhs%sections(1:size(rhs%sections, dim=1)))
     lhs%sections = rhs%sections
   endif
   lhs%Ns = rhs%Ns
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine assign_file_ini
 
   ! non TBP methods
   subroutine file_ini_autotest()
-  !---------------------------------------------------------------------------------------------------------------------------------
   !< Autotest the library functionalities.
-  !---------------------------------------------------------------------------------------------------------------------------------
   type(file_ini)                :: fini       !< INI File.
   character(len=:), allocatable :: source     !< Testing string.
   character(len=:), allocatable :: string     !< String option.
@@ -835,9 +664,7 @@ contains
   character(len=:), allocatable :: list(:)    !< Sections names list.
   integer(I4P)                  :: i          !< Counter.
   integer(I4P)                  :: s          !< Counter.
-  !---------------------------------------------------------------------------------------------------------------------------------
 
-  !---------------------------------------------------------------------------------------------------------------------------------
   source='[section-1]'//new_line('A')//   &
          'option-1 = one'//new_line('A')//&
          'option-2 = 2.'//new_line('A')// &
@@ -864,6 +691,7 @@ contains
   call fini%get(section_name='section-2',option_name='option-1', val=string, error=error)
   if (error==0) print "(A,A)", '  option-1 of section-2 has values: ', string
   print "(A)", ''
+
   print "(A)", "Parsed data will be saved as (having retained inline comments that are trimmed out by default):"
   call fini%print(pref='  ', unit=stdout, retain_comments=.true.)
   call fini%save(filename='foo.ini', retain_comments=.true.)
@@ -937,7 +765,5 @@ contains
   call fini%print(pref='  ', unit=stdout)
   ! remove "foo.ini"
   open(newunit=i, file='foo.ini') ; close(unit=i, status='DELETE')
-  return
-  !---------------------------------------------------------------------------------------------------------------------------------
   endsubroutine file_ini_autotest
 endmodule finer_file_ini_t
