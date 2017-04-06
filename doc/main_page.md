@@ -1,7 +1,8 @@
+---
 project: FiNeR
-project_dir: ./src
-output_dir: ./doc/html/publish/
-exclude_dir: third_party
+src_dir: ../src/lib
+src_dir: ../src/tests
+output_dir: html/publish/
 project_github: https://github.com/szaghi/FiNeR
 summary: Fortran INI ParseR and generator
 author: Stefano Zaghi
@@ -18,6 +19,10 @@ display: public
 source: true
 warn: true
 graph: true
+sort: alpha
+print_creation_date: true
+creation_date: %Y-%m-%d %H:%M %z
 extra_mods: iso_fortran_env:https://gcc.gnu.org/onlinedocs/gfortran/ISO_005fFORTRAN_005fENV.html
 
-{!README-FiNeR.md!}
+{!../README.md!}
+---
