@@ -14,3 +14,7 @@
   path = src/third_party/FLAP
   url = https://github.com/szaghi/FLAP
   branch = master
+[submodule "src/third_party/FACE"]
+  path = src/third_party/FACE
+  url = https://github.com/szaghi/FACE
+  branch = master
