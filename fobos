@@ -40,56 +40,56 @@ build_dir = exe
 
 [finer-static-gnu]
 template  = template-static-gnu
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./static/
 output    = libfiner.a
 mklib     = static
 
 [finer-shared-gnu]
 template  = template-shared-gnu
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./shared/
 output    = libfiner.so
 mklib     = shared
 
 [finer-static-gnu-debug]
 template  = template-static-gnu-debug
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./static/
 output    = libfiner.a
 mklib     = static
 
 [finer-shared-gnu-debug]
 template  = template-shared-gnu-debug
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./shared/
 output    = libfiner.so
 mklib     = shared
 
 [finer-static-intel]
 template  = template-static-intel
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./static/
 output    = libfiner.a
 mklib     = static
 
 [finer-shared-intel]
 template  = template-shared-intel
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./shared/
 output    = libfiner.so
 mklib     = shared
 
 [finer-static-intel-debug]
 template  = template-static-intel-debug
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./static/
 output    = libfiner.a
 mklib     = static
 
 [finer-shared-intel-debug]
 template  = template-shared-intel-debug
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./shared/
 output    = libfiner.so
 mklib     = shared
