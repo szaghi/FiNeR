@@ -9,6 +9,9 @@ cache:
     - $HOME/.cache/pip
     - $HOME/.local
 
+git:
+  submodules: false
+
 addons:
   apt:
     sources:
@@ -17,12 +20,14 @@ addons:
       - gfortran-6
       - binutils
       - python-pip
-      - graphviz      
+      - graphviz
 
 env:
   global:
     - MAKECOVERAGE="FoBiS.py rule -ex makecoverage"
-    - MAKEDOC="./makedoc.sh szaghi/FiNeR"
+    - MAKEDOC="./scripts/makedoc.sh szaghi/FiNeR"
+    - CLEAN="FoBiS.py rule -ex clean"
+    - MAKETAR="FoBiS.py rule -ex maketar"
 
 before_install:
   - git submodule update --init
@@ -50,3 +55,20 @@ after_success:
   - find . -name '*.gcno' -print
   - bash <(curl -s https://codecov.io/bash)
   - $MAKEDOC
+
+before_deploy:
+  - $CLEAN
+  - $MAKETAR
+  - mv FiNeR.tar.gz FiNeR-$TRAVIS_TAG.tar.gz
+
+deploy:
+  provider: releases
+  api_key:
+    secure: y19xwh7b+o1a2K5cLDNMmpu7irgJWjiKY9873jnFZJnoo17USBGWSOxwlC2yBT0QTmhGREtoNZFPtKDNBCIgGOTlRF57dOn2tCcitfsZfBaxBaQPtyhX2heezggEMei/IPzncr56H0gBrC5ixnPEfpsJUN6cBsq0jdsxNehmYdA=
+  file: 
+    - FiNeR-$TRAVIS_TAG.tar.gz
+    - ./scripts/install.sh
+  skip_cleanup: true
+  overwrite: true
+  on:
+    tags: true
