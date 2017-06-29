@@ -49,7 +49,7 @@ type :: option
 endtype option
 
 interface option
-  !< Overload `option` name with a function returning a new (itiliazed) option instance.
+  !< Overload `option` name with a function returning a new (initiliazed) option instance.
   module procedure new_option
 endinterface option
 
@@ -57,10 +57,10 @@ contains
   ! public methods
   elemental function count_values(self, delimiter) result(Nv)
   !< Get the number of values of option data.
-  class(option),          intent(in) :: self      !< Option data.
-  character(*), optional, intent(in) :: delimiter !< Delimiter used for separating values.
-  character(len=:), allocatable      :: dlm       !< Dummy string for delimiter handling.
-  integer(I4P)                       :: Nv        !< Number of values.
+  class(option), intent(in)           :: self      !< Option data.
+  character(*),  intent(in), optional :: delimiter !< Delimiter used for separating values.
+  character(len=:), allocatable       :: dlm       !< Dummy string for delimiter handling.
+  integer(I4P)                        :: Nv        !< Number of values.
 
   if (self%ovals%is_allocated()) then
     dlm = ' ' ; if (present(delimiter)) dlm = delimiter
@@ -118,7 +118,7 @@ contains
   type(string),  intent(inout) :: source !< String containing option data.
   integer(I4P),  intent(out)   :: error  !< Error code.
 
-  error = err_option
+  error = ERR_OPTION
   if (scan(adjustl(source), comments) == 1) return
   call self%parse_name(sep=sep, source=source, error=error)
   call self%parse_value(sep=sep, source=source, error=error)
@@ -137,7 +137,7 @@ contains
   errd = ERR_OPTION_VALS
   if (self%ovals%is_allocated()) then
     select type(val)
-#ifdef r16p
+#ifdef _R16P_SUPPORTED
     type is(real(R16P))
       val = self%ovals%to_number(kind=1._R16P)
 #endif
@@ -183,7 +183,7 @@ contains
     call self%ovals%split(tokens=valsV, sep=dlm)
     Nv = size(valsV, dim=1)
     select type(val)
-#ifdef r16p
+#ifdef _R16P_SUPPORTED
     type is(real(R16P))
       do v=1, Nv
         val(v) = valsV(v)%to_number(kind=1._R16P)
@@ -234,9 +234,9 @@ contains
   integer(I4P)                 :: pos  !< Characters counter.
 
   if (self%ovals%is_allocated()) then
-    pos = self%ovals%index(inline_comment)
+    pos = self%ovals%index(INLINE_COMMENT)
     if (pos>0) then
-      if (pos<self%ovals%len()) self%ocomm = trim(adjustl(self%ovals%slice(pos+1, self%ovals%len())))
+      if (pos < self%ovals%len()) self%ocomm = trim(adjustl(self%ovals%slice(pos+1, self%ovals%len())))
       self%ovals = trim(adjustl(self%ovals%slice(1, pos-1)))
     endif
   endif
@@ -250,7 +250,7 @@ contains
   integer(I4P),  intent(out)   :: error  !< Error code.
   integer(I4P)                 :: pos    !< Characters counter.
 
-  error = err_option_name
+  error = ERR_OPTION_NAME
   pos = index(source, sep)
   if (pos > 0) then
     self%oname = trim(adjustl(source%slice(1, pos-1)))
@@ -266,7 +266,7 @@ contains
   integer(I4P),  intent(out)   :: error  !< Error code.
   integer(I4P)                 :: pos    !< Characters counter.
 
-  error = err_option_vals
+  error = ERR_OPTION_VALS
   pos = index(source, sep)
   if (pos > 0) then
     if (pos<len(source)) self%ovals = trim(adjustl(source%slice(pos+1, len(source))))
@@ -276,16 +276,16 @@ contains
 
   subroutine print_option(self, unit, retain_comments, pref, iostat, iomsg)
   !< Print data with a pretty format.
-  class(option),          intent(in)  :: self            !< Option data.
-  integer(I4P),           intent(in)  :: unit            !< Logic unit.
-  logical,                intent(in)  :: retain_comments !< Flag for retaining eventual comments.
-  character(*), optional, intent(in)  :: pref            !< Prefixing string.
-  integer(I4P), optional, intent(out) :: iostat          !< IO error.
-  character(*), optional, intent(out) :: iomsg           !< IO error message.
-  character(len=:), allocatable       :: prefd           !< Prefixing string.
-  integer(I4P)                        :: iostatd         !< IO error.
-  character(500)                      :: iomsgd          !< Temporary variable for IO error message.
-  character(len=:), allocatable       :: comment         !< Eventual option comments.
+  class(option), intent(in)            :: self            !< Option data.
+  integer(I4P),  intent(in)            :: unit            !< Logic unit.
+  logical,       intent(in)            :: retain_comments !< Flag for retaining eventual comments.
+  character(*),  intent(in),  optional :: pref            !< Prefixing string.
+  integer(I4P),  intent(out), optional :: iostat          !< IO error.
+  character(*),  intent(out), optional :: iomsg           !< IO error message.
+  character(len=:), allocatable        :: prefd           !< Prefixing string.
+  integer(I4P)                         :: iostatd         !< IO error.
+  character(500)                       :: iomsgd          !< Temporary variable for IO error message.
+  character(len=:), allocatable        :: comment         !< Eventual option comments.
 
   if (self%oname%is_allocated()) then
     prefd = '' ; if (present(pref)) prefd = pref
@@ -306,7 +306,7 @@ contains
   class(*),      intent(in)    :: val  !< Value.
 
   select type(val)
-#ifdef r16p
+#ifdef _R16P_SUPPORTED
   type is(real(R16P))
     self%ovals = val
 #endif
@@ -331,16 +331,16 @@ contains
 
   pure subroutine set_a_option(self, val, delimiter)
   !< Set option data value (array).
-  class(option),          intent(inout) :: self      !< Option data.
-  class(*),               intent(in)    :: val(1:)   !< Value.
-  character(*), optional, intent(in)    :: delimiter !< Delimiter used for separating values.
-  character(len=:), allocatable         :: dlm       !< Dummy string for delimiter handling.
-  integer(I4P)                          :: v         !< Counter.
+  class(option), intent(inout)        :: self      !< Option data.
+  class(*),      intent(in)           :: val(1:)   !< Value.
+  character(*),  intent(in), optional :: delimiter !< Delimiter used for separating values.
+  character(len=:), allocatable       :: dlm       !< Dummy string for delimiter handling.
+  integer(I4P)                        :: v         !< Counter.
 
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
   self%ovals = ''
   select type(val)
-#ifdef r16p
+#ifdef _R16P_SUPPORTED
   type is(real(R16P))
     do v=1, size(val, dim=1)
       self%ovals = self%ovals//dlm//trim(str(n=val(v)))
@@ -392,14 +392,14 @@ contains
 
   subroutine save_option(self, unit, retain_comments, iostat, iomsg)
   !< Save data.
-  class(option),          intent(in)  :: self            !< Option data.
-  integer(I4P),           intent(in)  :: unit            !< Logic unit.
-  logical,                intent(in)  :: retain_comments !< Flag for retaining eventual comments.
-  integer(I4P), optional, intent(out) :: iostat          !< IO error.
-  character(*), optional, intent(out) :: iomsg           !< IO error message.
-  integer(I4P)                        :: iostatd         !< IO error.
-  character(500)                      :: iomsgd          !< Temporary variable for IO error message.
-  character(len=:), allocatable       :: comment         !< Eventual option comments.
+  class(option), intent(in)            :: self            !< Option data.
+  integer(I4P),  intent(in)            :: unit            !< Logic unit.
+  logical,       intent(in)            :: retain_comments !< Flag for retaining eventual comments.
+  integer(I4P),  intent(out), optional :: iostat          !< IO error.
+  character(*),  intent(out), optional :: iomsg           !< IO error message.
+  integer(I4P)                         :: iostatd         !< IO error.
+  character(500)                       :: iomsgd          !< Temporary variable for IO error message.
+  character(len=:), allocatable        :: comment         !< Eventual option comments.
 
   if (self%oname%is_allocated()) then
     comment = '' ; if (self%ocomm%is_allocated().and.retain_comments) comment = ' ; '//self%ocomm
