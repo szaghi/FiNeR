@@ -6,6 +6,7 @@ program finer_test_get
 !<```bash
 !< ./finer_test_get
 !<```
+use, intrinsic :: iso_fortran_env, only : output_unit
 use finer, only :  file_ini
 use penf, only : I4P, R4P, str
 
@@ -22,7 +23,7 @@ source = '[section-1]'//new_line('a')//                                &
 
 print "(A)", 'Source input'//new_line('a')//new_line('a')//source//new_line('a')//new_line('a')//'Parse results'//new_line('a')
 
-call fini%load(source=source)
+call fini%load(source=source, error=error)
 
 string = repeat(' ', 999)
 call fini%get(section_name='section-1', option_name='option-1', val=string, error=error)

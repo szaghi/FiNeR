@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.3% of total for source files.">21 statements</a>
+	  title=" 1.4% of total for source files.">22 statements</a>
      </li> 
      
      
@@ -220,6 +220,8 @@
       <a class="list-group-item" href="../sourcefile/finer_test_load.f90.html">finer_test_load.f90</a>
       
       <a class="list-group-item" href="../sourcefile/finer_test_parse.f90.html">finer_test_parse.f90</a>
+      
+      <a class="list-group-item" href="../sourcefile/finer_test_update_option.f90.html">finer_test_update_option.f90</a>
       
     </div>
   </div>
@@ -445,35 +447,36 @@
 <a name="ln-6"></a><span class="c">!&lt;```bash</span>
 <a name="ln-7"></a><span class="c">!&lt; ./finer_test_get</span>
 <a name="ln-8"></a><span class="c">!&lt;```</span>
-<a name="ln-9"></a><span class="k">use </span><span class="n">finer</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span>  <span class="n">file_ini</span>
-<a name="ln-10"></a><span class="k">use </span><span class="n">penf</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">I4P</span><span class="p">,</span> <span class="n">R4P</span><span class="p">,</span> <span class="n">str</span>
-<a name="ln-11"></a>
-<a name="ln-12"></a><span class="k">implicit none</span>
-<a name="ln-13"></a><span class="k">type</span><span class="p">(</span><span class="n">file_ini</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">fini</span>           <span class="c">!&lt; INI file handler.</span>
-<a name="ln-14"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">source</span>         <span class="c">!&lt; Testing string.</span>
-<a name="ln-15"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">string</span>         <span class="c">!&lt; String option.</span>
-<a name="ln-16"></a><span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">error</span>          <span class="c">!&lt; Error code.</span>
-<a name="ln-17"></a><span class="kt">logical</span>                       <span class="kd">::</span> <span class="n">test_passed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">!&lt; List of passed tests.</span>
-<a name="ln-18"></a>
-<a name="ln-19"></a><span class="n">source</span> <span class="o">=</span> <span class="s1">&#39;[section-1]&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span>                                <span class="p">&amp;</span>
-<a name="ln-20"></a>         <span class="s1">&#39;option-1 = one ; this is an inline comment&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span> <span class="p">&amp;</span>
-<a name="ln-21"></a>         <span class="s1">&#39;option-2 = bar&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<a name="ln-22"></a>
-<a name="ln-23"></a><span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;Source input&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="n">source</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;Parse results&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-<a name="ln-24"></a>
-<a name="ln-25"></a><span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">load</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
-<a name="ln-26"></a>
-<a name="ln-27"></a><span class="n">string</span> <span class="o">=</span> <span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>
-<a name="ln-28"></a><span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">get</span><span class="p">(</span><span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span> <span class="n">option_name</span><span class="o">=</span><span class="s1">&#39;option-1&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">string</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
-<a name="ln-29"></a><span class="n">test_passed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">((</span><span class="n">error</span><span class="o">==</span><span class="mi">0</span><span class="p">).</span><span class="nb">and</span><span class="p">.(</span><span class="nb">trim</span><span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="o">==</span><span class="s1">&#39;one&#39;</span><span class="p">))</span>
-<a name="ln-30"></a><span class="k">print</span> <span class="s2">&quot;(A,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;[section-1].(option-1) = &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;&quot;, is correct? &#39;</span><span class="p">,</span> <span class="n">test_passed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<a name="ln-31"></a>
-<a name="ln-32"></a><span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">get</span><span class="p">(</span><span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span> <span class="n">option_name</span><span class="o">=</span><span class="s1">&#39;option-3&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">string</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
-<a name="ln-33"></a><span class="n">test_passed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">error</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span>
-<a name="ln-34"></a><span class="k">print</span> <span class="s2">&quot;(A,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;[section-1].(option-3) dos not exist, is correct? &#39;</span><span class="p">,</span> <span class="n">test_passed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<a name="ln-35"></a>
-<a name="ln-36"></a><span class="k">print</span> <span class="s2">&quot;(A,L1)&quot;</span><span class="p">,</span> <span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;Are all tests passed? &#39;</span><span class="p">,</span> <span class="k">all</span><span class="p">(</span><span class="n">test_passed</span><span class="p">)</span>
-<a name="ln-37"></a><span class="n">endprogram</span> <span class="n">finer_test_get</span>
+<a name="ln-9"></a><span class="k">use</span><span class="p">,</span> <span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">output_unit</span>
+<a name="ln-10"></a><span class="k">use </span><span class="n">finer</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span>  <span class="n">file_ini</span>
+<a name="ln-11"></a><span class="k">use </span><span class="n">penf</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">I4P</span><span class="p">,</span> <span class="n">R4P</span><span class="p">,</span> <span class="n">str</span>
+<a name="ln-12"></a>
+<a name="ln-13"></a><span class="k">implicit none</span>
+<a name="ln-14"></a><span class="k">type</span><span class="p">(</span><span class="n">file_ini</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">fini</span>           <span class="c">!&lt; INI file handler.</span>
+<a name="ln-15"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">source</span>         <span class="c">!&lt; Testing string.</span>
+<a name="ln-16"></a><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">string</span>         <span class="c">!&lt; String option.</span>
+<a name="ln-17"></a><span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">error</span>          <span class="c">!&lt; Error code.</span>
+<a name="ln-18"></a><span class="kt">logical</span>                       <span class="kd">::</span> <span class="n">test_passed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c">!&lt; List of passed tests.</span>
+<a name="ln-19"></a>
+<a name="ln-20"></a><span class="n">source</span> <span class="o">=</span> <span class="s1">&#39;[section-1]&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span>                                <span class="p">&amp;</span>
+<a name="ln-21"></a>         <span class="s1">&#39;option-1 = one ; this is an inline comment&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span> <span class="p">&amp;</span>
+<a name="ln-22"></a>         <span class="s1">&#39;option-2 = bar&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<a name="ln-23"></a>
+<a name="ln-24"></a><span class="k">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s1">&#39;Source input&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="n">source</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;Parse results&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<a name="ln-25"></a>
+<a name="ln-26"></a><span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">load</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
+<a name="ln-27"></a>
+<a name="ln-28"></a><span class="n">string</span> <span class="o">=</span> <span class="nb">repeat</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>
+<a name="ln-29"></a><span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">get</span><span class="p">(</span><span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span> <span class="n">option_name</span><span class="o">=</span><span class="s1">&#39;option-1&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">string</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
+<a name="ln-30"></a><span class="n">test_passed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">((</span><span class="n">error</span><span class="o">==</span><span class="mi">0</span><span class="p">).</span><span class="nb">and</span><span class="p">.(</span><span class="nb">trim</span><span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="o">==</span><span class="s1">&#39;one&#39;</span><span class="p">))</span>
+<a name="ln-31"></a><span class="k">print</span> <span class="s2">&quot;(A,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;[section-1].(option-1) = &quot;&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;&quot;, is correct? &#39;</span><span class="p">,</span> <span class="n">test_passed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-32"></a>
+<a name="ln-33"></a><span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">get</span><span class="p">(</span><span class="n">section_name</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span> <span class="n">option_name</span><span class="o">=</span><span class="s1">&#39;option-3&#39;</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">string</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
+<a name="ln-34"></a><span class="n">test_passed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">error</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span>
+<a name="ln-35"></a><span class="k">print</span> <span class="s2">&quot;(A,L1)&quot;</span><span class="p">,</span> <span class="s1">&#39;[section-1].(option-3) dos not exist, is correct? &#39;</span><span class="p">,</span> <span class="n">test_passed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<a name="ln-36"></a>
+<a name="ln-37"></a><span class="k">print</span> <span class="s2">&quot;(A,L1)&quot;</span><span class="p">,</span> <span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;Are all tests passed? &#39;</span><span class="p">,</span> <span class="k">all</span><span class="p">(</span><span class="n">test_passed</span><span class="p">)</span>
+<a name="ln-38"></a><span class="n">endprogram</span> <span class="n">finer_test_get</span>
 </pre></div>
 
     </section>
@@ -507,6 +510,8 @@
       
       <a class="list-group-item" href="../sourcefile/finer_test_parse.f90.html">finer_test_parse.f90</a>
       
+      <a class="list-group-item" href="../sourcefile/finer_test_update_option.f90.html">finer_test_update_option.f90</a>
+      
     </div>
   </div>
 </div>
@@ -524,7 +529,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-05-06 05:09  
+             on 2017-06-29 10:46  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FiNeR was developed by Stefano Zaghi</p></div>

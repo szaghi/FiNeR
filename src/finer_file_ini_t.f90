@@ -18,7 +18,7 @@ type :: file_ini
   private
   character(len=:), allocatable :: filename              !< File name
   integer(I4P)                  :: Ns = 0                !< Number of sections.
-  character(1)                  :: opt_sep = def_opt_sep !< Separator character of option name/value.
+  character(1)                  :: opt_sep = DEF_OPT_SEP !< Separator character of option name/value.
   type(section), allocatable    :: sections(:)           !< Sections.
   contains
     ! public methods
@@ -209,21 +209,22 @@ contains
   !<type(file_ini):: fini
   !<call fini%load(source='[section-1] option-1=one [section-2] option-2=due')
   !<```
-  class(file_ini),        intent(inout) :: self      !< File data.
-  character(1), optional, intent(in)    :: separator !< Separator of options name/value.
-  character(*), optional, intent(in)    :: filename  !< File name.
-  character(*), optional, intent(in)    :: source    !< File source contents.
-  integer(I4P), optional, intent(out)   :: error     !< Error code.
-  integer(I4P)                          :: errd      !< Error code.
-  type(string)                          :: source_   !< File source contents, local variable.
+  class(file_ini), intent(inout)         :: self      !< File data.
+  character(1),    intent(in),  optional :: separator !< Separator of options name/value.
+  character(*),    intent(in),  optional :: filename  !< File name.
+  character(*),    intent(in),  optional :: source    !< File source contents.
+  integer(I4P),    intent(out), optional :: error     !< Error code.
+  integer(I4P)                           :: errd      !< Error code.
+  type(string)                           :: source_   !< File source contents, local variable.
 
-  errd = err_source_missing
+  errd = ERR_SOURCE_MISSING
   if (present(separator)) self%opt_sep = separator
   if (present(filename)) then
     self%filename = trim(adjustl(filename))
     call source_%read_file(file=self%filename, iostat=errd)
   elseif (present(source)) then
     source_ = source
+    errd = 0
   elseif (allocated(self%filename)) then
     call source_%read_file(file=self%filename, iostat=errd)
   endif

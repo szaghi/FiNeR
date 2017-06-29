@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.7% of total for procedures.">22 statements</a>
+	  title=" 1.7% of total for procedures.">23 statements</a>
      </li> 
      
      
@@ -522,21 +522,22 @@ private pure subroutine set_a_option(self, option_name, val, delimiter, error)
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>  <span class="k">pure subroutine </span><span class="n">set_a_option</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">option_name</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
   <span class="c">!&lt; Set option value (array).</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">section</span><span class="p">),</span>         <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Section data.</span>
-  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>           <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">option_name</span> <span class="c">!&lt; Option name.</span>
-  <span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">val</span><span class="p">(:)</span>      <span class="c">!&lt; Value.</span>
-  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">delimiter</span>   <span class="c">!&lt; Delimiter used for separating values.</span>
-  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">error</span>       <span class="c">!&lt; Error code.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">section</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">self</span>        <span class="c">!&lt; Section data.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>   <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">option_name</span> <span class="c">!&lt; Option name.</span>
+  <span class="k">class</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">val</span><span class="p">(:)</span>      <span class="c">!&lt; Value.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>   <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>  <span class="k">optional</span> <span class="kd">::</span> <span class="n">delimiter</span>   <span class="c">!&lt; Delimiter used for separating values.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">),</span>   <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">error</span>       <span class="c">!&lt; Error code.</span>
   <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">errd</span>        <span class="c">!&lt; Error code.</span>
   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span>         <span class="kd">::</span> <span class="n">dlm</span>         <span class="c">!&lt; Dummy string for delimiter handling.</span>
   <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">o</span>           <span class="c">!&lt; Counter.</span>
 
   <span class="n">dlm</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span> <span class="p">;</span> <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">delimiter</span><span class="p">))</span> <span class="n">dlm</span> <span class="o">=</span> <span class="n">delimiter</span>
-  <span class="n">errd</span> <span class="o">=</span> <span class="n">err_section_options</span>
+  <span class="n">errd</span> <span class="o">=</span> <span class="n">ERR_SECTION_OPTIONS</span>
   <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="k">options</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">    do </span><span class="n">o</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="k">options</span><span class="p">,</span> <span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="k">options</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="o">==</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">option_name</span><span class="p">)))</span> <span class="k">then</span>
 <span class="k">        call </span><span class="n">self</span><span class="p">%</span><span class="k">options</span><span class="p">(</span><span class="n">o</span><span class="p">)%</span><span class="n">set</span><span class="p">(</span><span class="n">delimiter</span><span class="o">=</span><span class="n">dlm</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">errd</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">exit</span>
 <span class="k">      </span><span class="n">endif</span>
     <span class="n">enddo</span>
@@ -728,7 +729,7 @@ private pure subroutine set_a_option(self, option_name, val, delimiter, error)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-05-06 05:09  
+             on 2017-06-29 10:46  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FiNeR was developed by Stefano Zaghi</p></div>

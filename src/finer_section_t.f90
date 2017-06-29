@@ -4,7 +4,7 @@ module finer_section_t
 use finer_backend
 use finer_option_t, only : option
 use penf
-use stringifor
+use stringifor, only : index, len, string
 
 implicit none
 private
@@ -67,12 +67,12 @@ contains
   ! public methods
   elemental function count_values(self, option_name, delimiter) result(Nv)
   !< Get the number of values of option into section data.
-  class(section),         intent(in) :: self        !< Section data.
-  character(*),           intent(in) :: option_name !< Option name.
-  character(*), optional, intent(in) :: delimiter   !< Delimiter used for separating values.
-  integer(I4P)                       :: Nv          !< Number of values.
-  character(len=:), allocatable      :: dlm         !< Dummy string for delimiter handling.
-  integer(I4P)                       :: o           !< Counter.
+  class(section), intent(in)           :: self        !< Section data.
+  character(*),   intent(in)           :: option_name !< Option name.
+  character(*),   intent(in), optional :: delimiter   !< Delimiter used for separating values.
+  integer(I4P)                         :: Nv          !< Number of values.
+  character(len=:), allocatable        :: dlm         !< Dummy string for delimiter handling.
+  integer(I4P)                         :: o           !< Counter.
 
   if (allocated(self%options)) then
     dlm = ' ' ; if (present(delimiter)) dlm = delimiter
@@ -90,10 +90,7 @@ contains
   class(section), intent(inout) :: self !< Section data.
 
   if (allocated(self%sname)) deallocate(self%sname)
-  if (allocated(self%options)) then
-    call self%options%free
-    deallocate(self%options)
-  endif
+  call self%free_options
   endsubroutine free
 
   elemental subroutine free_options(self)
@@ -143,12 +140,12 @@ contains
   !<
   !< @note The matching index returned is the first found if *back* is not passed or if *back=.false.*. On the contrary the last
   !< found is returned if *back=.true.*.
-  class(section),    intent(in) :: self        !< Section data.
-  character(*),      intent(in) :: option_name !< Option name.
-  logical, optional, intent(in) :: back        !< If back appears with the value true, the last matching index is returned.
-  integer(I4P)                  :: ind         !< Index of searched section.
-  logical                       :: backd       !< Dummy back flag.
-  integer(I4P)                  :: o           !< Counter.
+  class(section), intent(in)           :: self        !< Section data.
+  character(*),   intent(in)           :: option_name !< Option name.
+  logical,        intent(in), optional :: back        !< If back appears with the value true, the last matching index is returned.
+  integer(I4P)                         :: ind         !< Index of searched section.
+  logical                              :: backd       !< Dummy back flag.
+  integer(I4P)                         :: o           !< Counter.
 
   ind = 0
   if (allocated(self%options)) then
@@ -198,7 +195,7 @@ contains
   elemental function max_chars_len(self)
   !< Return the maximum number of characters between option-name/option-values on all options.
   class(section), intent(in) :: self          !< Section data.
-  integer                    :: max_chars_len !< Inquire result.
+  integer(I4P)               :: max_chars_len !< Inquire result.
   integer(I4P)               :: o             !< Counter.
 
   max_chars_len = MinI4P
@@ -229,8 +226,9 @@ contains
   elemental function options_number(self)
   !< Return the options number.
   class(section), intent(in) :: self           !< Section data.
-  integer                    :: options_number !< Options number.
+  integer(I4P)               :: options_number !< Options number.
 
+  options_number = 0
   if (allocated(self%options)) options_number = size(self%options, dim=1)
   endfunction options_number
 
@@ -248,16 +246,16 @@ contains
 
   subroutine print_section(self, unit, retain_comments, pref, iostat, iomsg)
   !< Print data with a pretty format.
-  class(section),         intent(in)  :: self            !< Section data.
-  integer(I4P),           intent(in)  :: unit            !< Logic unit.
-  logical,                intent(in)  :: retain_comments !< Flag for retaining eventual comments.
-  character(*), optional, intent(in)  :: pref            !< Prefixing string.
-  integer(I4P), optional, intent(out) :: iostat          !< IO error.
-  character(*), optional, intent(out) :: iomsg           !< IO error message.
-  character(len=:), allocatable       :: prefd           !< Prefixing string.
-  integer(I4P)                        :: iostatd         !< IO error.
-  character(500)                      :: iomsgd          !< Temporary variable for IO error message.
-  integer(I4P)                        :: o               !< Counter.
+  class(section), intent(in)            :: self            !< Section data.
+  integer(I4P),   intent(in)            :: unit            !< Logic unit.
+  logical,        intent(in)            :: retain_comments !< Flag for retaining eventual comments.
+  character(*),   intent(in),  optional :: pref            !< Prefixing string.
+  integer(I4P),   intent(out), optional :: iostat          !< IO error.
+  character(*),   intent(out), optional :: iomsg           !< IO error message.
+  character(len=:), allocatable         :: prefd           !< Prefixing string.
+  integer(I4P)                          :: iostatd         !< IO error.
+  character(500)                        :: iomsgd          !< Temporary variable for IO error message.
+  integer(I4P)                          :: o               !< Counter.
 
   prefd = '' ; if (present(pref)) prefd = pref
   if (allocated(self%sname)) write(unit=unit, fmt='(A)', iostat=iostatd, iomsg=iomsgd)prefd//'['//self%sname//']'
@@ -272,14 +270,14 @@ contains
 
   subroutine save_section(self, unit, retain_comments, iostat, iomsg)
   !< Save data.
-  class(section),         intent(in)  :: self            !< Section data.
-  integer(I4P),           intent(in)  :: unit            !< Logic unit.
-  logical,                intent(in)  :: retain_comments !< Flag for retaining eventual comments.
-  integer(I4P), optional, intent(out) :: iostat          !< IO error.
-  character(*), optional, intent(out) :: iomsg           !< IO error message.
-  integer(I4P)                        :: iostatd         !< IO error.
-  character(500)                      :: iomsgd          !< Temporary variable for IO error message.
-  integer(I4P)                        :: o               !< Counter.
+  class(section), intent(in)            :: self            !< Section data.
+  integer(I4P),   intent(in)            :: unit            !< Logic unit.
+  logical,        intent(in)            :: retain_comments !< Flag for retaining eventual comments.
+  integer(I4P),   intent(out), optional :: iostat          !< IO error.
+  character(*),   intent(out), optional :: iomsg           !< IO error message.
+  integer(I4P)                          :: iostatd         !< IO error.
+  character(500)                        :: iomsgd          !< Temporary variable for IO error message.
+  integer(I4P)                          :: o               !< Counter.
 
   if (allocated(self%sname)) write(unit=unit, fmt='(A)', iostat=iostatd, iomsg=iomsgd)'['//self%sname//']'
   if (allocated(self%options)) then
@@ -296,17 +294,17 @@ contains
   !< Add an option (with scalar value).
   !<
   !< If the option already exists, its value is updated.
-  class(section),         intent(inout) :: self        !< Section data.
-  character(*),           intent(in)    :: option_name !< Option name.
-  class(*),               intent(in)    :: val         !< Option value.
-  integer(I4P), optional, intent(out)   :: error       !< Error code.
+  class(section), intent(inout)         :: self        !< Section data.
+  character(*),   intent(in)            :: option_name !< Option name.
+  class(*),       intent(in)            :: val         !< Option value.
+  integer(I4P),   intent(out), optional :: error       !< Error code.
   type(option), allocatable             :: options(:)  !< Temporary options array.
   integer(I4P)                          :: errd        !< Error code.
 
-  errd = err_section_options
+  errd = ERR_SECTION_OPTIONS
   if (allocated(self%options)) then
     call self%set(error=errd, option_name=option_name, val=val)
-    if (errd/=0) then ! the option does not exist
+    if (errd /= 0) then ! the option does not exist
       allocate(options(1:size(self%options, dim=1)+1))
       options(1:size(self%options, dim=1)  ) = self%options
       options(  size(self%options, dim=1)+1) = option(option_name=option_name)
@@ -325,17 +323,17 @@ contains
   !< Add an option (with array value).
   !<
   !< If the option already exists, its value is updated.
-  class(section),         intent(inout) :: self        !< Section data.
-  character(*),           intent(in)    :: option_name !< Option name.
-  class(*),               intent(in)    :: val(:)      !< Option value.
-  character(*), optional, intent(in)    :: delimiter   !< Delimiter used for separating values.
-  integer(I4P), optional, intent(out)   :: error       !< Error code.
+  class(section), intent(inout)         :: self        !< Section data.
+  character(*),   intent(in)            :: option_name !< Option name.
+  class(*),       intent(in)            :: val(:)      !< Option value.
+  character(*),   intent(in),  optional :: delimiter   !< Delimiter used for separating values.
+  integer(I4P),   intent(out), optional :: error       !< Error code.
   type(option), allocatable             :: options(:)  !< Temporary options array.
   integer(I4P)                          :: errd        !< Error code.
   character(len=:), allocatable         :: dlm         !< Dummy string for delimiter handling.
 
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
-  errd = err_section_options
+  errd = ERR_SECTION_OPTIONS
   if (allocated(self%options)) then
     call self%set(delimiter=dlm, error=errd, option_name=option_name, val=val)
     if (errd/=0) then ! the option does not exist
@@ -405,7 +403,7 @@ contains
   integer(I4P),   intent(out)   :: error    !< Error code.
   integer(I4P)                  :: pos(1:2) !< Characters counter.
 
-  error = err_section_name
+  error = ERR_SECTION_NAME
   pos(1) = index(source, "[")
   pos(2) = index(source, "]")
   if (all(pos > 0)) then
@@ -472,18 +470,19 @@ contains
 
   pure subroutine set_option(self, option_name, val, error)
   !< Set option value (scalar).
-  class(section),         intent(inout) :: self        !< Section data.
-  character(*),           intent(in)    :: option_name !< Option name.
-  class(*),               intent(in)    :: val         !< Value.
-  integer(I4P), optional, intent(out)   :: error       !< Error code.
+  class(section), intent(inout)         :: self        !< Section data.
+  character(*),   intent(in)            :: option_name !< Option name.
+  class(*),       intent(in)            :: val         !< Value.
+  integer(I4P),   intent(out), optional :: error       !< Error code.
   integer(I4P)                          :: errd        !< Error code.
   integer(I4P)                          :: o           !< Counter.
 
-  errd = err_section_options
+  errd = ERR_SECTION_OPTIONS
   if (allocated(self%options)) then
     do o=1, size(self%options, dim=1)
       if (self%options(o) == trim(adjustl(option_name))) then
         call self%options(o)%set(val=val)
+        errd = 0
         exit
       endif
     enddo
@@ -493,21 +492,22 @@ contains
 
   pure subroutine set_a_option(self, option_name, val, delimiter, error)
   !< Set option value (array).
-  class(section),         intent(inout) :: self        !< Section data.
-  character(*),           intent(in)    :: option_name !< Option name.
-  class(*),               intent(in)    :: val(:)      !< Value.
-  character(*), optional, intent(in)    :: delimiter   !< Delimiter used for separating values.
-  integer(I4P), optional, intent(out)   :: error       !< Error code.
+  class(section), intent(inout)         :: self        !< Section data.
+  character(*),   intent(in)            :: option_name !< Option name.
+  class(*),       intent(in)            :: val(:)      !< Value.
+  character(*),   intent(in),  optional :: delimiter   !< Delimiter used for separating values.
+  integer(I4P),   intent(out), optional :: error       !< Error code.
   integer(I4P)                          :: errd        !< Error code.
   character(len=:), allocatable         :: dlm         !< Dummy string for delimiter handling.
   integer(I4P)                          :: o           !< Counter.
 
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
-  errd = err_section_options
+  errd = ERR_SECTION_OPTIONS
   if (allocated(self%options)) then
     do o=1, size(self%options, dim=1)
       if (self%options(o) == trim(adjustl(option_name))) then
         call self%options(o)%set(delimiter=dlm, val=val)
+        errd = 0
         exit
       endif
     enddo

@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.6% of total for procedures.">21 statements</a>
+	  title=" 1.7% of total for procedures.">22 statements</a>
      </li> 
      
      
@@ -547,21 +547,22 @@ call fini%load<span class="o">(</span><span class="nv">source</span><span class=
   <span class="c">!&lt;type(file_ini):: fini</span>
   <span class="c">!&lt;call fini%load(source=&#39;[section-1] option-1=one [section-2] option-2=due&#39;)</span>
   <span class="c">!&lt;```</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">file_ini</span><span class="p">),</span>        <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>      <span class="c">!&lt; File data.</span>
-  <span class="kt">character</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">separator</span> <span class="c">!&lt; Separator of options name/value.</span>
-  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">filename</span>  <span class="c">!&lt; File name.</span>
-  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">source</span>    <span class="c">!&lt; File source contents.</span>
-  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">error</span>     <span class="c">!&lt; Error code.</span>
-  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">errd</span>      <span class="c">!&lt; Error code.</span>
-  <span class="k">type</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">source_</span>   <span class="c">!&lt; File source contents, local variable.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">file_ini</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">self</span>      <span class="c">!&lt; File data.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>    <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>  <span class="k">optional</span> <span class="kd">::</span> <span class="n">separator</span> <span class="c">!&lt; Separator of options name/value.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>    <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>  <span class="k">optional</span> <span class="kd">::</span> <span class="n">filename</span>  <span class="c">!&lt; File name.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>    <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>  <span class="k">optional</span> <span class="kd">::</span> <span class="n">source</span>    <span class="c">!&lt; File source contents.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">),</span>    <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">error</span>     <span class="c">!&lt; Error code.</span>
+  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span>                           <span class="kd">::</span> <span class="n">errd</span>      <span class="c">!&lt; Error code.</span>
+  <span class="k">type</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>                           <span class="kd">::</span> <span class="n">source_</span>   <span class="c">!&lt; File source contents, local variable.</span>
 
-  <span class="n">errd</span> <span class="o">=</span> <span class="n">err_source_missing</span>
+  <span class="n">errd</span> <span class="o">=</span> <span class="n">ERR_SOURCE_MISSING</span>
   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">separator</span><span class="p">))</span> <span class="n">self</span><span class="p">%</span><span class="n">opt_sep</span> <span class="o">=</span> <span class="n">separator</span>
   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">    </span><span class="n">self</span><span class="p">%</span><span class="n">filename</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
     <span class="k">call </span><span class="n">source_</span><span class="p">%</span><span class="n">read_file</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">filename</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">errd</span><span class="p">)</span>
   <span class="n">elseif</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">source</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">    </span><span class="n">source_</span> <span class="o">=</span> <span class="n">source</span>
+    <span class="n">errd</span> <span class="o">=</span> <span class="mi">0</span>
   <span class="n">elseif</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">filename</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">    call </span><span class="n">source_</span><span class="p">%</span><span class="n">read_file</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">filename</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="n">errd</span><span class="p">)</span>
   <span class="n">endif</span>
@@ -753,7 +754,7 @@ call fini%load<span class="o">(</span><span class="nv">source</span><span class=
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2017-05-06 05:09  
+             on 2017-06-29 10:46  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FiNeR was developed by Stefano Zaghi</p></div>
