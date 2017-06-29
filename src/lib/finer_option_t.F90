@@ -3,7 +3,7 @@ module finer_option_t
 !< Option class definition.
 use finer_backend
 use penf
-use stringifor
+use stringifor, only : adjustl, index, len, string
 
 implicit none
 private

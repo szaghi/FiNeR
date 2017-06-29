@@ -4,7 +4,7 @@ module finer_section_t
 use finer_backend
 use finer_option_t, only : option
 use penf
-use stringifor
+use stringifor, only : index, len, string
 
 implicit none
 private
