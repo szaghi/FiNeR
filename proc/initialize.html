@@ -10,7 +10,7 @@
     <meta name="author" content="Stefano Zaghi" >
     <link rel="icon" href="../favicon.png">
 
-    <title>loop_options &ndash; FiNeR</title>
+    <title>initialize &ndash; FiNeR</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -112,8 +112,8 @@
     
   
   <div class="row">
-    <h1>loop_options
-      <small>Function</small>
+    <h1>initialize
+      <small>Subroutine</small>
     
     </h1>
     
@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 2.0% of total for procedures.">27 statements</a>
+	  title=" 0.5% of total for procedures.">6 statements</a>
      </li> 
      
      
@@ -143,7 +143,7 @@
   
      <li><a href='../module/finer_file_ini_t.html'>finer_file_ini_t</a></li>
   
-     <li class="active">loop_options</li>
+     <li class="active">initialize</li>
   </ol>
 </div>
 </div>
@@ -184,7 +184,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/loop_options.html#src">loop_options</a>
+    <a class="list-group-item" href="../proc/initialize.html#src">initialize</a>
   </div>
 </div>
 
@@ -360,7 +360,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-private recursive function loop_options(self, option_pairs) result(again)
+private elemental subroutine initialize(self, filename)
     
     
 	 
@@ -370,7 +370,7 @@ private recursive function loop_options(self, option_pairs) result(again)
 
 
     
-    <p>Loop returning option name/value defined into all sections.</p>
+    <p>Initialize file.</p>
     
 
     <h3>Arguments</h3>
@@ -391,8 +391,8 @@ private recursive function loop_options(self, option_pairs) result(again)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self%7E6"></span>class(<a href='../type/file_ini.html'>file_ini</a>),</td>
-  <td>intent(in)</td>
+  <td><span class="anchor" id="variable-self%7E21"></span>class(<a href='../type/file_ini.html'>file_ini</a>),</td>
+  <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
@@ -406,12 +406,12 @@ private recursive function loop_options(self, option_pairs) result(again)
   
 <tr>
   
-  <td><span class="anchor" id="variable-option_pairs%7E2"></span>character(len=:),</td>
-  <td>intent(out),</td>
-  <td></td>
+  <td><span class="anchor" id="variable-filename%7E2"></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
   
-  <td>allocatable</td><td>::</td>
-  <td><strong>option_pairs</strong>(:)</td><td><p>Pairs option name/value [1:2].</p></td>
+  <td></td><td>::</td>
+  <td><strong>filename</strong></td><td><p>File name.</p></td>
   
 </tr>
 
@@ -419,15 +419,6 @@ private recursive function loop_options(self, option_pairs) result(again)
 </table>
 
     
-    
-    
-    
-    
-    
-    
-	 <h3>Return Value <small><span class="anchor" id="variable-again"></span>logical
-  </small></h3>
-    <p>Flag continuing the loop.</p>
     
     
      
@@ -458,7 +449,7 @@ private recursive function loop_options(self, option_pairs) result(again)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/loop_options.html#src">loop_options</a>
+    <a class="list-group-item" href="../proc/initialize.html#src">initialize</a>
   </div>
 </div>
 
@@ -486,35 +477,14 @@ private recursive function loop_options(self, option_pairs) result(again)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>  <span class="k">recursive function </span><span class="n">loop_options</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">option_pairs</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">again</span><span class="p">)</span>
-  <span class="c">!&lt; Loop returning option name/value defined into all sections.</span>
-  <span class="k">class</span><span class="p">(</span><span class="n">file_ini</span><span class="p">),</span>               <span class="k">intent</span><span class="p">(</span><span class="n">IN</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">self</span>            <span class="c">!&lt; File data.</span>
-  <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">OUT</span><span class="p">)</span> <span class="kd">::</span> <span class="n">option_pairs</span><span class="p">(:)</span> <span class="c">!&lt; Pairs option name/value [1:2].</span>
-  <span class="kt">logical</span>                                    <span class="kd">::</span> <span class="n">again</span>           <span class="c">!&lt; Flag continuing the loop.</span>
-  <span class="kt">logical</span><span class="p">,</span>      <span class="k">save</span>                         <span class="kd">::</span> <span class="n">againO</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>  <span class="c">!&lt; Flag continuing the loop.</span>
-  <span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">),</span> <span class="k">save</span>                         <span class="kd">::</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span>             <span class="c">!&lt; Counter.</span>
+    <div class="highlight"><pre><span></span>  <span class="k">elemental subroutine </span><span class="n">initialize</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+  <span class="c">!&lt; Initialize file.</span>
+  <span class="k">class</span><span class="p">(</span><span class="n">file_ini</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">self</span>     <span class="c">!&lt; File data.</span>
+  <span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span>    <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span>  <span class="k">optional</span> <span class="kd">::</span> <span class="n">filename</span> <span class="c">!&lt; File name.</span>
 
-  <span class="n">again</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">sections</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">    if</span> <span class="p">(</span><span class="n">s</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      </span><span class="n">s</span> <span class="o">=</span> <span class="nb">lbound</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">sections</span><span class="p">,</span> <span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-      <span class="n">againO</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">loop</span><span class="p">(</span><span class="n">section_name</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">sections</span><span class="p">(</span><span class="n">s</span><span class="p">)%</span><span class="n">name</span><span class="p">(),</span> <span class="n">option_pairs</span><span class="o">=</span><span class="n">option_pairs</span><span class="p">)</span>
-      <span class="n">again</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-    <span class="n">elseif</span> <span class="p">(</span><span class="n">s</span><span class="o">&lt;</span><span class="nb">ubound</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">sections</span><span class="p">,</span> <span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">againO</span><span class="p">)</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span>
-      <span class="n">againO</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">loop</span><span class="p">(</span><span class="n">section_name</span><span class="o">=</span><span class="n">self</span><span class="p">%</span><span class="n">sections</span><span class="p">(</span><span class="n">s</span><span class="p">)%</span><span class="n">name</span><span class="p">(),</span> <span class="n">option_pairs</span><span class="o">=</span><span class="n">option_pairs</span><span class="p">)</span>
-      <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">againO</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">        </span><span class="n">again</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">loop</span><span class="p">(</span><span class="n">option_pairs</span><span class="o">=</span><span class="n">option_pairs</span><span class="p">)</span>
-      <span class="k">else</span>
-<span class="k">        </span><span class="n">again</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-      <span class="n">endif</span>
-    <span class="k">else</span>
-<span class="k">      </span><span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
-      <span class="n">againO</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-      <span class="n">again</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-    <span class="n">endif</span>
-  <span class="n">endif</span>
-  <span class="n">endfunction</span> <span class="n">loop_options</span>
+  <span class="k">call </span><span class="n">self</span><span class="p">%</span><span class="n">free</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span> <span class="n">self</span><span class="p">%</span><span class="n">filename</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+  <span class="n">endsubroutine</span> <span class="n">initialize</span>
 </pre></div>
 
     </section>
