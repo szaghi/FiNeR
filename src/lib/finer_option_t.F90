@@ -3,7 +3,7 @@ module finer_option_t
 !< Option class definition.
 use finer_backend
 use penf
-use stringifor
+use stringifor, only : string, adjustl, index, scan
 
 implicit none
 private
@@ -269,7 +269,7 @@ contains
   error = err_option_vals
   pos = index(source, sep)
   if (pos > 0) then
-    if (pos<len(source)) self%ovals = trim(adjustl(source%slice(pos+1, len(source))))
+    if (pos<source%len()) self%ovals = trim(adjustl(source%slice(pos+1, source%len())))
     error = 0
   endif
   endsubroutine parse_value
