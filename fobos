@@ -40,56 +40,56 @@ build_dir = exe
 
 [finer-static-gnu]
 template  = template-static-gnu
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./static/
 output    = libfiner.a
 mklib     = static
 
 [finer-shared-gnu]
 template  = template-shared-gnu
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./shared/
 output    = libfiner.so
 mklib     = shared
 
 [finer-static-gnu-debug]
 template  = template-static-gnu-debug
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./static/
 output    = libfiner.a
 mklib     = static
 
 [finer-shared-gnu-debug]
 template  = template-shared-gnu-debug
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./shared/
 output    = libfiner.so
 mklib     = shared
 
 [finer-static-intel]
 template  = template-static-intel
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./static/
 output    = libfiner.a
 mklib     = static
 
 [finer-shared-intel]
 template  = template-shared-intel
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./shared/
 output    = libfiner.so
 mklib     = shared
 
 [finer-static-intel-debug]
 template  = template-static-intel-debug
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./static/
 output    = libfiner.a
 mklib     = static
 
 [finer-shared-intel-debug]
 template  = template-shared-intel-debug
-target    = src/lib/finerf90
+target    = src/lib/finer.f90
 build_dir = ./shared/
 output    = libfiner.so
 mklib     = shared
@@ -99,6 +99,7 @@ mklib     = shared
 compiler     = gnu
 cflags       = $CSTATIC_GNU $OPTIMIZE
 lflags       = $OPTIMIZE
+preproc      = -D_R16P_SUPPORTED
 exclude_dirs = $EXDIRS
 mod_dir      = ./mod/
 obj_dir      = ./obj/
@@ -112,6 +113,7 @@ jobs         = 10
 compiler     = gnu
 cflags       = $CSHARED_GNU $OPTIMIZE
 lflags       = $LSHARED $OPTIMIZE
+preproc      = -D_R16P_SUPPORTED
 exclude_dirs = $EXDIRS
 mod_dir      = ./mod/
 obj_dir      = ./obj/
@@ -125,6 +127,7 @@ jobs         = 10
 compiler     = gnu
 cflags       = $CSTATIC_GNU $DEBUG_GNU
 lflags       = $DEBUG_GNU
+preproc      = -D_R16P_SUPPORTED
 exclude_dirs = $EXDIRS
 mod_dir      = ./mod/
 obj_dir      = ./obj/
@@ -138,6 +141,7 @@ jobs         = 10
 compiler     = gnu
 cflags       = $CSHARED_GNU $DEBUG_GNU
 lflags       = $LSHARED $DEBUG_GNU
+preproc      = -D_R16P_SUPPORTED
 exclude_dirs = $EXDIRS
 mod_dir      = ./mod/
 obj_dir      = ./obj/
@@ -151,6 +155,7 @@ jobs         = 10
 compiler     = intel
 cflags       = $CSTATIC_INT $OPTIMIZE
 lflags       = $OPTIMIZE
+preproc      = -D_R16P_SUPPORTED
 exclude_dirs = $EXDIRS
 mod_dir      = ./mod/
 obj_dir      = ./obj/
@@ -164,6 +169,7 @@ jobs         = 10
 compiler     = intel
 cflags       = $CSHARED_INT $OPTIMIZE
 lflags       = $LSHARED $OPTIMIZE
+preproc      = -D_R16P_SUPPORTED
 exclude_dirs = $EXDIRS
 mod_dir      = ./mod/
 obj_dir      = ./obj/
@@ -177,6 +183,7 @@ jobs         = 10
 compiler     = intel
 cflags       = $CSTATIC_INT $DEBUG_INT
 lflags       = $DEBUG_INT
+preproc      = -D_R16P_SUPPORTED
 exclude_dirs = $EXDIRS
 mod_dir      = ./mod/
 obj_dir      = ./obj/
@@ -190,6 +197,7 @@ jobs         = 10
 compiler     = intel
 cflags       = $CSHARED_INT $DEBUG_INT
 lflags       = $LSHARED $DEBUG_INT
+preproc      = -D_R16P_SUPPORTED
 exclude_dirs = $EXDIRS
 mod_dir      = ./mod/
 obj_dir      = ./obj/
