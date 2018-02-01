@@ -4,7 +4,7 @@ module finer_section_t
 use finer_backend
 use finer_option_t, only : option
 use penf
-use stringifor, only : index, len, string
+use stringifor, only : string, index
 
 implicit none
 private
@@ -425,7 +425,7 @@ contains
   integer(I4P)                  :: oo        !< Counter.
 
   error = 0
-  source = trim(adjustl(source%slice(index(source, "]")+1, len(source))))
+  source = trim(adjustl(source%slice(index(source, "]")+1, source%len())))
   No = source%count(substring=sep)
   if (No>0) then
     call source%split(tokens=tokens, sep=new_line('a'))
@@ -464,7 +464,7 @@ contains
         (tokens(o)%index(substring='[') > 0).or.&
         (tokens(o)%index(substring=']') > 0)) source = source//tokens(o)//new_line('a')
   enddo
-  source = source%slice(1, len(source)-1)
+  source = source%slice(1, source%len()-1)
   error = 0
   endsubroutine sanitize_source
 
