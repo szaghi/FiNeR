@@ -3,7 +3,11 @@ module finer_option_t
 !< Option class definition.
 use finer_backend
 use penf
+#ifndef __GFORTRAN__
+use stringifor_string_t, only : adjustl, index, scan, string
+#else
 use stringifor, only : adjustl, index, scan, string
+#endif
 
 implicit none
 private

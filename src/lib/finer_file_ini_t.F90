@@ -5,7 +5,12 @@ use finer_backend
 use finer_option_t, only : option
 use finer_section_t, only : section
 use penf
-use stringifor
+! use stringifor
+#ifndef __GFORTRAN__
+use stringifor_string_t, only : adjustl, string
+#else
+use stringifor, only : adjustl, string
+#endif
 use, intrinsic :: iso_fortran_env, only : stdout => output_unit
 
 implicit none
