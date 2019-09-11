@@ -5,7 +5,12 @@ use finer_backend
 use finer_option_t, only : option
 use finer_section_t, only : section
 use penf
-use stringifor
+! use stringifor
+#ifndef __GFORTRAN__
+use stringifor_string_t, only : adjustl, string
+#else
+use stringifor, only : adjustl, string
+#endif
 use, intrinsic :: iso_fortran_env, only : stdout => output_unit
 
 implicit none
@@ -16,10 +21,10 @@ public :: file_ini_autotest
 type :: file_ini
   !< INI file class.
   private
-  character(len=:), allocatable :: filename              !< File name
-  integer(I4P)                  :: Ns = 0                !< Number of sections.
-  character(1)                  :: opt_sep = def_opt_sep !< Separator character of option name/value.
-  type(section), allocatable    :: sections(:)           !< Sections.
+  character(len=:), allocatable, public :: filename              !< File name
+  integer(I4P)                          :: Ns = 0                !< Number of sections.
+  character(1)                          :: opt_sep = DEF_OPT_SEP !< Separator character of option name/value.
+  type(section), allocatable            :: sections(:)           !< Sections.
   contains
     ! public methods
     generic               :: add          => add_section, &             !< Add a section.
@@ -36,6 +41,7 @@ type :: file_ini
                                              get_a_option               !< Get option value (array).
     procedure, pass(self) :: get_items                                  !< Get list of pairs option name/value.
     procedure, pass(self) :: get_sections_list                          !< Get sections names list.
+    procedure, pass(self) :: initialize                                 !< Initialize file.
     procedure, pass(self) :: has_option                                 !< Inquire the presence of an option.
     procedure, pass(self) :: has_section                                !< Inquire the presence of a section.
     generic               :: index        => index_section, &           !< Return the index of a section.
@@ -193,6 +199,15 @@ contains
   pres = (self%index(section_name=section_name)>0)
   endfunction has_section
 
+  elemental subroutine initialize(self, filename)
+  !< Initialize file.
+  class(file_ini), intent(inout)         :: self     !< File data.
+  character(*),    intent(in),  optional :: filename !< File name.
+
+  call self%free
+  if (present(filename)) self%filename = trim(adjustl(filename))
+  endsubroutine initialize
+
   subroutine load(self, separator, filename, source, error)
   !< Get file data from a file or a source string.
   !<
@@ -209,21 +224,22 @@ contains
   !<type(file_ini):: fini
   !<call fini%load(source='[section-1] option-1=one [section-2] option-2=due')
   !<```
-  class(file_ini),        intent(inout) :: self      !< File data.
-  character(1), optional, intent(in)    :: separator !< Separator of options name/value.
-  character(*), optional, intent(in)    :: filename  !< File name.
-  character(*), optional, intent(in)    :: source    !< File source contents.
-  integer(I4P), optional, intent(out)   :: error     !< Error code.
-  integer(I4P)                          :: errd      !< Error code.
-  type(string)                          :: source_   !< File source contents, local variable.
+  class(file_ini), intent(inout)         :: self      !< File data.
+  character(1),    intent(in),  optional :: separator !< Separator of options name/value.
+  character(*),    intent(in),  optional :: filename  !< File name.
+  character(*),    intent(in),  optional :: source    !< File source contents.
+  integer(I4P),    intent(out), optional :: error     !< Error code.
+  integer(I4P)                           :: errd      !< Error code.
+  type(string)                           :: source_   !< File source contents, local variable.
 
-  errd = err_source_missing
+  errd = ERR_SOURCE_MISSING
   if (present(separator)) self%opt_sep = separator
   if (present(filename)) then
     self%filename = trim(adjustl(filename))
     call source_%read_file(file=self%filename, iostat=errd)
   elseif (present(source)) then
     source_ = source
+    errd = 0
   elseif (allocated(self%filename)) then
     call source_%read_file(file=self%filename, iostat=errd)
   endif
