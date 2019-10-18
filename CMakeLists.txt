@@ -28,20 +28,20 @@ if(NOT TARGET FACE)
     add_subdirectory(src/third_party/FACE) # has no other linking deps
 endif()
 
-if(NOT TARGET fotran_tester)
+if(NOT TARGET fortran_tester)
     add_subdirectory(src/third_party/fortran_tester)
 endif()
 
 if(NOT TARGET FLAP)
-    add_subdirectory(src/third_party/FLAP)
+    add_subdirectory(src/third_party/FLAP) # depends on PENF, FACE, fortran_tester
 endif()
 
 if(NOT TARGET BeFoR64)
-    add_subdirectory(src/third_party/BeFoR64)
+    add_subdirectory(src/third_party/BeFoR64) # depends on PENF
 endif()
 
 if(NOT TARGET StringiFor)
-    add_subdirectory(src/third_party/StringiFor)
+    add_subdirectory(src/third_party/StringiFor) # depends on PENF, BeFoR64
 endif()
 
 # generate the library and install instructions
