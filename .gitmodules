@@ -19,5 +19,6 @@
 	url = https://github.com/szaghi/FACE
   branch = master
 [submodule "src/third_party/fortran_tester"]
-	path = src/third_party/fortran_tester
-	url = git@github.com:pdebuyl/fortran_tester.git
+  path = src/third_party/fortran_tester
+  url = git@github.com:pdebuyl/fortran_tester.git
+  branch = master
