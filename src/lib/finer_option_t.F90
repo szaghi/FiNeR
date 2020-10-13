@@ -141,7 +141,7 @@ contains
   errd = ERR_OPTION_VALS
   if (self%ovals%is_allocated()) then
     select type(val)
-#ifdef _R16P_SUPPORTED
+#ifdef _R16P
     type is(real(R16P))
       val = self%ovals%to_number(kind=1._R16P)
 #endif
@@ -187,7 +187,7 @@ contains
     call self%ovals%split(tokens=valsV, sep=dlm)
     Nv = size(valsV, dim=1)
     select type(val)
-#ifdef _R16P_SUPPORTED
+#ifdef _R16P
     type is(real(R16P))
       do v=1, Nv
         val(v) = valsV(v)%to_number(kind=1._R16P)
@@ -310,7 +310,7 @@ contains
   class(*),      intent(in)    :: val  !< Value.
 
   select type(val)
-#ifdef _R16P_SUPPORTED
+#ifdef _R16P
   type is(real(R16P))
     self%ovals = val
 #endif
@@ -344,7 +344,7 @@ contains
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
   self%ovals = ''
   select type(val)
-#ifdef _R16P_SUPPORTED
+#ifdef _R16P
   type is(real(R16P))
     do v=1, size(val, dim=1)
       self%ovals = self%ovals//dlm//trim(str(n=val(v)))
