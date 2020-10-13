@@ -18,8 +18,10 @@ integer(I4P)                  :: error          !< Error code.
 logical                       :: test_passed(2) !< List of passed tests.
 
 source = '[section-1]'//new_line('a')//                                &
-         'option-1 = one ; this is an inline comment'//new_line('a')// &
          '; option-1 = two ; commented line'//new_line('a')//          &
+         '# option-1 = three ; commented line'//new_line('a')//        &
+         'option-1 = one ; this is an inline comment'//new_line('a')// &
+         '! option-1 = four ; commented line'//new_line('a')//         &
          'option-2 = 2.'//new_line('a')//                              &
          '           3. ; continued line'//new_line('a')//             &
          'option-3 = bar'//new_line('a')//                             &
