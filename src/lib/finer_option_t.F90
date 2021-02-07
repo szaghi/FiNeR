@@ -153,8 +153,10 @@ contains
       val = self%ovals%to_number(kind=1_I8P)
     type is(integer(I4P))
       val = self%ovals%to_number(kind=1_I4P)
+#ifndef _NVF
     type is(integer(I2P))
       val = self%ovals%to_number(kind=1_I2P)
+#endif
     type is(integer(I1P))
       val = self%ovals%to_number(kind=1_I1P)
     type is(logical)
@@ -209,10 +211,12 @@ contains
       do v=1, Nv
         val(v) = valsV(v)%to_number(kind=1_I4P)
       enddo
+#ifndef _NVF
     type is(integer(I2P))
       do v=1, Nv
         val(v) = valsV(v)%to_number(kind=1_I2P)
       enddo
+#endif
     type is(integer(I1P))
       do v=1, Nv
         val(v) = valsV(v)%to_number(kind=1_I1P)
