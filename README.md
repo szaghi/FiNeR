@@ -1,6 +1,6 @@
 <a name="top"></a>
 
-# FiNeR [![GitHub tag](https://img.shields.io/github/tag/szaghi/FiNeR.svg)]()
+# FiNeR [![GitHub tag](https://img.shields.io/github/tag/szaghi/FiNeR.svg)](https://github.com/szaghi/FiNeR/releases)
 
 [![License](https://img.shields.io/badge/license-GNU%20GeneraL%20Public%20License%20v3%20,%20GPLv3-blue.svg)]()
 [![License](https://img.shields.io/badge/license-BSD2-red.svg)]()
@@ -8,8 +8,8 @@
 [![License](https://img.shields.io/badge/license-MIT-red.svg)]()
 
 [![Status](https://img.shields.io/badge/status-stable-brightgreen.svg)]()
-[![Build Status](https://travis-ci.org/szaghi/FiNeR.svg?branch=master)](https://travis-ci.org/szaghi/FiNeR)
-[![Coverage Status](https://img.shields.io/codecov/c/github/szaghi/FiNeR.svg)](http://codecov.io/github/szaghi/FiNeR?branch=master)
+[![CI Status](https://github.com/szaghi/FiNeR/actions/workflows/ci.yml/badge.svg)](https://github.com/szaghi/FiNeR/actions)
+[![Coverage Status](https://img.shields.io/codecov/c/github/szaghi/FiNeR.svg)](https://app.codecov.io/gh/szaghi/FiNeR)
 
 ### FiNeR, Fortran INI ParseR and generator for FoRtraners
 
@@ -21,9 +21,6 @@
 
 #### Issues
 [![GitHub issues](https://img.shields.io/github/issues/szaghi/FiNeR.svg)]()
-[![Ready in backlog](https://badge.waffle.io/szaghi/FiNeR.png?label=ready&title=Ready)](https://waffle.io/szaghi/FiNeR)
-[![In Progress](https://badge.waffle.io/szaghi/FiNeR.png?label=in%20progress&title=In%20Progress)](https://waffle.io/szaghi/FiNeR)
-[![Open bugs](https://badge.waffle.io/szaghi/FiNeR.png?label=bug&title=Open%20Bugs)](https://waffle.io/szaghi/FiNeR)
 
 #### Compiler Support
 
