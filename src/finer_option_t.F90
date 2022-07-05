@@ -3,7 +3,11 @@ module finer_option_t
 !< Option class definition.
 use finer_backend
 use penf
+#ifndef __GFORTRAN__
+use stringifor_string_t, only : adjustl, index, scan, string
+#else
 use stringifor, only : adjustl, index, scan, string
+#endif
 
 implicit none
 private
@@ -137,7 +141,7 @@ contains
   errd = ERR_OPTION_VALS
   if (self%ovals%is_allocated()) then
     select type(val)
-#ifdef _R16P_SUPPORTED
+#ifdef _R16P
     type is(real(R16P))
       val = self%ovals%to_number(kind=1._R16P)
 #endif
@@ -149,8 +153,10 @@ contains
       val = self%ovals%to_number(kind=1_I8P)
     type is(integer(I4P))
       val = self%ovals%to_number(kind=1_I4P)
+#ifndef _NVF
     type is(integer(I2P))
       val = self%ovals%to_number(kind=1_I2P)
+#endif
     type is(integer(I1P))
       val = self%ovals%to_number(kind=1_I1P)
     type is(logical)
@@ -183,7 +189,7 @@ contains
     call self%ovals%split(tokens=valsV, sep=dlm)
     Nv = size(valsV, dim=1)
     select type(val)
-#ifdef _R16P_SUPPORTED
+#ifdef _R16P
     type is(real(R16P))
       do v=1, Nv
         val(v) = valsV(v)%to_number(kind=1._R16P)
@@ -205,10 +211,12 @@ contains
       do v=1, Nv
         val(v) = valsV(v)%to_number(kind=1_I4P)
       enddo
+#ifndef _NVF
     type is(integer(I2P))
       do v=1, Nv
         val(v) = valsV(v)%to_number(kind=1_I2P)
       enddo
+#endif
     type is(integer(I1P))
       do v=1, Nv
         val(v) = valsV(v)%to_number(kind=1_I1P)
@@ -306,7 +314,7 @@ contains
   class(*),      intent(in)    :: val  !< Value.
 
   select type(val)
-#ifdef _R16P_SUPPORTED
+#ifdef _R16P
   type is(real(R16P))
     self%ovals = val
 #endif
@@ -340,7 +348,7 @@ contains
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
   self%ovals = ''
   select type(val)
-#ifdef _R16P_SUPPORTED
+#ifdef _R16P
   type is(real(R16P))
     do v=1, size(val, dim=1)
       self%ovals = self%ovals//dlm//trim(str(n=val(v)))

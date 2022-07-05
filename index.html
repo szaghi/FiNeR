@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="Fortran INI ParseR and generator">
-    
+   <meta name="description" content="Fortran INI ParseR and generator">
     <meta name="author" content="Stefano Zaghi" >
     <link rel="icon" href="./favicon.png">
 
@@ -16,7 +14,7 @@
     <link href="./css/pygments.css" rel="stylesheet">
     <link href="./css/font-awesome.min.css" rel="stylesheet">
     <link href="./css/local.css" rel="stylesheet">
-    
+    <link  href="./tipuesearch/tipuesearch.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -26,13 +24,6 @@
     
     <script src="./js/jquery-2.1.3.min.js"></script>
     <script src="./js/svg-pan-zoom.min.js"></script>
-
-    
-    <script src="./tipuesearch/tipuesearch_content.js"></script>
-    <link  href="./tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="./tipuesearch/tipuesearch_set.js"></script>
-    <script src="./tipuesearch/tipuesearch.js"></script>
-    
 
   </head>
 
@@ -52,49 +43,27 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
-              
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
             <li><a href="./lists/files.html">Source Files</a></li>
-				
-				
             <li><a href="./lists/modules.html">Modules</a></li>
-				
-            
-                                
             <li><a href="./lists/procedures.html">Procedures</a></li>
-				
-								
-            <li><a href="./lists/types.html">Derived Types</a></li>
-				
-				
+                   <li><a href="./lists/types.html">Derived Types</a></li>
             <li><a href="./lists/programs.html">Programs</a></li>
-				
+       
             </ul>
-            </li>
-
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/files.html">Source Files</a></li>
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/modules.html">Modules</a></li>
-
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/procedures.html">Procedures</a></li>
-
-                             
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/types.html">Derived Types</a></li>
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/programs.html">Programs</a></li>
-
-          </ul>
         
+            </li>
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/files.html">Source Files</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/modules.html">Modules</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/procedures.html">Procedures</a></li>
+                             <li class="visible-xs hidden-sm visible-lg"><a href="./lists/types.html">Derived Types</a></li>
+<li class="visible-xs hidden-sm visible-lg"><a href="./lists/programs.html">Programs</a></li>
+          </ul>
         <form action="./search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -103,45 +72,33 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         <p>Fortran INI ParseR and generator</p>
-        	 
 	<p> Find us on&hellip;</p>
         <p>
-        	 
           <a class="btn btn-lg btn-primary" href="https://github.com/szaghi/FiNeR" role="button">GitHub</a>
-			 
-			 
-			 
-			 
-	         
-			 
         </p>
       </div>
 
       <div class="row" id='text'>
-		  
         <div class="col-md-8">
-		  
           <h1>FiNeR</h1>
           <p><a name="top"></a></p>
-<h1 id="finer"><a class="toclink" href="#finer">FiNeR <a href=""><img alt="GitHub tag" src="https://img.shields.io/github/tag/szaghi/FiNeR.svg"></a></a></h1>
+<h1 id="finer">FiNeR <a href="https://github.com/szaghi/FiNeR/releases"><img alt="GitHub tag" src="https://img.shields.io/github/tag/szaghi/FiNeR.svg"></a></h1>
 <p><a href=""><img alt="License" src="https://img.shields.io/badge/license-GNU%20GeneraL%20Public%20License%20v3%20,%20GPLv3-blue.svg"></a>
 <a href=""><img alt="License" src="https://img.shields.io/badge/license-BSD2-red.svg"></a>
 <a href=""><img alt="License" src="https://img.shields.io/badge/license-BSD3-red.svg"></a>
 <a href=""><img alt="License" src="https://img.shields.io/badge/license-MIT-red.svg"></a></p>
 <p><a href=""><img alt="Status" src="https://img.shields.io/badge/status-stable-brightgreen.svg"></a>
-<a href="https://travis-ci.org/szaghi/FiNeR"><img alt="Build Status" src="https://travis-ci.org/szaghi/FiNeR.svg?branch=master"></a>
-<a href="http://codecov.io/github/szaghi/FiNeR?branch=master"><img alt="Coverage Status" src="https://img.shields.io/codecov/c/github/szaghi/FiNeR.svg"></a></p>
-<h3 id="finer-fortran-ini-parser-and-generator-for-fortraners"><a class="toclink" href="#finer-fortran-ini-parser-and-generator-for-fortraners">FiNeR, Fortran INI ParseR and generator for FoRtraners</a></h3>
+<a href="https://github.com/szaghi/FiNeR/actions"><img alt="CI Status" src="https://github.com/szaghi/FiNeR/actions/workflows/ci.yml/badge.svg"></a>
+<a href="https://app.codecov.io/gh/szaghi/FiNeR"><img alt="Coverage Status" src="https://img.shields.io/codecov/c/github/szaghi/FiNeR.svg"></a></p>
+<h3 id="finer-fortran-ini-parser-and-generator-for-fortraners">FiNeR, Fortran INI ParseR and generator for FoRtraners</h3>
 <ul>
 <li>FiNeR is a pure Fortran (KISS) library for IO of INI (config) files for modern (2003+) Fortran projects;</li>
 <li>FiNeR is Fortran 2003+ standard compliant;</li>
@@ -149,12 +106,9 @@
 <li>FiNeR is TDD designed;</li>
 <li>FiNeR is a Free, Open Source Project.</li>
 </ul>
-<h4 id="issues"><a class="toclink" href="#issues">Issues</a></h4>
-<p><a href=""><img alt="GitHub issues" src="https://img.shields.io/github/issues/szaghi/FiNeR.svg"></a>
-<a href="https://waffle.io/szaghi/FiNeR"><img alt="Ready in backlog" src="https://badge.waffle.io/szaghi/FiNeR.png?label=ready&amp;title=Ready"></a>
-<a href="https://waffle.io/szaghi/FiNeR"><img alt="In Progress" src="https://badge.waffle.io/szaghi/FiNeR.png?label=in%20progress&amp;title=In%20Progress"></a>
-<a href="https://waffle.io/szaghi/FiNeR"><img alt="Open bugs" src="https://badge.waffle.io/szaghi/FiNeR.png?label=bug&amp;title=Open%20Bugs"></a></p>
-<h4 id="compiler-support"><a class="toclink" href="#compiler-support">Compiler Support</a></h4>
+<h4 id="issues">Issues</h4>
+<p><a href=""><img alt="GitHub issues" src="https://img.shields.io/github/issues/szaghi/FiNeR.svg"></a></p>
+<h4 id="compiler-support">Compiler Support</h4>
 <p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/GNU-v5.3.0+-orange.svg"></a>
 <a href=""><img alt="Compiler" src="https://img.shields.io/badge/Intel-v16.x+-brightgreen.svg"></a>
 <a href=""><img alt="Compiler" src="https://img.shields.io/badge/IBM%20XL-not%20tested-yellow.svg"></a>
@@ -164,37 +118,37 @@
 <hr>
 <p><a href="#what-is-finer?">What is FiNeR?</a> | <a href="#main-features">Main features</a> | <a href="#copyrights">Copyrights</a> | <a href="#documentation">Documentation</a> | <a href="#a-taste-of-finer">A Taste of FiNeR</a></p>
 <hr>
-<h2 id="what-is-finer"><a class="toclink" href="#what-is-finer">What is FiNeR?</a></h2>
+<h2 id="what-is-finer">What is FiNeR?</h2>
 <p>Modern Fortran standards (2003+) have introduced better support for strings manipulations. Exploiting such new Fortran capabilities, FiNeR provides an easy to use module library for input (parsing) and output (generating) <a href="http://en.wikipedia.org/wiki/INI_file">INI</a> (config) files.</p>
 <p>Go to <a href="#top">Top</a></p>
-<h2 id="main-features"><a class="toclink" href="#main-features">Main features</a></h2>
-<ul class="checklist">
-<li><input type="checkbox" disabled checked> User-friendly methods for IO INI files:<ul class="checklist">
-<li><input type="checkbox" disabled checked> parsing files:<ul class="checklist">
-<li><input type="checkbox" disabled checked> automatic parsing of all sections (whose number is auto-detected);</li>
-<li><input type="checkbox" disabled checked> automatic parsing of all options of each section (whose number is auto-detected);</li>
-<li><input type="checkbox" disabled checked> unlimited polymorphic option-values extraction;</li>
+<h2 id="main-features">Main features</h2>
+<ul>
+<li>[X] User-friendly methods for IO INI files:<ul>
+<li>[x] parsing files:<ul>
+<li>[x] automatic parsing of all sections (whose number is auto-detected);</li>
+<li>[x] automatic parsing of all options of each section (whose number is auto-detected);</li>
+<li>[x] unlimited polymorphic option-values extraction;</li>
 </ul>
 </li>
-<li><input type="checkbox" disabled checked> generating files:<ul class="checklist">
-<li><input type="checkbox" disabled checked> user-friendly add/remove sections/options;</li>
-<li><input type="checkbox" disabled checked> unlimited polymorphic option-values setting;</li>
+<li>[x] generating files:<ul>
+<li>[x] user-friendly add/remove sections/options;</li>
+<li>[x] unlimited polymorphic option-values setting;</li>
 </ul>
 </li>
-<li><input type="checkbox" disabled checked> introspection:<ul class="checklist">
-<li><input type="checkbox" disabled checked> self-consistency checks;</li>
-<li><input type="checkbox" disabled checked> pretty-printings;</li>
-<li><input type="checkbox" disabled checked> loop over options;</li>
-<li><input type="checkbox" disabled checked> inquiring the presence of sections/options by name;</li>
+<li>[x] introspection:<ul>
+<li>[x] self-consistency checks;</li>
+<li>[x] pretty-printings;</li>
+<li>[x] loop over options;</li>
+<li>[x] inquiring the presence of sections/options by name;</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><input type="checkbox" disabled> errors trapping mechanism.</li>
+<li>[ ] errors trapping mechanism.</li>
 </ul>
 <p>Any feature request is welcome.</p>
 <p>Go to <a href="#top">Top</a></p>
-<h2 id="copyrights"><a class="toclink" href="#copyrights">Copyrights</a></h2>
+<h2 id="copyrights">Copyrights</h2>
 <p>FiNeR is an open source project, it is distributed under a multi-licensing system:</p>
 <ul>
 <li>for FOSS projects:</li>
@@ -207,387 +161,131 @@
 <p>Anyone is interest to use, to develop or to contribute to FiNeR is welcome, feel free to select the license that best matches your soul!</p>
 <p>More details can be found on <a href="https://github.com/szaghi/FiNeR/wiki/Copyrights">wiki</a>.</p>
 <p>Go to <a href="#top">Top</a></p>
-<h2 id="documentation"><a class="toclink" href="#documentation">Documentation</a></h2>
+<h2 id="documentation">Documentation</h2>
 <p>Besides this README file the FiNeR documentation is contained into its own <a href="https://github.com/szaghi/FiNeR/wiki">wiki</a>. Detailed documentation of the API is contained into the <a href="http://szaghi.github.io/FiNeR/index.html">GitHub Pages</a> that can also be created locally by means of <a href="https://github.com/cmacmackin/ford">ford tool</a>.</p>
-<h3 id="a-taste-of-finer"><a class="toclink" href="#a-taste-of-finer">A Taste of FiNeR</a></h3>
+<h3 id="a-taste-of-finer">A Taste of FiNeR</h3>
 <p>Let us assume our goal is to parse a config file. It is as simple as</p>
-<div class="codehilite"><pre><span></span><span class="k">USE </span><span class="n">Lib_INI_IO</span>
-<span class="p">...</span>
-<span class="k">type</span><span class="p">(</span><span class="n">Type_File_INI</span><span class="p">)</span><span class="kd">::</span>           <span class="n">fini</span>     <span class="c">! INI File.</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="kd">::</span> <span class="n">source</span>   <span class="c">! Testing string.</span>
-<span class="kt">real</span><span class="p">(</span><span class="n">R4P</span><span class="p">),</span> <span class="k">allocatable</span><span class="kd">::</span>        <span class="k">array</span><span class="p">(:)</span> <span class="c">! Array option.</span>
-<span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span><span class="kd">::</span>                  <span class="n">error</span>    <span class="c">! Error code.</span>
-<span class="p">...</span>
-<span class="n">source</span><span class="o">=</span><span class="s1">&#39;[section-1]&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span>    <span class="p">&amp;</span>
-       <span class="s1">&#39;option-1 = one&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span> <span class="p">&amp;</span>
-       <span class="s1">&#39;option-2 = 2.&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span>  <span class="p">&amp;</span>
-       <span class="s1">&#39;           3.&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span>  <span class="p">&amp;</span>
-       <span class="s1">&#39;option-3 = bar&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span> <span class="p">&amp;</span>
-       <span class="s1">&#39;[section-2]&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span>    <span class="p">&amp;</span>
-       <span class="s1">&#39;option-1 = foo&#39;</span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">load</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
-<span class="k">allocate</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">fini</span><span class="p">%</span><span class="n">count_values</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;option-2&#39;</span><span class="p">)))</span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;option-2&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="k">array</span><span class="p">,</span><span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">finer</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="k">type</span><span class="p">(</span><span class="n">file_ini</span><span class="p">)</span><span class="w">                </span><span class="kd">::</span><span class="w"> </span><span class="n">fini</span><span class="w">     </span><span class="c">!&lt; INI file handler.</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">source</span><span class="w">   </span><span class="c">! Testing string.</span>
+<span class="kt">real</span><span class="p">(</span><span class="n">R4P</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w">        </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span><span class="p">(:)</span><span class="w"> </span><span class="c">! Array option.</span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">error</span><span class="w">    </span><span class="c">! Error code.</span>
+<span class="p">...</span><span class="w"></span>
+<span class="n">source</span><span class="o">=</span><span class="s1">&#39;[section-1]&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">       </span><span class="s1">&#39;option-1 = one&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">       </span><span class="s1">&#39;option-2 = 2.&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w">  </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">       </span><span class="s1">&#39;           3.&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w">  </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">       </span><span class="s1">&#39;option-3 = bar&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">       </span><span class="s1">&#39;[section-2]&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">       </span><span class="s1">&#39;option-1 = foo&#39;</span><span class="w"></span>
+<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">load</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span><span class="w"></span>
+<span class="k">allocate</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">fini</span><span class="p">%</span><span class="n">count_values</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;option-2&#39;</span><span class="p">)))</span><span class="w"></span>
+<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;option-2&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="k">array</span><span class="p">,</span><span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">  print</span><span class="o">*</span><span class="p">,</span><span class="k">array</span>
-<span class="k">else</span>
-  <span class="c">! errors occur...</span>
-<span class="n">endif</span>
-</pre></div>
-
+<span class="k">else</span><span class="w"></span>
+<span class="w">  </span><span class="c">! errors occur...</span>
+<span class="k">endif</span><span class="w"></span>
+</code></pre></div>
 
 <p>And what about the generation of an INI file? It is simple as parsing an old one:</p>
-<div class="codehilite"><pre><span></span><span class="k">USE </span><span class="n">Lib_INI_IO</span>
-<span class="p">...</span>
-<span class="k">type</span><span class="p">(</span><span class="n">Type_File_INI</span><span class="p">)</span><span class="kd">::</span> <span class="n">fini</span> <span class="c">! INI File.</span>
-<span class="p">...</span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">)</span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=-</span><span class="mi">3</span><span class="mf">2.1_R8P</span><span class="p">)</span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;baz&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="s1">&#39; hello FiNeR! &#39;</span><span class="p">)</span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;array&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-bar&#39;</span><span class="p">)</span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-bar&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;bools&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="p">[.</span><span class="n">true</span><span class="p">.,.</span><span class="n">false</span><span class="p">.,.</span><span class="n">false</span><span class="p">.])</span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="k">save</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;foo.ini&#39;</span><span class="p">)</span>
-</pre></div>
-
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">finer</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="k">type</span><span class="p">(</span><span class="n">file_ini</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fini</span><span class="w"> </span><span class="c">!&lt; INI file handler.</span>
+<span class="p">...</span><span class="w"></span>
+<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=-</span><span class="mi">3</span><span class="mf">2.1_R8P</span><span class="p">)</span><span class="w"></span>
+<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;baz&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="s1">&#39; hello FiNeR! &#39;</span><span class="p">)</span><span class="w"></span>
+<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;array&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span><span class="w"></span>
+<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-bar&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-bar&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;bools&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="p">[.</span><span class="n">true</span><span class="p">.,.</span><span class="n">false</span><span class="p">.,.</span><span class="n">false</span><span class="p">.])</span><span class="w"></span>
+<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="k">save</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;foo.ini&#39;</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
 
 <p>A file named <em>foo.ini</em> is created. It contains something like:</p>
-<div class="codehilite"><pre><span></span><span class="k">[sec-foo]</span>
-<span class="na">bar</span> <span class="o">=</span> <span class="s">-0.321000000000000E+002</span>
-<span class="na">baz</span> <span class="o">=</span>  <span class="s">hello FiNeR!</span>
-<span class="na">array</span> <span class="o">=</span> <span class="s">+1 +2 +3 +4</span>
-<span class="k">[sec-bar]</span>
-<span class="na">bools</span> <span class="o">=</span> <span class="s">T F F</span>
-</pre></div>
+<div class="codehilite"><pre><span></span><code><span class="k">[sec-foo]</span><span class="w"></span>
+<span class="na">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-0.321000000000000E+002</span><span class="w"></span>
+<span class="na">baz</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s">hello FiNeR!</span><span class="w"></span>
+<span class="na">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">+1 +2 +3 +4</span><span class="w"></span>
+<span class="k">[sec-bar]</span><span class="w"></span>
+<span class="na">bools</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">T F F</span><span class="w"></span>
+</code></pre></div>
 
-
-<h2 id="go-to-top"><a class="toclink" href="#go-to-top">Go to <a href="#top">Top</a></a></h2>
+<h2 id="go-to-top">Go to <a href="#top">Top</a></h2>
         </div>
-		  
         <div class="col-md-4">
 	  <div class="well">
           <h2>Developer Info</h2>
           <h4>Stefano Zaghi</h4>
           
-          
-			   
             <div class="text-center"><div class="btn-group" role="group">
-              
               <a class="btn btn-lg btn-primary" href="mailto:stefano.zaghi@gmail.com"><i class="fa fa-envelope fa-lg"></i></a>
-              
-              
-              
               <a class="btn btn-lg btn-primary" href="https://github.com/szaghi"><i class="fa fa-github fa-lg"></i></a>
-				  
-				  
-              
-              
-              
-              
             </div></div>
-            
        </div>
        </div>
-       
       </div>
-      
-      
-      
-      
-		
       <div class="row">
         <div class="col-xs-6 col-sm-3">
               <h3>Source Files</h3>
-              <ul>
-                
-                  
-                    <li><a href='./sourcefile/autotest.f90.html'>autotest.f90</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/finer.f90.html'>finer.f90</a></li>
-                  
-                
-                  
+              <ul>                    <li><a href='./sourcefile/finer.f90.html'>finer.f90</a></li>
                     <li><a href='./sourcefile/finer_backend.f90.html'>finer_backend.f90</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/finer_file_ini_t.f90.html'>finer_file_ini_t.f90</a></li>
-                  
-                
-                  
+                    <li><a href='./sourcefile/finer_file_ini_t.f90.html'>finer_file_ini_t.F90</a></li>
                     <li><a href='./sourcefile/finer_option_t.f90.html'>finer_option_t.F90</a></li>
-                  
-                
-                  
                     <li><a href='./sourcefile/finer_section_t.f90.html'>finer_section_t.f90</a></li>
-                  
-                
-                  
+                    <li><a href='./sourcefile/finer_test_autotest.f90.html'>finer_test_autotest.f90</a></li>
                     <li><a href='./sourcefile/finer_test_get.f90.html'>finer_test_get.f90</a></li>
-                  
-                
-                  
                     <li><a href='./sourcefile/finer_test_load.f90.html'>finer_test_load.f90</a></li>
-                  
-                
-                  
                     <li><a href='./sourcefile/finer_test_parse.f90.html'>finer_test_parse.f90</a></li>
-                  
-                
-                  
                     <li><a href='./sourcefile/finer_test_update_option.f90.html'>finer_test_update_option.f90</a></li>
-                  
-                
-              </ul>
+</ul>
           </div>
-          
 		  <div class="col-xs-6 col-sm-3">
               <h3>Modules</h3>
-              <ul>
-                
-                  
-                    <li><a href='./module/finer.html'>finer</a></li>
-                  
-                
-                  
+              <ul>                    <li><a href='./module/finer.html'>finer</a></li>
                     <li><a href='./module/finer_backend.html'>finer_backend</a></li>
-                  
-                
-                  
                     <li><a href='./module/finer_file_ini_t.html'>finer_file_ini_t</a></li>
-                  
-                
-                  
                     <li><a href='./module/finer_option_t.html'>finer_option_t</a></li>
-                  
-                
-                  
                     <li><a href='./module/finer_section_t.html'>finer_section_t</a></li>
-                  
-                
-              </ul>
+</ul>
           </div>
-          
-          
 		  <div class="col-xs-6 col-sm-3">
               <h3>Procedures</h3>
-              <ul>
-                
-                  
-                    <li><a href='./proc/add_a_option.html'>add_a_option</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/add_a_option%7E2.html'>add_a_option</a></li>
-                  
-                
-                  
+              <ul>                    <li><a href='./proc/add_a_option.html'>add_a_option</a></li>
+                    <li><a href='./proc/add_a_option~2.html'>add_a_option</a></li>
                     <li><a href='./proc/add_option.html'>add_option</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/add_option%7E2.html'>add_option</a></li>
-                  
-                
-                  
+                    <li><a href='./proc/add_option~2.html'>add_option</a></li>
                     <li><a href='./proc/add_section.html'>add_section</a></li>
-                  
-                
-                  
                     <li><a href='./proc/assign_file_ini.html'>assign_file_ini</a></li>
-                  
-                
-                  
                     <li><a href='./proc/assign_option.html'>assign_option</a></li>
-                  
-                
-                  
                     <li><a href='./proc/assign_section.html'>assign_section</a></li>
-                  
-                
-                  
                     <li><a href='./proc/cli_parse.html'>cli_parse</a></li>
-                  
-                
-                  
                     <li><a href='./proc/count_values.html'>count_values</a></li>
-                  
-                
-                  
-                    <li><a href="./lists/procedures.html"><em>All procedures&hellip;</em></a></li>
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-              </ul>
+</ul>
           </div>
-          
-          
 		  <div class="col-xs-6 col-sm-3">
               <h3>Derived Types</h3>
-              <ul>
-                
-                  
-                    <li><a href='./type/file_ini.html'>file_ini</a></li>
-                  
-                
-                  
+              <ul>                    <li><a href='./type/file_ini.html'>file_ini</a></li>
                     <li><a href='./type/option.html'>option</a></li>
-                  
-                
-                  
                     <li><a href='./type/section.html'>section</a></li>
-                  
-                
-              </ul>
+</ul>
           </div>
-          
       </div>
-
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 </p></div>
-        <div class="col-xs-6 col-md-4 col-md-push-4">
+        <div class="col-xs-6 col-md-6"><p>FiNeR was developed by Stefano Zaghi<br>&copy; 2022 
+</p>
+        </div>
+        <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
-            <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2018-02-01 18:12  
-          </p>
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2022-07-05 09:31            </p>
         </div>
-        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> FiNeR was developed by Stefano Zaghi</p></div>
       </div>
       <br>
       </div> <!-- /container -->    
@@ -610,12 +308,14 @@
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="./tipuesearch/tipuesearch_content.js"></script>
+    <script src="./tipuesearch/tipuesearch_set.js"></script>
+    <script src="./tipuesearch/tipuesearch.js"></script>
+    
   </body>
 </html>
