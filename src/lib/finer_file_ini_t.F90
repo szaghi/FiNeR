@@ -11,7 +11,7 @@ use stringifor_string_t, only : adjustl, string
 #else
 use stringifor, only : adjustl, string
 #endif
-use, intrinsic :: iso_fortran_env, only : stdout => output_unit
+use, intrinsic :: iso_fortran_env, only : stdout => output_unit, stderr => error_unit
 
 implicit none
 private
@@ -598,15 +598,16 @@ contains
 
   subroutine parse(self, source, error)
   !< Parse file either from the self source data or from a source string.
-  class(file_ini),        intent(inout)   :: self      !< File data.
-  type(string),           intent(in)      :: source    !< String source.
-  integer(I4P), optional, intent(out)     :: error     !< Error code.
-  integer(I4P)                            :: errd      !< Error code.
-  type(string), allocatable               :: tokens(:) !< Options strings tokenized.
-  type(string)                            :: dummy     !< Dummy string for parsing sections.
-  integer(I4P)                            :: Ns        !< Counter.
-  integer(I4P)                            :: s         !< Counter.
-  integer(I4P)                            :: ss        !< Counter.
+  class(file_ini),        intent(inout)   :: self         !< File data.
+  type(string),           intent(in)      :: source       !< String source.
+  integer(I4P), optional, intent(out)     :: error        !< Error code.
+  integer(I4P)                            :: errd         !< Error code.
+  type(string), allocatable               :: tokens(:)    !< Options strings tokenized.
+  type(string)                            :: token_failed !< Eventual token failed to parse.
+  type(string)                            :: dummy        !< Dummy string for parsing sections.
+  integer(I4P)                            :: Ns           !< Counter.
+  integer(I4P)                            :: s            !< Counter.
+  integer(I4P)                            :: ss           !< Counter.
 
   errd = err_source_missing
   call source%split(tokens=tokens, sep=new_line('a'))
@@ -644,7 +645,10 @@ contains
       if (scan(adjustl(tokens(s)), comments) == 1) cycle
       if (index(trim(adjustl(tokens(s))), "[") == 1) then
         ss = ss + 1
-        call self%sections(ss)%parse(sep=self%opt_sep, source=tokens(s), error=errd)
+        call self%sections(ss)%parse(sep=self%opt_sep, source=tokens(s), error=errd, token_failed=token_failed)
+        if (errd /=0 ) then
+           write(stderr, '(A)')'ERROR: parse "'//token_failed//'" failed!'
+        endif
       endif
     enddo
   endif

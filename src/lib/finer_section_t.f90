@@ -232,16 +232,17 @@ contains
   if (allocated(self%options)) options_number = size(self%options, dim=1)
   endfunction options_number
 
-  elemental subroutine parse(self, sep, source, error)
+  elemental subroutine parse(self, sep, source, error, token_failed)
   !< Gett section data from a source string.
-  class(section), intent(inout) :: self   !< Section data.
-  character(*),   intent(in)    :: sep    !< Separator of option name/value.
-  type(string),   intent(inout) :: source !< String containing section data.
-  integer(I4P),   intent(out)   :: error  !< Error code.
+  class(section), intent(inout)         :: self         !< Section data.
+  character(*),   intent(in)            :: sep          !< Separator of option name/value.
+  type(string),   intent(inout)         :: source       !< String containing section data.
+  integer(I4P),   intent(out)           :: error        !< Error code.
+  type(string),   intent(out), optional :: token_failed !< Eventual token failed to parse.
 
   call self%sanitize_source(sep=sep, source=source, error=error)
   call self%parse_name(source=source, error=error)
-  call self%parse_options(sep=sep, source=source, error=error)
+  call self%parse_options(sep=sep, source=source, error=error, token_failed=token_failed)
   endsubroutine parse
 
   subroutine print_section(self, unit, retain_comments, pref, iostat, iomsg)
@@ -412,17 +413,18 @@ contains
   endif
   endsubroutine parse_name
 
-  elemental subroutine parse_options(self, sep, source, error)
+  elemental subroutine parse_options(self, sep, source, error, token_failed)
   !< Get section options from a source string.
-  class(section), intent(inout) :: self      !< Section data.
-  character(*),   intent(in)    :: sep       !< Separator of option name/value.
-  type(string),   intent(inout) :: source    !< String containing section data.
-  integer(I4P),   intent(out)   :: error     !< Error code.
-  type(string), allocatable     :: tokens(:) !< Options strings tokenized.
-  type(string)                  :: dummy     !< Dummy string for parsing options.
-  integer(I4P)                  :: No        !< Counter.
-  integer(I4P)                  :: o         !< Counter.
-  integer(I4P)                  :: oo        !< Counter.
+  class(section), intent(inout)         :: self         !< Section data.
+  character(*),   intent(in)            :: sep          !< Separator of option name/value.
+  type(string),   intent(inout)         :: source       !< String containing section data.
+  integer(I4P),   intent(out)           :: error        !< Error code.
+  type(string),   intent(out), optional :: token_failed !< Eventual token failed to parse.
+  type(string), allocatable             :: tokens(:)    !< Options strings tokenized.
+  type(string)                          :: dummy        !< Dummy string for parsing options.
+  integer(I4P)                          :: No           !< Counter.
+  integer(I4P)                          :: o            !< Counter.
+  integer(I4P)                          :: oo           !< Counter.
 
   error = 0
   source = trim(adjustl(source%slice(index(source, "]")+1, source%len())))
@@ -437,6 +439,10 @@ contains
       if (index(tokens(o), sep)>0) then
         oo = oo + 1
         call self%options(oo)%parse(sep=sep, source=tokens(o), error=error)
+        if (error /=0 ) then
+           if (present(token_failed)) token_failed = tokens(o)
+           exit
+        endif
       endif
     enddo
   endif
