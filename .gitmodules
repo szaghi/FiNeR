@@ -20,5 +20,5 @@
   branch = master
 [submodule "src/third_party/fortran_tester"]
   path = src/third_party/fortran_tester
-  url = git@github.com:pdebuyl/fortran_tester.git
+	url = https://github.com/pdebuyl/fortran_tester
   branch = master
