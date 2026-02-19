@@ -1,7 +1,9 @@
 # Changelog
-## [Unreleased]
+## [v2.0.5](https://github.com/szaghi/FLAP/tree/v2.0.5) (2026-02-19)
+[Full Changelog](https://github.com/szaghi/FLAP/compare/v2.0.4...v2.0.5)
 ### Documentation
 - Add CLAUDE.md and update submodules ([`ad63ea6`](https://github.com/szaghi/FLAP/commit/ad63ea6b45dabc0923092149a766c076f9591834))
+- Add VitePress site, rewrite README, and add release pipeline ([`2f0c6c2`](https://github.com/szaghi/FLAP/commit/2f0c6c2e01272028b481b518c5b14971ae890771))
 
 ### Miscellaneous
 - Update fortran tester submodule ([`b57eaba`](https://github.com/szaghi/FLAP/commit/b57eabaaf9052faf87a4821ff92c99bedf231827))
