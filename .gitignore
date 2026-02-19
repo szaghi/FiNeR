@@ -28,6 +28,9 @@
 doc/html/
 exe/
 wiki/
-
-# special files
 get_automatic_changelog.sh
+references
+# VitePress
+docs/node_modules/
+docs/.vitepress/dist/
+docs/.vitepress/cache/

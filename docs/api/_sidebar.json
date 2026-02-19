@@ -1,0 +1,28 @@
+[
+  {
+    "text": "src/lib",
+    "collapsed": true,
+    "items": [
+      {
+        "text": "finer",
+        "link": "/api/src/lib/finer"
+      },
+      {
+        "text": "finer_backend",
+        "link": "/api/src/lib/finer_backend"
+      },
+      {
+        "text": "finer_file_ini_t",
+        "link": "/api/src/lib/finer_file_ini_t"
+      },
+      {
+        "text": "finer_option_t",
+        "link": "/api/src/lib/finer_option_t"
+      },
+      {
+        "text": "finer_section_t",
+        "link": "/api/src/lib/finer_section_t"
+      }
+    ]
+  }
+]

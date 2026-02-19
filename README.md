@@ -1,138 +1,111 @@
-<a name="top"></a>
+# FiNeR
 
-# FiNeR [![GitHub tag](https://img.shields.io/github/tag/szaghi/FiNeR.svg)](https://github.com/szaghi/FiNeR/releases)
+**Fortran INI ParseR and generator** — a pure Fortran 2003+ OOP library for reading and writing [INI](https://en.wikipedia.org/wiki/INI_file) configuration files.
 
-[![License](https://img.shields.io/badge/license-GNU%20GeneraL%20Public%20License%20v3%20,%20GPLv3-blue.svg)]()
-[![License](https://img.shields.io/badge/license-BSD2-red.svg)]()
-[![License](https://img.shields.io/badge/license-BSD3-red.svg)]()
-[![License](https://img.shields.io/badge/license-MIT-red.svg)]()
-
-[![Status](https://img.shields.io/badge/status-stable-brightgreen.svg)]()
-[![CI Status](https://github.com/szaghi/FiNeR/actions/workflows/ci.yml/badge.svg)](https://github.com/szaghi/FiNeR/actions)
-[![Coverage Status](https://img.shields.io/codecov/c/github/szaghi/FiNeR.svg)](https://app.codecov.io/gh/szaghi/FiNeR)
-
-### FiNeR, Fortran INI ParseR and generator for FoRtraners
-
-+ FiNeR is a pure Fortran (KISS) library for IO of INI (config) files for modern (2003+) Fortran projects;
-+ FiNeR is Fortran 2003+ standard compliant;
-- FiNeR is OOP designed;
-- FiNeR is TDD designed;
-+ FiNeR is a Free, Open Source Project.
-
-#### Issues
-[![GitHub issues](https://img.shields.io/github/issues/szaghi/FiNeR.svg)]()
-
-#### Compiler Support
-
-[![Compiler](https://img.shields.io/badge/GNU-v5.3.0+-orange.svg)]()
-[![Compiler](https://img.shields.io/badge/Intel-v16.x+-brightgreen.svg)]()
-[![Compiler](https://img.shields.io/badge/IBM%20XL-not%20tested-yellow.svg)]()
-[![Compiler](https://img.shields.io/badge/g95-not%20tested-yellow.svg)]()
-[![Compiler](https://img.shields.io/badge/NAG-not%20tested-yellow.svg)]()
-[![Compiler](https://img.shields.io/badge/PGI-not%20tested-yellow.svg)]()
+[![CI](https://github.com/szaghi/FiNeR/actions/workflows/ci.yml/badge.svg)](https://github.com/szaghi/FiNeR/actions)
+[![Coverage](https://img.shields.io/codecov/c/github/szaghi/FiNeR.svg)](https://app.codecov.io/gh/szaghi/FiNeR)
+[![GitHub tag](https://img.shields.io/github/tag/szaghi/FiNeR.svg)](https://github.com/szaghi/FiNeR/releases)
+[![License](https://img.shields.io/badge/license-GPLv3%20%7C%20BSD%20%7C%20MIT-blue.svg)](#copyrights)
 
 ---
 
-[What is FiNeR?](#what-is-finer?) | [Main features](#main-features) | [Copyrights](#copyrights) | [Documentation](#documentation) | [A Taste of FiNeR](#a-taste-of-finer)
+## Features
+
+- Parse INI files from disk or from an in-memory string
+- Auto-detect all sections and options — no schema required
+- Multi-line option values and inline comments (`;`) handled automatically
+- Configurable option separator (default `=`)
+- Generate INI files programmatically with `add`/`del`/`save`
+- Unlimited polymorphic values: integer, real, logical, character, and arrays of any PENF kind
+- Introspection: `has_section`, `has_option`, `index`, `count_values`, `items`, `loop`
+- OOP/TDD designed — single `file_ini` type, all functionality as type-bound procedures
+
+**[Documentation](https://szaghi.github.io/FiNeR/)** | **[API Reference](https://szaghi.github.io/FiNeR/api/)**
 
 ---
 
-## What is FiNeR?
+## Authors
 
-Modern Fortran standards (2003+) have introduced better support for strings manipulations. Exploiting such new Fortran capabilities, FiNeR provides an easy to use module library for input (parsing) and output (generating) [INI](http://en.wikipedia.org/wiki/INI_file) (config) files.
+- Stefano Zaghi — [@szaghi](https://github.com/szaghi)
 
-Go to [Top](#top)
-
-## Main features
-
-* [X] User-friendly methods for IO INI files:
-    * [x] parsing files:
-        * [x] automatic parsing of all sections (whose number is auto-detected);
-        * [x] automatic parsing of all options of each section (whose number is auto-detected);
-        * [x] unlimited polymorphic option-values extraction;
-    * [x] generating files:
-        * [x] user-friendly add/remove sections/options;
-        * [x] unlimited polymorphic option-values setting;
-    * [x] introspection:
-        * [x] self-consistency checks;
-        * [x] pretty-printings;
-        * [x] loop over options;
-        * [x] inquiring the presence of sections/options by name;
-* [ ] errors trapping mechanism.
-
-Any feature request is welcome.
-
-Go to [Top](#top)
+Contributions are welcome — see the [Contributing](https://szaghi.github.io/FiNeR/guide/contributing) page.
 
 ## Copyrights
 
-FiNeR is an open source project, it is distributed under a multi-licensing system:
+This project is distributed under a multi-licensing system:
 
-+ for FOSS projects:
-  - [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html);
-+ for closed source/commercial projects:
-  - [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause);
-  - [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause);
-  - [MIT](http://opensource.org/licenses/MIT).
+- **FOSS projects**: [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html)
+- **Closed source / commercial**: [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause), [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause), or [MIT](http://opensource.org/licenses/MIT)
 
-Anyone is interest to use, to develop or to contribute to FiNeR is welcome, feel free to select the license that best matches your soul!
+> Anyone interested in using, developing, or contributing to this project is welcome — pick the license that best fits your needs.
 
-More details can be found on [wiki](https://github.com/szaghi/FiNeR/wiki/Copyrights).
+---
 
-Go to [Top](#top)
+## Quick start
 
-## Documentation
+Parse an INI source and retrieve a multi-value option:
 
-Besides this README file the FiNeR documentation is contained into its own [wiki](https://github.com/szaghi/FiNeR/wiki). Detailed documentation of the API is contained into the [GitHub Pages](http://szaghi.github.io/FiNeR/index.html) that can also be created locally by means of [ford tool](https://github.com/cmacmackin/ford).
-
-### A Taste of FiNeR
-Let us assume our goal is to parse a config file. It is as simple as
 ```fortran
 use finer
-...
-type(file_ini)                :: fini     !< INI file handler.
-character(len=:), allocatable :: source   ! Testing string.
-real(R4P), allocatable        :: array(:) ! Array option.
-integer(I4P)                  :: error    ! Error code.
-...
-source='[section-1]'//new_line('A')//    &
-       'option-1 = one'//new_line('A')// &
-       'option-2 = 2.'//new_line('A')//  &
-       '           3.'//new_line('A')//  &
-       'option-3 = bar'//new_line('A')// &
-       '[section-2]'//new_line('A')//    &
-       'option-1 = foo'
+use penf, only: R4P, I4P
+implicit none
+type(file_ini)                :: fini
+character(len=:), allocatable :: source
+real(R4P), allocatable        :: array(:)
+integer(I4P)                  :: error
+
+source = '[section-1]'//new_line('A')// &
+         'option-1 = one'//new_line('A')// &
+         'option-2 = 2.'//new_line('A')// &
+         '           3.'//new_line('A')// &
+         '[section-2]'//new_line('A')// &
+         'option-1 = foo'
+
 call fini%load(source=source)
-allocate(array(1:fini%count_values(section='section-1',option='option-2')))
-call fini%get(section='section-1',option='option-2',val=array,error=error)
-if (error==0) then
-  print*,array
-else
-  ! errors occur...
-endif
+allocate(array(1:fini%count_values(section_name='section-1', option_name='option-2')))
+call fini%get(section_name='section-1', option_name='option-2', val=array, error=error)
+if (error == 0) print *, array   ! 2.0  3.0
 ```
-And what about the generation of an INI file? It is simple as parsing an old one:
+
+Generate an INI file:
+
 ```fortran
 use finer
-...
-type(file_ini) :: fini !< INI file handler.
-...
+use penf, only: R8P
+implicit none
+type(file_ini) :: fini
+
 call fini%add(section='sec-foo')
-call fini%add(section='sec-foo',option='bar',val=-32.1_R8P)
-call fini%add(section='sec-foo',option='baz',val=' hello FiNeR! ')
-call fini%add(section='sec-foo',option='array',val=[1,2,3,4])
+call fini%add(section='sec-foo', option='bar',   val=-32.1_R8P)
+call fini%add(section='sec-foo', option='baz',   val=' hello FiNeR! ')
+call fini%add(section='sec-foo', option='array', val=[1, 2, 3, 4])
 call fini%add(section='sec-bar')
-call fini%add(section='sec-bar',option='bools',val=[.true.,.false.,.false.])
+call fini%add(section='sec-bar', option='bools', val=[.true., .false., .false.])
 call fini%save(filename='foo.ini')
 ```
-A file named *foo.ini* is created. It contains something like:
-```ini
-[sec-foo]
-bar = -0.321000000000000E+002
-baz =  hello FiNeR!
-array = +1 +2 +3 +4
-[sec-bar]
-bools = T F F
+
+---
+
+## Install
+
+### Clone and build with CMake
+
+```sh
+git clone https://github.com/szaghi/FiNeR --recursive
+cd FiNeR
+mkdir build && cd build
+cmake ..
+make && ctest
 ```
 
-Go to [Top](#top)
+### CMake subdirectory integration
+
+```cmake
+add_subdirectory(FiNeR)
+target_link_libraries(your_target FiNeR::FiNeR)
+```
+
+| Tool | Command |
+|------|---------|
+| CMake | `cmake .. && make` |
+| FoBiS.py | `FoBiS.py build -mode tests-gnu` |
