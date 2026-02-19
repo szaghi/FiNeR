@@ -1,321 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="Fortran INI ParseR and generator">
-    <meta name="author" content="Stefano Zaghi" >
-    <link rel="icon" href="./favicon.png">
-
-    <title> FiNeR </title>
-
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/pygments.css" rel="stylesheet">
-    <link href="./css/font-awesome.min.css" rel="stylesheet">
-    <link href="./css/local.css" rel="stylesheet">
-    <link  href="./tipuesearch/tipuesearch.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FiNeR Documentation</title>
+    <meta name="description" content="A VitePress site">
+    <meta name="generator" content="VitePress v1.6.4">
+    <link rel="preload stylesheet" href="/FiNeR/assets/style.DzP_U6KS.css" as="style">
+    <link rel="preload stylesheet" href="/FiNeR/vp-icons.css" as="style">
     
-    <script src="./js/jquery-2.1.3.min.js"></script>
-    <script src="./js/svg-pan-zoom.min.js"></script>
-
+    <script type="module" src="/FiNeR/assets/app.CQ1xuiTB.js"></script>
+    <link rel="preload" href="/FiNeR/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/framework.D1m2_e98.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/theme.CdEJUbcR.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/katex.CBSAILhF.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/dagre-6UL2VRFP.B3qrafi_.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/cose-bilkent-S5V4N54A.IEVq-Phk.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/c4Diagram-YG6GDRKO.DjfDlNnO.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/flowDiagram-NV44I4VS.DoXliHK1.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/erDiagram-Q2GNP2WA.DVyMX-QF.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/gitGraphDiagram-V2S2FVAM.D9u5-6H2.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/ganttDiagram-JELNMOA3.D5newcun.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/infoDiagram-HS3SLOUP.cuHUadL_.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/pieDiagram-ADFJNKIX.fa_wGbzM.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/quadrantDiagram-AYHSOK5B.DmcCwcBf.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/xychartDiagram-PRI3JC2R.DlTwfkIT.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/requirementDiagram-UZGBJVZJ.DxcgeBPE.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/sequenceDiagram-WL72ISMW.DaYliETK.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/classDiagram-2ON5EDUG.kEVEic8m.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/classDiagram-v2-WZHVMYZB.kEVEic8m.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/stateDiagram-FKZM4ZOC.SV9muoGA.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/stateDiagram-v2-4FDKWEC3.B9sq_bJW.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/journeyDiagram-XKPGCS4Q.DZq9HDr8.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/timeline-definition-IT6M3QCI.BsHV8i4y.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/mindmap-definition-VGOIOE7T.qKXh7cXb.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/kanban-definition-3W4ZIXB7.CQ_MrUk5.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/sankeyDiagram-TZEHDZUN.Dl-lMe7r.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/diagram-S2PKOQOG.dfb7VyxZ.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/diagram-QEK2KX5R.BNaFGoBh.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/blockDiagram-VD42YOAC.ozAshYZp.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/architectureDiagram-VXUJARFQ.dWOO_YEq.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/diagram-PSM6KHXK.CxQXDhBL.js">
+    <link rel="modulepreload" href="/FiNeR/assets/chunks/virtual_mermaid-config.DDnGl6nM.js">
+    <link rel="modulepreload" href="/FiNeR/assets/index.md.ZqMeAKW1.lean.js">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
   </head>
-
   <body>
-
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="./index.html">FiNeR </a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
-              <a href="#" class="dropdown-toggle"
-              data-toggle="dropdown" role="button"
-              aria-haspopup="true"
-     aria-expanded="false">Contents <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li><a href="./lists/files.html">Source Files</a></li>
-            <li><a href="./lists/modules.html">Modules</a></li>
-            <li><a href="./lists/procedures.html">Procedures</a></li>
-                   <li><a href="./lists/types.html">Derived Types</a></li>
-            <li><a href="./lists/programs.html">Programs</a></li>
-       
-            </ul>
-        
-            </li>
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/files.html">Source Files</a></li>
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/modules.html">Modules</a></li>
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/procedures.html">Procedures</a></li>
-                             <li class="visible-xs hidden-sm visible-lg"><a href="./lists/types.html">Derived Types</a></li>
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/programs.html">Programs</a></li>
-          </ul>
-        <form action="./search.html" class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
-        </div>
-<!--
-        <button type="submit" class="btn btn-default">Submit</button>
--->
-        </form>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-    <div class="container">
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <p>Fortran INI ParseR and generator</p>
-	<p> Find us on&hellip;</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="https://github.com/szaghi/FiNeR" role="button">GitHub</a>
-        </p>
-      </div>
-
-      <div class="row" id='text'>
-        <div class="col-md-8">
-          <h1>FiNeR</h1>
-          <p><a name="top"></a></p>
-<h1 id="finer">FiNeR <a href="https://github.com/szaghi/FiNeR/releases"><img alt="GitHub tag" src="https://img.shields.io/github/tag/szaghi/FiNeR.svg"></a></h1>
-<p><a href=""><img alt="License" src="https://img.shields.io/badge/license-GNU%20GeneraL%20Public%20License%20v3%20,%20GPLv3-blue.svg"></a>
-<a href=""><img alt="License" src="https://img.shields.io/badge/license-BSD2-red.svg"></a>
-<a href=""><img alt="License" src="https://img.shields.io/badge/license-BSD3-red.svg"></a>
-<a href=""><img alt="License" src="https://img.shields.io/badge/license-MIT-red.svg"></a></p>
-<p><a href=""><img alt="Status" src="https://img.shields.io/badge/status-stable-brightgreen.svg"></a>
-<a href="https://github.com/szaghi/FiNeR/actions"><img alt="CI Status" src="https://github.com/szaghi/FiNeR/actions/workflows/ci.yml/badge.svg"></a>
-<a href="https://app.codecov.io/gh/szaghi/FiNeR"><img alt="Coverage Status" src="https://img.shields.io/codecov/c/github/szaghi/FiNeR.svg"></a></p>
-<h3 id="finer-fortran-ini-parser-and-generator-for-fortraners">FiNeR, Fortran INI ParseR and generator for FoRtraners</h3>
-<ul>
-<li>FiNeR is a pure Fortran (KISS) library for IO of INI (config) files for modern (2003+) Fortran projects;</li>
-<li>FiNeR is Fortran 2003+ standard compliant;</li>
-<li>FiNeR is OOP designed;</li>
-<li>FiNeR is TDD designed;</li>
-<li>FiNeR is a Free, Open Source Project.</li>
-</ul>
-<h4 id="issues">Issues</h4>
-<p><a href=""><img alt="GitHub issues" src="https://img.shields.io/github/issues/szaghi/FiNeR.svg"></a></p>
-<h4 id="compiler-support">Compiler Support</h4>
-<p><a href=""><img alt="Compiler" src="https://img.shields.io/badge/GNU-v5.3.0+-orange.svg"></a>
-<a href=""><img alt="Compiler" src="https://img.shields.io/badge/Intel-v16.x+-brightgreen.svg"></a>
-<a href=""><img alt="Compiler" src="https://img.shields.io/badge/IBM%20XL-not%20tested-yellow.svg"></a>
-<a href=""><img alt="Compiler" src="https://img.shields.io/badge/g95-not%20tested-yellow.svg"></a>
-<a href=""><img alt="Compiler" src="https://img.shields.io/badge/NAG-not%20tested-yellow.svg"></a>
-<a href=""><img alt="Compiler" src="https://img.shields.io/badge/PGI-not%20tested-yellow.svg"></a></p>
-<hr>
-<p><a href="#what-is-finer?">What is FiNeR?</a> | <a href="#main-features">Main features</a> | <a href="#copyrights">Copyrights</a> | <a href="#documentation">Documentation</a> | <a href="#a-taste-of-finer">A Taste of FiNeR</a></p>
-<hr>
-<h2 id="what-is-finer">What is FiNeR?</h2>
-<p>Modern Fortran standards (2003+) have introduced better support for strings manipulations. Exploiting such new Fortran capabilities, FiNeR provides an easy to use module library for input (parsing) and output (generating) <a href="http://en.wikipedia.org/wiki/INI_file">INI</a> (config) files.</p>
-<p>Go to <a href="#top">Top</a></p>
-<h2 id="main-features">Main features</h2>
-<ul>
-<li>[X] User-friendly methods for IO INI files:<ul>
-<li>[x] parsing files:<ul>
-<li>[x] automatic parsing of all sections (whose number is auto-detected);</li>
-<li>[x] automatic parsing of all options of each section (whose number is auto-detected);</li>
-<li>[x] unlimited polymorphic option-values extraction;</li>
-</ul>
-</li>
-<li>[x] generating files:<ul>
-<li>[x] user-friendly add/remove sections/options;</li>
-<li>[x] unlimited polymorphic option-values setting;</li>
-</ul>
-</li>
-<li>[x] introspection:<ul>
-<li>[x] self-consistency checks;</li>
-<li>[x] pretty-printings;</li>
-<li>[x] loop over options;</li>
-<li>[x] inquiring the presence of sections/options by name;</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>[ ] errors trapping mechanism.</li>
-</ul>
-<p>Any feature request is welcome.</p>
-<p>Go to <a href="#top">Top</a></p>
-<h2 id="copyrights">Copyrights</h2>
-<p>FiNeR is an open source project, it is distributed under a multi-licensing system:</p>
-<ul>
-<li>for FOSS projects:</li>
-<li><a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL v3</a>;</li>
-<li>for closed source/commercial projects:</li>
-<li><a href="http://opensource.org/licenses/BSD-2-Clause">BSD 2-Clause</a>;</li>
-<li><a href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause</a>;</li>
-<li><a href="http://opensource.org/licenses/MIT">MIT</a>.</li>
-</ul>
-<p>Anyone is interest to use, to develop or to contribute to FiNeR is welcome, feel free to select the license that best matches your soul!</p>
-<p>More details can be found on <a href="https://github.com/szaghi/FiNeR/wiki/Copyrights">wiki</a>.</p>
-<p>Go to <a href="#top">Top</a></p>
-<h2 id="documentation">Documentation</h2>
-<p>Besides this README file the FiNeR documentation is contained into its own <a href="https://github.com/szaghi/FiNeR/wiki">wiki</a>. Detailed documentation of the API is contained into the <a href="http://szaghi.github.io/FiNeR/index.html">GitHub Pages</a> that can also be created locally by means of <a href="https://github.com/cmacmackin/ford">ford tool</a>.</p>
-<h3 id="a-taste-of-finer">A Taste of FiNeR</h3>
-<p>Let us assume our goal is to parse a config file. It is as simple as</p>
-<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">finer</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="k">type</span><span class="p">(</span><span class="n">file_ini</span><span class="p">)</span><span class="w">                </span><span class="kd">::</span><span class="w"> </span><span class="n">fini</span><span class="w">     </span><span class="c">!&lt; INI file handler.</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">source</span><span class="w">   </span><span class="c">! Testing string.</span>
-<span class="kt">real</span><span class="p">(</span><span class="n">R4P</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w">        </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span><span class="p">(:)</span><span class="w"> </span><span class="c">! Array option.</span>
-<span class="kt">integer</span><span class="p">(</span><span class="n">I4P</span><span class="p">)</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">error</span><span class="w">    </span><span class="c">! Error code.</span>
-<span class="p">...</span><span class="w"></span>
-<span class="n">source</span><span class="o">=</span><span class="s1">&#39;[section-1]&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">       </span><span class="s1">&#39;option-1 = one&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">       </span><span class="s1">&#39;option-2 = 2.&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w">  </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">       </span><span class="s1">&#39;           3.&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w">  </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">       </span><span class="s1">&#39;option-3 = bar&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">       </span><span class="s1">&#39;[section-2]&#39;</span><span class="o">//</span><span class="nb">new_line</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">//</span><span class="w">    </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">       </span><span class="s1">&#39;option-1 = foo&#39;</span><span class="w"></span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">load</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span><span class="w"></span>
-<span class="k">allocate</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">fini</span><span class="p">%</span><span class="n">count_values</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;option-2&#39;</span><span class="p">)))</span><span class="w"></span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;section-1&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;option-2&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="k">array</span><span class="p">,</span><span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">)</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">  print</span><span class="o">*</span><span class="p">,</span><span class="k">array</span>
-<span class="k">else</span><span class="w"></span>
-<span class="w">  </span><span class="c">! errors occur...</span>
-<span class="k">endif</span><span class="w"></span>
-</code></pre></div>
-
-<p>And what about the generation of an INI file? It is simple as parsing an old one:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">finer</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="k">type</span><span class="p">(</span><span class="n">file_ini</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fini</span><span class="w"> </span><span class="c">!&lt; INI file handler.</span>
-<span class="p">...</span><span class="w"></span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=-</span><span class="mi">3</span><span class="mf">2.1_R8P</span><span class="p">)</span><span class="w"></span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;baz&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="s1">&#39; hello FiNeR! &#39;</span><span class="p">)</span><span class="w"></span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-foo&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;array&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span><span class="w"></span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-bar&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="n">add</span><span class="p">(</span><span class="n">section</span><span class="o">=</span><span class="s1">&#39;sec-bar&#39;</span><span class="p">,</span><span class="n">option</span><span class="o">=</span><span class="s1">&#39;bools&#39;</span><span class="p">,</span><span class="n">val</span><span class="o">=</span><span class="p">[.</span><span class="n">true</span><span class="p">.,.</span><span class="n">false</span><span class="p">.,.</span><span class="n">false</span><span class="p">.])</span><span class="w"></span>
-<span class="k">call </span><span class="n">fini</span><span class="p">%</span><span class="k">save</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;foo.ini&#39;</span><span class="p">)</span><span class="w"></span>
-</code></pre></div>
-
-<p>A file named <em>foo.ini</em> is created. It contains something like:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[sec-foo]</span><span class="w"></span>
-<span class="na">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-0.321000000000000E+002</span><span class="w"></span>
-<span class="na">baz</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s">hello FiNeR!</span><span class="w"></span>
-<span class="na">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">+1 +2 +3 +4</span><span class="w"></span>
-<span class="k">[sec-bar]</span><span class="w"></span>
-<span class="na">bools</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">T F F</span><span class="w"></span>
-</code></pre></div>
-
-<h2 id="go-to-top">Go to <a href="#top">Top</a></h2>
-        </div>
-        <div class="col-md-4">
-	  <div class="well">
-          <h2>Developer Info</h2>
-          <h4>Stefano Zaghi</h4>
-          
-            <div class="text-center"><div class="btn-group" role="group">
-              <a class="btn btn-lg btn-primary" href="mailto:stefano.zaghi@gmail.com"><i class="fa fa-envelope fa-lg"></i></a>
-              <a class="btn btn-lg btn-primary" href="https://github.com/szaghi"><i class="fa fa-github fa-lg"></i></a>
-            </div></div>
-       </div>
-       </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-6 col-sm-3">
-              <h3>Source Files</h3>
-              <ul>                    <li><a href='./sourcefile/finer.f90.html'>finer.f90</a></li>
-                    <li><a href='./sourcefile/finer_backend.f90.html'>finer_backend.f90</a></li>
-                    <li><a href='./sourcefile/finer_file_ini_t.f90.html'>finer_file_ini_t.F90</a></li>
-                    <li><a href='./sourcefile/finer_option_t.f90.html'>finer_option_t.F90</a></li>
-                    <li><a href='./sourcefile/finer_section_t.f90.html'>finer_section_t.f90</a></li>
-                    <li><a href='./sourcefile/finer_test_autotest.f90.html'>finer_test_autotest.f90</a></li>
-                    <li><a href='./sourcefile/finer_test_get.f90.html'>finer_test_get.f90</a></li>
-                    <li><a href='./sourcefile/finer_test_load.f90.html'>finer_test_load.f90</a></li>
-                    <li><a href='./sourcefile/finer_test_parse.f90.html'>finer_test_parse.f90</a></li>
-                    <li><a href='./sourcefile/finer_test_update_option.f90.html'>finer_test_update_option.f90</a></li>
-</ul>
-          </div>
-		  <div class="col-xs-6 col-sm-3">
-              <h3>Modules</h3>
-              <ul>                    <li><a href='./module/finer.html'>finer</a></li>
-                    <li><a href='./module/finer_backend.html'>finer_backend</a></li>
-                    <li><a href='./module/finer_file_ini_t.html'>finer_file_ini_t</a></li>
-                    <li><a href='./module/finer_option_t.html'>finer_option_t</a></li>
-                    <li><a href='./module/finer_section_t.html'>finer_section_t</a></li>
-</ul>
-          </div>
-		  <div class="col-xs-6 col-sm-3">
-              <h3>Procedures</h3>
-              <ul>                    <li><a href='./proc/add_a_option.html'>add_a_option</a></li>
-                    <li><a href='./proc/add_a_option~2.html'>add_a_option</a></li>
-                    <li><a href='./proc/add_option.html'>add_option</a></li>
-                    <li><a href='./proc/add_option~2.html'>add_option</a></li>
-                    <li><a href='./proc/add_section.html'>add_section</a></li>
-                    <li><a href='./proc/assign_file_ini.html'>assign_file_ini</a></li>
-                    <li><a href='./proc/assign_option.html'>assign_option</a></li>
-                    <li><a href='./proc/assign_section.html'>assign_section</a></li>
-                    <li><a href='./proc/cli_parse.html'>cli_parse</a></li>
-                    <li><a href='./proc/count_values.html'>count_values</a></li>
-</ul>
-          </div>
-		  <div class="col-xs-6 col-sm-3">
-              <h3>Derived Types</h3>
-              <ul>                    <li><a href='./type/file_ini.html'>file_ini</a></li>
-                    <li><a href='./type/option.html'>option</a></li>
-                    <li><a href='./type/section.html'>section</a></li>
-</ul>
-          </div>
-      </div>
-    <hr>    
-    </div> <!-- /container -->
-    <footer>
-      <div class="container">
-      <div class="row">
-        <div class="col-xs-6 col-md-6"><p>FiNeR was developed by Stefano Zaghi<br>&copy; 2022 
-</p>
-        </div>
-        <div class="col-xs-6 col-md-6">
-          <p class="text-right">
-            Documentation generated by 
-            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2022-07-05 09:33            </p>
-        </div>
-      </div>
-      <br>
-      </div> <!-- /container -->    
-    </footer>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-<!--
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
--->
-    <script src="./js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="./js/ie10-viewport-bug-workaround.js"></script>
-
-    <!-- MathJax JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
-        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
-      });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    <script src="./tipuesearch/tipuesearch_content.js"></script>
-    <script src="./tipuesearch/tipuesearch_set.js"></script>
-    <script src="./tipuesearch/tipuesearch.js"></script>
+    <div id="app"><div class="Layout" data-v-d8b57b2d><!--[--><!--]--><!--[--><span tabindex="-1" data-v-fcbfc0e0></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-fcbfc0e0>Skip to content</a><!--]--><!----><header class="VPNav" data-v-d8b57b2d data-v-7ad780c2><div class="VPNavBar" data-v-7ad780c2 data-v-9fd4d1dd><div class="wrapper" data-v-9fd4d1dd><div class="container" data-v-9fd4d1dd><div class="title" data-v-9fd4d1dd><div class="VPNavBarTitle" data-v-9fd4d1dd data-v-9f43907a><a class="title" href="/FiNeR/" data-v-9f43907a><!--[--><!--]--><!----><span data-v-9f43907a>FiNeR Documentation</span><!--[--><!--]--></a></div></div><div class="content" data-v-9fd4d1dd><div class="content-body" data-v-9fd4d1dd><!--[--><!--]--><div class="VPNavBarSearch search" data-v-9fd4d1dd><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-9fd4d1dd data-v-afb2845e><span id="main-nav-aria-label" class="visually-hidden" data-v-afb2845e> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink active" href="/FiNeR/" tabindex="0" data-v-afb2845e data-v-815115f5><!--[--><span data-v-815115f5>Home</span><!--]--></a><!--]--><!--[--><div class="VPFlyout VPNavBarMenuGroup" data-v-afb2845e data-v-bfe7971f><button type="button" class="button" aria-haspopup="true" aria-expanded="false" data-v-bfe7971f><span class="text" data-v-bfe7971f><!----><span data-v-bfe7971f>Guide</span><span class="vpi-chevron-down text-icon" data-v-bfe7971f></span></span></button><div class="menu" data-v-bfe7971f><div class="VPMenu" data-v-bfe7971f data-v-20ed86d6><div class="items" data-v-20ed86d6><!--[--><!--[--><div class="VPMenuLink" data-v-20ed86d6 data-v-7eeeb2dc><a class="VPLink link" href="/FiNeR/guide/" data-v-7eeeb2dc><!--[--><span data-v-7eeeb2dc>About</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-20ed86d6 data-v-7eeeb2dc><a class="VPLink link" href="/FiNeR/guide/features.html" data-v-7eeeb2dc><!--[--><span data-v-7eeeb2dc>Features</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-20ed86d6 data-v-7eeeb2dc><a class="VPLink link" href="/FiNeR/guide/installation.html" data-v-7eeeb2dc><!--[--><span data-v-7eeeb2dc>Installation</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-20ed86d6 data-v-7eeeb2dc><a class="VPLink link" href="/FiNeR/guide/usage.html" data-v-7eeeb2dc><!--[--><span data-v-7eeeb2dc>Usage</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-20ed86d6 data-v-7eeeb2dc><a class="VPLink link" href="/FiNeR/guide/api-reference.html" data-v-7eeeb2dc><!--[--><span data-v-7eeeb2dc>API Reference</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-20ed86d6 data-v-7eeeb2dc><a class="VPLink link" href="/FiNeR/guide/contributing.html" data-v-7eeeb2dc><!--[--><span data-v-7eeeb2dc>Contributing</span><!--]--></a></div><!--]--><!--[--><div class="VPMenuLink" data-v-20ed86d6 data-v-7eeeb2dc><a class="VPLink link" href="/FiNeR/guide/changelog.html" data-v-7eeeb2dc><!--[--><span data-v-7eeeb2dc>Changelog</span><!--]--></a></div><!--]--><!--]--></div><!--[--><!--]--></div></div></div><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/FiNeR/api/" tabindex="0" data-v-afb2845e data-v-815115f5><!--[--><span data-v-815115f5>API</span><!--]--></a><!--]--><!--[--><a class="VPLink link vp-external-link-icon VPNavBarMenuLink" href="https://github.com/szaghi/FiNeR" target="_blank" rel="noreferrer" tabindex="0" data-v-afb2845e data-v-815115f5><!--[--><span data-v-815115f5>GitHub</span><!--]--></a><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-9fd4d1dd data-v-3f90c1a5><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-3f90c1a5 data-v-be9742d9 data-v-b4ccac88><span class="check" data-v-b4ccac88><span class="icon" data-v-b4ccac88><!--[--><span class="vpi-sun sun" data-v-be9742d9></span><span class="vpi-moon moon" data-v-be9742d9></span><!--]--></span></span></button></div><!----><div class="VPFlyout VPNavBarExtra extra" data-v-9fd4d1dd data-v-f953d92f data-v-bfe7971f><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-bfe7971f><span class="vpi-more-horizontal icon" data-v-bfe7971f></span></button><div class="menu" data-v-bfe7971f><div class="VPMenu" data-v-bfe7971f data-v-20ed86d6><!----><!--[--><!--[--><!----><div class="group" data-v-f953d92f><div class="item appearance" data-v-f953d92f><p class="label" data-v-f953d92f>Appearance</p><div class="appearance-action" data-v-f953d92f><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-f953d92f data-v-be9742d9 data-v-b4ccac88><span class="check" data-v-b4ccac88><span class="icon" data-v-b4ccac88><!--[--><span class="vpi-sun sun" data-v-be9742d9></span><span class="vpi-moon moon" data-v-be9742d9></span><!--]--></span></span></button></div></div></div><!----><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-9fd4d1dd data-v-6bee1efd><span class="container" data-v-6bee1efd><span class="top" data-v-6bee1efd></span><span class="middle" data-v-6bee1efd></span><span class="bottom" data-v-6bee1efd></span></span></button></div></div></div></div><div class="divider" data-v-9fd4d1dd><div class="divider-line" data-v-9fd4d1dd></div></div></div><!----></header><!----><!----><div class="VPContent is-home" id="VPContent" data-v-d8b57b2d data-v-9a6c75ad><div class="VPHome" data-v-9a6c75ad data-v-e07eaea7><!--[--><!--]--><div class="VPHero VPHomeHero" data-v-e07eaea7 data-v-dd8814ff><div class="container" data-v-dd8814ff><div class="main" data-v-dd8814ff><!--[--><!--]--><!--[--><h1 class="heading" data-v-dd8814ff><span class="name clip" data-v-dd8814ff>FiNeR</span><span class="text" data-v-dd8814ff>Fortran INI ParseR</span></h1><p class="tagline" data-v-dd8814ff>A pure Fortran 2003+ OOP library for reading and writing INI configuration files.</p><!--]--><!--[--><!--]--><div class="actions" data-v-dd8814ff><!--[--><div class="action" data-v-dd8814ff><a class="VPButton medium brand" href="/FiNeR/guide/" data-v-dd8814ff data-v-93dc4167>Guide</a></div><div class="action" data-v-dd8814ff><a class="VPButton medium alt" href="/FiNeR/api/" data-v-dd8814ff data-v-93dc4167>API Reference</a></div><div class="action" data-v-dd8814ff><a class="VPButton medium alt" href="https://github.com/szaghi/FiNeR" target="_blank" rel="noreferrer" data-v-dd8814ff data-v-93dc4167>View on GitHub</a></div><!--]--></div><!--[--><!--]--></div><!----></div></div><!--[--><!--]--><!--[--><!--]--><div class="VPFeatures VPHomeFeatures" data-v-e07eaea7 data-v-b1eea84a><div class="container" data-v-b1eea84a><div class="items" data-v-b1eea84a><!--[--><div class="grid-6 item" data-v-b1eea84a><div class="VPLink no-icon VPFeature" data-v-b1eea84a data-v-bd37d1a2><!--[--><article class="box" data-v-bd37d1a2><div class="icon" data-v-bd37d1a2>📄</div><h2 class="title" data-v-bd37d1a2>INI Parsing</h2><p class="details" data-v-bd37d1a2>Load INI files from disk or from an in-memory string. Sections and options are auto-detected — no schema required.</p><!----></article><!--]--></div></div><div class="grid-6 item" data-v-b1eea84a><div class="VPLink no-icon VPFeature" data-v-b1eea84a data-v-bd37d1a2><!--[--><article class="box" data-v-bd37d1a2><div class="icon" data-v-bd37d1a2>✏️</div><h2 class="title" data-v-bd37d1a2>INI Generation</h2><p class="details" data-v-bd37d1a2>Build INI files programmatically with add/del methods. Save to disk or print to any Fortran unit.</p><!----></article><!--]--></div></div><div class="grid-6 item" data-v-b1eea84a><div class="VPLink no-icon VPFeature" data-v-b1eea84a data-v-bd37d1a2><!--[--><article class="box" data-v-bd37d1a2><div class="icon" data-v-bd37d1a2>🔍</div><h2 class="title" data-v-bd37d1a2>Introspection</h2><p class="details" data-v-bd37d1a2>Query the presence of sections and options by name, loop over all options, count multi-value entries, and get section/option indices.</p><!----></article><!--]--></div></div><div class="grid-6 item" data-v-b1eea84a><div class="VPLink no-icon VPFeature" data-v-b1eea84a data-v-bd37d1a2><!--[--><article class="box" data-v-bd37d1a2><div class="icon" data-v-bd37d1a2>🛠️</div><h2 class="title" data-v-bd37d1a2>Multi Build System</h2><p class="details" data-v-bd37d1a2>Build with CMake (preferred) or FoBiS.py. Integrate into your CMake project via add_subdirectory and target_link_libraries.</p><!----></article><!--]--></div></div><div class="grid-6 item" data-v-b1eea84a><div class="VPLink no-icon VPFeature" data-v-b1eea84a data-v-bd37d1a2><!--[--><article class="box" data-v-bd37d1a2><div class="icon" data-v-bd37d1a2>🧪</div><h2 class="title" data-v-bd37d1a2>OOP / TDD Designed</h2><p class="details" data-v-bd37d1a2>A single file_ini type exposes all functionality as type-bound procedures. Designed with a test-driven approach — each feature is covered by automated tests.</p><!----></article><!--]--></div></div><div class="grid-6 item" data-v-b1eea84a><div class="VPLink no-icon VPFeature" data-v-b1eea84a data-v-bd37d1a2><!--[--><article class="box" data-v-bd37d1a2><div class="icon" data-v-bd37d1a2>🆓</div><h2 class="title" data-v-bd37d1a2>Free & Open Source</h2><p class="details" data-v-bd37d1a2>Multi-licensed — GPLv3 for FOSS projects, BSD 2/3-Clause or MIT for commercial use. Fortran 2003+ standard compliant.</p><!----></article><!--]--></div></div><!--]--></div></div></div><!--[--><!--]--><div class="vp-doc container" style="" data-v-e07eaea7 data-v-c141a4bd><!--[--><div style="position:relative;" data-v-e07eaea7><div><h2 id="quick-start" tabindex="-1">Quick start <a class="header-anchor" href="#quick-start" aria-label="Permalink to &quot;Quick start&quot;">​</a></h2><p>Parse an INI source string and retrieve a multi-value option:</p><div class="language-fortran vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">fortran</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">use</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> finer</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">use</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> penf</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">only:</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> R4P, I4P</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">file_ini</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)                </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">::</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> fini</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">character</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">len</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:), </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">allocatable</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> ::</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> source</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">real</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(R4P), </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">allocatable</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        ::</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> array(:)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">integer</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(I4P)                  </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">::</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> error</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">source </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &#39;[section-1]&#39;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">//</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">new_line</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">//</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> &amp;</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">         &#39;option-1 = one&#39;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">//</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">new_line</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">//</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> &amp;</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">         &#39;option-2 = 2.&#39;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">//</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">new_line</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">//</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> &amp;</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">         &#39;           3.&#39;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">//</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">new_line</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">//</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> &amp;</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">         &#39;[section-2]&#39;</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">//</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">new_line</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;A&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">//</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> &amp;</span></span>
+<span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">         &#39;option-1 = foo&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">call</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> fini</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">%</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">load</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">source</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">source)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">allocate</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(array(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">:fini</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">count_values(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">section</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;section-1&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;"> option</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;option-2&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">)))</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">call</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> fini</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">%</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">get</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">section</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;section-1&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;"> option</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&#39;option-2&#39;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;"> val</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">array,</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;"> error</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">error)</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (error </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">==</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">print</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> *</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, array   </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">! 2.0  3.0</span></span></code></pre></div><h2 id="authors" tabindex="-1">Authors <a class="header-anchor" href="#authors" aria-label="Permalink to &quot;Authors&quot;">​</a></h2><ul><li>Stefano Zaghi — <a href="https://github.com/szaghi" target="_blank" rel="noreferrer">@szaghi</a></li></ul><p>Contributions are welcome — see the <a href="/FiNeR/guide/contributing.html">Contributing</a> page.</p><h2 id="copyrights" tabindex="-1">Copyrights <a class="header-anchor" href="#copyrights" aria-label="Permalink to &quot;Copyrights&quot;">​</a></h2><p>FiNeR is distributed under a multi-licensing system:</p><table tabindex="0"><thead><tr><th>Use case</th><th>License</th></tr></thead><tbody><tr><td>FOSS projects</td><td><a href="http://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noreferrer">GPL v3</a></td></tr><tr><td>Closed source / commercial</td><td><a href="http://opensource.org/licenses/BSD-2-Clause" target="_blank" rel="noreferrer">BSD 2-Clause</a></td></tr><tr><td>Closed source / commercial</td><td><a href="http://opensource.org/licenses/BSD-3-Clause" target="_blank" rel="noreferrer">BSD 3-Clause</a></td></tr><tr><td>Closed source / commercial</td><td><a href="http://opensource.org/licenses/MIT" target="_blank" rel="noreferrer">MIT</a></td></tr></tbody></table><blockquote><p>Anyone interested in using, developing, or contributing to FiNeR is welcome — pick the license that best fits your needs.</p></blockquote></div></div><!--]--></div></div></div><!----><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"api_index.md\":\"DUxLbHXh\",\"api_src_lib_finer.md\":\"C6zvvP1a\",\"api_src_lib_finer_backend.md\":\"DfnM1cQw\",\"api_src_lib_finer_file_ini_t.md\":\"DiiwShfk\",\"api_src_lib_finer_option_t.md\":\"DOteWITj\",\"api_src_lib_finer_section_t.md\":\"DCvfhETO\",\"ford.md\":\"iWw7xBET\",\"guide_api-reference.md\":\"BN7WDp-H\",\"guide_changelog.md\":\"Bm1Ql5eB\",\"guide_contributing.md\":\"BJ-Z6jjn\",\"guide_features.md\":\"CYWOO-jv\",\"guide_index.md\":\"yzVhN9cQ\",\"guide_installation.md\":\"hJIPpnl6\",\"guide_usage.md\":\"BOeRAJ7h\",\"index.md\":\"ZqMeAKW1\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"en-US\",\"dir\":\"ltr\",\"title\":\"FiNeR Documentation\",\"description\":\"A VitePress site\",\"base\":\"/FiNeR/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"nav\":[{\"text\":\"Home\",\"link\":\"/\"},{\"text\":\"Guide\",\"items\":[{\"text\":\"About\",\"link\":\"/guide/\"},{\"text\":\"Features\",\"link\":\"/guide/features\"},{\"text\":\"Installation\",\"link\":\"/guide/installation\"},{\"text\":\"Usage\",\"link\":\"/guide/usage\"},{\"text\":\"API Reference\",\"link\":\"/guide/api-reference\"},{\"text\":\"Contributing\",\"link\":\"/guide/contributing\"},{\"text\":\"Changelog\",\"link\":\"/guide/changelog\"}]},{\"text\":\"API\",\"link\":\"/api/\"},{\"text\":\"GitHub\",\"link\":\"https://github.com/szaghi/FiNeR\"}],\"sidebar\":{\"/guide/\":[{\"text\":\"Introduction\",\"items\":[{\"text\":\"About\",\"link\":\"/guide/\"},{\"text\":\"Features\",\"link\":\"/guide/features\"}]},{\"text\":\"Getting Started\",\"items\":[{\"text\":\"Installation\",\"link\":\"/guide/installation\"},{\"text\":\"Usage\",\"link\":\"/guide/usage\"},{\"text\":\"API Reference\",\"link\":\"/guide/api-reference\"}]},{\"text\":\"Project\",\"items\":[{\"text\":\"Contributing\",\"link\":\"/guide/contributing\"},{\"text\":\"Changelog\",\"link\":\"/guide/changelog\"}]}],\"/api/\":[{\"text\":\"API Reference\",\"items\":[{\"text\":\"Overview\",\"link\":\"/api/\"}]},{\"text\":\"src/lib\",\"collapsed\":true,\"items\":[{\"text\":\"finer\",\"link\":\"/api/src/lib/finer\"},{\"text\":\"finer_backend\",\"link\":\"/api/src/lib/finer_backend\"},{\"text\":\"finer_file_ini_t\",\"link\":\"/api/src/lib/finer_file_ini_t\"},{\"text\":\"finer_option_t\",\"link\":\"/api/src/lib/finer_option_t\"},{\"text\":\"finer_section_t\",\"link\":\"/api/src/lib/finer_section_t\"}]}]},\"search\":{\"provider\":\"local\"}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
     
   </body>
 </html>
