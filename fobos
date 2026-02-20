@@ -10,7 +10,7 @@ modes = tests-gnu tests-gnu-debug
 $CSHARED_GNU = -c -fPIC -frealloc-lhs
 $CSHARED_INT = -c -fpic -assume realloc_lhs
 $LSHARED     = -shared
-$CSTATIC_GNU = -c -frealloc-lhs -std=f2008 -fall-intrinsics
+$CSTATIC_GNU = -c -frealloc-lhs -std=f2018 -fall-intrinsics
 $CSTATIC_INT = -c -assume realloc_lhs -standard-semantics -std08
 $DEBUG_GNU   = -O0 -g3 -Warray-bounds -Wcharacter-truncation -Wline-truncation -Wimplicit-interface -Wimplicit-procedure -Wunderflow -fcheck=all -fmodule-private -ffree-line-length-132 -fimplicit-none -fbacktrace -fdump-core -finit-real=nan
 $DEBUG_INT   = -O0 -debug all -warn all -extend-source 132 -traceback
@@ -18,6 +18,7 @@ $OPTIMIZE    = -O2
 $EXDIRS      = BeFoR64/src/tests/ BeFoR64/src/third_party/
                FACE/src/tests/ FACE/src/third_party/
                FLAP/src/tests/ FLAP/src/third_party/
+               fortran_tester/test
                PENF/src/tests/ PENF/src/third_party/
                StringiFor/src/tests/ StringiFor/src/third_party/
 
@@ -233,18 +234,14 @@ rule = tar --xform="s%^%FiNeR/%" -czf FiNeR.tar.gz *
 
 [rule-makecoverage]
 help   = Perform coverage analysis
-rule_1 = FoBiS.py clean -mode tests-gnu
-rule_2 = FoBiS.py build -mode tests-gnu -coverage
+rule_1 = FoBiS.py clean -mode tests-gnu-debug
+rule_2 = FoBiS.py build -mode tests-gnu-debug -coverage
 rule_3 = ./scripts/run_tests.sh
 rule_4 = rm -f exe/obj/befor64* exe/obj/face* exe/obj/flap* exe/obj/penf* exe/obj/stringifor*
 rule_5 = gcov -o exe/obj/ src/lib/finer*
 
 [rule-makecoverage-analysis]
 help   = Perform coverage analysis and saving reports in markdown
-rule_1 = FoBiS.py clean -mode tests-gnu
-rule_2 = FoBiS.py build -mode tests-gnu -coverage
-rule_3 = ./exe/autotest
-rule_4 = rm -f exe/obj/befor64* exe/obj/face* exe/obj/flap* exe/obj/penf* exe/obj/stringifor*
-rule_5 = gcov -o exe/obj/ src/lib/finer*
-rule_6 = FoBiS.py rule -gcov_analyzer wiki/ Coverage-Analysis
-rule_7 = rm -f *.gcov
+rule_1 = FoBiS.py rule -ex makecoverage
+rule_2 = FoBiS.py rule -gcov_analyzer docs/guide/ coverage-analysis
+rule_3 = rm -f *.gcov

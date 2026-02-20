@@ -22,13 +22,14 @@ export default withMermaid({
       {
         text: 'Guide',
         items: [
-          { text: 'About',         link: '/guide/' },
-          { text: 'Features',      link: '/guide/features' },
-          { text: 'Installation',  link: '/guide/installation' },
-          { text: 'Usage',         link: '/guide/usage' },
-          { text: 'API Reference', link: '/guide/api-reference' },
-          { text: 'Contributing',  link: '/guide/contributing' },
-          { text: 'Changelog',     link: '/guide/changelog' },
+          { text: 'About',             link: '/guide/' },
+          { text: 'Features',          link: '/guide/features' },
+          { text: 'Installation',      link: '/guide/installation' },
+          { text: 'Usage',             link: '/guide/usage' },
+          { text: 'API Reference',     link: '/guide/api-reference' },
+          { text: 'Contributing',      link: '/guide/contributing' },
+          { text: 'Coverage Analysis', link: '/guide/coverage-analysis' },
+          { text: 'Changelog',         link: '/guide/changelog' },
         ],
       },
       { text: 'API', link: '/api/' },
@@ -54,8 +55,9 @@ export default withMermaid({
         {
           text: 'Project',
           items: [
-            { text: 'Contributing', link: '/guide/contributing' },
-            { text: 'Changelog',    link: '/guide/changelog' },
+            { text: 'Contributing',      link: '/guide/contributing' },
+            { text: 'Coverage Analysis', link: '/guide/coverage-analysis' },
+            { text: 'Changelog',         link: '/guide/changelog' },
           ],
         },
       ],
@@ -74,4 +76,9 @@ export default withMermaid({
     },
   },
   mermaid: {},
+  vite: {
+    optimizeDeps: {
+      include: ['mermaid'],
+    },
+  },
 })

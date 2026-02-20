@@ -1,49 +1,77 @@
-!< FiNeR test: basic parse.
+!< FiNeR test: INI parsing rules.
 program finer_test_parse
-!< FiNeR test: basic parse.
-!<
-!<### Usage
-!<```bash
-!< ./finer_test_parse
-!<```
-use finer, only :  file_ini
-use penf, only : I4P, R4P, str
-
+!< Covers: full-line comments (;, #, !), inline comment stripping,
+!<         multi-line continuation, multi-section detection, custom separator.
+use finer, only: file_ini
+use penf,  only: I4P, R4P
 implicit none
-type(file_ini)                :: fini           !< INI file handler.
-character(len=:), allocatable :: source         !< Testing string.
-character(len=:), allocatable :: string         !< String option.
-real(R4P), allocatable        :: array(:)       !< Array option.
-integer(I4P)                  :: error          !< Error code.
-logical                       :: test_passed(2) !< List of passed tests.
 
-source = '[section-1]'//new_line('a')//                                &
-         '; option-1 = two ; commented line'//new_line('a')//          &
-         '# option-1 = three ; commented line'//new_line('a')//        &
-         'option-1 = one ; this is an inline comment'//new_line('a')// &
-         '! option-1 = four ; commented line'//new_line('a')//         &
-         'option-2 = 2.'//new_line('a')//                              &
-         '           3. ; continued line'//new_line('a')//             &
-         'option-3 = bar'//new_line('a')//                             &
-         '[section-2]'//new_line('a')//                                &
-         'option-1 = foo'//new_line('a')//                             &
-         '[section-3]'//new_line('a')//                                &
-         'option-1 = foo'//new_line('a')//                             &
-         'option-2 = bar'//new_line('a')
+type(file_ini)                :: fini
+character(len=:), allocatable :: source, val, slist(:)
+real(R4P),        allocatable :: arr(:)
+integer(I4P)                  :: error
+integer                       :: passed, total
 
-print "(A)", 'Source input'//new_line('a')//new_line('a')//source//new_line('a')//new_line('a')//'Parse results'//new_line('a')
+passed = 0 ; total = 0
+print '(A)', 'finer_test_parse'
+
+source = '[section-1]'//new_line('A')//                                  &
+         '; full-line comment (;)'//new_line('A')//                      &
+         '# full-line comment (#)'//new_line('A')//                      &
+         '! full-line comment (!)'//new_line('A')//                      &
+         'option-1 = one ; inline comment'//new_line('A')//              &
+         'option-2 = 2.'//new_line('A')//                                &
+         '           3.'//new_line('A')//                                &
+         'option-3 = bar'//new_line('A')//                               &
+         '[section-2]'//new_line('A')//                                  &
+         'option-1 = foo'
 
 call fini%load(source=source)
+call fini%get_sections_list(slist)
 
-string = repeat(' ', 999)
-call fini%get(section_name='section-1', option_name='option-1', val=string, error=error)
-test_passed(1) = ((error==0).and.(trim(string)=='one'))
-print "(A,L1)", '[section-1].(option-1) = "'//trim(string)//'", is correct? ', test_passed(1)
+call check('section count == 2',             size(slist) == 2)
 
-allocate(array(1:fini%count_values(section_name='section-1', option_name='option-2')))
-call fini%get(section_name='section-1', option_name='option-2', val=array, error=error)
-test_passed(2) = ((error==0).and.(array(1)==2._R4P).and.(array(2)==3._R4P))
-print "(A,L1)", '[section-1].(option-2) = "'//trim(str(array))//'", is correct? ', test_passed(2)
+val = repeat(' ', 64)
+call fini%get(section_name='section-1', option_name='option-1', val=val, error=error)
+call check('valid get: no error',            error == 0)
+call check('inline comment stripped',        trim(val) == 'one')
 
-print "(A,L1)", new_line('a')//'Are all tests passed? ', all(test_passed)
-endprogram finer_test_parse
+allocate(arr(1:fini%count_values(section_name='section-1', option_name='option-2')))
+call fini%get(section_name='section-1', option_name='option-2', val=arr, error=error)
+call check('multi-line: token count == 2',   size(arr) == 2)
+call check('multi-line: first token == 2.',  abs(arr(1) - 2._R4P) < 1e-6_R4P)
+call check('multi-line: second token == 3.', abs(arr(2) - 3._R4P) < 1e-6_R4P)
+
+val = repeat(' ', 64)
+call fini%get(section_name='section-2', option_name='option-1', val=val, error=error)
+call check('option in second section',       trim(val) == 'foo')
+
+call fini%free
+source = '[s1]'//new_line('A')//'key : value'
+call fini%load(separator=':', source=source)
+val = repeat(' ', 64)
+call fini%get(section_name='s1', option_name='key', val=val, error=error)
+call check("custom separator ':'",           trim(val) == 'value')
+
+call summary
+contains
+
+  subroutine check(label, ok)
+  character(*), intent(in) :: label
+  logical,      intent(in) :: ok
+  total = total + 1
+  if (ok) passed = passed + 1
+  if (ok) then
+    write(*, '("  [PASS] ", A)') label
+  else
+    write(*, '("  [FAIL] ", A)') label
+  end if
+  end subroutine check
+
+  subroutine summary
+  write(*, '(/, "--- ", I0, "/", I0, " passed")') passed, total
+  write(*, '(A, L1)') 'Are all tests passed? ', passed == total
+  if (passed /= total) stop 1
+  end subroutine summary
+
+end program finer_test_parse

@@ -1,48 +1,56 @@
-!< FiNeR test: basic load.
+!< FiNeR test: load from file.
 program finer_test_load
-!< FiNeR test: basic load.
-!<
-!<### Usage
-!<```bash
-!< ./finer_test_load
-!<```
-use finer, only :  file_ini
-use flap, only : command_line_interface
-use penf, only : I4P
-
+!< Covers: load from a physical INI file, section count, scalar string get,
+!<         count_values, and array get.
+use finer, only: file_ini
+use penf,  only: R4P
 implicit none
-character(999)                :: file_name  !< Name of INI file.
-type(file_ini)                :: fini       !< INI file handler.
-character(len=:), allocatable :: items(:,:) !< Items pairs.
-integer                       :: i          !< Counter.
 
-call cli_parse
-call fini%load(filename=file_name)
-call fini%get_items(items)
-do i=1,size(items,dim=1)
-  print "(A)", trim(items(i,1))//' = '//trim(items(i,2))
-enddo
+type(file_ini)                :: fini
+character(len=:), allocatable :: val, slist(:)
+real(R4P),        allocatable :: vel(:)
+integer                       :: error, Nv, passed, total
 
+passed = 0 ; total = 0
+print '(A)', 'finer_test_load'
+
+call fini%load(filename='src/tests/test-2.ini', error=error)
+call check('load: no error',       error == 0)
+
+call fini%get_sections_list(slist)
+call check('load: 4 sections',     size(slist) == 4)
+
+val = repeat(' ', 64)
+call fini%get(section_name='non_dimensional_numbers', option_name='Re', val=val, error=error)
+call check('scalar string value',  trim(val) == '1.0e6')
+
+Nv = fini%count_values(section_name='free_conditions', option_name='velocity')
+call check('velocity count == 3',  Nv == 3)
+allocate(vel(1:Nv))
+call fini%get(section_name='free_conditions', option_name='velocity', val=vel, error=error)
+call check('velocity(1) == 1.0',   abs(vel(1) - 1._R4P) < 1e-5_R4P)
+call check('velocity(2) == 2.0',   abs(vel(2) - 2._R4P) < 1e-5_R4P)
+call check('velocity(3) == 3.0',   abs(vel(3) - 3._R4P) < 1e-5_R4P)
+
+call summary
 contains
-  subroutine cli_parse()
-  !< Build and parse test cli.
-  type(command_line_interface) :: cli   !< Test command line interface.
-  integer(I4P)                 :: error !< Error trapping flag.
 
-  call cli%init(progname='finer_test_load',                  &
-                authors='S. Zaghi',                          &
-                help='Usage: ',                              &
-                examples=["finer_test_load --ini test.ini"], &
-                epilog=new_line('a')//"all done")
+  subroutine check(label, ok)
+  character(*), intent(in) :: label
+  logical,      intent(in) :: ok
+  total = total + 1
+  if (ok) passed = passed + 1
+  if (ok) then
+    write(*, '("  [PASS] ", A)') label
+  else
+    write(*, '("  [FAIL] ", A)') label
+  end if
+  end subroutine check
 
-  call cli%add(switch='--ini',          &
-               switch_ab='-i',          &
-               help='name of ini file', &
-               required=.true.,         &
-               act='store')
+  subroutine summary
+  write(*, '(/, "--- ", I0, "/", I0, " passed")') passed, total
+  write(*, '(A, L1)') 'Are all tests passed? ', passed == total
+  if (passed /= total) stop 1
+  end subroutine summary
 
-  call cli%parse(error=error) ; if (error/=0) stop
-
-  call cli%get(switch='--ini', val=file_name)
-  endsubroutine cli_parse
-endprogram finer_test_load
+end program finer_test_load
