@@ -1,4 +1,9 @@
 # Changelog
+## [v2.0.6](https://github.com/szaghi/FLAP/tree/v2.0.6) (2026-02-20)
+[Full Changelog](https://github.com/szaghi/FLAP/compare/v2.0.5...v2.0.6)
+### CI/CD
+- Extract coverage analysis into reusable callable workflow ([`634633d`](https://github.com/szaghi/FLAP/commit/634633d7edc2103ccd68726b7013dc7fd46610d0))
+
 ## [v2.0.5](https://github.com/szaghi/FLAP/tree/v2.0.5) (2026-02-19)
 [Full Changelog](https://github.com/szaghi/FLAP/compare/v2.0.4...v2.0.5)
 ### Documentation
