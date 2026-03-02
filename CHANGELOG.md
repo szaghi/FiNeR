@@ -1,4 +1,9 @@
 # Changelog
+## [v2.0.7](https://github.com/szaghi/FLAP/tree/v2.0.7) (2026-03-02)
+[Full Changelog](https://github.com/szaghi/FLAP/compare/v2.0.6...v2.0.7)
+### Build system
+- Replace git submodules with FoBiS fetch ([`0fd6ff0`](https://github.com/szaghi/FLAP/commit/0fd6ff09c94ece943cc7fa1a0d507d3d5b6f4d29))
+
 ## [v2.0.6](https://github.com/szaghi/FLAP/tree/v2.0.6) (2026-02-20)
 [Full Changelog](https://github.com/szaghi/FLAP/compare/v2.0.5...v2.0.6)
 ### CI/CD
