@@ -1,4 +1,29 @@
 # Changelog
+## [v2.0.8](https://github.com/szaghi/FLAP/tree/v2.0.8) (2026-03-02)
+[Full Changelog](https://github.com/szaghi/FLAP/compare/v2.0.7...v2.0.8)
+### Miscellaneous
+- Bump rollup from 4.57.1 to 4.59.0 in /docs
+
+Bumps [rollup](https://github.com/rollup/rollup) from 4.57.1 to 4.59.0.
+- [Release notes](https://github.com/rollup/rollup/releases)
+- [Changelog](https://github.com/rollup/rollup/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/rollup/rollup/compare/v4.57.1...v4.59.0)
+
+---
+updated-dependencies:
+- dependency-name: rollup
+  dependency-version: 4.59.0
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> ([`d361a73`](https://github.com/szaghi/FLAP/commit/d361a73f6a27f1f700677a83145f33cf6bd98b6c))
+- Merge pull request [#20](https://github.com/szaghi/FLAP/issues/20) from szaghi/dependabot/npm_and_yarn/docs/rollup-4.59.0
+
+Bump rollup from 4.57.1 to 4.59.0 in /docs ([`e8fe0af`](https://github.com/szaghi/FLAP/commit/e8fe0af52d375eaae5d0586ff15f13efd69b035a))
+
+### New features
+- Add fpm build support with fpm.toml guard ([`ceac878`](https://github.com/szaghi/FLAP/commit/ceac878bc67649641f3bb6cb3747d5e418a16c73))
+
 ## [v2.0.7](https://github.com/szaghi/FLAP/tree/v2.0.7) (2026-03-02)
 [Full Changelog](https://github.com/szaghi/FLAP/compare/v2.0.6...v2.0.7)
 ### Build system
