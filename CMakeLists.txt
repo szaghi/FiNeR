@@ -28,12 +28,8 @@ if(NOT TARGET FACE)
     add_subdirectory(src/third_party/FACE) # has no other linking deps
 endif()
 
-if(NOT TARGET fortran_tester)
-    add_subdirectory(src/third_party/fortran_tester)
-endif()
-
 if(NOT TARGET FLAP)
-    add_subdirectory(src/third_party/FLAP) # depends on PENF, FACE, fortran_tester
+    add_subdirectory(src/third_party/FLAP) # depends on PENF, FACE
 endif()
 
 if(NOT TARGET BeFoR64)

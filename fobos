@@ -1,3 +1,20 @@
+[project]
+name       = FiNeR
+version    = VERSION
+summary    = Fortran INI ParseR and generator
+repository = https://github.com/szaghi/FiNeR
+website    = https://szaghi.github.io/FiNeR
+email      = stefano.zaghi@gmail.it
+authors    = Stefano Zaghi
+
+[dependencies]
+deps_dir   = src/third_party
+BeFoR64    = https://github.com/szaghi/BeFoR64
+FACE       = https://github.com/szaghi/FACE
+FLAP       = https://github.com/szaghi/FLAP
+PENF       = https://github.com/szaghi/PENF
+StringiFor = https://github.com/szaghi/StringiFor
+
 [modes]
 modes = tests-gnu tests-gnu-debug
         tests-intel tests-intel-debug
@@ -18,7 +35,6 @@ $OPTIMIZE    = -O2
 $EXDIRS      = BeFoR64/src/tests/ BeFoR64/src/third_party/
                FACE/src/tests/ FACE/src/third_party/
                FLAP/src/tests/ FLAP/src/third_party/
-               fortran_tester/test
                PENF/src/tests/ PENF/src/third_party/
                StringiFor/src/tests/ StringiFor/src/third_party/
 
@@ -238,7 +254,7 @@ rule_1 = FoBiS.py clean -mode tests-gnu-debug
 rule_2 = FoBiS.py build -mode tests-gnu-debug -coverage
 rule_3 = ./scripts/run_tests.sh
 rule_4 = rm -f exe/obj/befor64* exe/obj/face* exe/obj/flap* exe/obj/penf* exe/obj/stringifor*
-rule_5 = gcov -o exe/obj/ src/lib/finer*
+rule_5 = ./scripts/compute-coverage.sh
 
 [rule-makecoverage-analysis]
 help   = Perform coverage analysis and saving reports in markdown

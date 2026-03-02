@@ -5,7 +5,7 @@
 |Executable lines            |235| |
 |Executed lines              |171|73%|
 |Unexecuted lines            |64|27%|
-|Average hits / executed     |10| |
+|Average hits / executed     |10.502923976608187| |
 
 ```mermaid
 pie showData
@@ -19,7 +19,7 @@ pie showData
 |Total procedures            |27| |
 |Executed procedures         |22|81%|
 |Unexecuted procedures       |5|19%|
-|Average hits / executed     |9| |
+|Average hits / executed     |9.636363636363637| |
 
 ```mermaid
 pie showData
