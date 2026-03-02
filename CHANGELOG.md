@@ -1,4 +1,9 @@
 # Changelog
+## [v2.0.9](https://github.com/szaghi/FLAP/tree/v2.0.9) (2026-03-02)
+[Full Changelog](https://github.com/szaghi/FLAP/compare/v2.0.8...v2.0.9)
+### Bug fixes
+- Skip fpm gracefully when fpm.toml is absent ([`7da9008`](https://github.com/szaghi/FLAP/commit/7da900830f10d61379ae1165a32899d351b9bec8))
+
 ## [v2.0.8](https://github.com/szaghi/FLAP/tree/v2.0.8) (2026-03-02)
 [Full Changelog](https://github.com/szaghi/FLAP/compare/v2.0.7...v2.0.8)
 ### Miscellaneous
