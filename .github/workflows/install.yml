@@ -40,10 +40,12 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: FPM
+    - name: INSTALL SCRIPT + fpm
       run: |
         WORKDIR=$(mktemp -d)
         cd "$WORKDIR"
-        git clone https://github.com/$GITHUB_REPOSITORY ./
-        fpm build --profile release
-    
+        wget $(curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/releases/tags/$TAG | jq -r '.assets[] | select(.name | test("install.sh"; "i")) | .browser_download_url')
+        chmod +x install.sh
+        ./install.sh --download git --build fpm
+
+

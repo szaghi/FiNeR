@@ -14,7 +14,7 @@
 # Examples:
 #   install.sh --download wget --build make
 #   install.sh --download wget --build cmake --tag v1.2.3
-#   install.sh --repo szaghi/FoXy --download git --build fobis
+#   install.sh --repo owner/project --download git --build fobis
 
 set -euo pipefail
 
@@ -51,7 +51,7 @@ usage() {
   echo "Examples:"
   echo "  $0 --download wget --build make"
   echo "  $0 --download wget --build cmake --tag v1.2.3"
-  echo "  $0 --repo szaghi/FoXy --download git --build fobis"
+  echo "  $0 --repo owner/project --download git --build fobis"
 }
 
 # ── Arguments ─────────────────────────────────────────────────────────────────
@@ -148,7 +148,10 @@ projectbuild() {
       ;;
     fpm )
       command -v fpm &>/dev/null || error "fpm not found."
-      [[ -f fpm.toml ]] || error "fpm.toml not found — project does not support fpm."
+      if [[ ! -f fpm.toml ]]; then
+        warn "fpm.toml not found — skipping fpm build."
+        return
+      fi
       fpm install
       ;;
     * )
