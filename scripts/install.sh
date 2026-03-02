@@ -42,7 +42,7 @@ usage() {
   echo ""
   echo "  --repo,     -r <owner/project>   GitHub repository (default: auto-detect)"
   echo "  --download, -d <git|wget>         Download the project"
-  echo "  --build,    -b <fobis|make|cmake> Build the project"
+  echo "  --build,    -b <fobis|make|cmake|fpm> Build the project"
   echo "  --mode,     -m <mode>             FoBiS.py build mode (default: tests-gnu)"
   echo "  --tag,      -t <tag>              Release tag for wget (default: latest)"
   echo "  --verbose,  -v                    Verbose output"
@@ -146,8 +146,13 @@ projectbuild() {
       cmake -B build
       cmake --build build
       ;;
+    fpm )
+      command -v fpm &>/dev/null || error "fpm not found."
+      [[ -f fpm.toml ]] || error "fpm.toml not found — project does not support fpm."
+      fpm install
+      ;;
     * )
-      error "Unknown build tool: ${BUILD}. Use fobis, make, or cmake."
+      error "Unknown build tool: ${BUILD}. Use fobis, make, cmake, or fpm."
       ;;
   esac
 
