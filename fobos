@@ -28,7 +28,7 @@ $CSHARED_GNU = -c -fPIC -frealloc-lhs
 $CSHARED_INT = -c -fpic -assume realloc_lhs
 $LSHARED     = -shared
 $CSTATIC_GNU = -c -frealloc-lhs -std=f2018 -fall-intrinsics
-$CSTATIC_INT = -c -assume realloc_lhs -standard-semantics -std08
+$CSTATIC_INT = -c -assume realloc_lhs -standard-semantics -std18
 $DEBUG_GNU   = -O0 -g3 -Warray-bounds -Wcharacter-truncation -Wline-truncation -Wimplicit-interface -Wimplicit-procedure -Wunderflow -fcheck=all -fmodule-private -ffree-line-length-132 -fimplicit-none -fbacktrace -fdump-core -finit-real=nan
 $DEBUG_INT   = -O0 -debug all -warn all -extend-source 132 -traceback
 $OPTIMIZE    = -O2
