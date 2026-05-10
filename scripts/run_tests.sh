@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Run the FiNeR test suite.
-# Each finer_test_* binary exits 0 on success, 1 on failure.
+# Run the project test suite.
+# Each test binary in exe/ is expected to exit 0 on success, non-zero on failure.
 
 if [[ -t 1 ]]; then
   RED=$'\033[0;31m'; GREEN=$'\033[0;32m'; BOLD=$'\033[1m'; RESET=$'\033[0m'
@@ -12,8 +12,9 @@ pass=0; fail=0
 tmpout=$(mktemp)
 trap 'rm -f "$tmpout"' EXIT
 
-for exe in exe/finer_test_*; do
-  [[ -x "$exe" ]] || continue
+shopt -s nullglob
+for exe in exe/*; do
+  [[ -f "$exe" && -x "$exe" ]] || continue
   name=$(basename "$exe")
   if "$exe" > "$tmpout" 2>&1; then
     printf "  ${GREEN}PASS${RESET}  %s\n" "$name"

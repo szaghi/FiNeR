@@ -13,6 +13,7 @@
     "mermaid": "^11.0.0"
   },
   "overrides": {
-    "esbuild": ">=0.25.0"
+    "esbuild": ">=0.25.0",
+    "@xmldom/xmldom": ">=0.9.9"
   }
 }
