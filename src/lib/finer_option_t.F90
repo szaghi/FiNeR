@@ -128,48 +128,23 @@ contains
   ! private methods
   subroutine get_option(self, val, error)
   !< for getting option data value (scalar).
+  !<
+  !< If the option value cannot be converted to the type of `val`, `val` is left unchanged and an error is returned.
   class(option), intent(in)            :: self   !< Option data.
   class(*),      intent(inout)         :: val    !< Value.
   integer(I4P),  intent(out), optional :: error  !< Error code.
   integer(I4P)                         :: errd   !< Error code.
-  character(len=:), allocatable        :: buffer !< Dummy buffer.
 
   errd = ERR_OPTION_VALS
-  if (self%ovals%is_allocated()) then
-    errd = 0
-    select type(val)
-#ifdef _R16P
-    type is(real(R16P))
-      val = self%ovals%to_number(kind=1._R16P)
-#endif
-    type is(real(R8P))
-      val = self%ovals%to_number(kind=1._R8P)
-    type is(real(R4P))
-      val = self%ovals%to_number(kind=1._R4P)
-    type is(integer(I8P))
-      val = self%ovals%to_number(kind=1_I8P)
-    type is(integer(I4P))
-      val = self%ovals%to_number(kind=1_I4P)
-#ifndef _NVF
-    type is(integer(I2P))
-      val = self%ovals%to_number(kind=1_I2P)
-#endif
-    type is(integer(I1P))
-      val = self%ovals%to_number(kind=1_I1P)
-    type is(logical)
-      buffer = self%ovals%chars()
-      read(buffer, *)val
-    type is(character(*))
-      val = self%ovals%chars()
-    class default
-      errd = ERR_OPTION_VALS ! unsupported type
-    endselect
-  endif
+  if (self%ovals%is_allocated()) call convert(source=self%ovals%chars(), val=val, error=errd)
   if (present(error)) error = errd
   endsubroutine get_option
 
   subroutine get_a_option(self, val, delimiter, error)
   !< Get option data values (array).
+  !<
+  !< If `val` cannot hold all the values, or a value cannot be converted to the type of `val`, `val` is left unchanged and
+  !< an error is returned.
   class(option), intent(in)            :: self      !< Option data.
   class(*),      intent(inout)         :: val(1:)   !< Value.
   character(*),  intent(in),  optional :: delimiter !< Delimiter used for separating values.
@@ -178,7 +153,6 @@ contains
   integer(I4P)                         :: Nv        !< Number of values.
   type(string), allocatable            :: valsV(:)  !< String array of values.
   integer(I4P)                         :: errd      !< Error code.
-  character(len=:), allocatable        :: buffer    !< Dummy buffer.
   integer(I4P)                         :: v         !< Counter.
 
   errd = ERR_OPTION_VALS
@@ -191,51 +165,15 @@ contains
       return
     endif
     errd = 0
-    select type(val)
-#ifdef _R16P
-    type is(real(R16P))
+    do v=1, Nv ! check all values before modifying val
+      call convert(source=valsV(v)%chars(), val=val(v), error=errd, check_only=.true.)
+      if (errd /= 0) exit
+    enddo
+    if (errd == 0) then
       do v=1, Nv
-        val(v) = valsV(v)%to_number(kind=1._R16P)
+        call convert(source=valsV(v)%chars(), val=val(v), error=errd)
       enddo
-#endif
-    type is(real(R8P))
-      do v=1, Nv
-        val(v) = valsV(v)%to_number(kind=1._R8P)
-      enddo
-    type is(real(R4P))
-      do v=1, Nv
-        val(v) = valsV(v)%to_number(kind=1._R4P)
-      enddo
-    type is(integer(I8P))
-      do v=1, Nv
-        val(v) = valsV(v)%to_number(kind=1_I8P)
-      enddo
-    type is(integer(I4P))
-      do v=1, Nv
-        val(v) = valsV(v)%to_number(kind=1_I4P)
-      enddo
-#ifndef _NVF
-    type is(integer(I2P))
-      do v=1, Nv
-        val(v) = valsV(v)%to_number(kind=1_I2P)
-      enddo
-#endif
-    type is(integer(I1P))
-      do v=1, Nv
-        val(v) = valsV(v)%to_number(kind=1_I1P)
-      enddo
-    type is(logical)
-      do v=1, Nv
-        buffer = valsV(v)%chars()
-        read(buffer, *)val(v)
-      enddo
-    type is(character(*))
-      do v=1, Nv
-        val(v) = valsV(v)%chars()
-      enddo
-    class default
-      errd = ERR_OPTION_VALS ! unsupported type
-    endselect
+    endif
   endif
   if (present(error)) error = errd
   endsubroutine get_a_option
@@ -474,6 +412,78 @@ contains
   endfunction option_eq_character
 
   ! non TBP methods
+  subroutine convert(source, val, error, check_only)
+  !< Convert a string into a value of one of the supported types.
+  !<
+  !< If the string cannot be converted, or the type of `val` is not supported, `val` is left unchanged and an error is returned.
+  character(*), intent(in)           :: source     !< String to be converted.
+  class(*),     intent(inout)        :: val        !< Value.
+  integer(I4P), intent(out)          :: error      !< Error code.
+  logical,      intent(in), optional :: check_only !< Check the conversion without modifying `val`.
+  logical                            :: assign     !< Flag for assigning the converted value to `val`.
+  integer                            :: ios        !< IO status of the conversion.
+#ifdef _R16P
+  real(R16P)                         :: r16        !< Converted value.
+#endif
+  real(R8P)                          :: r8         !< Converted value.
+  real(R4P)                          :: r4         !< Converted value.
+  integer(I8P)                       :: i8         !< Converted value.
+  integer(I4P)                       :: i4         !< Converted value.
+#ifndef _NVF
+  integer(I2P)                       :: i2         !< Converted value.
+#endif
+  integer(I1P)                       :: i1         !< Converted value.
+  logical                            :: l          !< Converted value.
+
+  assign = .true. ; if (present(check_only)) assign = .not.check_only
+  ios = 1
+  select type(val)
+#ifdef _R16P
+  type is(real(R16P))
+    if (is_numeric(source)) read(source, *, iostat=ios) r16
+    if (ios == 0 .and. assign) val = r16
+#endif
+  type is(real(R8P))
+    if (is_numeric(source)) read(source, *, iostat=ios) r8
+    if (ios == 0 .and. assign) val = r8
+  type is(real(R4P))
+    if (is_numeric(source)) read(source, *, iostat=ios) r4
+    if (ios == 0 .and. assign) val = r4
+  type is(integer(I8P))
+    if (is_numeric(source)) read(source, *, iostat=ios) i8
+    if (ios == 0 .and. assign) val = i8
+  type is(integer(I4P))
+    if (is_numeric(source)) read(source, *, iostat=ios) i4
+    if (ios == 0 .and. assign) val = i4
+#ifndef _NVF
+  type is(integer(I2P))
+    if (is_numeric(source)) read(source, *, iostat=ios) i2
+    if (ios == 0 .and. assign) val = i2
+#endif
+  type is(integer(I1P))
+    if (is_numeric(source)) read(source, *, iostat=ios) i1
+    if (ios == 0 .and. assign) val = i1
+  type is(logical)
+    if (verify(source(1:min(1, len(source))), '.tTfF') == 0) read(source, *, iostat=ios) l
+    if (ios == 0 .and. assign) val = l
+  type is(character(*))
+    ios = 0
+    if (assign) val = source
+  endselect
+  error = 0 ; if (ios /= 0) error = ERR_OPTION_VALS
+  contains
+    pure function is_numeric(string)
+    !< Return true if the string contains only characters allowed in numbers.
+    !<
+    !< The list-directed read accepts (without error) also separators, null values and repeat counts, e.g. `/`, `,` and `2*3`,
+    !< that must not be considered valid numbers.
+    character(*), intent(in) :: string     !< String to be checked.
+    logical                  :: is_numeric !< Check result.
+
+    is_numeric = len_trim(string) > 0 .and. verify(string, ' 0123456789+-.eEdDqQ') == 0
+    endfunction is_numeric
+  endsubroutine convert
+
   elemental function new_option(option_name, option_values, option_comment)
   !< Return a new (initiliazed) option instance.
   character(*), intent(in), optional :: option_name    !< Option name.
