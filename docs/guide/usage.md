@@ -102,6 +102,37 @@ call fini%add(section_name='', option_name='author', val='me')   ! add a global 
 
 The global section is always the first one. `save` and `print` write its options first, without a header, so a file with global options is saved as it was loaded. A file with no section headers at all is loaded entirely into the global section.
 
+### Subsections
+
+FiNeR has no nested sections, but a section name can contain any character, so the common `[parent.child]` convention works as a flat name: pass the full dotted name as `section_name`.
+
+```ini
+[server]
+name = main
+
+[server.http]
+host = localhost
+
+[server.ssh]
+port = 22
+```
+
+```fortran
+use finer
+type(file_ini)                :: fini
+character(len=:), allocatable :: list(:), host
+integer                       :: s
+
+call fini%load(filename='config.ini')
+call fini%get_string(section_name='server.http', option_name='host', val=host)
+
+! list the subsections of [server]
+call fini%get_sections_list(list)
+do s=1, size(list)
+  if (index(list(s), 'server.') == 1) print '(A)', trim(list(s))   ! server.http, server.ssh
+end do
+```
+
 ### Multi-line option values
 
 A line that contains no `=` (and is not a section header or comment) is treated as a continuation of the previous option. FiNeR concatenates it — separated by a space — to the preceding value.
