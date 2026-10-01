@@ -100,7 +100,7 @@ call fini%has_section(section_name=)      ! logical inquiry
 call fini%has_option(section_name=, option_name=)
 ```
 
-`val` in `get`/`add` is unlimited polymorphic — pass integer, real, logical or character. Array overloads accept `val(:)` with optional `delimiter`.
+`val` in `get`/`add` is unlimited polymorphic — pass integer, real, complex (Fortran notation `(re,im)`), logical or character. Array overloads accept `val(:)` with optional `delimiter`.
 
 On any `get` failure (missing section/option, value not convertible to the type of `val`, unsupported type, array too small) `error` is non-zero and `val` is left unchanged, or set to `default` if passed. `get_string` (re)allocates `val`, so it needs no pre-allocation; it cannot be part of the `get` generic because it would be ambiguous with the `class(*)` specific.
 

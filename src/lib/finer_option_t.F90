@@ -74,7 +74,11 @@ contains
 
   if (self%ovals%is_allocated()) then
     dlm = ' ' ; if (present(delimiter)) dlm = delimiter
-    Nv = self%ovals%count(dlm) + 1
+    if (is_complex_list(self%ovals%chars())) then
+      Nv = self%ovals%count('(') ! complex values, e.g. (1.0, 2.0) (3.0, 4.0): the delimiter can be also inside them
+    else
+      Nv = self%ovals%count(dlm) + 1
+    endif
   else
     Nv = 0
   endif
@@ -186,9 +190,13 @@ contains
   errd = ERR_OPTION_VALS
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
   if (self%ovals%is_allocated()) then
-    call self%ovals%split(tokens=valsV, sep=dlm)
+    if (is_complex(val)) then
+      call split_complex(source=self%ovals%chars(), tokens=valsV)
+    else
+      call self%ovals%split(tokens=valsV, sep=dlm)
+    endif
     Nv = size(valsV, dim=1)
-    if (Nv > size(val, dim=1)) then ! val cannot hold all values: leave it untouched
+    if (Nv > size(val, dim=1) .or. Nv == 0) then ! val cannot hold all values (or there are none): leave it untouched
       if (present(error)) error = errd
       return
     endif
@@ -297,6 +305,14 @@ contains
     self%ovals = real_string(val)
   type is(real(R4P))
     self%ovals = real_string(val)
+#ifdef _R16P
+  type is(complex(R16P))
+    self%ovals = '('//real_string(real(val))//','//real_string(aimag(val))//')'
+#endif
+  type is(complex(R8P))
+    self%ovals = '('//real_string(real(val))//','//real_string(aimag(val))//')'
+  type is(complex(R4P))
+    self%ovals = '('//real_string(real(val))//','//real_string(aimag(val))//')'
   type is(integer(I8P))
     self%ovals = val
   type is(integer(I4P))
@@ -347,6 +363,23 @@ contains
   type is(real(R4P))
     do v=1, size(val, dim=1)
       ovals = ovals//dlm//real_string(val(v))
+    enddo
+    ovals = ovals%strip()
+#ifdef _R16P
+  type is(complex(R16P))
+    do v=1, size(val, dim=1)
+      ovals = ovals//dlm//'('//real_string(real(val(v)))//','//real_string(aimag(val(v)))//')'
+    enddo
+    ovals = ovals%strip()
+#endif
+  type is(complex(R8P))
+    do v=1, size(val, dim=1)
+      ovals = ovals//dlm//'('//real_string(real(val(v)))//','//real_string(aimag(val(v)))//')'
+    enddo
+    ovals = ovals%strip()
+  type is(complex(R4P))
+    do v=1, size(val, dim=1)
+      ovals = ovals//dlm//'('//real_string(real(val(v)))//','//real_string(aimag(val(v)))//')'
     enddo
     ovals = ovals%strip()
   type is(integer(I8P))
@@ -443,6 +476,7 @@ contains
   subroutine assign_default(val, default, error)
   !< Assign a default value to a value of one of the supported types.
   !<
+  !< A complex `val` accepts a complex, real or integer default of any supported kind.
   !< A real `val` accepts a real or integer default of any supported kind, an integer `val` accepts an integer default of any
   !< supported kind (that it can represent), a logical or character `val` accepts a default of the same type. For any other
   !< combination `val` is left unchanged and an error is returned.
@@ -454,14 +488,23 @@ contains
 #else
   integer, parameter          :: RKP=R8P  !< Kind of the widest supported real.
 #endif
-  integer, parameter          :: IS_NONE=0, IS_INTEGER=1, IS_REAL=2, IS_LOGICAL=3 !< Default value types.
+  integer, parameter          :: IS_NONE=0, IS_INTEGER=1, IS_REAL=2, IS_LOGICAL=3, IS_COMPLEX=4 !< Default value types.
   integer                     :: dtype   !< Type of the default value.
   integer(I8P)                :: di      !< Integer default value.
   real(RKP)                   :: dr      !< Real default value.
   logical                     :: dl      !< Logical default value.
+  complex(RKP)                :: dz      !< Complex default value.
 
   dtype = IS_NONE
   select type(default)
+#ifdef _R16P
+  type is(complex(R16P))
+    dz = default ; dtype = IS_COMPLEX
+#endif
+  type is(complex(R8P))
+    dz = default ; dtype = IS_COMPLEX
+  type is(complex(R4P))
+    dz = default ; dtype = IS_COMPLEX
 #ifdef _R16P
   type is(real(R16P))
     dr = default ; dtype = IS_REAL
@@ -484,9 +527,24 @@ contains
     dl = default ; dtype = IS_LOGICAL
   endselect
   if (dtype == IS_INTEGER) dr = real(di, kind=RKP)
+  if (dtype == IS_REAL .or. dtype == IS_INTEGER) dz = cmplx(dr, 0._RKP, kind=RKP)
 
   error = ERR_OPTION_VALS
   select type(val)
+#ifdef _R16P
+  type is(complex(R16P))
+    if (dtype == IS_COMPLEX .or. dtype == IS_REAL .or. dtype == IS_INTEGER) then
+      val = dz ; error = 0
+    endif
+#endif
+  type is(complex(R8P))
+    if (dtype == IS_COMPLEX .or. dtype == IS_REAL .or. dtype == IS_INTEGER) then
+      val = cmplx(dz, kind=R8P) ; error = 0
+    endif
+  type is(complex(R4P))
+    if (dtype == IS_COMPLEX .or. dtype == IS_REAL .or. dtype == IS_INTEGER) then
+      val = cmplx(dz, kind=R4P) ; error = 0
+    endif
 #ifdef _R16P
   type is(real(R16P))
     if (dtype == IS_REAL .or. dtype == IS_INTEGER) then
@@ -559,6 +617,13 @@ contains
 #endif
   integer(I1P)                       :: i1         !< Converted value.
   logical                            :: l          !< Converted value.
+#ifdef _R16P
+  real(R16P)                         :: r16i       !< Converted value, imaginary part.
+#endif
+  real(R8P)                          :: r8i        !< Converted value, imaginary part.
+  real(R4P)                          :: r4i        !< Converted value, imaginary part.
+  character(len=:), allocatable      :: re         !< Real part of a complex value.
+  character(len=:), allocatable      :: im         !< Imaginary part of a complex value.
 
   assign = .true. ; if (present(check_only)) assign = .not.check_only
   ios = 1
@@ -588,6 +653,20 @@ contains
   type is(integer(I1P))
     if (is_numeric(source)) read(source, *, iostat=ios) i1
     if (ios == 0 .and. assign) val = i1
+#ifdef _R16P
+  type is(complex(R16P))
+    if (split_parts(source)) read(re, *, iostat=ios) r16
+    if (ios == 0) read(im, *, iostat=ios) r16i
+    if (ios == 0 .and. assign) val = cmplx(r16, r16i, kind=R16P)
+#endif
+  type is(complex(R8P))
+    if (split_parts(source)) read(re, *, iostat=ios) r8
+    if (ios == 0) read(im, *, iostat=ios) r8i
+    if (ios == 0 .and. assign) val = cmplx(r8, r8i, kind=R8P)
+  type is(complex(R4P))
+    if (split_parts(source)) read(re, *, iostat=ios) r4
+    if (ios == 0) read(im, *, iostat=ios) r4i
+    if (ios == 0 .and. assign) val = cmplx(r4, r4i, kind=R4P)
   type is(logical)
     if (verify(source(1:min(1, len(source))), '.tTfF') == 0) read(source, *, iostat=ios) l
     if (ios == 0 .and. assign) val = l
@@ -607,7 +686,88 @@ contains
 
     is_numeric = len_trim(string) > 0 .and. verify(string, ' 0123456789+-.eEdDqQ') == 0
     endfunction is_numeric
+
+    function split_parts(string)
+    !< Split a complex value in the Fortran notation, `(re,im)`, into its real and imaginary parts.
+    !<
+    !< Return false, leaving the parts undefined, if the string is not a complex value.
+    character(*), intent(in)      :: string      !< String to be split.
+    logical                       :: split_parts !< True if the string is a complex value.
+    character(len=:), allocatable :: buffer      !< String without leading and trailing blanks.
+    integer                       :: c           !< Position of the comma.
+    integer                       :: n           !< Length of the string.
+
+    split_parts = .false.
+    buffer = trim(adjustl(string))
+    n = len(buffer)
+    if (n < 5) return
+    if (buffer(1:1) /= '(' .or. buffer(n:n) /= ')') return
+    c = index(buffer, ',')
+    if (c < 3 .or. c > n-2 .or. index(buffer, ',', back=.true.) /= c) return
+    re = buffer(2:c-1)
+    im = buffer(c+1:n-1)
+    split_parts = is_numeric(re) .and. is_numeric(im)
+    endfunction split_parts
   endsubroutine convert
+
+  pure function is_complex(val)
+  !< Return true if the values are of complex type.
+  class(*), intent(in) :: val(1:)    !< Values.
+  logical              :: is_complex !< Check result.
+
+  is_complex = .false.
+  select type(val)
+#ifdef _R16P
+  type is(complex(R16P))
+    is_complex = .true.
+#endif
+  type is(complex(R8P))
+    is_complex = .true.
+  type is(complex(R4P))
+    is_complex = .true.
+  endselect
+  endfunction is_complex
+
+  pure function is_complex_list(source)
+  !< Return true if the string is a list of complex values in the Fortran notation, e.g. `(1.0, 2.0) (3.0, 4.0)`.
+  character(*), intent(in) :: source          !< String to be checked.
+  logical                  :: is_complex_list !< Check result.
+  integer                  :: first           !< Position of the first non blank character.
+  integer                  :: last            !< Position of the last non blank character.
+
+  first = verify(source, ' ')
+  last = len_trim(source)
+  is_complex_list = .false.
+  if (first > 0 .and. last > first) is_complex_list = source(first:first) == '(' .and. source(last:last) == ')'
+  endfunction is_complex_list
+
+  pure subroutine split_complex(source, tokens)
+  !< Split a list of complex values in the Fortran notation, e.g. `(1.0, 2.0) (3.0, 4.0)`, into its values.
+  !<
+  !< Whatever is between the values is ignored: the delimiter can be also inside the values.
+  character(*),              intent(in)  :: source    !< String to be split.
+  type(string), allocatable, intent(out) :: tokens(:) !< Complex values.
+  integer                                :: Nt        !< Number of values.
+  integer                                :: pass      !< Passes counter: the first counts, the second stores.
+  integer                                :: b         !< Position of the beginning of a value.
+  integer                                :: e         !< Position of the end of a value.
+
+  do pass=1, 2
+    Nt = 0
+    e = 0
+    do
+      b = index(source(e+1:), '(')
+      if (b == 0) exit
+      b = b + e
+      e = index(source(b:), ')')
+      if (e == 0) exit
+      e = e + b - 1
+      Nt = Nt + 1
+      if (pass == 2) tokens(Nt) = source(b:e)
+    enddo
+    if (pass == 1) allocate(tokens(1:Nt))
+  enddo
+  endsubroutine split_complex
 
 #ifdef _R16P
   pure function real_string_R16P(n) result(string)

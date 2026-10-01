@@ -7,10 +7,15 @@ use finer, only: file_ini
 use penf,  only: I4P, I8P, R4P, R8P
 implicit none
 
+type :: unsupported
+  !< A type not supported as option value.
+  integer :: i = -1
+endtype unsupported
+
 type(file_ini)                :: fini
 character(len=:), allocatable :: source, val
 character(1), parameter       :: markers(3) = [';', '#', '!']
-complex(R8P)                  :: zval, zarr(2)
+type(unsupported)             :: zval, zarr(2)
 real(R8P)                     :: small(2), exact(5)
 real(R8P)                     :: rval, three(3)
 real(R4P)                     :: rval4
@@ -72,11 +77,11 @@ call check('count_values: missing option',     fini%count_values(section_name='s
 call check('count_values: missing section',    fini%count_values(section_name='missing', option_name='arr') == 0)
 
 ! unsupported value type
-zval = (-1._R8P, -1._R8P)
+zval = unsupported(-1)
 call fini%get(section_name='sec', option_name='other', val=zval, error=error)
 call check('unsupported get: error /= 0',      error /= 0)
-call check('unsupported get: val untouched',   zval == (-1._R8P, -1._R8P))
-zarr = (-1._R8P, -1._R8P)
+call check('unsupported get: val untouched',   zval%i == -1)
+zarr = unsupported(-1)
 call fini%get(section_name='sec', option_name='arr', val=zarr(1:1), error=error)
 call check('unsupported array get: error',     error /= 0)
 

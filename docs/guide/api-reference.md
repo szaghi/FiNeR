@@ -235,7 +235,7 @@ call fini%add(section_name='sec-bar', option_name='bools', val=[.true., .false.,
 
 ## `get` {#get}
 
-Retrieves an option value. The receiving variable (`val`) can be a scalar or an array of integer, real, logical or character type. The optional `delimiter` argument specifies the separator between array values (default: space).
+Retrieves an option value. The receiving variable (`val`) can be a scalar or an array of integer, real, complex, logical or character type. The optional `delimiter` argument specifies the separator between array values (default: space).
 
 ```fortran
 use finer
@@ -287,7 +287,37 @@ if (error /= 0) print *, 'steps not found or not valid, using ', steps
 call fini%get(section_name='cylinder', option_name='origin', val=origin, default=[0._R8P, 0._R8P, 0._R8P])
 ```
 
-A real `val` accepts a real or integer default of any kind, an integer `val` accepts an integer default of any kind that it can represent, a logical or character `val` accepts a default of the same type. An array `default` must have the same size as `val`. A default that does not fit these rules is ignored: `val` is left unchanged.
+A complex `val` accepts a complex, real or integer default of any kind. A real `val` accepts a real or integer default of any kind, an integer `val` accepts an integer default of any kind that it can represent, a logical or character `val` accepts a default of the same type. An array `default` must have the same size as `val`. A default that does not fit these rules is ignored: `val` is left unchanged.
+
+### Complex values
+
+Complex values use the Fortran notation, `(real,imaginary)`, with or without blanks inside the parentheses.
+
+```ini
+[cylinder]
+epsilon = (80., 1.0d-4) ; water permittivity
+modes   = (1.0, 2.0) (3.0, 4.0)
+```
+
+```fortran
+use finer
+use penf, only: R8P
+type(file_ini)            :: fini
+complex(R8P)              :: epsilon
+complex(R8P), allocatable :: modes(:)
+
+call fini%load(filename='config.ini')
+
+call fini%get(section_name='cylinder', option_name='epsilon', val=epsilon)
+allocate(modes(1:fini%count_values(section_name='cylinder', option_name='modes')))
+call fini%get(section_name='cylinder', option_name='modes', val=modes)
+
+call fini%add(section_name='cylinder', option_name='mu', val=(1._R8P, 0._R8P))   ! written as (1.0,0.0)
+```
+
+In a list of complex values each value is delimited by its parentheses, so the delimiter (blank by default) can also appear inside a value. `count_values` counts the parenthesised groups when the whole option value starts with `(` and ends with `)`.
+
+A value without parentheses (`80. 1.0d-4`) is not a complex value: reading it into a complex variable returns `ERR_OPTION_VALS`.
 
 ---
 
