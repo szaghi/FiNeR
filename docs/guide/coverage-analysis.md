@@ -1,95 +1,33 @@
 ### coverage-analysis
 
-#### [[finer_test_load.f90.gcov]]
-
-|Lines| | |
-| --- | --- | --- |
-|Executable lines            |34| |
-|Executed lines              |33|97%|
-|Unexecuted lines            |1|3%|
-|Average hits / executed     |2.1515151515151514| |
-
-```mermaid
-pie showData
-    title Lines (97% covered)
-    "Executed" : 33
-    "Unexecuted" : 1
-```
-
-|Procedures| | |
-| --- | --- | --- |
-|Total procedures            |2| |
-|Executed procedures         |2|100%|
-|Unexecuted procedures       |0|0%|
-|Average hits / executed     |4.0| |
-
-```mermaid
-pie showData
-    title Procedures (100% covered)
-    "Executed" : 2
-    "Unexecuted" : 0
-```
-
-
 #### [[finer_option_t.F90.gcov]]
 
 |Lines| | |
 | --- | --- | --- |
-|Executable lines            |183| |
-|Executed lines              |96|52%|
-|Unexecuted lines            |87|48%|
-|Average hits / executed     |12.96875| |
+|Executable lines            |237| |
+|Executed lines              |172|73%|
+|Unexecuted lines            |65|27%|
+|Average hits / executed     |32.83139534883721| |
 
 ```mermaid
 pie showData
-    title Lines (52% covered)
-    "Executed" : 96
-    "Unexecuted" : 87
+    title Lines (73% covered)
+    "Executed" : 172
+    "Unexecuted" : 65
 ```
 
 |Procedures| | |
 | --- | --- | --- |
-|Total procedures            |19| |
-|Executed procedures         |15|79%|
-|Unexecuted procedures       |4|21%|
-|Average hits / executed     |13.4| |
+|Total procedures            |23| |
+|Executed procedures         |20|87%|
+|Unexecuted procedures       |3|13%|
+|Average hits / executed     |47.85| |
 
 ```mermaid
 pie showData
-    title Procedures (79% covered)
-    "Executed" : 15
-    "Unexecuted" : 4
-```
-
-
-#### [[finer_test_update_option.f90.gcov]]
-
-|Lines| | |
-| --- | --- | --- |
-|Executable lines            |39| |
-|Executed lines              |38|97%|
-|Unexecuted lines            |1|3%|
-|Average hits / executed     |1.9473684210526316| |
-
-```mermaid
-pie showData
-    title Lines (97% covered)
-    "Executed" : 38
-    "Unexecuted" : 1
-```
-
-|Procedures| | |
-| --- | --- | --- |
-|Total procedures            |2| |
-|Executed procedures         |2|100%|
-|Unexecuted procedures       |0|0%|
-|Average hits / executed     |4.0| |
-
-```mermaid
-pie showData
-    title Procedures (100% covered)
-    "Executed" : 2
-    "Unexecuted" : 0
+    title Procedures (87% covered)
+    "Executed" : 20
+    "Unexecuted" : 3
 ```
 
 
@@ -97,61 +35,30 @@ pie showData
 
 |Lines| | |
 | --- | --- | --- |
-|Executable lines            |235| |
-|Executed lines              |171|73%|
-|Unexecuted lines            |64|27%|
-|Average hits / executed     |10.502923976608187| |
+|Executable lines            |255| |
+|Executed lines              |223|87%|
+|Unexecuted lines            |32|13%|
+|Average hits / executed     |28.19730941704036| |
 
 ```mermaid
 pie showData
-    title Lines (73% covered)
-    "Executed" : 171
-    "Unexecuted" : 64
+    title Lines (87% covered)
+    "Executed" : 223
+    "Unexecuted" : 32
 ```
 
 |Procedures| | |
 | --- | --- | --- |
-|Total procedures            |27| |
-|Executed procedures         |22|81%|
-|Unexecuted procedures       |5|19%|
-|Average hits / executed     |9.636363636363637| |
+|Total procedures            |29| |
+|Executed procedures         |26|90%|
+|Unexecuted procedures       |3|10%|
+|Average hits / executed     |27.923076923076923| |
 
 ```mermaid
 pie showData
-    title Procedures (81% covered)
-    "Executed" : 22
-    "Unexecuted" : 5
-```
-
-
-#### [[finer_test_get.f90.gcov]]
-
-|Lines| | |
-| --- | --- | --- |
-|Executable lines            |46| |
-|Executed lines              |45|98%|
-|Unexecuted lines            |1|2%|
-|Average hits / executed     |2.7777777777777777| |
-
-```mermaid
-pie showData
-    title Lines (98% covered)
-    "Executed" : 45
-    "Unexecuted" : 1
-```
-
-|Procedures| | |
-| --- | --- | --- |
-|Total procedures            |2| |
-|Executed procedures         |2|100%|
-|Unexecuted procedures       |0|0%|
-|Average hits / executed     |7.5| |
-
-```mermaid
-pie showData
-    title Procedures (100% covered)
-    "Executed" : 2
-    "Unexecuted" : 0
+    title Procedures (90% covered)
+    "Executed" : 26
+    "Unexecuted" : 3
 ```
 
 
@@ -159,91 +66,29 @@ pie showData
 
 |Lines| | |
 | --- | --- | --- |
-|Executable lines            |365| |
-|Executed lines              |192|53%|
-|Unexecuted lines            |173|47%|
-|Average hits / executed     |8.5625| |
+|Executable lines            |379| |
+|Executed lines              |220|58%|
+|Unexecuted lines            |159|42%|
+|Average hits / executed     |17.913636363636364| |
 
 ```mermaid
 pie showData
-    title Lines (53% covered)
-    "Executed" : 192
-    "Unexecuted" : 173
+    title Lines (58% covered)
+    "Executed" : 220
+    "Unexecuted" : 159
 ```
 
 |Procedures| | |
 | --- | --- | --- |
-|Total procedures            |26| |
-|Executed procedures         |17|65%|
-|Unexecuted procedures       |9|35%|
-|Average hits / executed     |4.352941176470588| |
+|Total procedures            |27| |
+|Executed procedures         |20|74%|
+|Unexecuted procedures       |7|26%|
+|Average hits / executed     |11.65| |
 
 ```mermaid
 pie showData
-    title Procedures (65% covered)
-    "Executed" : 17
-    "Unexecuted" : 9
-```
-
-
-#### [[finer_test_parse.f90.gcov]]
-
-|Lines| | |
-| --- | --- | --- |
-|Executable lines            |42| |
-|Executed lines              |41|98%|
-|Unexecuted lines            |1|2%|
-|Average hits / executed     |2.073170731707317| |
-
-```mermaid
-pie showData
-    title Lines (98% covered)
-    "Executed" : 41
-    "Unexecuted" : 1
-```
-
-|Procedures| | |
-| --- | --- | --- |
-|Total procedures            |2| |
-|Executed procedures         |2|100%|
-|Unexecuted procedures       |0|0%|
-|Average hits / executed     |4.5| |
-
-```mermaid
-pie showData
-    title Procedures (100% covered)
-    "Executed" : 2
-    "Unexecuted" : 0
-```
-
-
-#### [[finer_test_autotest.f90.gcov]]
-
-|Lines| | |
-| --- | --- | --- |
-|Executable lines            |42| |
-|Executed lines              |41|98%|
-|Unexecuted lines            |1|2%|
-|Average hits / executed     |2.975609756097561| |
-
-```mermaid
-pie showData
-    title Lines (98% covered)
-    "Executed" : 41
-    "Unexecuted" : 1
-```
-
-|Procedures| | |
-| --- | --- | --- |
-|Total procedures            |2| |
-|Executed procedures         |2|100%|
-|Unexecuted procedures       |0|0%|
-|Average hits / executed     |7.5| |
-
-```mermaid
-pie showData
-    title Procedures (100% covered)
-    "Executed" : 2
-    "Unexecuted" : 0
+    title Procedures (74% covered)
+    "Executed" : 20
+    "Unexecuted" : 7
 ```
 
