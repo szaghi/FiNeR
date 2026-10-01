@@ -8,7 +8,13 @@ FiNeR (Fortran INI ParseR and generator) is a pure Fortran 2003+ OOP library for
 
 ## Build Systems
 
-FiNeR supports two build systems:
+FiNeR supports two build systems. Both need the third-party dependencies in `src/third_party/`, which are
+fetched by FoBiS (they are **not** git submodules, and the directory is git-ignored):
+
+```bash
+fobis fetch              # fetch and build the dependencies
+fobis fetch --no-build   # fetch only (enough for CMake)
+```
 
 ### CMake (preferred for library use)
 ```bash
@@ -21,11 +27,11 @@ ctest -R <test_name>  # run a single test
 
 ### FoBiS.py (used by CI for coverage/docs)
 ```bash
-FoBiS.py build -mode tests-gnu          # build tests with gfortran
-FoBiS.py build -mode tests-gnu-debug    # debug build
-FoBiS.py build -mode finer-static-gnu   # build static library
-FoBiS.py rule -ex makecoverage          # build + run tests + gcov
-FoBiS.py rule -ex makedoc              # build ford documentation
+fobis build --mode tests-gnu          # build tests with gfortran
+fobis build --mode tests-gnu-debug    # debug build
+fobis build --mode finer-static-gnu   # build static library
+fobis rule --ex makecoverage          # build + run tests + gcov
+fobis rule --ex makedoc               # build API documentation
 ```
 
 After building tests with FoBiS.py, run them via:
@@ -47,7 +53,7 @@ finer_file_ini_t.F90    -- file_ini type: top-level handler with sections(:)
 
 **Dependency chain**: `finer_backend` → `finer_option_t` → `finer_section_t` → `finer_file_ini_t` → `finer`
 
-**Third-party submodules** (in `src/third_party/`):
+**Third-party dependencies** (fetched by `fobis fetch` into `src/third_party/`):
 - **PENF** — portable numeric format kinds (`I4P`, `R8P`, etc.)
 - **StringiFor** — `string` type used throughout for string operations
 - **FACE** — Fortran ANSI color escape codes

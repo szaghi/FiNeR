@@ -17,22 +17,31 @@ FiNeR is developed on GNU/Linux. Windows should work out of the box but is not o
 
 ## Download
 
-FiNeR uses **git submodules** for its third-party dependencies. Clone recursively:
+Clone the repository:
 
 ```bash
-git clone https://github.com/szaghi/FiNeR --recursive
+git clone https://github.com/szaghi/FiNeR
 cd FiNeR
 ```
 
-If you already have a non-recursive clone:
+FiNeR does **not** use git submodules: a recursive clone fetches nothing more. The third-party dependencies are fetched into `src/third_party/` by [FoBiS.py](https://github.com/szaghi/FoBiS), and they must be there before building with either build system:
 
 ```bash
-git submodule update --init --recursive
+pip install FoBiS.py
+fobis fetch --no-build   # clone the dependencies into src/third_party/
+```
+
+Without FoBiS.py, clone them by hand:
+
+```bash
+for dep in BeFoR64 FACE FLAP PENF StringiFor; do
+  git clone https://github.com/szaghi/$dep src/third_party/$dep
+done
 ```
 
 ### Third-Party Dependencies
 
-The submodules live under `src/third_party/`:
+The dependencies live under `src/third_party/`:
 
 | Library | Purpose |
 |---------|---------|
@@ -44,7 +53,7 @@ The submodules live under `src/third_party/`:
 
 ## Build with CMake (preferred)
 
-CMake is the recommended build system for library use and integration into other projects.
+CMake is the recommended build system for library use and integration into other projects. It builds the dependencies from `src/third_party/`, so fetch them first (see [Download](#download)).
 
 ```bash
 mkdir build && cd build
@@ -64,13 +73,15 @@ Each test prints `"Are all tests passed? T"` on success.
 
 ### CMake subdirectory integration
 
-To embed FiNeR in an existing CMake project, place a recursive clone of FiNeR alongside your sources and add to your `CMakeLists.txt`:
+To embed FiNeR in an existing CMake project, place a clone of FiNeR alongside your sources, fetch its dependencies into `FiNeR/src/third_party/` (see [Download](#download)), and add to your `CMakeLists.txt`:
 
 ```cmake
 add_subdirectory(FiNeR)
 
 target_link_libraries(your_target FiNeR::FiNeR)
 ```
+
+`FetchContent` alone is not enough, because it downloads FiNeR without its dependencies: the configure step fails on the missing `src/third_party/` directories.
 
 ## Build with FoBiS.py
 
@@ -83,7 +94,7 @@ pip install FoBiS.py
 ### List all build modes
 
 ```bash
-FoBiS.py build -lmodes
+fobis build --lmodes
 ```
 
 Available modes:
@@ -102,7 +113,8 @@ Available modes:
 ### Build and run tests
 
 ```bash
-FoBiS.py build -mode tests-gnu
+fobis fetch
+fobis build --mode tests-gnu
 ./scripts/run_tests.sh
 ```
 
@@ -112,13 +124,13 @@ Compiled test executables are placed in `./exe/`.
 
 ```bash
 # Static library (GNU gfortran)
-FoBiS.py build -mode finer-static-gnu
+fobis build --mode finer-static-gnu
 
 # Shared library (GNU gfortran)
-FoBiS.py build -mode finer-shared-gnu
+fobis build --mode finer-shared-gnu
 
 # Static library (Intel Fortran)
-FoBiS.py build -mode finer-static-intel
+fobis build --mode finer-static-intel
 ```
 
 The library is placed in `./static/` or `./shared/` respectively.
@@ -126,6 +138,6 @@ The library is placed in `./static/` or `./shared/` respectively.
 ### Coverage and documentation
 
 ```bash
-FoBiS.py rule -ex makecoverage   # build + run tests + gcov report
-FoBiS.py rule -ex makedoc        # build ford API documentation
+fobis rule --ex makecoverage   # build + run tests + gcov report
+fobis rule --ex makedoc        # build API documentation
 ```

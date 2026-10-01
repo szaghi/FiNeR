@@ -11,7 +11,8 @@ function(add_finer_test test_src libraries)
     foreach(lib IN LISTS libraries)
         target_link_libraries(${test_name} ${lib})
     endforeach()
-    add_test(NAME ${test_name} COMMAND ${test_name})
+    # tests open their data files with paths relative to the project root
+    add_test(NAME ${test_name} COMMAND ${test_name} WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
     #
     #    file(STRINGS ${result_src} result_raw)
     #    string(REGEX REPLACE "([+.])([^+.]*)" "\\\\\\1\\2" result ${result_raw})

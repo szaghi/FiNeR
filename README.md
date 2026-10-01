@@ -74,8 +74,8 @@ See [`src/tests/`](src/tests/) for more examples including multi-value arrays, l
 
 ```bash
 git clone https://github.com/szaghi/FiNeR && cd FiNeR
-FoBiS.py fetch                          # fetch BeFoR64, FACE, FLAP, PENF, StringiFor
-FoBiS.py build -mode finer-static-gnu   # build static library
+fobis fetch                           # fetch BeFoR64, FACE, FLAP, PENF, StringiFor
+fobis build --mode finer-static-gnu   # build static library
 ```
 
 **As a project dependency** — declare FiNeR in your `fobos` and run `fetch`:
@@ -87,18 +87,21 @@ FiNeR = https://github.com/szaghi/FiNeR
 ```
 
 ```bash
-FoBiS.py fetch           # fetch and build
-FoBiS.py fetch --update  # re-fetch and rebuild
+fobis fetch           # fetch and build
+fobis fetch --update  # re-fetch and rebuild
 ```
 
 ### CMake
 
+The dependencies are not git submodules: fetch them into `src/third_party/` before configuring.
+
 ```bash
-git clone https://github.com/szaghi/FiNeR --recursive && cd FiNeR
+git clone https://github.com/szaghi/FiNeR && cd FiNeR
+fobis fetch --no-build   # or clone the five dependencies into src/third_party/ by hand
 cmake -B build && cmake --build build && ctest --test-dir build
 ```
 
-**As a CMake subdirectory:**
+**As a CMake subdirectory** (with the dependencies fetched as above):
 
 ```cmake
 add_subdirectory(FiNeR)
