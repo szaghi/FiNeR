@@ -76,6 +76,32 @@ end do
 `fini%Ns` is a public read-only member. Do not assign to it directly — it is managed internally by `add` and `del`.
 :::
 
+### Options before the first section
+
+Options defined before the first section header belong to the **global section**, which has an empty name. Address it with `section_name=''` in any method.
+
+```ini
+title = my analysis
+steps = 10
+
+[mesh]
+cells = 100
+```
+
+```fortran
+use finer
+type(file_ini)                :: fini
+character(len=:), allocatable :: title
+integer                       :: steps
+
+call fini%load(filename='config.ini')
+call fini%get_string(section_name='', option_name='title', val=title)
+call fini%get(section_name='', option_name='steps', val=steps)
+call fini%add(section_name='', option_name='author', val='me')   ! add a global option
+```
+
+The global section is always the first one. `save` and `print` write its options first, without a header, so a file with global options is saved as it was loaded. A file with no section headers at all is loaded entirely into the global section.
+
 ### Multi-line option values
 
 A line that contains no `=` (and is not a section header or comment) is treated as a continuation of the previous option. FiNeR concatenates it — separated by a space — to the preceding value.

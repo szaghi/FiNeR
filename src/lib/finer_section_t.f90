@@ -264,7 +264,7 @@ contains
   call self%parse_options(sep=sep, source=source, error=error, token_failed=token_failed)
   endsubroutine parse
 
-  subroutine print_section(self, unit, retain_comments, pref, iostat, iomsg)
+  subroutine print_section(self, unit, retain_comments, pref, iostat, iomsg, header)
   !< Print data with a pretty format.
   class(section), intent(in)            :: self            !< Section data.
   integer(I4P),   intent(in)            :: unit            !< Logic unit.
@@ -272,13 +272,17 @@ contains
   character(*),   intent(in),  optional :: pref            !< Prefixing string.
   integer(I4P),   intent(out), optional :: iostat          !< IO error.
   character(*),   intent(out), optional :: iomsg           !< IO error message.
+  logical,        intent(in),  optional :: header          !< Flag for printing the section header, default true.
   character(len=:), allocatable         :: prefd           !< Prefixing string.
+  logical                               :: headerd         !< Flag for printing the section header.
   integer(I4P)                          :: iostatd         !< IO error.
   character(500)                        :: iomsgd          !< Temporary variable for IO error message.
   integer(I4P)                          :: o               !< Counter.
 
   prefd = '' ; if (present(pref)) prefd = pref
-  if (allocated(self%sname)) write(unit=unit, fmt='(A)', iostat=iostatd, iomsg=iomsgd)prefd//'['//self%sname//']'
+  headerd = .true. ; if (present(header)) headerd = header
+  iostatd = 0 ; iomsgd = ''
+  if (allocated(self%sname).and.headerd) write(unit=unit, fmt='(A)', iostat=iostatd, iomsg=iomsgd)prefd//'['//self%sname//']'
   if (allocated(self%options)) then
     do o=1, size(self%options, dim=1)
       call self%options(o)%print(pref=prefd//'  ', iostat=iostatd, iomsg=iomsgd, unit=unit, retain_comments=retain_comments)
@@ -288,18 +292,22 @@ contains
   if (present(iomsg))  iomsg  = iomsgd
   endsubroutine print_section
 
-  subroutine save_section(self, unit, retain_comments, iostat, iomsg)
+  subroutine save_section(self, unit, retain_comments, iostat, iomsg, header)
   !< Save data.
   class(section), intent(in)            :: self            !< Section data.
   integer(I4P),   intent(in)            :: unit            !< Logic unit.
   logical,        intent(in)            :: retain_comments !< Flag for retaining eventual comments.
   integer(I4P),   intent(out), optional :: iostat          !< IO error.
   character(*),   intent(out), optional :: iomsg           !< IO error message.
+  logical,        intent(in),  optional :: header          !< Flag for saving the section header, default true.
+  logical                               :: headerd         !< Flag for saving the section header.
   integer(I4P)                          :: iostatd         !< IO error.
   character(500)                        :: iomsgd          !< Temporary variable for IO error message.
   integer(I4P)                          :: o               !< Counter.
 
-  if (allocated(self%sname)) write(unit=unit, fmt='(A)', iostat=iostatd, iomsg=iomsgd)'['//self%sname//']'
+  headerd = .true. ; if (present(header)) headerd = header
+  iostatd = 0 ; iomsgd = ''
+  if (allocated(self%sname).and.headerd) write(unit=unit, fmt='(A)', iostat=iostatd, iomsg=iomsgd)'['//self%sname//']'
   if (allocated(self%options)) then
     do o=1, size(self%options, dim=1)
       call self%options(o)%save(iostat=iostatd, iomsg=iomsgd, unit=unit, retain_comments=retain_comments)

@@ -62,6 +62,7 @@ type :: file_ini
     procedure, private, pass(self) :: get_option              !< Get option value (scalar).
     procedure, private, pass(self) :: index_option            !< Return the index of an option.
     procedure, private, pass(self) :: index_section           !< Return the index of a section.
+    procedure, private, pass(self) :: is_global               !< Inquire if a section is the global (unnamed) one.
     procedure, private, pass(self) :: loop_options            !< Loop over all options.
     procedure, private, pass(self) :: loop_options_section    !< Loop over options of a section.
     procedure, private, pass(self) :: parse                   !< Parse file data.
@@ -154,8 +155,8 @@ contains
     do s=1, self%Ns
       max_len = max(max_len, len(self%sections(s)%name()))
     enddo
-    if (max_len>0) then
-      allocate(character(len=max_len) :: list(1:self%Ns))
+    if (self%Ns>0) then ! the name of the global section has zero length
+      allocate(character(len=max(max_len, 0)) :: list(1:self%Ns))
       do s=1, self%Ns
         list(s) = self%sections(s)%name()
       enddo
@@ -291,7 +292,8 @@ contains
   rt_comm = .false. ; if (present(retain_comments)) rt_comm = retain_comments
   if (allocated(self%sections)) then
     do s=1, size(self%sections, dim=1)
-      call self%sections(s)%print(pref=prefd, iostat=iostatd, iomsg=iomsgd, unit=unit, retain_comments=rt_comm)
+      call self%sections(s)%print(pref=prefd, iostat=iostatd, iomsg=iomsgd, unit=unit, retain_comments=rt_comm, &
+                                  header=.not.self%is_global(s))
     enddo
   endif
   if (present(iostat)) iostat = iostatd
@@ -316,7 +318,7 @@ contains
   if (allocated(self%filename).and.allocated(self%sections)) then
     open(newunit=unit, file=self%filename, action='WRITE', iostat=iostatd, iomsg=iomsgd)
     do s=1, size(self%sections, dim=1)
-      call self%sections(s)%save(iostat=iostatd, iomsg=iomsgd, unit=unit, retain_comments=rt_comm)
+      call self%sections(s)%save(iostat=iostatd, iomsg=iomsgd, unit=unit, retain_comments=rt_comm, header=.not.self%is_global(s))
     enddo
     close(unit=unit, iostat=iostatd, iomsg=iomsgd)
   endif
@@ -392,6 +394,9 @@ contains
   !< Add a section.
   !<
   !< If the section already exists, it is left unchanged.
+  !<
+  !< The section with an empty name is the global one, containing the options not belonging to any named section: it is
+  !< always the first section, being saved (without header) before all the others.
   class(file_ini),        intent(inout) :: self         !< File data.
   integer(I4P), optional, intent(out)   :: error        !< Error code.
   character(*),           intent(in)    :: section_name !< Section name.
@@ -403,14 +408,20 @@ contains
     if (self%index(section_name=section_name)==0) then
       ! section not present
       allocate(sections(1:size(self%sections, dim=1)+1))
-      sections(1:size(self%sections, dim=1)) = self%sections
-      sections(size(self%sections, dim=1)+1) = section(section_name=trim(adjustl(section_name)))
+      if (len_trim(section_name)==0) then
+        ! global section, it must be the first
+        sections(1) = section(section_name='')
+        sections(2:) = self%sections
+      else
+        sections(1:size(self%sections, dim=1)) = self%sections
+        sections(size(self%sections, dim=1)+1) = section(section_name=trim(adjustl(section_name)))
+      endif
       call move_alloc(sections, self%sections)
       self%Ns = self%Ns + 1
     endif
   else
     allocate(self%sections(1:1))
-    self%sections(1) = section(section_name=section_name)
+    self%sections(1) = section(section_name=trim(adjustl(section_name)))
     self%Ns = self%Ns + 1
   endif
   if (self%index(section_name=section_name)>0) errd = 0
@@ -599,6 +610,18 @@ contains
   endif
   endfunction index_section
 
+  elemental function is_global(self, section_index)
+  !< Inquire if a section is the global (unnamed) one, namely the first section if it has an empty name.
+  !<
+  !< The global section contains the options defined before the first section header: it is saved without header.
+  class(file_ini), intent(in) :: self          !< File data.
+  integer(I4P),    intent(in) :: section_index !< Section index.
+  logical                     :: is_global     !< Inquire result.
+
+  is_global = .false.
+  if (allocated(self%sections).and.section_index==1) is_global = len(self%sections(1)%name())==0
+  endfunction is_global
+
   function loop_options_section(self, section_name, option_pairs) result(again)
   !< Loop returning option name/value defined into section.
   class(file_ini),               intent(in)  :: self            !< File data.
@@ -653,6 +676,8 @@ contains
   type(string), allocatable               :: tokens(:)    !< Options strings tokenized.
   type(string)                            :: token_failed !< Eventual token failed to parse.
   type(string)                            :: dummy        !< Dummy string for parsing sections.
+  type(string)                            :: global       !< Options defined before the first section.
+  logical                                 :: has_global   !< Flag for the presence of options before the first section.
   integer(I4P)                            :: Ns           !< Counter.
   integer(I4P)                            :: s            !< Counter.
   integer(I4P)                            :: ss           !< Counter.
@@ -662,10 +687,17 @@ contains
 
   Ns = 0
   s = 0
+  global = ''
+  has_global = .false.
   do while (s+1<=size(tokens, dim=1))
     s = s + 1
     if (scan(adjustl(tokens(s)), comments) == 1) cycle
-    if (index(trim(adjustl(tokens(s))), "[") == 1) then
+    if (index(trim(adjustl(tokens(s))), "[") /= 1) then
+      ! line before the first section: all the others are joined to their section in the following
+      if (tokens(s)%index(self%opt_sep) > 0) has_global = .true.
+      global = global//new_line('a')//trim(adjustl(tokens(s)))
+      tokens(s) = comments ! forcing skip this in the following scan
+    else
       Ns = Ns + 1
       dummy = trim(adjustl(tokens(s)))//new_line('a')
       ss = s
@@ -684,10 +716,20 @@ contains
     endif
   enddo
 
+  if (has_global) Ns = Ns + 1
   if (Ns>0) then
     if (allocated(self%sections)) deallocate(self%sections) ; allocate(self%sections(1:Ns))
     s = 0
     ss = 0
+    if (has_global) then
+      ! options defined before the first section belong to the global (unnamed) section, that is the first one
+      ss = 1
+      global = '[]'//global
+      call self%sections(ss)%parse(sep=self%opt_sep, source=global, error=errd, token_failed=token_failed)
+      if (errd /=0 ) then
+         write(stderr, '(A)')'ERROR: parse "'//token_failed//'" failed!'
+      endif
+    endif
     do while (s+1<=size(tokens, dim=1))
       s = s + 1
       if (scan(adjustl(tokens(s)), comments) == 1) cycle

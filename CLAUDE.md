@@ -67,6 +67,8 @@ finer_file_ini_t.F90    -- file_ini type: top-level handler with sections(:)
 - Default option separator: `=`
 - Multi-line option values: continuation lines have no `=` (they get joined to the previous option)
 - Sections: `[section-name]`
+- Options before the first section header go into the global section: empty name (`section_name=''`), always stored
+  first, saved/printed without a header
 
 ## Error Codes (from `finer_backend`)
 

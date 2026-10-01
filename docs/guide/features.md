@@ -9,6 +9,7 @@ title: Features
 - Load INI data from a physical file or from an in-memory character string
 - Automatic detection of all sections — no need to declare section names upfront
 - Automatic detection of all options within each section
+- Options before the first section are kept in an unnamed global section (`section_name=''`)
 - Multi-line option values (continuation lines without `=` are joined to the previous option)
 - Inline comments stripped automatically (delimited by `;`)
 - Configurable option separator (default `=`, can be set to `:` or any single character)
@@ -40,6 +41,7 @@ FiNeR follows the common INI conventions:
 | Element | Syntax |
 |---------|--------|
 | Section header | `[section-name]` |
+| Global options | options before the first section header; section name is empty |
 | Option | `key = value` |
 | Comment line | `!`, `;`, or `#` as first non-blank character |
 | Inline comment | `;` followed by comment text |
