@@ -80,6 +80,7 @@ contains
   character(len=:), allocatable      :: dlm          !< Dummy string for delimiter handling.
   integer(I4P)                       :: s            !< Counter.
 
+  Nv = 0
   if (allocated(self%sections)) then
     dlm = ' ' ; if (present(delimiter)) dlm = delimiter
     do s=1, size(self%sections, dim=1)

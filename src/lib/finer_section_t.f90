@@ -74,6 +74,7 @@ contains
   character(len=:), allocatable        :: dlm         !< Dummy string for delimiter handling.
   integer(I4P)                         :: o           !< Counter.
 
+  Nv = 0
   if (allocated(self%options)) then
     dlm = ' ' ; if (present(delimiter)) dlm = delimiter
     do o=1, size(self%options, dim=1)
@@ -300,22 +301,26 @@ contains
   class(*),       intent(in)            :: val         !< Option value.
   integer(I4P),   intent(out), optional :: error       !< Error code.
   type(option), allocatable             :: options(:)  !< Temporary options array.
+  type(option)                          :: new_option  !< New option, added only if its value is successfully set.
   integer(I4P)                          :: errd        !< Error code.
 
   errd = ERR_SECTION_OPTIONS
-  if (allocated(self%options)) then
+  if (self%index(option_name=option_name) > 0) then
     call self%set(error=errd, option_name=option_name, val=val)
-    if (errd /= 0) then ! the option does not exist
-      allocate(options(1:size(self%options, dim=1)+1))
-      options(1:size(self%options, dim=1)  ) = self%options
-      options(  size(self%options, dim=1)+1) = option(option_name=option_name)
-      call move_alloc(options, self%options)
-      call self%set(error=errd, option_name=option_name, val=val)
+  else ! the option does not exist
+    new_option = option(option_name=option_name)
+    call new_option%set(val=val, error=errd)
+    if (errd == 0) then
+      if (allocated(self%options)) then
+        allocate(options(1:size(self%options, dim=1)+1))
+        options(1:size(self%options, dim=1)  ) = self%options
+        options(  size(self%options, dim=1)+1) = new_option
+        call move_alloc(options, self%options)
+      else
+        allocate(self%options(1:1))
+        self%options(1) = new_option
+      endif
     endif
-  else
-    allocate(self%options(1:1))
-    self%options(1) = option(option_name=option_name)
-    call self%set(error=errd, option_name=option_name, val=val)
   endif
   if (present(error)) error = errd
   endsubroutine add_option
@@ -330,24 +335,28 @@ contains
   character(*),   intent(in),  optional :: delimiter   !< Delimiter used for separating values.
   integer(I4P),   intent(out), optional :: error       !< Error code.
   type(option), allocatable             :: options(:)  !< Temporary options array.
+  type(option)                          :: new_option  !< New option, added only if its value is successfully set.
   integer(I4P)                          :: errd        !< Error code.
   character(len=:), allocatable         :: dlm         !< Dummy string for delimiter handling.
 
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
   errd = ERR_SECTION_OPTIONS
-  if (allocated(self%options)) then
+  if (self%index(option_name=option_name) > 0) then
     call self%set(delimiter=dlm, error=errd, option_name=option_name, val=val)
-    if (errd/=0) then ! the option does not exist
-      allocate(options(1:size(self%options, dim=1)+1))
-      options(1:size(self%options, dim=1)  ) = self%options
-      options(  size(self%options, dim=1)+1) = option(option_name=option_name)
-      call move_alloc(options, self%options)
-      call self%set(error=errd, option_name=option_name, val=val)
+  else ! the option does not exist
+    new_option = option(option_name=option_name)
+    call new_option%set(delimiter=dlm, val=val, error=errd)
+    if (errd == 0) then
+      if (allocated(self%options)) then
+        allocate(options(1:size(self%options, dim=1)+1))
+        options(1:size(self%options, dim=1)  ) = self%options
+        options(  size(self%options, dim=1)+1) = new_option
+        call move_alloc(options, self%options)
+      else
+        allocate(self%options(1:1))
+        self%options(1) = new_option
+      endif
     endif
-  else
-    allocate(self%options(1:1))
-    self%options(1) = option(option_name=option_name)
-    call self%set(delimiter=dlm, error=errd, option_name=option_name, val=val)
   endif
   if (present(error)) error = errd
   endsubroutine add_a_option
@@ -458,14 +467,20 @@ contains
   integer(I4P),  intent(out)   :: error     !< Error code.
   type(string),  allocatable   :: tokens(:) !< Source tokens.
   type(string)                 :: clean     !< Token with inline comment stripped.
+  integer(I4P)                 :: last      !< Index of the last token that is not a continuation.
   integer(I4P)                 :: o         !< Counter.
 
   call source%split(tokens=tokens, sep=new_line('a'))
-  if (size(tokens, dim=1) > 1) then
-    do o=2, size(tokens, dim=1)
-      if (tokens(o)%index(substring=sep) == 0) tokens(o-1) = tokens(o-1)//' '//tokens(o)
-    enddo
-  endif
+  last = 1
+  do o=2, size(tokens, dim=1)
+    if (scan(adjustl(tokens(o)), COMMENTS) == 1) cycle ! comment lines are never a continuation
+    clean = strip_inline_comment(tokens(o))
+    if (clean%index(substring=sep) == 0) then
+      tokens(last) = tokens(last)//' '//tokens(o)
+    else
+      last = o
+    endif
+  enddo
   source = ''
   do o=1, size(tokens, dim=1)
     if (scan(adjustl(tokens(o)), COMMENTS) == 1) cycle
@@ -504,8 +519,7 @@ contains
   if (allocated(self%options)) then
     do o=1, size(self%options, dim=1)
       if (self%options(o) == trim(adjustl(option_name))) then
-        call self%options(o)%set(val=val)
-        errd = 0
+        call self%options(o)%set(val=val, error=errd)
         exit
       endif
     enddo
@@ -529,8 +543,7 @@ contains
   if (allocated(self%options)) then
     do o=1, size(self%options, dim=1)
       if (self%options(o) == trim(adjustl(option_name))) then
-        call self%options(o)%set(delimiter=dlm, val=val)
-        errd = 0
+        call self%options(o)%set(delimiter=dlm, val=val, error=errd)
         exit
       endif
     enddo

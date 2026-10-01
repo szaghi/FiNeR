@@ -136,6 +136,7 @@ contains
 
   errd = ERR_OPTION_VALS
   if (self%ovals%is_allocated()) then
+    errd = 0
     select type(val)
 #ifdef _R16P
     type is(real(R16P))
@@ -160,8 +161,9 @@ contains
       read(buffer, *)val
     type is(character(*))
       val = self%ovals%chars()
+    class default
+      errd = ERR_OPTION_VALS ! unsupported type
     endselect
-    errd = 0
   endif
   if (present(error)) error = errd
   endsubroutine get_option
@@ -184,6 +186,11 @@ contains
   if (self%ovals%is_allocated()) then
     call self%ovals%split(tokens=valsV, sep=dlm)
     Nv = size(valsV, dim=1)
+    if (Nv > size(val, dim=1)) then ! val cannot hold all values: leave it untouched
+      if (present(error)) error = errd
+      return
+    endif
+    errd = 0
     select type(val)
 #ifdef _R16P
     type is(real(R16P))
@@ -226,8 +233,9 @@ contains
       do v=1, Nv
         val(v) = valsV(v)%chars()
       enddo
+    class default
+      errd = ERR_OPTION_VALS ! unsupported type
     endselect
-    errd = 0
   endif
   if (present(error)) error = errd
   endsubroutine get_a_option
@@ -304,11 +312,16 @@ contains
   endif
   endsubroutine print_option
 
-  pure subroutine set_option(self, val)
+  pure subroutine set_option(self, val, error)
   !< Set option data value (scalar).
-  class(option), intent(inout) :: self !< Option data.
-  class(*),      intent(in)    :: val  !< Value.
+  !<
+  !< If the type of `val` is not supported the option value is left unchanged and an error is returned.
+  class(option), intent(inout)         :: self  !< Option data.
+  class(*),      intent(in)            :: val   !< Value.
+  integer(I4P),  intent(out), optional :: error !< Error code.
+  integer(I4P)                         :: errd  !< Error code.
 
+  errd = 0
   select type(val)
 #ifdef _R16P
   type is(real(R16P))
@@ -330,68 +343,81 @@ contains
     self%ovals = trim(str(n=val))
   type is(character(*))
     self%ovals = val
+  class default
+    errd = ERR_OPTION_VALS ! unsupported type
   endselect
+  if (present(error)) error = errd
   endsubroutine set_option
 
-  pure subroutine set_a_option(self, val, delimiter)
+  pure subroutine set_a_option(self, val, delimiter, error)
   !< Set option data value (array).
-  class(option), intent(inout)        :: self      !< Option data.
-  class(*),      intent(in)           :: val(1:)   !< Value.
-  character(*),  intent(in), optional :: delimiter !< Delimiter used for separating values.
-  character(len=:), allocatable       :: dlm       !< Dummy string for delimiter handling.
-  integer(I4P)                        :: v         !< Counter.
+  !<
+  !< If the type of `val` is not supported the option value is left unchanged and an error is returned.
+  class(option), intent(inout)         :: self      !< Option data.
+  class(*),      intent(in)            :: val(1:)   !< Value.
+  character(*),  intent(in),  optional :: delimiter !< Delimiter used for separating values.
+  integer(I4P),  intent(out), optional :: error     !< Error code.
+  character(len=:), allocatable        :: dlm       !< Dummy string for delimiter handling.
+  type(string)                         :: ovals     !< New option values.
+  integer(I4P)                         :: errd      !< Error code.
+  integer(I4P)                         :: v         !< Counter.
 
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
-  self%ovals = ''
+  errd = 0
+  ovals = ''
   select type(val)
 #ifdef _R16P
   type is(real(R16P))
     do v=1, size(val, dim=1)
-      self%ovals = self%ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//trim(str(n=val(v)))
     enddo
-    self%ovals = self%ovals%strip()
+    ovals = ovals%strip()
 #endif
   type is(real(R8P))
     do v=1, size(val, dim=1)
-      self%ovals = self%ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//trim(str(n=val(v)))
     enddo
-    self%ovals = self%ovals%strip()
+    ovals = ovals%strip()
   type is(real(R4P))
     do v=1, size(val, dim=1)
-      self%ovals = self%ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//trim(str(n=val(v)))
     enddo
-    self%ovals = self%ovals%strip()
+    ovals = ovals%strip()
   type is(integer(I8P))
     do v=1, size(val, dim=1)
-      self%ovals = self%ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//trim(str(n=val(v)))
     enddo
-    self%ovals = self%ovals%strip()
+    ovals = ovals%strip()
   type is(integer(I4P))
     do v=1, size(val, dim=1)
-      self%ovals = self%ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//trim(str(n=val(v)))
     enddo
-    self%ovals = self%ovals%strip()
+    ovals = ovals%strip()
   type is(integer(I2P))
     do v=1, size(val, dim=1)
-      self%ovals = self%ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//trim(str(n=val(v)))
     enddo
-    self%ovals = self%ovals%strip()
+    ovals = ovals%strip()
   type is(integer(I1P))
     do v=1, size(val, dim=1)
-      self%ovals = self%ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//trim(str(n=val(v)))
     enddo
-    self%ovals = self%ovals%strip()
+    ovals = ovals%strip()
   type is(logical)
     do v=1, size(val, dim=1)
-      self%ovals = self%ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//trim(str(n=val(v)))
     enddo
-    self%ovals = self%ovals%strip()
+    ovals = ovals%strip()
   type is(character(*))
     do v=1, size(val, dim=1)
-      self%ovals = self%ovals//dlm//trim(val(v))
+      ovals = ovals//dlm//trim(val(v))
     enddo
-    self%ovals = self%ovals%strip()
+    ovals = ovals%strip()
+  class default
+    errd = ERR_OPTION_VALS ! unsupported type
   endselect
+  if (errd == 0) self%ovals = ovals
+  if (present(error)) error = errd
   endsubroutine set_a_option
 
   subroutine save_option(self, unit, retain_comments, iostat, iomsg)
