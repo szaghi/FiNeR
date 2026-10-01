@@ -2,7 +2,7 @@
 module finer_file_ini_t
 !< INI file class definition.
 use finer_backend
-use finer_option_t, only : option
+use finer_option_t, only : assign_default, option
 use finer_section_t, only : section
 use penf
 use stringifor, only : adjustl, string
@@ -36,6 +36,7 @@ type :: file_ini
                                              get_a_option               !< Get option value (array).
     procedure, pass(self) :: get_items                                  !< Get list of pairs option name/value.
     procedure, pass(self) :: get_sections_list                          !< Get sections names list.
+    procedure, pass(self) :: get_string                                 !< Get option value as an allocatable string.
     procedure, pass(self) :: initialize                                 !< Initialize file.
     procedure, pass(self) :: has_option                                 !< Inquire the presence of an option.
     procedure, pass(self) :: has_section                                !< Inquire the presence of a section.
@@ -161,6 +162,35 @@ contains
     endif
   endif
   endsubroutine get_sections_list
+
+  subroutine get_string(self, section_name, option_name, val, error, default)
+  !< Get option value as an allocatable string.
+  !<
+  !< `val` is (re)allocated with the length of the option value: it does not need to be allocated before the call.
+  !<
+  !< If the option cannot be got (missing section, missing option or option without value) an error is returned and `val` is
+  !< set to `default`, if passed, otherwise it is left unchanged.
+  !<
+  !<```fortran
+  !< type(file_ini)                :: fini
+  !< character(len=:), allocatable :: string
+  !< call fini%get_string(section_name='section-1', option_name='option-1', val=string)
+  !<```
+  class(file_ini),               intent(in)            :: self         !< File data.
+  character(*),                  intent(in)            :: section_name !< Section name.
+  character(*),                  intent(in)            :: option_name  !< Option name.
+  character(len=:), allocatable, intent(inout)         :: val          !< Value.
+  integer(I4P),                  intent(out), optional :: error        !< Error code.
+  character(*),                  intent(in),  optional :: default      !< Default value, used if the option cannot be got.
+  integer(I4P)                                         :: errd         !< Error code.
+  integer(I4P)                                         :: s            !< Counter.
+
+  errd = ERR_OPTION
+  s = self%index(section_name=section_name)
+  if (s > 0) call self%sections(s)%get_string(option_name=option_name, val=val, error=errd)
+  if (errd /= 0 .and. present(default)) val = default
+  if (present(error)) error = errd
+  endsubroutine get_string
 
   function has_option(self, option_name, section_name) result(pres)
   !< Inquire the presence of (at least one) option with the name passed.
@@ -444,17 +474,24 @@ contains
   endif
   endsubroutine free_section
 
-  subroutine get_a_option(self, section_name, option_name, val, delimiter, error)
+  subroutine get_a_option(self, section_name, option_name, val, delimiter, error, default)
   !< Get option value (array)
+  !<
+  !< If the option cannot be got (missing section, missing option, values that cannot be converted to the type of `val` or
+  !< that `val` cannot hold) an error is returned and `val` is set to `default`, if passed, otherwise it is left unchanged.
+  !< `default` must have the same size of `val` and a type that can be assigned to it, otherwise it is ignored.
   class(file_ini), intent(in)            :: self         !< File data.
   character(*),    intent(in)            :: section_name !< Section name.
   character(*),    intent(in)            :: option_name  !< Option name.
   class(*),        intent(inout)         :: val(1:)      !< Value.
   character(*),    intent(in),  optional :: delimiter    !< Delimiter used for separating values.
   integer(I4P),    intent(out), optional :: error        !< Error code.
+  class(*),        intent(in),  optional :: default(1:)  !< Default value, used if the option cannot be got.
   character(len=:), allocatable          :: dlm          !< Dummy string for delimiter handling.
   integer(I4P)                           :: errd         !< Error code.
+  integer(I4P)                           :: errdef       !< Error code of default value assignment.
   integer(I4P)                           :: s            !< Counter.
+  integer(I4P)                           :: v            !< Counter.
 
   errd = ERR_OPTION
   dlm = ' ' ; if (present(delimiter)) dlm = delimiter
@@ -466,17 +503,31 @@ contains
       endif
     enddo
   endif
+  if (errd /= 0 .and. present(default)) then
+    if (size(default, dim=1) == size(val, dim=1)) then
+      do v=1, size(val, dim=1)
+        call assign_default(val=val(v), default=default(v), error=errdef)
+        if (errdef /= 0) exit
+      enddo
+    endif
+  endif
   if (present(error)) error = errd
   endsubroutine get_a_option
 
-  subroutine get_option(self, section_name, option_name, val, error)
+  subroutine get_option(self, section_name, option_name, val, error, default)
   !< Get option value (scalar).
+  !<
+  !< If the option cannot be got (missing section, missing option or value that cannot be converted to the type of `val`) an
+  !< error is returned and `val` is set to `default`, if passed, otherwise it is left unchanged. `default` must have a type
+  !< that can be assigned to `val`, otherwise it is ignored.
   class(file_ini), intent(in)            :: self         !< File data.
   character(*),    intent(in)            :: section_name !< Section name.
   character(*),    intent(in)            :: option_name  !< Option name.
   class(*),        intent(inout)         :: val          !< Value.
   integer(I4P),    intent(out), optional :: error        !< Error code.
+  class(*),        intent(in),  optional :: default      !< Default value, used if the option cannot be got.
   integer(I4P)                           :: errd         !< Error code.
+  integer(I4P)                           :: errdef       !< Error code of default value assignment.
   integer(I4P)                           :: s            !< Counter.
 
   errd = ERR_OPTION
@@ -488,6 +539,7 @@ contains
       endif
     enddo
   endif
+  if (errd /= 0 .and. present(default)) call assign_default(val=val, default=default, error=errdef)
   if (present(error)) error = errd
   endsubroutine get_option
 

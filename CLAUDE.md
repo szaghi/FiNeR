@@ -88,16 +88,19 @@ type(file_ini) :: fini
 
 call fini%load(filename='foo.ini')        ! load from file
 call fini%load(source=string_source)      ! load from string
-call fini%get(section_name=, option_name=, val=, error=)
-call fini%add(section=)                   ! add section
-call fini%add(section=, option=, val=)    ! add/update option
+call fini%get(section_name=, option_name=, val=, error=, default=)
+call fini%get_string(section_name=, option_name=, val=, error=, default=)  ! val: character(len=:), allocatable
+call fini%add(section_name=)                             ! add section
+call fini%add(section_name=, option_name=, val=)         ! add/update option
 call fini%save(filename=)                 ! save to file
 call fini%print(unit=)                    ! pretty-print
 call fini%has_section(section_name=)      ! logical inquiry
 call fini%has_option(section_name=, option_name=)
 ```
 
-`val` in `get`/`add` is unlimited polymorphic — pass any intrinsic type. Array overloads accept `val(:)` with optional `delimiter`.
+`val` in `get`/`add` is unlimited polymorphic — pass integer, real, logical or character. Array overloads accept `val(:)` with optional `delimiter`.
+
+On any `get` failure (missing section/option, value not convertible to the type of `val`, unsupported type, array too small) `error` is non-zero and `val` is left unchanged, or set to `default` if passed. `get_string` (re)allocates `val`, so it needs no pre-allocation; it cannot be part of the `get` generic because it would be ambiguous with the `class(*)` specific.
 
 ## Tests
 

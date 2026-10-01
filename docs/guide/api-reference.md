@@ -34,7 +34,8 @@ The module re-exports everything from the internal modules. The primary user-fac
 | [`index`](#index) | Get the index of a named section or option |
 | [`count_values`](#count_values) | Count the number of space-separated values in an option |
 | [`add`](#add) | Add a section or option (updates value if option already exists) |
-| [`get`](#get) | Get an option value |
+| [`get`](#get) | Get an option value, with an optional default |
+| [`get_string`](#get_string) | Get an option value as an allocatable string |
 | [`del`](#del) | Delete a section or option |
 | [`items`](#items) | Return all option name/value pairs as a 2-D array |
 | [`loop`](#loop) | Iterate over options with a `do while` loop |
@@ -234,7 +235,7 @@ call fini%add(section='sec-bar', option='bools', val=[.true., .false., .false.])
 
 ## `get` {#get}
 
-Retrieves an option value. The receiving variable (`val`) can be a scalar or an array of any intrinsic type. The optional `delimiter` argument specifies the separator between array values (default: space).
+Retrieves an option value. The receiving variable (`val`) can be a scalar or an array of integer, real, logical or character type. The optional `delimiter` argument specifies the separator between array values (default: space).
 
 ```fortran
 use finer
@@ -247,12 +248,70 @@ character(64)        :: host
 call fini%load(filename='config.ini')
 
 call fini%get(section_name='database', option_name='host',  val=host,  error=error)
+allocate(arr(1:fini%count_values(section_name='foo', option_name='array')))
 call fini%get(section_name='foo',      option_name='array', val=arr,   error=error)
 if (error == 0) print *, arr
 ```
 
 ::: tip
-Always allocate the receiving array to the correct size with `count_values` before calling `get` with an array `val`.
+Always allocate the receiving array to the correct size with `count_values` before calling `get` with an array `val`. If `val` is too small to hold all the values, `get` returns an error and leaves `val` unchanged.
+:::
+
+### Errors
+
+`error` is `0` on success. Otherwise `val` is left unchanged and `error` tells why:
+
+| Error | Meaning |
+|-------|---------|
+| `ERR_OPTION` | the section or the option does not exist |
+| `ERR_OPTION_VALS` | the option has no value, the value cannot be converted to the type of `val` (e.g. `abc` or `1.5` read into an integer, an integer too big for the kind of `val`), the type of `val` is not supported, or an array `val` is too small |
+
+### Default values
+
+Pass `default=` to give `val` a fallback value whenever the option cannot be got. `error` still reports what happened, so a default can be told from a value read from the file.
+
+```fortran
+use finer
+use penf, only: I4P, R8P
+type(file_ini) :: fini
+integer(I4P)   :: error
+real(R8P)      :: radius
+integer        :: steps
+real(R8P)      :: origin(3)
+
+call fini%load(filename='config.ini')
+
+call fini%get(section_name='cylinder', option_name='radius', val=radius, default=-1._R8P)
+call fini%get(section_name='cylinder', option_name='steps',  val=steps,  default=0, error=error)
+if (error /= 0) print *, 'steps not found or not valid, using ', steps
+call fini%get(section_name='cylinder', option_name='origin', val=origin, default=[0._R8P, 0._R8P, 0._R8P])
+```
+
+A real `val` accepts a real or integer default of any kind, an integer `val` accepts an integer default of any kind that it can represent, a logical or character `val` accepts a default of the same type. An array `default` must have the same size as `val`. A default that does not fit these rules is ignored: `val` is left unchanged.
+
+---
+
+## `get_string` {#get_string}
+
+Retrieves an option value into a deferred-length allocatable string, which is (re)allocated to the exact length of the value. Unlike `get`, the receiving variable does not need to be allocated, or long enough, before the call.
+
+```fortran
+use finer
+use penf, only: I4P
+type(file_ini)                :: fini
+integer(I4P)                  :: error
+character(len=:), allocatable :: host
+
+call fini%load(filename='config.ini')
+
+call fini%get_string(section_name='database', option_name='host', val=host, error=error)
+call fini%get_string(section_name='database', option_name='user', val=host, default='nobody')
+```
+
+If the section or the option does not exist, or the option has no value, an error is returned and `val` is set to `default`, if passed, otherwise it is left unchanged.
+
+::: warning
+`get` with a character `val` needs an already allocated variable and silently truncates a value longer than `val`. Prefer `get_string` for strings of unknown length.
 :::
 
 ---

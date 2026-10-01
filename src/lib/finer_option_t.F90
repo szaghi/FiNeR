@@ -8,6 +8,7 @@ use stringifor, only : adjustl, index, scan, string
 implicit none
 private
 public :: option
+public :: assign_default
 
 type :: option
   !< Option data of sections.
@@ -22,6 +23,7 @@ type :: option
     generic               :: get => get_option, &  !< Get option value (scalar).
                                     get_a_option   !< Get option value (array).
     procedure, pass(self) :: get_pairs             !< Return option name/values pairs.
+    procedure, pass(self) :: get_string            !< Get option value as an allocatable string.
     procedure, pass(self) :: name_len              !< Return option name length.
     procedure, pass(self) :: parse                 !< Parse option data.
     procedure, pass(self) :: print => print_option !< Pretty print data.
@@ -92,6 +94,24 @@ contains
     pairs(2) = self%ovals%chars()
   endif
   endsubroutine get_pairs
+
+  subroutine get_string(self, val, error)
+  !< Get option value as an allocatable string.
+  !<
+  !< `val` is (re)allocated with the length of the option value. If the option has no value, `val` is left unchanged and an
+  !< error is returned.
+  class(option),                 intent(in)            :: self  !< Option data.
+  character(len=:), allocatable, intent(inout)         :: val   !< Value.
+  integer(I4P),                  intent(out), optional :: error !< Error code.
+  integer(I4P)                                         :: errd  !< Error code.
+
+  errd = ERR_OPTION_VALS
+  if (self%ovals%is_allocated()) then
+    val = self%ovals%chars()
+    errd = 0
+  endif
+  if (present(error)) error = errd
+  endsubroutine get_string
 
   elemental function name_len(self) result(length)
   !< Return option name length.
@@ -412,6 +432,103 @@ contains
   endfunction option_eq_character
 
   ! non TBP methods
+  subroutine assign_default(val, default, error)
+  !< Assign a default value to a value of one of the supported types.
+  !<
+  !< A real `val` accepts a real or integer default of any supported kind, an integer `val` accepts an integer default of any
+  !< supported kind (that it can represent), a logical or character `val` accepts a default of the same type. For any other
+  !< combination `val` is left unchanged and an error is returned.
+  class(*),     intent(inout) :: val     !< Value.
+  class(*),     intent(in)    :: default !< Default value.
+  integer(I4P), intent(out)   :: error   !< Error code.
+#ifdef _R16P
+  integer, parameter          :: RKP=R16P !< Kind of the widest supported real.
+#else
+  integer, parameter          :: RKP=R8P  !< Kind of the widest supported real.
+#endif
+  integer, parameter          :: IS_NONE=0, IS_INTEGER=1, IS_REAL=2, IS_LOGICAL=3 !< Default value types.
+  integer                     :: dtype   !< Type of the default value.
+  integer(I8P)                :: di      !< Integer default value.
+  real(RKP)                   :: dr      !< Real default value.
+  logical                     :: dl      !< Logical default value.
+
+  dtype = IS_NONE
+  select type(default)
+#ifdef _R16P
+  type is(real(R16P))
+    dr = default ; dtype = IS_REAL
+#endif
+  type is(real(R8P))
+    dr = default ; dtype = IS_REAL
+  type is(real(R4P))
+    dr = default ; dtype = IS_REAL
+  type is(integer(I8P))
+    di = default ; dtype = IS_INTEGER
+  type is(integer(I4P))
+    di = default ; dtype = IS_INTEGER
+#ifndef _NVF
+  type is(integer(I2P))
+    di = default ; dtype = IS_INTEGER
+#endif
+  type is(integer(I1P))
+    di = default ; dtype = IS_INTEGER
+  type is(logical)
+    dl = default ; dtype = IS_LOGICAL
+  endselect
+  if (dtype == IS_INTEGER) dr = real(di, kind=RKP)
+
+  error = ERR_OPTION_VALS
+  select type(val)
+#ifdef _R16P
+  type is(real(R16P))
+    if (dtype == IS_REAL .or. dtype == IS_INTEGER) then
+      val = dr ; error = 0
+    endif
+#endif
+  type is(real(R8P))
+    if (dtype == IS_REAL .or. dtype == IS_INTEGER) then
+      val = real(dr, kind=R8P) ; error = 0
+    endif
+  type is(real(R4P))
+    if (dtype == IS_REAL .or. dtype == IS_INTEGER) then
+      val = real(dr, kind=R4P) ; error = 0
+    endif
+  type is(integer(I8P))
+    if (dtype == IS_INTEGER) then
+      val = di ; error = 0
+    endif
+  type is(integer(I4P))
+    if (dtype == IS_INTEGER) then
+      if (abs(di) <= int(huge(val), kind=I8P)) then
+        val = int(di, kind=I4P) ; error = 0
+      endif
+    endif
+#ifndef _NVF
+  type is(integer(I2P))
+    if (dtype == IS_INTEGER) then
+      if (abs(di) <= int(huge(val), kind=I8P)) then
+        val = int(di, kind=I2P) ; error = 0
+      endif
+    endif
+#endif
+  type is(integer(I1P))
+    if (dtype == IS_INTEGER) then
+      if (abs(di) <= int(huge(val), kind=I8P)) then
+        val = int(di, kind=I1P) ; error = 0
+      endif
+    endif
+  type is(logical)
+    if (dtype == IS_LOGICAL) then
+      val = dl ; error = 0
+    endif
+  type is(character(*))
+    select type(default)
+    type is(character(*))
+      val = default ; error = 0
+    endselect
+  endselect
+  endsubroutine assign_default
+
   subroutine convert(source, val, error, check_only)
   !< Convert a string into a value of one of the supported types.
   !<

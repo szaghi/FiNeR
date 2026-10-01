@@ -25,6 +25,7 @@ type :: section
     procedure, pass(self) :: free_option            !< Free a option.
     generic               :: get => get_option, &   !< Get option value (scalar).
                                     get_a_option    !< Get option value (array).
+    procedure, pass(self) :: get_string             !< Get option value as an allocatable string.
     procedure, pass(self) :: has_options            !< Inquire if section has options.
     procedure, pass(self) :: index => index_option  !< Return the index of an option.
     procedure, pass(self) :: loop                   !< Loop over options.
@@ -127,6 +128,23 @@ contains
     endif
   endif
   endsubroutine free_option
+
+  subroutine get_string(self, option_name, val, error)
+  !< Get option value as an allocatable string.
+  !<
+  !< If the option does not exist or has no value, `val` is left unchanged and an error is returned.
+  class(section),                intent(in)            :: self        !< Section data.
+  character(*),                  intent(in)            :: option_name !< Option name.
+  character(len=:), allocatable, intent(inout)         :: val         !< Value.
+  integer(I4P),                  intent(out), optional :: error       !< Error code.
+  integer(I4P)                                         :: errd        !< Error code.
+  integer(I4P)                                         :: o           !< Counter.
+
+  errd = ERR_OPTION
+  o = self%index(option_name=option_name)
+  if (o > 0) call self%options(o)%get_string(val=val, error=errd)
+  if (present(error)) error = errd
+  endsubroutine get_string
 
   elemental function has_options(self)
   !< Inquire is section has options (at least one).
