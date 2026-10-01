@@ -187,10 +187,10 @@ Use `add` to build an INI structure in memory. Adding a section that already exi
 use finer
 type(file_ini) :: fini
 
-call fini%add(section='network')
-call fini%add(section='network', option='host', val='localhost')
-call fini%add(section='network', option='port', val=8080)
-call fini%add(section='logging')   ! section only, no options yet
+call fini%add(section_name='network')
+call fini%add(section_name='network', option_name='host', val='localhost')
+call fini%add(section_name='network', option_name='port', val=8080)
+call fini%add(section_name='logging')   ! section only, no options yet
 ```
 
 ### Set option values of any intrinsic type
@@ -202,13 +202,13 @@ use finer
 use penf, only: I4P, I8P, R4P, R8P
 type(file_ini) :: fini
 
-call fini%add(section='types')
-call fini%add(section='types', option='int32',  val=42_I4P)
-call fini%add(section='types', option='int64',  val=123456789_I8P)
-call fini%add(section='types', option='real32', val=3.14_R4P)
-call fini%add(section='types', option='real64', val=2.71828_R8P)
-call fini%add(section='types', option='flag',   val=.true.)
-call fini%add(section='types', option='label',  val='production')
+call fini%add(section_name='types')
+call fini%add(section_name='types', option_name='int32',  val=42_I4P)
+call fini%add(section_name='types', option_name='int64',  val=123456789_I8P)
+call fini%add(section_name='types', option_name='real32', val=3.14_R4P)
+call fini%add(section_name='types', option_name='real64', val=2.71828_R8P)
+call fini%add(section_name='types', option_name='flag',   val=.true.)
+call fini%add(section_name='types', option_name='label',  val='production')
 ```
 
 ### Array-valued options
@@ -220,10 +220,10 @@ use finer
 use penf, only: R8P
 type(file_ini) :: fini
 
-call fini%add(section='sec-foo')
-call fini%add(section='sec-foo', option='array',  val=[1, 2, 3, 4])
-call fini%add(section='sec-foo', option='floats', val=[1.0_R8P, 2.5_R8P, 3.0_R8P])
-call fini%add(section='sec-foo', option='bools',  val=[.true., .false., .true.])
+call fini%add(section_name='sec-foo')
+call fini%add(section_name='sec-foo', option_name='array',  val=[1, 2, 3, 4])
+call fini%add(section_name='sec-foo', option_name='floats', val=[1.0_R8P, 2.5_R8P, 3.0_R8P])
+call fini%add(section_name='sec-foo', option_name='bools',  val=[.true., .false., .true.])
 ```
 
 The resulting INI content:
@@ -231,9 +231,11 @@ The resulting INI content:
 ```ini
 [sec-foo]
 array = +1 +2 +3 +4
-floats = +1.00000000000000E+000 +2.50000000000000E+000 +3.00000000000000E+000
+floats = 1.0 2.5 3.0
 bools = T F T
 ```
+
+Real values are written with the shortest text that reads back to exactly the same number: `0.1` is saved as `0.1`, and a value such as `1/3` keeps all the digits it needs (`0.3333333333333333`). Very large or very small values use the scientific notation, e.g. `1.0E+20`.
 
 ::: tip
 `count_values` counts space-separated tokens, so it works correctly with array-valued options written by `add`.
@@ -267,11 +269,11 @@ use penf, only: R8P
 type(file_ini) :: fini
 integer        :: iostat
 
-call fini%add(section='sec-foo')
-call fini%add(section='sec-foo', option='bar', val=-32.1_R8P)
-call fini%add(section='sec-foo', option='baz', val=' hello FiNeR! ')
-call fini%add(section='sec-bar')
-call fini%add(section='sec-bar', option='bools', val=[.true., .false., .false.])
+call fini%add(section_name='sec-foo')
+call fini%add(section_name='sec-foo', option_name='bar', val=-32.1_R8P)
+call fini%add(section_name='sec-foo', option_name='baz', val=' hello FiNeR! ')
+call fini%add(section_name='sec-bar')
+call fini%add(section_name='sec-bar', option_name='bools', val=[.true., .false., .false.])
 
 call fini%save(filename='foo.ini', iostat=iostat)
 if (iostat /= 0) stop 'save failed'
@@ -281,7 +283,7 @@ The generated `foo.ini`:
 
 ```ini
 [sec-foo]
-bar = -0.321000000000000E+002
+bar = -32.1
 baz =  hello FiNeR!
 [sec-bar]
 bools = T F F
@@ -362,10 +364,10 @@ integer        :: s, o
 
 call fini%load(filename='config.ini')
 
-s = fini%index(section='database')
+s = fini%index(section_name='database')
 if (s > 0) print *, 'database is section #', s
 
-o = fini%index(section='database', option='host')
+o = fini%index(section_name='database', option_name='host')
 if (o > 0) print *, 'host is option #', o, ' in database'
 ```
 

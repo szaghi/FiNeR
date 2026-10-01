@@ -50,6 +50,14 @@ type :: option
     procedure, private, pass(lhs) :: option_eq_character !< Equal to character logical operator.
 endtype option
 
+interface real_string
+  !< Return the shortest string representing a real number that is read back exactly.
+#ifdef _R16P
+  module procedure real_string_R16P
+#endif
+  module procedure real_string_R8P, real_string_R4P
+endinterface real_string
+
 interface option
   !< Overload `option` name with a function returning a new (initiliazed) option instance.
   module procedure new_option
@@ -283,12 +291,12 @@ contains
   select type(val)
 #ifdef _R16P
   type is(real(R16P))
-    self%ovals = val
+    self%ovals = real_string(val)
 #endif
   type is(real(R8P))
-    self%ovals = val
+    self%ovals = real_string(val)
   type is(real(R4P))
-    self%ovals = val
+    self%ovals = real_string(val)
   type is(integer(I8P))
     self%ovals = val
   type is(integer(I4P))
@@ -327,18 +335,18 @@ contains
 #ifdef _R16P
   type is(real(R16P))
     do v=1, size(val, dim=1)
-      ovals = ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//real_string(val(v))
     enddo
     ovals = ovals%strip()
 #endif
   type is(real(R8P))
     do v=1, size(val, dim=1)
-      ovals = ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//real_string(val(v))
     enddo
     ovals = ovals%strip()
   type is(real(R4P))
     do v=1, size(val, dim=1)
-      ovals = ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//real_string(val(v))
     enddo
     ovals = ovals%strip()
   type is(integer(I8P))
@@ -600,6 +608,108 @@ contains
     is_numeric = len_trim(string) > 0 .and. verify(string, ' 0123456789+-.eEdDqQ') == 0
     endfunction is_numeric
   endsubroutine convert
+
+#ifdef _R16P
+  pure function real_string_R16P(n) result(string)
+  !< Return the shortest string representing a real number (R16P) that is read back exactly.
+  real(R16P), intent(in)        :: n      !< Number.
+  character(len=:), allocatable :: string !< String representing the number.
+  integer, parameter            :: MAX_DIGITS = 36 !< Significant digits always sufficient for an exact read back.
+  character(MAX_DIGITS+8)       :: buffer !< Buffer for the conversions.
+  character(16)                 :: frm    !< Format of the conversion.
+  real(R16P)                    :: check  !< Number read back.
+  integer                       :: d      !< Significant digits counter.
+  integer                       :: ios    !< IO status.
+
+  do d=1, MAX_DIGITS
+    write(frm, '(A,I0,A,I0,A)') '(ES', d+8, '.', d-1, 'E4)'
+    write(buffer, frm) n
+    read(buffer, *, iostat=ios) check
+    if (ios == 0 .and. check == n) exit
+  enddo
+  string = tidy_real_string(trim(adjustl(buffer)))
+  endfunction real_string_R16P
+
+#endif
+  pure function real_string_R8P(n) result(string)
+  !< Return the shortest string representing a real number (R8P) that is read back exactly.
+  real(R8P), intent(in)        :: n      !< Number.
+  character(len=:), allocatable :: string !< String representing the number.
+  integer, parameter            :: MAX_DIGITS = 17 !< Significant digits always sufficient for an exact read back.
+  character(MAX_DIGITS+8)       :: buffer !< Buffer for the conversions.
+  character(16)                 :: frm    !< Format of the conversion.
+  real(R8P)                    :: check  !< Number read back.
+  integer                       :: d      !< Significant digits counter.
+  integer                       :: ios    !< IO status.
+
+  do d=1, MAX_DIGITS
+    write(frm, '(A,I0,A,I0,A)') '(ES', d+8, '.', d-1, 'E4)'
+    write(buffer, frm) n
+    read(buffer, *, iostat=ios) check
+    if (ios == 0 .and. check == n) exit
+  enddo
+  string = tidy_real_string(trim(adjustl(buffer)))
+  endfunction real_string_R8P
+
+  pure function real_string_R4P(n) result(string)
+  !< Return the shortest string representing a real number (R4P) that is read back exactly.
+  real(R4P), intent(in)        :: n      !< Number.
+  character(len=:), allocatable :: string !< String representing the number.
+  integer, parameter            :: MAX_DIGITS = 9 !< Significant digits always sufficient for an exact read back.
+  character(MAX_DIGITS+8)       :: buffer !< Buffer for the conversions.
+  character(16)                 :: frm    !< Format of the conversion.
+  real(R4P)                    :: check  !< Number read back.
+  integer                       :: d      !< Significant digits counter.
+  integer                       :: ios    !< IO status.
+
+  do d=1, MAX_DIGITS
+    write(frm, '(A,I0,A,I0,A)') '(ES', d+8, '.', d-1, 'E4)'
+    write(buffer, frm) n
+    read(buffer, *, iostat=ios) check
+    if (ios == 0 .and. check == n) exit
+  enddo
+  string = tidy_real_string(trim(adjustl(buffer)))
+  endfunction real_string_R4P
+
+  pure function tidy_real_string(source) result(string)
+  !< Tidy a string representing a real number in scientific notation, e.g. `-3.21E+0001` becomes `-32.1`.
+  !<
+  !< The plain decimal notation is used for decimal exponents in [-5, 15], the scientific one otherwise, e.g. `1.0E+20`.
+  !< Not finite numbers (NaN, Infinity) are left unchanged.
+  character(*), intent(in)      :: source   !< String representing the number in scientific notation.
+  character(len=:), allocatable :: string   !< Tidy string.
+  character(len=:), allocatable :: digits   !< Significant digits.
+  character(len=:), allocatable :: sgn      !< Sign.
+  character(8)                  :: buffer   !< Buffer for the exponent conversion.
+  integer                       :: epos     !< Position of the exponent.
+  integer                       :: expnt    !< Decimal exponent.
+  integer                       :: nd       !< Number of significant digits.
+  integer                       :: ios      !< IO status.
+
+  string = source
+  epos = scan(source, 'E')
+  if (epos < 2 .or. verify(source, '+-.0123456789E') /= 0) return ! not a finite number
+  read(source(epos+1:), *, iostat=ios) expnt
+  if (ios /= 0) return
+  sgn = '' ; if (source(1:1) == '-') sgn = '-'
+  digits = source(verify(source, '+-'):epos-1)
+  digits = digits(1:1)//digits(3:)                   ! remove the decimal point
+  nd = max(1, verify(digits, '0', back=.true.))      ! remove the trailing zeros
+  digits = digits(1:nd)
+  if (expnt >= -5 .and. expnt <= 15) then
+    if (expnt < 0) then
+      string = sgn//'0.'//repeat('0', -expnt-1)//digits
+    elseif (expnt >= nd-1) then
+      string = sgn//digits//repeat('0', expnt-nd+1)//'.0'
+    else
+      string = sgn//digits(1:expnt+1)//'.'//digits(expnt+2:)
+    endif
+  else
+    if (nd == 1) digits = digits//'0'
+    write(buffer, '(SP,I0)') expnt
+    string = sgn//digits(1:1)//'.'//digits(2:)//'E'//trim(buffer)
+  endif
+  endfunction tidy_real_string
 
   elemental function new_option(option_name, option_values, option_comment)
   !< Return a new (initiliazed) option instance.

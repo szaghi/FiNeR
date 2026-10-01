@@ -176,10 +176,10 @@ integer        :: s, o
 
 call fini%load(filename='config.ini')
 
-s = fini%index(section='database')
+s = fini%index(section_name='database')
 if (s > 0) print *, 'database is section #', s
 
-o = fini%index(section='database', option='host')
+o = fini%index(section_name='database', option_name='host')
 if (o > 0) print *, 'host is option #', o, ' in database'
 ```
 
@@ -223,12 +223,12 @@ use finer
 use penf, only: R8P
 type(file_ini) :: fini
 
-call fini%add(section='sec-foo')
-call fini%add(section='sec-foo', option='bar',   val=-32.1_R8P)
-call fini%add(section='sec-foo', option='baz',   val=' hello FiNeR! ')
-call fini%add(section='sec-foo', option='array', val=[1, 2, 3, 4])
-call fini%add(section='sec-bar')
-call fini%add(section='sec-bar', option='bools', val=[.true., .false., .false.])
+call fini%add(section_name='sec-foo')
+call fini%add(section_name='sec-foo', option_name='bar',   val=-32.1_R8P)
+call fini%add(section_name='sec-foo', option_name='baz',   val=' hello FiNeR! ')
+call fini%add(section_name='sec-foo', option_name='array', val=[1, 2, 3, 4])
+call fini%add(section_name='sec-bar')
+call fini%add(section_name='sec-bar', option_name='bools', val=[.true., .false., .false.])
 ```
 
 ---
@@ -429,7 +429,7 @@ type(file_ini) :: fini
 integer        :: iostat
 character(200) :: iomsg
 
-call fini%add(section='sec-foo', option='bar', val=-32.1_R8P)
+call fini%add(section_name='sec-foo', option_name='bar', val=-32.1_R8P)
 call fini%save(filename='foo.ini', iostat=iostat, iomsg=iomsg)
 call fini%save(filename='foo-with-comments.ini', retain_comments=.true.)
 ```

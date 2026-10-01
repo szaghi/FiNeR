@@ -58,7 +58,7 @@ allocate(array(1:fini%count_values(section_name='section-1', option_name='option
 call fini%get(section_name='section-1', option_name='option-2', val=array, error=error)
 if (error == 0) print *, array   ! 2.0  3.0
 
-call fini%add(section='sec-foo', option='bar', val=-32.1_R4P)
+call fini%add(section_name='sec-foo', option_name='bar', val=-32.1_R4P)
 call fini%save(filename='foo.ini')
 ```
 

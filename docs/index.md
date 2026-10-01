@@ -57,8 +57,8 @@ source = '[section-1]'//new_line('A')// &
          'option-1 = foo'
 
 call fini%load(source=source)
-allocate(array(1:fini%count_values(section='section-1', option='option-2')))
-call fini%get(section='section-1', option='option-2', val=array, error=error)
+allocate(array(1:fini%count_values(section_name='section-1', option_name='option-2')))
+call fini%get(section_name='section-1', option_name='option-2', val=array, error=error)
 if (error == 0) print *, array   ! 2.0  3.0
 ```
 
