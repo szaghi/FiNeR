@@ -228,7 +228,7 @@ jobs         = 10
 [rule-makedoc]
 help   = Build documentation with formal + VitePress
 rule_1 = formal generate --mirror-sources --diagrams --project docs/ford.md --output docs/api
-rule_2 = cd docs && npm ci && npm run docs:build
+rule_2 = bash -c 'cd docs && npm install && npm run docs:build'
 
 [rule-deldoc]
 help = Delete documentation build artifacts

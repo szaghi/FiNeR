@@ -32,8 +32,20 @@ check_fortran_source_runs(
      end program r16p_support"
      R16P_SUPPORTED
      SRC_EXT f90)
-if(R16P_SUPPORTED)
-    set(r16p_supported "_R16P_SUPPORTED")
+# The R16P kind is defined by PENF, where it is a quadruple precision real only if PENF is compiled with _R16P:
+# all the libraries using it must be compiled accordingly. Enable it in the dependencies built by this project,
+# otherwise follow the PENF target provided by the parent project.
+if(R16P_SUPPORTED AND "PENF" IN_LIST finer_own_dependencies)
+    target_compile_definitions(PENF PRIVATE _R16P)
+endif()
+get_target_property(penf_definitions PENF COMPILE_DEFINITIONS)
+if(penf_definitions AND "_R16P" IN_LIST penf_definitions)
+    set(r16p_supported "_R16P")
+    foreach(dependency IN ITEMS FLAP BeFoR64 StringiFor)
+        if("${dependency}" IN_LIST finer_own_dependencies)
+            target_compile_definitions(${dependency} PRIVATE _R16P)
+        endif()
+    endforeach()
 endif()
 
 check_fortran_source_runs(

@@ -19,25 +19,31 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake/Modules)
 set(TARGETS_EXPORT_NAME "${PROJECT_NAME}Targets")
 set(NAMESPACE "${PROJECT_NAME}::")
 
-#add dependencies from subdirs
+#add dependencies from subdirs, tracking the ones built by this project
+set(finer_own_dependencies "")
 if(NOT TARGET PENF)
     add_subdirectory(src/third_party/PENF) # has no other linking deps
+    list(APPEND finer_own_dependencies PENF)
 endif()
 
 if(NOT TARGET FACE)
     add_subdirectory(src/third_party/FACE) # has no other linking deps
+    list(APPEND finer_own_dependencies FACE)
 endif()
 
 if(NOT TARGET FLAP)
     add_subdirectory(src/third_party/FLAP) # depends on PENF, FACE
+    list(APPEND finer_own_dependencies FLAP)
 endif()
 
 if(NOT TARGET BeFoR64)
     add_subdirectory(src/third_party/BeFoR64) # depends on PENF
+    list(APPEND finer_own_dependencies BeFoR64)
 endif()
 
 if(NOT TARGET StringiFor)
     add_subdirectory(src/third_party/StringiFor) # depends on PENF, BeFoR64
+    list(APPEND finer_own_dependencies StringiFor)
 endif()
 
 # generate the library and install instructions
