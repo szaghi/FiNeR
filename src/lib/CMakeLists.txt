@@ -25,7 +25,7 @@ target_include_directories(${LIB}
 
 # set variables used for compile definitions of targets after support check
 include(CheckFortranSourceRuns)
-# Quadruple precision reals (R16P) need no definition here: PENF publishes _R16P as a PUBLIC compile definition
+# Quadruple precision reals (R16P) need no definition here: PENF publishes PENF_R16P as a PUBLIC compile definition
 # when the compiler supports the kind, so it is inherited by linking PENF::PENF.
 check_fortran_source_runs(
     "program ascii_support;

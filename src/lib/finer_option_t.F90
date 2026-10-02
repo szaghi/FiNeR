@@ -57,7 +57,7 @@ endinterface integer_string
 
 interface real_string
   !< Return the shortest string representing a real number that is read back exactly.
-#ifdef _R16P
+#ifdef PENF_R16P
   module procedure real_string_R16P
 #endif
   module procedure real_string_R8P, real_string_R4P
@@ -302,7 +302,7 @@ contains
 
   errd = 0
   select type(val)
-#ifdef _R16P
+#ifdef PENF_R16P
   type is(real(R16P))
     self%ovals = real_string(val)
 #endif
@@ -310,7 +310,7 @@ contains
     self%ovals = real_string(val)
   type is(real(R4P))
     self%ovals = real_string(val)
-#ifdef _R16P
+#ifdef PENF_R16P
   type is(complex(R16P))
     self%ovals = '('//real_string(real(val))//','//real_string(aimag(val))//')'
 #endif
@@ -353,7 +353,7 @@ contains
   errd = 0
   ovals = ''
   select type(val)
-#ifdef _R16P
+#ifdef PENF_R16P
   type is(real(R16P))
     do v=1, size(val, dim=1)
       ovals = ovals//dlm//real_string(val(v))
@@ -370,7 +370,7 @@ contains
       ovals = ovals//dlm//real_string(val(v))
     enddo
     ovals = ovals%strip()
-#ifdef _R16P
+#ifdef PENF_R16P
   type is(complex(R16P))
     do v=1, size(val, dim=1)
       ovals = ovals//dlm//'('//real_string(real(val(v)))//','//real_string(aimag(val(v)))//')'
@@ -489,7 +489,7 @@ contains
   class(*),     intent(inout) :: val     !< Value.
   class(*),     intent(in)    :: default !< Default value.
   integer(I4P), intent(out)   :: error   !< Error code.
-#ifdef _R16P
+#ifdef PENF_R16P
   integer, parameter          :: RKP=R16P !< Kind of the widest supported real.
 #else
   integer, parameter          :: RKP=R8P  !< Kind of the widest supported real.
@@ -503,7 +503,7 @@ contains
 
   dtype = IS_NONE
   select type(default)
-#ifdef _R16P
+#ifdef PENF_R16P
   type is(complex(R16P))
     dz = default ; dtype = IS_COMPLEX
 #endif
@@ -511,7 +511,7 @@ contains
     dz = default ; dtype = IS_COMPLEX
   type is(complex(R4P))
     dz = default ; dtype = IS_COMPLEX
-#ifdef _R16P
+#ifdef PENF_R16P
   type is(real(R16P))
     dr = default ; dtype = IS_REAL
 #endif
@@ -537,7 +537,7 @@ contains
 
   error = ERR_OPTION_VALS
   select type(val)
-#ifdef _R16P
+#ifdef PENF_R16P
   type is(complex(R16P))
     if (dtype == IS_COMPLEX .or. dtype == IS_REAL .or. dtype == IS_INTEGER) then
       val = dz ; error = 0
@@ -551,7 +551,7 @@ contains
     if (dtype == IS_COMPLEX .or. dtype == IS_REAL .or. dtype == IS_INTEGER) then
       val = cmplx(dz, kind=R4P) ; error = 0
     endif
-#ifdef _R16P
+#ifdef PENF_R16P
   type is(real(R16P))
     if (dtype == IS_REAL .or. dtype == IS_INTEGER) then
       val = dr ; error = 0
@@ -611,7 +611,7 @@ contains
   logical,      intent(in), optional :: check_only !< Check the conversion without modifying `val`.
   logical                            :: assign     !< Flag for assigning the converted value to `val`.
   integer                            :: ios        !< IO status of the conversion.
-#ifdef _R16P
+#ifdef PENF_R16P
   real(R16P)                         :: r16        !< Converted value.
 #endif
   real(R8P)                          :: r8         !< Converted value.
@@ -623,7 +623,7 @@ contains
 #endif
   integer(I1P)                       :: i1         !< Converted value.
   logical                            :: l          !< Converted value.
-#ifdef _R16P
+#ifdef PENF_R16P
   real(R16P)                         :: r16i       !< Converted value, imaginary part.
 #endif
   real(R8P)                          :: r8i        !< Converted value, imaginary part.
@@ -634,7 +634,7 @@ contains
   assign = .true. ; if (present(check_only)) assign = .not.check_only
   ios = 1
   select type(val)
-#ifdef _R16P
+#ifdef PENF_R16P
   type is(real(R16P))
     if (is_numeric(source)) read(source, *, iostat=ios) r16
     if (ios == 0 .and. assign) val = r16
@@ -659,7 +659,7 @@ contains
   type is(integer(I1P))
     if (is_numeric(source)) read(source, *, iostat=ios) i1
     if (ios == 0 .and. assign) val = i1
-#ifdef _R16P
+#ifdef PENF_R16P
   type is(complex(R16P))
     if (split_parts(source)) read(re, *, iostat=ios) r16
     if (ios == 0) read(im, *, iostat=ios) r16i
@@ -763,7 +763,7 @@ contains
 
   is_complex = .false.
   select type(val)
-#ifdef _R16P
+#ifdef PENF_R16P
   type is(complex(R16P))
     is_complex = .true.
 #endif
@@ -815,107 +815,40 @@ contains
   enddo
   endsubroutine split_complex
 
-#ifdef _R16P
+#ifdef PENF_R16P
   pure function real_string_R16P(n) result(string)
   !< Return the shortest string representing a real number (R16P) that is read back exactly.
+  !<
+  !< It is the compact string of PENF without the plus sign of the not negative numbers.
   real(R16P), intent(in)        :: n      !< Number.
   character(len=:), allocatable :: string !< String representing the number.
-  integer, parameter            :: MAX_DIGITS = 36 !< Significant digits always sufficient for an exact read back.
-  character(MAX_DIGITS+8)       :: buffer !< Buffer for the conversions.
-  character(16)                 :: frm    !< Format of the conversion.
-  real(R16P)                    :: check  !< Number read back.
-  integer                       :: d      !< Significant digits counter.
-  integer                       :: ios    !< IO status.
 
-  do d=1, MAX_DIGITS
-    write(frm, '(A,I0,A,I0,A)') '(ES', d+8, '.', d-1, 'E4)'
-    write(buffer, frm) n
-    read(buffer, *, iostat=ios) check
-    if (ios == 0 .and. check == n) exit
-  enddo
-  string = tidy_real_string(trim(adjustl(buffer)))
+  string = trim(str(n=n, compact=.true.))
+  if (string(1:1) == '+') string = string(2:)
   endfunction real_string_R16P
 
 #endif
   pure function real_string_R8P(n) result(string)
   !< Return the shortest string representing a real number (R8P) that is read back exactly.
-  real(R8P), intent(in)        :: n      !< Number.
+  !<
+  !< It is the compact string of PENF without the plus sign of the not negative numbers.
+  real(R8P), intent(in)         :: n      !< Number.
   character(len=:), allocatable :: string !< String representing the number.
-  integer, parameter            :: MAX_DIGITS = 17 !< Significant digits always sufficient for an exact read back.
-  character(MAX_DIGITS+8)       :: buffer !< Buffer for the conversions.
-  character(16)                 :: frm    !< Format of the conversion.
-  real(R8P)                    :: check  !< Number read back.
-  integer                       :: d      !< Significant digits counter.
-  integer                       :: ios    !< IO status.
 
-  do d=1, MAX_DIGITS
-    write(frm, '(A,I0,A,I0,A)') '(ES', d+8, '.', d-1, 'E4)'
-    write(buffer, frm) n
-    read(buffer, *, iostat=ios) check
-    if (ios == 0 .and. check == n) exit
-  enddo
-  string = tidy_real_string(trim(adjustl(buffer)))
+  string = trim(str(n=n, compact=.true.))
+  if (string(1:1) == '+') string = string(2:)
   endfunction real_string_R8P
 
   pure function real_string_R4P(n) result(string)
   !< Return the shortest string representing a real number (R4P) that is read back exactly.
-  real(R4P), intent(in)        :: n      !< Number.
-  character(len=:), allocatable :: string !< String representing the number.
-  integer, parameter            :: MAX_DIGITS = 9 !< Significant digits always sufficient for an exact read back.
-  character(MAX_DIGITS+8)       :: buffer !< Buffer for the conversions.
-  character(16)                 :: frm    !< Format of the conversion.
-  real(R4P)                    :: check  !< Number read back.
-  integer                       :: d      !< Significant digits counter.
-  integer                       :: ios    !< IO status.
-
-  do d=1, MAX_DIGITS
-    write(frm, '(A,I0,A,I0,A)') '(ES', d+8, '.', d-1, 'E4)'
-    write(buffer, frm) n
-    read(buffer, *, iostat=ios) check
-    if (ios == 0 .and. check == n) exit
-  enddo
-  string = tidy_real_string(trim(adjustl(buffer)))
-  endfunction real_string_R4P
-
-  pure function tidy_real_string(source) result(string)
-  !< Tidy a string representing a real number in scientific notation, e.g. `-3.21E+0001` becomes `-32.1`.
   !<
-  !< The plain decimal notation is used for decimal exponents in [-5, 15], the scientific one otherwise, e.g. `1.0E+20`.
-  !< Not finite numbers (NaN, Infinity) are left unchanged.
-  character(*), intent(in)      :: source   !< String representing the number in scientific notation.
-  character(len=:), allocatable :: string   !< Tidy string.
-  character(len=:), allocatable :: digits   !< Significant digits.
-  character(len=:), allocatable :: sgn      !< Sign.
-  character(8)                  :: buffer   !< Buffer for the exponent conversion.
-  integer                       :: epos     !< Position of the exponent.
-  integer                       :: expnt    !< Decimal exponent.
-  integer                       :: nd       !< Number of significant digits.
-  integer                       :: ios      !< IO status.
+  !< It is the compact string of PENF without the plus sign of the not negative numbers.
+  real(R4P), intent(in)         :: n      !< Number.
+  character(len=:), allocatable :: string !< String representing the number.
 
-  string = source
-  epos = scan(source, 'E')
-  if (epos < 2 .or. verify(source, '+-.0123456789E') /= 0) return ! not a finite number
-  read(source(epos+1:), *, iostat=ios) expnt
-  if (ios /= 0) return
-  sgn = '' ; if (source(1:1) == '-') sgn = '-'
-  digits = source(verify(source, '+-'):epos-1)
-  digits = digits(1:1)//digits(3:)                   ! remove the decimal point
-  nd = max(1, verify(digits, '0', back=.true.))      ! remove the trailing zeros
-  digits = digits(1:nd)
-  if (expnt >= -5 .and. expnt <= 15) then
-    if (expnt < 0) then
-      string = sgn//'0.'//repeat('0', -expnt-1)//digits
-    elseif (expnt >= nd-1) then
-      string = sgn//digits//repeat('0', expnt-nd+1)//'.0'
-    else
-      string = sgn//digits(1:expnt+1)//'.'//digits(expnt+2:)
-    endif
-  else
-    if (nd == 1) digits = digits//'0'
-    write(buffer, '(SP,I0)') expnt
-    string = sgn//digits(1:1)//'.'//digits(2:)//'E'//trim(buffer)
-  endif
-  endfunction tidy_real_string
+  string = trim(str(n=n, compact=.true.))
+  if (string(1:1) == '+') string = string(2:)
+  endfunction real_string_R4P
 
   elemental function new_option(option_name, option_values, option_comment)
   !< Return a new (initiliazed) option instance.
