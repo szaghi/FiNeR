@@ -4,6 +4,11 @@ All notable changes to this project are documented here.
 Versions follow [Semantic Versioning](https://semver.org/).
 Format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.2.0] — 2026-10-02
+### Changed
+- **option**: Delegate real formatting to PENF compact str
+
+
 ## [2.1.0] — 2026-10-02
 ### Added
 - **get**: Add get_string and default values for get
