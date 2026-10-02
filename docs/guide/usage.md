@@ -100,7 +100,7 @@ call fini%get(section_name='', option_name='steps', val=steps)
 call fini%add(section_name='', option_name='author', val='me')   ! add a global option
 ```
 
-The global section is always the first one. `save` and `print` write its options first, without a header, so a file with global options is saved as it was loaded. A file with no section headers at all is loaded entirely into the global section.
+The global section is always the first one. `save` and `print` write its options first, without a header, so a file with global options is saved as it was loaded. A file with no section headers at all is loaded entirely into the global section. A section with an explicit empty header, `[]`, is the global section too: its options are merged with the ones defined before the first section.
 
 ### Subsections
 
@@ -261,7 +261,7 @@ The resulting INI content:
 
 ```ini
 [sec-foo]
-array = +1 +2 +3 +4
+array = 1 2 3 4
 floats = 1.0 2.5 3.0
 bools = T F T
 ```

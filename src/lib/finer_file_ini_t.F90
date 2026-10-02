@@ -677,6 +677,8 @@ contains
   type(string)                            :: token_failed !< Eventual token failed to parse.
   type(string)                            :: dummy        !< Dummy string for parsing sections.
   type(string)                            :: global       !< Options defined before the first section.
+  character(len=:), allocatable           :: block        !< A section header with its options.
+  integer(I4P)                            :: closing      !< Position of the bracket closing a section header.
   logical                                 :: has_global   !< Flag for the presence of options before the first section.
   integer(I4P)                            :: Ns           !< Counter.
   integer(I4P)                            :: s            !< Counter.
@@ -712,7 +714,17 @@ contains
           tokens(ss) = comments ! forcing skip this in the following scan
         endif
       enddo
-      tokens(s) = trim(adjustl(dummy))
+      block = dummy%chars()
+      closing = index(block, ']')
+      if (closing > 1 .and. len_trim(block(2:closing-1)) == 0) then
+        ! section with an explicit empty header: it is the global (unnamed) section
+        Ns = Ns - 1
+        has_global = .true.
+        global = global//new_line('a')//block(closing+1:)
+        tokens(s) = comments ! forcing skip this in the following scan
+      else
+        tokens(s) = trim(adjustl(dummy))
+      endif
     endif
   enddo
 

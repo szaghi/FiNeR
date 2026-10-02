@@ -1,14 +1,17 @@
-!< FiNeR test: string representation of real values.
+!< FiNeR test: string representation of real and integer values.
 program finer_test_real_format
-!< Covers: shortest (tidy) representation of real values set by add, exact read back of scalar and array real values.
+!< Covers: shortest (tidy) representation of real values set by add, exact read back of scalar and array real values
+!<         (R16P included, that is a quadruple precision real only where available), integer values without plus sign.
 use finer, only: file_ini
-use penf,  only: I4P, R4P, R8P
+use penf,  only: I4P, I8P, R4P, R8P, R16P
 implicit none
 
 type(file_ini)                :: fini
 character(len=:), allocatable :: sval
 real(R8P)                     :: r8, a8(4), a8_back(4)
 real(R4P)                     :: r4
+real(R16P)                    :: r16, r16_back
+integer(I8P)                  :: i8
 integer(I4P)                  :: error
 integer                       :: i, mismatches, passed, total
 
@@ -58,6 +61,37 @@ call random_number(a8) ; a8 = (a8 - 0.5_R8P) * [1.e-200_R8P, 1._R8P, 1.e10_R8P, 
 call fini%add(section_name='s', option_name='rand', val=a8)
 call fini%get(section_name='s', option_name='rand', val=a8_back, error=error)
 call check('random array exact', error == 0 .and. all(a8_back == a8))
+
+! R16P values: quadruple precision where available, the same of R8P otherwise
+r16 = 1._R16P / 3._R16P
+call fini%add(section_name='q', option_name='third', val=r16, error=error)
+call check('R16P add: no error', error == 0)
+r16_back = 0._R16P
+call fini%get(section_name='q', option_name='third', val=r16_back, error=error)
+call check('R16P exact',        error == 0 .and. r16_back == r16)
+r16 = huge(1._R16P)
+call fini%add(section_name='q', option_name='huge', val=r16)
+call fini%get(section_name='q', option_name='huge', val=r16_back, error=error)
+call check('R16P huge exact',   error == 0 .and. r16_back == r16)
+
+! integer values are written without the plus sign
+call fini%add(section_name='i', option_name='p', val=42_I4P)
+call fini%get_string(section_name='i', option_name='p', val=sval)
+call check('positive integer',  sval == '42')
+call fini%add(section_name='i', option_name='n', val=-42_I4P)
+call fini%get_string(section_name='i', option_name='n', val=sval)
+call check('negative integer',  sval == '-42')
+call fini%add(section_name='i', option_name='z', val=0_I4P)
+call fini%get_string(section_name='i', option_name='z', val=sval)
+call check('zero integer',      sval == '0')
+call fini%add(section_name='i', option_name='b', val=10000000000_I8P)
+call fini%get_string(section_name='i', option_name='b', val=sval)
+call check('I8P integer',       sval == '10000000000')
+call fini%get(section_name='i', option_name='b', val=i8, error=error)
+call check('I8P read back',     error == 0 .and. i8 == 10000000000_I8P)
+call fini%add(section_name='i', option_name='a', val=[1_I4P, -2_I4P, 3_I4P])
+call fini%get_string(section_name='i', option_name='a', val=sval)
+call check('integer array',     sval == '1 -2 3')
 
 call summary
 contains

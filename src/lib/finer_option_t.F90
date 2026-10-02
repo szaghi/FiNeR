@@ -50,6 +50,11 @@ type :: option
     procedure, private, pass(lhs) :: option_eq_character !< Equal to character logical operator.
 endtype option
 
+interface integer_string
+  !< Return the string representing an integer number, without the plus sign of positive numbers.
+  module procedure integer_string_I8P, integer_string_I4P, integer_string_I2P, integer_string_I1P
+endinterface integer_string
+
 interface real_string
   !< Return the shortest string representing a real number that is read back exactly.
 #ifdef _R16P
@@ -314,13 +319,13 @@ contains
   type is(complex(R4P))
     self%ovals = '('//real_string(real(val))//','//real_string(aimag(val))//')'
   type is(integer(I8P))
-    self%ovals = val
+    self%ovals = integer_string(val)
   type is(integer(I4P))
-    self%ovals = val
+    self%ovals = integer_string(val)
   type is(integer(I2P))
-    self%ovals = val
+    self%ovals = integer_string(val)
   type is(integer(I1P))
-    self%ovals = val
+    self%ovals = integer_string(val)
   type is(logical)
     self%ovals = trim(str(n=val))
   type is(character(*))
@@ -384,22 +389,22 @@ contains
     ovals = ovals%strip()
   type is(integer(I8P))
     do v=1, size(val, dim=1)
-      ovals = ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//integer_string(val(v))
     enddo
     ovals = ovals%strip()
   type is(integer(I4P))
     do v=1, size(val, dim=1)
-      ovals = ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//integer_string(val(v))
     enddo
     ovals = ovals%strip()
   type is(integer(I2P))
     do v=1, size(val, dim=1)
-      ovals = ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//integer_string(val(v))
     enddo
     ovals = ovals%strip()
   type is(integer(I1P))
     do v=1, size(val, dim=1)
-      ovals = ovals//dlm//trim(str(n=val(v)))
+      ovals = ovals//dlm//integer_string(val(v))
     enddo
     ovals = ovals%strip()
   type is(logical)
@@ -709,6 +714,46 @@ contains
     split_parts = is_numeric(re) .and. is_numeric(im)
     endfunction split_parts
   endsubroutine convert
+
+  pure function integer_string_I8P(n) result(string)
+  !< Return the string representing an integer number (I8P), without the plus sign of positive numbers.
+  integer(I8P), intent(in)     :: n      !< Number.
+  character(len=:), allocatable :: string !< String representing the number.
+  character(24)                 :: buffer !< Buffer for the conversion.
+
+  write(buffer, '(I0)') n
+  string = trim(buffer)
+  endfunction integer_string_I8P
+
+  pure function integer_string_I4P(n) result(string)
+  !< Return the string representing an integer number (I4P), without the plus sign of positive numbers.
+  integer(I4P), intent(in)     :: n      !< Number.
+  character(len=:), allocatable :: string !< String representing the number.
+  character(24)                 :: buffer !< Buffer for the conversion.
+
+  write(buffer, '(I0)') n
+  string = trim(buffer)
+  endfunction integer_string_I4P
+
+  pure function integer_string_I2P(n) result(string)
+  !< Return the string representing an integer number (I2P), without the plus sign of positive numbers.
+  integer(I2P), intent(in)     :: n      !< Number.
+  character(len=:), allocatable :: string !< String representing the number.
+  character(24)                 :: buffer !< Buffer for the conversion.
+
+  write(buffer, '(I0)') n
+  string = trim(buffer)
+  endfunction integer_string_I2P
+
+  pure function integer_string_I1P(n) result(string)
+  !< Return the string representing an integer number (I1P), without the plus sign of positive numbers.
+  integer(I1P), intent(in)     :: n      !< Number.
+  character(len=:), allocatable :: string !< String representing the number.
+  character(24)                 :: buffer !< Buffer for the conversion.
+
+  write(buffer, '(I0)') n
+  string = trim(buffer)
+  endfunction integer_string_I1P
 
   pure function is_complex(val)
   !< Return true if the values are of complex type.

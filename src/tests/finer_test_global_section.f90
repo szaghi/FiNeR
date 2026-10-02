@@ -1,7 +1,8 @@
 !< FiNeR test: global (unnamed) section.
 program finer_test_global_section
 !< Covers: options defined before the first section (with comments and multi-line continuation), file without sections,
-!<         global section handling by get/add/del/inquiries, save without header and reload, explicit empty header.
+!<         global section handling by get/add/del/inquiries, save without header and reload, explicit empty header
+!<         (that is the global section too).
 use finer, only: file_ini
 use penf,  only: I4P
 implicit none
@@ -98,7 +99,7 @@ call fini%del(section_name='')
 call check('del global section',                 .not. fini%has_section(section_name=''))
 call check('del global section: named kept',     fini%has_section(section_name='only'))
 
-! an explicit empty header, not at the beginning of the file, is saved with its header
+! a section with an explicit empty header is the global section
 call fini%free
 call fini%load(source='[a]'//new_line('A')//'x = 1'//new_line('A')//'[]'//new_line('A')//'y = 2', error=error)
 call fini%get(section_name='', option_name='y', val=ival, error=error)
@@ -111,6 +112,34 @@ call check('explicit empty header: reload',      error == 0 .and. ival == 2_I4P)
 call fini%get(section_name='a', option_name='x', val=ival, error=error)
 call check('explicit empty header: a kept',      error == 0 .and. ival == 1_I4P)
 call check('explicit empty header: y not in a',  fini%index(section_name='a', option_name='y') == 0)
+
+call fini%get_sections_list(slist)
+call check('explicit empty header: is first',    size(slist) == 2 .and. fini%index(section_name='') == 1)
+
+! options before the first section and under explicit empty headers belong to the same (global) section
+call fini%free
+source = 'g = 1'//new_line('A')//  &
+         '[]'//new_line('A')//     &
+         'h = 2'//new_line('A')//  &
+         '[a]'//new_line('A')//    &
+         'x = 3'//new_line('A')//  &
+         '[ ]'//new_line('A')//    &
+         'k = 4'
+call fini%load(source=source, error=error)
+call fini%get_sections_list(slist)
+call check('merged global: 2 sections',          size(slist) == 2)
+call fini%get(section_name='', option_name='g', val=ival, error=error)
+call check('merged global: leading option',      error == 0 .and. ival == 1_I4P)
+call fini%get(section_name='', option_name='h', val=ival, error=error)
+call check('merged global: [] option',           error == 0 .and. ival == 2_I4P)
+call fini%get(section_name='', option_name='k', val=ival, error=error)
+call check('merged global: [ ] option',          error == 0 .and. ival == 4_I4P)
+call fini%get(section_name='a', option_name='x', val=ival, error=error)
+call check('merged global: named section',       error == 0 .and. ival == 3_I4P)
+call check('merged global: k not in a',          fini%index(section_name='a', option_name='k') == 0)
+call fini%free
+call fini%load(source='[]'//new_line('A')//'[b]'//new_line('A')//'x = 1', error=error)
+call check('empty [] section is kept',           fini%has_section(section_name='') .and. fini%has_section(section_name='b'))
 
 open(newunit=unit, file=filename) ; close(unit=unit, status='DELETE')
 
