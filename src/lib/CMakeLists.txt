@@ -25,29 +25,8 @@ target_include_directories(${LIB}
 
 # set variables used for compile definitions of targets after support check
 include(CheckFortranSourceRuns)
-check_fortran_source_runs(
-    "program r16p_support;
-         integer, parameter :: r16p = selected_real_kind(33, 4931);
-         if(r16p < 0) stop 1;
-     end program r16p_support"
-     R16P_SUPPORTED
-     SRC_EXT f90)
-# The R16P kind is defined by PENF, where it is a quadruple precision real only if PENF is compiled with _R16P:
-# all the libraries using it must be compiled accordingly. Enable it in the dependencies built by this project,
-# otherwise follow the PENF target provided by the parent project.
-if(R16P_SUPPORTED AND "PENF" IN_LIST finer_own_dependencies)
-    target_compile_definitions(PENF PRIVATE _R16P)
-endif()
-get_target_property(penf_definitions PENF COMPILE_DEFINITIONS)
-if(penf_definitions AND "_R16P" IN_LIST penf_definitions)
-    set(r16p_supported "_R16P")
-    foreach(dependency IN ITEMS FLAP BeFoR64 StringiFor)
-        if("${dependency}" IN_LIST finer_own_dependencies)
-            target_compile_definitions(${dependency} PRIVATE _R16P)
-        endif()
-    endforeach()
-endif()
-
+# Quadruple precision reals (R16P) need no definition here: PENF publishes _R16P as a PUBLIC compile definition
+# when the compiler supports the kind, so it is inherited by linking PENF::PENF.
 check_fortran_source_runs(
     "program ascii_support;
          integer, parameter :: ascii = selected_char_kind('ascii');
@@ -85,7 +64,6 @@ endif()
 
 target_compile_definitions(${LIB}
     PRIVATE
-        ${r16p_supported}
         ${ascii_supported}
         ${ascii_neq_default}
         ${ucs4_supported}
