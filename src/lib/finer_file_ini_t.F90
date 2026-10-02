@@ -20,6 +20,7 @@ type :: file_ini
   integer(I4P)                          :: Ns = 0                !< Number of sections.
   character(1)                          :: opt_sep = DEF_OPT_SEP !< Separator character of option name/value.
   type(section), allocatable            :: sections(:)           !< Sections.
+  integer(I4P)                          :: loop_s = 0            !< Index of the section of the running loop over all options.
   contains
     ! public methods
     generic               :: add          => add_section, &             !< Add a section.
@@ -48,6 +49,7 @@ type :: file_ini
     procedure, pass(self) :: print        => print_file_ini             !< Pretty printing data.
     procedure, pass(self) :: save         => save_file_ini              !< Save data.
     procedure, pass(self) :: section      => section_file_ini           !< Get section name once provided an index.
+    procedure, pass(self) :: sections_number                            !< Return the sections number.
     ! operators overloading
     generic :: assignment(=) => assign_file_ini !< Procedure for section assignment overloading.
     ! private methods
@@ -104,6 +106,7 @@ contains
     deallocate(self%sections)
   endif
   self%Ns = 0
+  self%loop_s = 0
   self%opt_sep = def_opt_sep
   endsubroutine free
 
@@ -338,6 +341,15 @@ contains
     endif
   endif
   endfunction section_file_ini
+
+  elemental function sections_number(self)
+  !< Return the sections number.
+  class(file_ini), intent(in) :: self            !< File data.
+  integer(I4P)                :: sections_number !< Sections number.
+
+  sections_number = 0
+  if (allocated(self%sections)) sections_number = size(self%sections, dim=1)
+  endfunction sections_number
 
   ! private methods
   pure subroutine add_a_option(self, error, section_name, option_name, val)
@@ -624,11 +636,14 @@ contains
 
   function loop_options_section(self, section_name, option_pairs) result(again)
   !< Loop returning option name/value defined into section.
-  class(file_ini),               intent(in)  :: self            !< File data.
-  character(*),                  intent(in)  :: section_name    !< Section name.
-  character(len=:), allocatable, intent(out) :: option_pairs(:) !< Pairs option name/value [1:2].
-  logical                                    :: again           !< Flag continuing the loop.
-  integer(I4P)                               :: s               !< Counter.
+  !<
+  !< The state of the loop is stored into the file data, thus loops over different sections (or different files) do not
+  !< interfere. A loop must be completed (until false is returned) before starting a new one over the same section.
+  class(file_ini),               intent(inout) :: self            !< File data.
+  character(*),                  intent(in)    :: section_name    !< Section name.
+  character(len=:), allocatable, intent(out)   :: option_pairs(:) !< Pairs option name/value [1:2].
+  logical                                      :: again           !< Flag continuing the loop.
+  integer(I4P)                                 :: s               !< Counter.
 
   again = .false.
   s = self%index(section_name=section_name)
@@ -637,34 +652,25 @@ contains
   endif
   endfunction loop_options_section
 
-  recursive function loop_options(self, option_pairs) result(again)
+  function loop_options(self, option_pairs) result(again)
   !< Loop returning option name/value defined into all sections.
-  class(file_ini),               intent(IN)  :: self            !< File data.
-  character(len=:), allocatable, intent(OUT) :: option_pairs(:) !< Pairs option name/value [1:2].
-  logical                                    :: again           !< Flag continuing the loop.
-  logical,      save                         :: againO=.false.  !< Flag continuing the loop.
-  integer(I4P), save                         :: s=0             !< Counter.
+  !<
+  !< The state of the loop is stored into the file data. A loop must be completed (until false is returned) before
+  !< starting a new one.
+  class(file_ini),               intent(inout) :: self            !< File data.
+  character(len=:), allocatable, intent(out)   :: option_pairs(:) !< Pairs option name/value [1:2].
+  logical                                      :: again           !< Flag continuing the loop.
 
   again = .false.
   if (allocated(self%sections)) then
-    if (s==0) then
-      s = lbound(self%sections, dim=1)
-      againO = self%loop(section_name=self%sections(s)%name(), option_pairs=option_pairs)
-      again = .true.
-    elseif (s<ubound(self%sections, dim=1)) then
-      if (.not.againO) s = s + 1
-      againO = self%loop(section_name=self%sections(s)%name(), option_pairs=option_pairs)
-      if (.not.againO) then
-        again = self%loop(option_pairs=option_pairs)
-      else
-        again = .true.
-      endif
-    else
-      s = 0
-      againO = .false.
-      again = .false.
-    endif
+    if (self%loop_s == 0) self%loop_s = 1
+    do while (self%loop_s <= size(self%sections, dim=1))
+      again = self%sections(self%loop_s)%loop(option_pairs=option_pairs)
+      if (again) return
+      self%loop_s = self%loop_s + 1 ! section completed (or without options): go to the next one
+    enddo
   endif
+  self%loop_s = 0
   endfunction loop_options
 
   subroutine parse(self, source, error)
@@ -765,12 +771,14 @@ contains
   class(file_ini), intent(inout) :: lhs !< Left hand side.
   type(file_ini),  intent(in)    :: rhs !< Rigth hand side.
 
+  call lhs%free
   if (allocated(rhs%filename)) lhs%filename = rhs%filename
   if (allocated(rhs%sections)) then
-    if (allocated(lhs%sections)) deallocate(lhs%sections) ; allocate(lhs%sections(1:size(rhs%sections, dim=1)))
+    allocate(lhs%sections(1:size(rhs%sections, dim=1)))
     lhs%sections = rhs%sections
   endif
   lhs%Ns = rhs%Ns
+  lhs%opt_sep = rhs%opt_sep
   endsubroutine assign_file_ini
 
   ! non TBP methods

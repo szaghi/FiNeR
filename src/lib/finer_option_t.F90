@@ -453,6 +453,7 @@ contains
   class(option), intent(inout) :: lhs !< Left hand side.
   type(option),  intent(in)    :: rhs !< Rigth hand side.
 
+  call lhs%free
   if (rhs%oname%is_allocated()) lhs%oname = rhs%oname
   if (rhs%ovals%is_allocated()) lhs%ovals = rhs%ovals
   if (rhs%ocomm%is_allocated()) lhs%ocomm = rhs%ocomm

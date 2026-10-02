@@ -19,8 +19,6 @@ The module re-exports everything from the internal modules. The primary user-fac
 | Member | Type | Description |
 |--------|------|-------------|
 | `filename` | `character(len=:), allocatable` | Path of the INI file (set automatically by `load`/`save`, or set directly) |
-| `Ns` | `integer` | Number of sections (managed internally; read to loop over sections) |
-| `opt_sep` | `character(1)` | Option name/value separator (default `=`) |
 
 ### Public methods
 
@@ -31,6 +29,7 @@ The module re-exports everything from the internal modules. The primary user-fac
 | [`has_option`](#has_option) | Inquire whether an option exists |
 | [`has_section`](#has_section) | Inquire whether a section exists |
 | [`section`](#section) | Get a section name by index |
+| `sections_number` | Return the number of sections |
 | [`index`](#index) | Get the index of a named section or option |
 | [`count_values`](#count_values) | Count the number of space-separated values in an option |
 | [`add`](#add) | Add a section or option (updates value if option already exists) |
@@ -141,7 +140,7 @@ end if
 
 ## `section` {#section}
 
-Returns the name of the section at position `i`. Use with `Ns` to loop over all sections.
+Returns the name of the section at position `i`. Use with `sections_number()` to loop over all sections.
 
 ```fortran
 use finer
@@ -151,7 +150,7 @@ integer                       :: s
 
 call fini%load(filename='config.ini')
 
-do s = 1, fini%Ns
+do s = 1, fini%sections_number()
   sec_name = fini%section(s)
   print *, 'Section: ', sec_name
 end do
@@ -390,10 +389,12 @@ end do
 
 Provides a `do while` iteration over options. Returns `.true.` and fills `option(:)` with `[name, value]` on each call; returns `.false.` when exhausted and resets the internal counter.
 
+The state of a loop is stored in the `file_ini` object, so the object must be a variable (not an `intent(in)` dummy argument), and loops over different sections or different files do not interfere. Run a loop to completion before starting a new one over the same section.
+
 **Signatures:**
 ```fortran
-do while (fini%loop(option=opt))             ! all options in file
-do while (fini%loop(section_name=, option=)) ! options in one section
+do while (fini%loop(option_pairs=opt))             ! all options in file
+do while (fini%loop(section_name=, option_pairs=)) ! options in one section
 ```
 
 ```fortran
@@ -404,12 +405,12 @@ character(len=:), allocatable :: opt(:)
 call fini%load(filename='config.ini')
 
 ! Iterate over all options in 'database' section
-do while (fini%loop(section_name='database', option=opt))
+do while (fini%loop(section_name='database', option_pairs=opt))
   print *, trim(opt(1)), ' = ', trim(opt(2))
 end do
 
 ! Iterate over every option in the entire file
-do while (fini%loop(option=opt))
+do while (fini%loop(option_pairs=opt))
   print *, trim(opt(1)), ' = ', trim(opt(2))
 end do
 ```

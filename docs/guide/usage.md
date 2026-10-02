@@ -10,7 +10,7 @@ All examples use the modern API: `use finer` and `type(file_ini)`.
 
 ### Load from a file
 
-Pass `filename=` to read an INI file from disk. The file is opened, parsed, and closed automatically. `opt_sep` is set to `=` unless overridden with `separator=`.
+Pass `filename=` to read an INI file from disk. The file is opened, parsed, and closed automatically. The option separator is `=` unless overridden with `separator=`.
 
 ```fortran
 use finer
@@ -55,7 +55,7 @@ If both `filename=` and `source=` are supplied, `filename` takes priority.
 
 ### Automatic section and option detection
 
-FiNeR scans the input and discovers all sections and options without any schema or pre-declaration. The section count is available in `fini%Ns`; use it to iterate programmatically.
+FiNeR scans the input and discovers all sections and options without any schema or pre-declaration. The section count is returned by `fini%sections_number()`; use it to iterate programmatically.
 
 ```fortran
 use finer
@@ -64,16 +64,16 @@ character(len=:), allocatable :: sec_name
 integer                       :: s
 
 call fini%load(filename='config.ini')
-print *, fini%Ns, 'section(s) found'
+print *, fini%sections_number(), 'section(s) found'
 
-do s = 1, fini%Ns
+do s = 1, fini%sections_number()
   sec_name = fini%section(s)
   print *, '  [', sec_name, ']'
 end do
 ```
 
 ::: tip
-`fini%Ns` is a public read-only member. Do not assign to it directly — it is managed internally by `add` and `del`.
+`sections_number()` returns the number of sections, the global one included. The count is managed internally by `load`, `add` and `del`.
 :::
 
 ### Options before the first section
@@ -204,7 +204,7 @@ call fini%get(section_name='server', option_name='host', val=host)
 print *, trim(host)   ! 192.168.1.1
 ```
 
-The separator can also be set directly: `fini%opt_sep = ':'`.
+The separator is kept by the object for the following `load` calls, until `free` or `initialize` resets it to `=`.
 
 ---
 
@@ -287,7 +287,7 @@ call fini%del(section_name='sec-bar')                      ! remove whole sectio
 ```
 
 ::: warning
-Deleting a section removes all of its options. `fini%Ns` is decremented automatically.
+Deleting a section removes all of its options and decreases `fini%sections_number()`.
 :::
 
 ### Save to a named file
@@ -368,7 +368,7 @@ When `section_name` is used as an output buffer the returned value is truncated 
 
 ### Get a section name by index
 
-`section(i)` returns the name of the i-th section. Combine with `fini%Ns` to iterate over all sections without hard-coding their names.
+`section(i)` returns the name of the i-th section. Combine with `fini%sections_number()` to iterate over all sections without hard-coding their names.
 
 ```fortran
 use finer
@@ -378,7 +378,7 @@ integer                       :: s
 
 call fini%load(filename='config.ini')
 
-do s = 1, fini%Ns
+do s = 1, fini%sections_number()
   sec_name = fini%section(s)
   print *, 'section ', s, ': ', sec_name
 end do
@@ -456,19 +456,19 @@ integer                       :: s
 call fini%load(filename='config.ini')
 
 ! All options in one section
-do while (fini%loop(section_name='database', option=opt))
+do while (fini%loop(section_name='database', option_pairs=opt))
   print *, trim(opt(1)), ' = ', trim(opt(2))
 end do
 
 ! All options in the entire file
-do while (fini%loop(option=opt))
+do while (fini%loop(option_pairs=opt))
   print *, trim(opt(1)), ' = ', trim(opt(2))
 end do
 
 ! Loop with section filtering
-do s = 1, fini%Ns
+do s = 1, fini%sections_number()
   if (fini%section(s) /= 'skip-me') then
-    do while (fini%loop(section_name=fini%section(s), option=opt))
+    do while (fini%loop(section_name=fini%section(s), option_pairs=opt))
       print *, trim(opt(1)), ' = ', trim(opt(2))
     end do
   end if

@@ -15,6 +15,7 @@ type :: section
   private
   character(len=:), allocatable :: sname      !< Section name.
   type(option),     allocatable :: options(:) !< Section options.
+  integer(I4P)                  :: loop_o = 0 !< Index of the last option returned by the loop method, 0 if no loop is running.
   contains
     ! public methods
     generic               :: add => add_option, &   !< Add an option (scalar).
@@ -189,26 +190,22 @@ contains
 
   function loop(self, option_pairs) result(again)
   !< Loop returning option name/value defined into section.
-  class(section),                intent(in)  :: self            !< Section data.
-  character(len=:), allocatable, intent(out) :: option_pairs(:) !< Couples option name/value [1:2].
-  logical                                    :: again           !< Flag continuing the loop.
-  integer(I4P), save                         :: o=0             !< Counter.
+  !<
+  !< The state of the loop is stored into the section, thus loops over different sections do not interfere. A loop must
+  !< be completed (until false is returned) before starting a new one over the same section.
+  class(section),                intent(inout) :: self            !< Section data.
+  character(len=:), allocatable, intent(out)   :: option_pairs(:) !< Couples option name/value [1:2].
+  logical                                      :: again           !< Flag continuing the loop.
 
   again = .false.
   if (allocated(self%options)) then
-    if (o==0) then
-      o = lbound(self%options, dim=1)
-      call self%options(o)%get_pairs(pairs=option_pairs)
+    if (self%loop_o < size(self%options, dim=1)) then
+      self%loop_o = self%loop_o + 1
+      call self%options(self%loop_o)%get_pairs(pairs=option_pairs)
       again = .true.
-    elseif (o<ubound(self%options, dim=1)) then
-      o = o + 1
-      call self%options(o)%get_pairs(pairs=option_pairs)
-      again = .true.
-    else
-      o = 0
-      again = .false.
     endif
   endif
+  if (.not.again) self%loop_o = 0
   endfunction loop
 
   elemental function max_chars_len(self)
@@ -583,6 +580,8 @@ contains
   class(section), intent(INOUT):: lhs !< Left hand side.
   type(section),  intent(IN)::    rhs !< Rigth hand side.
 
+  call lhs%free
+  lhs%loop_o = 0
   if (allocated(rhs%sname)) lhs%sname = rhs%sname
   if (allocated(rhs%options)) then
     if (allocated(lhs%options)) deallocate(lhs%options) ; allocate(lhs%options(1:size(rhs%options, dim=1)))
