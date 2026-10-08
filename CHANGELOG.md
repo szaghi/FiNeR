@@ -4,6 +4,15 @@ All notable changes to this project are documented here.
 Versions follow [Semantic Versioning](https://semver.org/).
 Format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.3.0] — 2026-10-08
+### Added
+- **build**: Add fpm support
+
+
+### Fixed
+- **ci**: Run install smoke test from the release workflow
+
+
 ## [2.2.0] — 2026-10-02
 ### Changed
 - **option**: Delegate real formatting to PENF compact str
