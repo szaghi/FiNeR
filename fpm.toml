@@ -1,0 +1,84 @@
+name = "FiNeR"
+version = "2.2.0"
+author = "Stefano Zaghi"
+copyright = "Copyright © 2015, Stefano Zaghi"
+license = "Multiple licenses"
+description = "Fortran INI ParseR and generator"
+maintainer = "Stefano Zaghi"
+homepage = "https://github.com/szaghi/FiNeR"
+
+# pinned to the commits of src/third_party/fobos.lock: update both together
+[dependencies]
+PENF = { git="https://github.com/szaghi/PENF.git", rev="592259d24ff39fa5e4b387d46286120ee60e7cff" }
+StringiFor = { git="https://github.com/szaghi/StringiFor.git", rev="bd218de71aea6218edbfce7bb46c40b4668dc3e2" }
+
+[library]
+source-dir = "src/lib"
+
+[install]
+library = true
+
+[build]
+auto-executables = false
+auto-examples = false
+auto-tests = false
+
+[[test]]
+name = "finer_test_autotest"
+source-dir = "src/tests"
+main = "finer_test_autotest.f90"
+
+[[test]]
+name = "finer_test_complex"
+source-dir = "src/tests"
+main = "finer_test_complex.f90"
+
+[[test]]
+name = "finer_test_get"
+source-dir = "src/tests"
+main = "finer_test_get.f90"
+
+[[test]]
+name = "finer_test_get_string_default"
+source-dir = "src/tests"
+main = "finer_test_get_string_default.f90"
+
+[[test]]
+name = "finer_test_global_section"
+source-dir = "src/tests"
+main = "finer_test_global_section.f90"
+
+[[test]]
+name = "finer_test_load"
+source-dir = "src/tests"
+main = "finer_test_load.f90"
+
+[[test]]
+name = "finer_test_parse"
+source-dir = "src/tests"
+main = "finer_test_parse.f90"
+
+[[test]]
+name = "finer_test_print_loop"
+source-dir = "src/tests"
+main = "finer_test_print_loop.f90"
+
+[[test]]
+name = "finer_test_real_format"
+source-dir = "src/tests"
+main = "finer_test_real_format.f90"
+
+[[test]]
+name = "finer_test_regression_files"
+source-dir = "src/tests"
+main = "finer_test_regression_files.f90"
+
+[[test]]
+name = "finer_test_silent_failures"
+source-dir = "src/tests"
+main = "finer_test_silent_failures.f90"
+
+[[test]]
+name = "finer_test_update_option"
+source-dir = "src/tests"
+main = "finer_test_update_option.f90"

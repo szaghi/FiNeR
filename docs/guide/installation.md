@@ -24,7 +24,7 @@ git clone https://github.com/szaghi/FiNeR
 cd FiNeR
 ```
 
-FiNeR does **not** use git submodules: a recursive clone fetches nothing more. The third-party dependencies are fetched into `src/third_party/` by [FoBiS.py](https://github.com/szaghi/FoBiS), and they must be there before building with either build system:
+FiNeR does **not** use git submodules: a recursive clone fetches nothing more. The third-party dependencies are fetched into `src/third_party/` by [FoBiS.py](https://github.com/szaghi/FoBiS), and they must be there before building with CMake or FoBiS.py (fpm fetches its own, see [Build with fpm](#build-with-fpm)):
 
 ```bash
 pip install FoBiS.py
@@ -82,6 +82,33 @@ target_link_libraries(your_target FiNeR::FiNeR)
 ```
 
 `FetchContent` alone is not enough, because it downloads FiNeR without its dependencies: the configure step fails on the missing `src/third_party/` directories.
+
+## Build with fpm
+
+[fpm](https://fpm.fortran-lang.org) fetches the dependencies itself from `fpm.toml` (PENF and StringiFor, which brings
+BeFoR64 and FACE), so `src/third_party/` is not needed. To use FiNeR in an fpm project, add to its `fpm.toml`:
+
+```toml
+[dependencies]
+FiNeR = { git = "https://github.com/szaghi/FiNeR" }   # or pin a release: tag = "vX.Y.Z"
+```
+
+To build and test FiNeR itself:
+
+```bash
+fpm build
+fpm test                       # run all tests
+fpm test finer_test_get        # run a single test
+```
+
+`fpm test` runs the tests from the project root, where they find their data files (`src/tests/*.ini`).
+
+::: warning git `color.diff = always`
+fpm reads the commit of each dependency from the `git log` header. With `color.diff = always` (or `color.ui = always`)
+in your git configuration the commit carries an ANSI escape, and the next fpm run fails parsing `build/cache.toml`
+("unexpected invalid sequence"). Use `auto`, or run fpm with
+`GIT_CONFIG_PARAMETERS="'color.ui=auto' 'color.diff=auto'"`, then remove `build/`.
+:::
 
 ## Build with FoBiS.py
 

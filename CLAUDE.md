@@ -8,7 +8,7 @@ FiNeR (Fortran INI ParseR and generator) is a pure Fortran 2003+ OOP library for
 
 ## Build Systems
 
-FiNeR supports two build systems. Both need the third-party dependencies in `src/third_party/`, which are
+FiNeR supports three build systems. CMake and FoBiS need the third-party dependencies in `src/third_party/`, which are
 fetched by FoBiS (they are **not** git submodules, and the directory is git-ignored):
 
 ```bash
@@ -38,6 +38,17 @@ After building tests with FoBiS.py, run them via:
 ```bash
 ./scripts/run_tests.sh   # runs all executables in ./exe/
 ```
+
+### fpm
+```bash
+fpm build
+fpm test                 # all tests, run from the project root
+fpm test <test_name>     # a single test
+```
+fpm fetches its own dependencies (PENF, StringiFor) from `fpm.toml`. The manifest is explicit and can drift from the tree:
+- `auto-tests = false`: every new `src/tests/finer_test_*.f90` needs a `[[test]]` entry (CMake and FoBiS pick it up automatically);
+- the PENF/StringiFor `rev` pins must match the commits in `src/third_party/fobos.lock` (update both together);
+- `scripts/release.sh` bumps the `version` of `fpm.toml`.
 
 ## Code Architecture
 

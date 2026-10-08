@@ -28,7 +28,7 @@ features:
     details: Query the presence of sections and options by name, loop over all options, count multi-value entries, and get section/option indices.
   - icon: 🛠️
     title: Multi Build System
-    details: Build with CMake (preferred) or FoBiS.py. Integrate into your CMake project via add_subdirectory and target_link_libraries.
+    details: Build with CMake (preferred), FoBiS.py or fpm. Integrate into your CMake project via add_subdirectory and target_link_libraries.
   - icon: 🧪
     title: OOP / TDD Designed
     details: A single file_ini type exposes all functionality as type-bound procedures. Designed with a test-driven approach — each feature is covered by automated tests.

@@ -11,7 +11,7 @@
 
 | 📂 **File & string parsing**<br>Load from disk or an in-memory string — no schema required | 💬 **Multi-line & comments**<br>Continuation lines and `;` inline comments handled automatically | 🔤 **Polymorphic values**<br>integer, real, logical, character, and arrays of any PENF kind | ✏️ **Generate INI**<br>Build and save INI files programmatically with `add`/`del`/`save` |
 |:---:|:---:|:---:|:---:|
-| 🔍 **Introspection**<br>`has_section`, `has_option`, `index`, `count_values`, `items`, `loop` | ⚙️ **Configurable**<br>Custom option separator, comment chars, and inline delimiters | 🏗️ **OOP designed**<br>Single `file_ini` type, all functionality as type-bound procedures | 📦 **Multiple build systems**<br>FoBiS, CMake |
+| 🔍 **Introspection**<br>`has_section`, `has_option`, `index`, `count_values`, `items`, `loop` | ⚙️ **Configurable**<br>Custom option separator, comment chars, and inline delimiters | 🏗️ **OOP designed**<br>Single `file_ini` type, all functionality as type-bound procedures | 📦 **Multiple build systems**<br>FoBiS, CMake, fpm |
 
 >#### [Documentation](https://szaghi.github.io/FiNeR/)
 > For full documentation (guide, API reference, examples, etc...) see the [FiNeR website](https://szaghi.github.io/FiNeR/).
@@ -89,6 +89,22 @@ FiNeR = https://github.com/szaghi/FiNeR
 ```bash
 fobis fetch           # fetch and build
 fobis fetch --update  # re-fetch and rebuild
+```
+
+### fpm
+
+Add to your `fpm.toml` (pin a release with `tag = "vX.Y.Z"`; fpm support starts after v2.2.0):
+
+```toml
+[dependencies]
+FiNeR = { git = "https://github.com/szaghi/FiNeR" }
+```
+
+`fpm build` fetches FiNeR, PENF and StringiFor (with BeFoR64 and FACE). To build and test FiNeR itself:
+
+```bash
+git clone https://github.com/szaghi/FiNeR && cd FiNeR
+fpm test
 ```
 
 ### CMake
