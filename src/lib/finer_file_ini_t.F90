@@ -683,6 +683,7 @@ contains
   type(string)                            :: token_failed !< Eventual token failed to parse.
   type(string)                            :: dummy        !< Dummy string for parsing sections.
   type(string)                            :: global       !< Options defined before the first section.
+  type(string)                            :: lf_source    !< Source with LF line endings only.
   character(len=:), allocatable           :: block        !< A section header with its options.
   integer(I4P)                            :: closing      !< Position of the bracket closing a section header.
   logical                                 :: has_global   !< Flag for the presence of options before the first section.
@@ -691,7 +692,10 @@ contains
   integer(I4P)                            :: ss           !< Counter.
 
   errd = err_source_missing
-  call source%split(tokens=tokens, sep=new_line('a'))
+  ! CR+LF (Windows) line endings: drop every CR, so that no value ends with one. Whether a formatted read keeps the CR
+  ! at the end of a record is processor dependent (gfortran drops it, nvfortran keeps it), and a source string keeps it.
+  lf_source = source%replace(old=achar(13), new='')
+  call lf_source%split(tokens=tokens, sep=new_line('a'))
 
   Ns = 0
   s = 0
