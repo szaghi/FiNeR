@@ -223,11 +223,11 @@ contains
   endfunction max_chars_len
 
   pure function name(self)
-  !< Return section name.
-  class(section), intent(in)     :: self !< Section data.
-  character(len=len(self%sname)) :: name !< Section data.
+  !< Return section name, empty if the section has no name.
+  class(section), intent(in)    :: self !< Section data.
+  character(len=:), allocatable :: name !< Section name.
 
-  if (allocated(self%sname)) name = self%sname
+  name = '' ; if (allocated(self%sname)) name = self%sname
   endfunction name
 
   pure subroutine option_pairs(self, option_index, pairs)

@@ -89,6 +89,11 @@ source-dir = "src/tests"
 main = "finer_test_section_name_blanks.f90"
 
 [[test]]
+name = "finer_test_section_unnamed"
+source-dir = "src/tests"
+main = "finer_test_section_unnamed.f90"
+
+[[test]]
 name = "finer_test_sections_count"
 source-dir = "src/tests"
 main = "finer_test_sections_count.f90"
