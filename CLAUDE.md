@@ -93,7 +93,7 @@ finer_file_ini_t.F90    -- file_ini type: top-level handler with sections(:)
 | `ERR_SECTION_NAME` | 4 | bad section name |
 | `ERR_SECTION_OPTIONS` | 5 | bad section options |
 | `ERR_SECTION` | 6 | generic section error |
-| `ERR_SOURCE_MISSING` | 7 | no source provided to load |
+| `ERR_SOURCE_MISSING` | 7 | no source provided to load, or no file name to save |
 
 ## Key API (`file_ini` type)
 

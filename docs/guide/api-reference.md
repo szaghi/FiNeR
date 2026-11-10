@@ -440,6 +440,9 @@ call fini%print(unit=6, pref='|-->', iostat=iostat, iomsg=iomsg)
 call fini%print(unit=6, retain_comments=.true.)
 ```
 
+`iostat` is 0 on success (also when there is nothing to print) and otherwise the status of the first write that failed;
+`iomsg` is its message.
+
 ---
 
 ## `save` {#save}
@@ -465,6 +468,10 @@ call fini%save(filename='foo.ini', iostat=iostat, iomsg=iomsg)
 call fini%save(filename='foo-with-comments.ini', retain_comments=.true.)
 ```
 
+`iostat` is 0 on success and otherwise the status of the first operation (open, write or close) that failed; `iomsg` is
+its message. Without a file name (neither passed nor set before) nothing is written and `iostat` is `ERR_SOURCE_MISSING`.
+A `file_ini` without sections writes nothing (the file is neither created nor truncated) and `iostat` is 0.
+
 ---
 
 ## Error codes
@@ -479,4 +486,4 @@ Defined in module `finer_backend` and re-exported by `finer`:
 | `ERR_SECTION_NAME` | 4 | Bad section name |
 | `ERR_SECTION_OPTIONS` | 5 | Bad section options |
 | `ERR_SECTION` | 6 | Generic section error |
-| `ERR_SOURCE_MISSING` | 7 | No source provided to `load` |
+| `ERR_SOURCE_MISSING` | 7 | No source provided to `load`, or no file name to `save` |
