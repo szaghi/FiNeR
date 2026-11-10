@@ -364,15 +364,11 @@ contains
   integer(I4P)                          :: errd         !< Error code.
   integer(I4P)                          :: s            !< Counter.
 
-  errd = err_section_options
   call self%add(section_name=section_name, error=errd)
   if (errd==0) then
-    do s=1, size(self%sections, dim=1)
-      if (self%sections(s) == section_name) then
-        call self%sections(s)%add(error=errd, option_name=option_name, val=val)
-        exit
-      endif
-    enddo
+    errd = err_section
+    s = self%index(section_name=section_name) ! the name is normalised as add_section stores it
+    if (s > 0) call self%sections(s)%add(error=errd, option_name=option_name, val=val)
   endif
   if (present(error)) error = errd
   endsubroutine add_a_option
@@ -389,15 +385,11 @@ contains
   integer(I4P)                          :: errd         !< Error code.
   integer(I4P)                          :: s            !< Counter.
 
-  errd = err_section_options
   call self%add(section_name=section_name, error=errd)
   if (errd==0) then
-    do s=1, size(self%sections, dim=1)
-      if (self%sections(s) == section_name) then
-        call self%sections(s)%add(error=errd, option_name=option_name, val=val)
-        exit
-      endif
-    enddo
+    errd = err_section
+    s = self%index(section_name=section_name) ! the name is normalised as add_section stores it
+    if (s > 0) call self%sections(s)%add(error=errd, option_name=option_name, val=val)
   endif
   if (present(error)) error = errd
   endsubroutine add_option
@@ -464,14 +456,8 @@ contains
   character(*),    intent(in)    :: section_name !< Section name.
   integer(I4P)                   :: s            !< Counter.
 
-  if (allocated(self%sections)) then
-    do s=1, size(self%sections, dim=1)
-      if (self%sections(s) == section_name) then
-        call self%sections(s)%free_options
-        exit
-      endif
-    enddo
-  endif
+  s = self%index(section_name=section_name)
+  if (s > 0) call self%sections(s)%free_options
   endsubroutine free_options_of_section
 
   elemental subroutine free_section(self, section_name)
