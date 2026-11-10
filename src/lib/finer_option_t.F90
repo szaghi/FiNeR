@@ -278,6 +278,7 @@ contains
   character(500)                       :: iomsgd          !< Temporary variable for IO error message.
   character(len=:), allocatable        :: comment         !< Eventual option comments.
 
+  iostatd = 0 ; iomsgd = ''
   if (self%oname%is_allocated()) then
     prefd = '' ; if (present(pref)) prefd = pref
     comment = '' ; if (self%ocomm%is_allocated().and.retain_comments) comment = ' ; '//self%ocomm
@@ -286,9 +287,9 @@ contains
     else
       write(unit=unit, fmt='(A)', iostat=iostatd, iomsg=iomsgd)prefd//self%oname//' = '//comment
     endif
-    if (present(iostat)) iostat = iostatd
-    if (present(iomsg))  iomsg  = iomsgd
   endif
+  if (present(iostat)) iostat = iostatd
+  if (present(iomsg))  iomsg  = iomsgd
   endsubroutine print_option
 
   pure subroutine set_option(self, val, error)
@@ -435,6 +436,7 @@ contains
   character(500)                       :: iomsgd          !< Temporary variable for IO error message.
   character(len=:), allocatable        :: comment         !< Eventual option comments.
 
+  iostatd = 0 ; iomsgd = ''
   if (self%oname%is_allocated()) then
     comment = '' ; if (self%ocomm%is_allocated().and.retain_comments) comment = ' ; '//self%ocomm
     if (self%ovals%is_allocated()) then
@@ -442,9 +444,9 @@ contains
     else
       write(unit=unit, fmt='(A)', iostat=iostatd, iomsg=iomsgd)self%oname//' = '//comment
     endif
-    if (present(iostat)) iostat = iostatd
-    if (present(iomsg))  iomsg  = iomsgd
   endif
+  if (present(iostat)) iostat = iostatd
+  if (present(iomsg))  iomsg  = iomsgd
   endsubroutine save_option
 
   ! assignments

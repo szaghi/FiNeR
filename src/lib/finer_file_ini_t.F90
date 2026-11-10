@@ -293,10 +293,12 @@ contains
 
   prefd = '' ; if (present(pref)) prefd = pref
   rt_comm = .false. ; if (present(retain_comments)) rt_comm = retain_comments
+  iostatd = 0 ; iomsgd = ''
   if (allocated(self%sections)) then
     do s=1, size(self%sections, dim=1)
       call self%sections(s)%print(pref=prefd, iostat=iostatd, iomsg=iomsgd, unit=unit, retain_comments=rt_comm, &
                                   header=.not.self%is_global(s))
+      if (iostatd /= 0) exit ! keep the first error
     enddo
   endif
   if (present(iostat)) iostat = iostatd
@@ -305,6 +307,10 @@ contains
 
   subroutine save_file_ini(self, retain_comments, iostat, iomsg, filename)
   !< Save data.
+  !<
+  !< `iostat` is the status of the first operation (open, write or close) that failed, 0 if none did. Without a file name
+  !< (neither passed nor set before) nothing is written and `iostat` is `ERR_SOURCE_MISSING`. Without sections nothing is
+  !< written (the file is neither created nor truncated) and `iostat` is 0.
   class(file_ini),        intent(inout) :: self            !< File data.
   logical,      optional, intent(in)    :: retain_comments !< Flag for retaining eventual comments.
   integer(I4P), optional, intent(out)   :: iostat          !< IO error.
@@ -317,13 +323,25 @@ contains
   integer(I4P)                          :: s               !< Counter.
 
   rt_comm = .false. ; if (present(retain_comments)) rt_comm = retain_comments
+  iostatd = 0 ; iomsgd = ''
   if (present(filename)) self%filename = filename
-  if (allocated(self%filename).and.allocated(self%sections)) then
+  if (.not.allocated(self%filename)) then
+    iostatd = ERR_SOURCE_MISSING
+    iomsgd = 'file_ini%save: no file name'
+  elseif (allocated(self%sections)) then
     open(newunit=unit, file=self%filename, action='WRITE', iostat=iostatd, iomsg=iomsgd)
-    do s=1, size(self%sections, dim=1)
-      call self%sections(s)%save(iostat=iostatd, iomsg=iomsgd, unit=unit, retain_comments=rt_comm, header=.not.self%is_global(s))
-    enddo
-    close(unit=unit, iostat=iostatd, iomsg=iomsgd)
+    if (iostatd == 0) then
+      do s=1, size(self%sections, dim=1)
+        call self%sections(s)%save(iostat=iostatd, iomsg=iomsgd, unit=unit, retain_comments=rt_comm, &
+                                   header=.not.self%is_global(s))
+        if (iostatd /= 0) exit ! keep the first error
+      enddo
+      if (iostatd == 0) then
+        close(unit=unit, iostat=iostatd, iomsg=iomsgd)
+      else
+        close(unit=unit) ! the write error is the one reported
+      endif
+    endif
   endif
   if (present(iostat)) iostat = iostatd
   if (present(iomsg))  iomsg  = iomsgd

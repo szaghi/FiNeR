@@ -280,9 +280,10 @@ contains
   headerd = .true. ; if (present(header)) headerd = header
   iostatd = 0 ; iomsgd = ''
   if (allocated(self%sname).and.headerd) write(unit=unit, fmt='(A)', iostat=iostatd, iomsg=iomsgd)prefd//'['//self%sname//']'
-  if (allocated(self%options)) then
+  if (allocated(self%options).and.iostatd == 0) then
     do o=1, size(self%options, dim=1)
       call self%options(o)%print(pref=prefd//'  ', iostat=iostatd, iomsg=iomsgd, unit=unit, retain_comments=retain_comments)
+      if (iostatd /= 0) exit ! keep the first error
     enddo
   endif
   if (present(iostat)) iostat = iostatd
@@ -305,9 +306,10 @@ contains
   headerd = .true. ; if (present(header)) headerd = header
   iostatd = 0 ; iomsgd = ''
   if (allocated(self%sname).and.headerd) write(unit=unit, fmt='(A)', iostat=iostatd, iomsg=iomsgd)'['//self%sname//']'
-  if (allocated(self%options)) then
+  if (allocated(self%options).and.iostatd == 0) then
     do o=1, size(self%options, dim=1)
       call self%options(o)%save(iostat=iostatd, iomsg=iomsgd, unit=unit, retain_comments=retain_comments)
+      if (iostatd /= 0) exit ! keep the first error
     enddo
   endif
   if (present(iostat)) iostat = iostatd
