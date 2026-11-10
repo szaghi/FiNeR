@@ -5,6 +5,10 @@ hero:
   name: FiNeR
   text: Fortran INI ParseR
   tagline: A pure Fortran 2003+ OOP library for reading and writing INI configuration files.
+  image:
+    light: /hero.svg
+    dark: /hero-dark.svg
+    alt: FiNeR mark, a section bracket brushed in indigo
   actions:
     - theme: brand
       text: Guide
@@ -17,22 +21,46 @@ hero:
       link: https://github.com/szaghi/FiNeR
 
 features:
-  - icon: 📄
+  - icon:
+      light: /icons/parsing.svg
+      dark: /icons/parsing-dark.svg
+      width: 48
+      height: 48
     title: INI Parsing
     details: Load INI files from disk or from an in-memory string. Sections and options are auto-detected — no schema required.
-  - icon: ✏️
+  - icon:
+      light: /icons/generation.svg
+      dark: /icons/generation-dark.svg
+      width: 48
+      height: 48
     title: INI Generation
     details: Build INI files programmatically with add/del methods. Save to disk or print to any Fortran unit.
-  - icon: 🔍
+  - icon:
+      light: /icons/introspection.svg
+      dark: /icons/introspection-dark.svg
+      width: 48
+      height: 48
     title: Introspection
     details: Query the presence of sections and options by name, loop over all options, count multi-value entries, and get section/option indices.
-  - icon: 🛠️
+  - icon:
+      light: /icons/build.svg
+      dark: /icons/build-dark.svg
+      width: 48
+      height: 48
     title: Multi Build System
     details: Build with CMake (preferred), FoBiS.py or fpm. Integrate into your CMake project via add_subdirectory and target_link_libraries.
-  - icon: 🧪
+  - icon:
+      light: /icons/oop-tdd.svg
+      dark: /icons/oop-tdd-dark.svg
+      width: 48
+      height: 48
     title: OOP / TDD Designed
     details: A single file_ini type exposes all functionality as type-bound procedures. Designed with a test-driven approach — each feature is covered by automated tests.
-  - icon: 🆓
+  - icon:
+      light: /icons/free.svg
+      dark: /icons/free-dark.svg
+      width: 48
+      height: 48
     title: Free & Open Source
     details: Multi-licensed — GPLv3 for FOSS projects, BSD 2/3-Clause or MIT for commercial use. Fortran 2003+ standard compliant.
 ---

@@ -4,6 +4,17 @@ import apiSidebar from '../api/_sidebar.json'
 export default withMermaid({
   title: 'FiNeR Documentation',
   base: '/FiNeR/',
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/FiNeR/favicon.svg' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/FiNeR/favicon-32.png' }],
+    ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/FiNeR/favicon-16.png' }],
+    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/FiNeR/apple-touch-icon.png' }],
+    ['meta', { name: 'theme-color', media: '(prefers-color-scheme: light)', content: '#f8f8f5' }],
+    ['meta', { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#121620' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@800&family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap' }],
+  ],
   markdown: {
     math: true,
     languages: ['fortran-free-form', 'fortran-fixed-form'],
@@ -17,6 +28,7 @@ export default withMermaid({
     },
   },
   themeConfig: {
+    logo: { light: '/logo.svg', dark: '/logo-dark.svg', alt: 'FiNeR' },
     nav: [
       { text: 'Home', link: '/' },
       {
