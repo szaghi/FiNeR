@@ -1,0 +1,7 @@
+$ cat case.ini
+[grid]
+cells  = 64
+length = 0.5
+[time]
+dt    = 1.0e-4
+steps = 2000

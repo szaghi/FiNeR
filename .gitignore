@@ -38,3 +38,6 @@ docs/.vitepress/cache/
 
 # CMake and fpm build directory
 build/
+
+# static library of the docs examples (fobis build --mode finer-static-gnu)
+static/

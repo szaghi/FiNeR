@@ -6,14 +6,16 @@ title: Installation
 
 ## Prerequisites
 
-A Fortran 2003+ compliant compiler is required. The following compilers are known to work:
+A Fortran 2003+ compiler. FiNeR is tested with:
 
-| Compiler | Minimum version |
-|----------|----------------|
-| GNU gfortran | ≥ 5.3.0 |
-| Intel Fortran (ifort / ifx) | ≥ 16.x |
+| Compiler | Versions | Where |
+|----------|----------|-------|
+| GNU gfortran | 14 | CI (tests and documentation examples) |
+| GNU gfortran | 16.2 | development: FoBiS, CMake and fpm builds |
+| NVIDIA nvfortran | 26.9 | development: CMake build |
 
-FiNeR is developed on GNU/Linux. Windows should work out of the box but is not officially tested.
+The fobos file also has modes for the Intel compilers (`tests-intel`, `finer-static-intel`, ...), not tested recently.
+FiNeR is developed on GNU/Linux.
 
 ## Download
 
@@ -160,11 +162,24 @@ fobis build --mode finer-shared-gnu
 fobis build --mode finer-static-intel
 ```
 
-The library is placed in `./static/` or `./shared/` respectively.
+The library is placed in `./static/` or `./shared/` respectively, with its module files (and those of its dependencies)
+in `mod/` under the same directory. To compile a program against the static library:
+
+```bash
+gfortran -Istatic/mod my_program.f90 static/libfiner.a -o my_program
+```
+
+### Quadruple precision
+
+`R16P` reals and complex numbers are quadruple precision only when PENF is compiled with the macro `PENF_R16P`: the
+FoBiS modes define it, CMake defines it when the compiler supports a quadruple precision real, fpm does not (there
+`R16P` is the kind of `R8P`, and `get` and `add` of `R16P` values work in double precision).
 
 ### Coverage and documentation
 
 ```bash
 fobis rule --ex makecoverage   # build + run tests + gcov report
 fobis rule --ex makedoc        # build API documentation
+bash scripts/docs_examples.sh  # build and run the documentation examples, regenerate their outputs
+cd docs && npm run docs:dev    # the documentation site, locally
 ```

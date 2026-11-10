@@ -1,0 +1,14 @@
+$ cat results.ini
+case = heat.ini
+[summary]
+steps = 4000
+cells_updated = 256000
+time = 0.4
+residual = 3.2E-9
+converged = T
+[probes]
+x = 0.1 0.25 0.4
+T = 331.25 324.5 310.125
+names = p1 p2 p3
+[spectrum]
+mode1 = (1.5,-0.25)

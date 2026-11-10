@@ -126,6 +126,19 @@ The `.F90` extension (uppercase) indicates files that use C preprocessor directi
 ## Documentation
 
 VitePress site in `docs/` (`npm run docs:build` from `docs/`; it first runs `formal` to regenerate `docs/api/`).
+Structure, as FoXy: *Start here* (`guide/index`, `installation`), *Tutorial* (`manual/index`, `manual/tutorial/01..08`,
+one program `heat` built chapter by chapter), *Cookbook* (`manual/cookbook.md`), *Reference* (`guide/features`, `syntax`,
+`files`, `reading`, `writing`, `exploring`, `errors`, `api-reference`), *Project*.
+
+Every code sample is a program in `docs/examples/src/*.f90`, never pasted into a page: `bash scripts/docs_examples.sh`
+(ported from FoXy; builds `finer-static-gnu` into `static/`) builds and runs them and regenerates `docs/examples/snippets`,
+`output` (`*.ansi`) and `images` (terminal casts, `scripts/ansi2svg.py`). Markers: `!run ID CMD`, `!region NAME` ...
+`!endregion NAME`, `!as NAME`, `!image ID`, `!cast NAME ID...`. Pages include them with `<<< @/examples/snippets/X.f90` and
+`<<< @/examples/output/ID.ansi{ansi}`. Outputs must not depend on the compiler (explicit formats; no `stop` codes, which
+print compiler-specific text). The `docs-examples` workflow reruns the script (gfortran 14) and fails if the committed
+files differ: rerun it and commit its outputs after any change to the examples or to the library behaviour they show.
+Diagrams: `python3 scripts/docs_diagrams.py` writes `docs/diagrams/*.svg`, inlined with `<!--@include: -->`, coloured and
+animated by the `.finer-diagram` rules of `custom.css` (CSS animations, off under `prefers-reduced-motion`).
 Identity: Sumi family, the *Kakko* mark (the section bracket `[ · ]`) in the *Aizome* palette (indigo ink on washi,
 pale indigo on night). Assets in `docs/public/` (`hero`, `logo`, `favicon*`, `icons/<name>{,-dark}.svg`: the 6 home
 features plus `get`, `add`, `lines`, `semi` for guide pages); the palette is the token block at the top of

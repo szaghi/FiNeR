@@ -1,6 +1,57 @@
 import { withMermaid } from 'vitepress-plugin-mermaid'
 import apiSidebar from '../api/_sidebar.json'
 
+const sidebarGuide = [
+  {
+    text: 'Start here',
+    items: [
+      { text: 'Introduction', link: '/guide/' },
+      { text: 'Installation', link: '/guide/installation' },
+    ],
+  },
+  {
+    text: 'Tutorial',
+    items: [
+      { text: 'Overview',                      link: '/manual/' },
+      { text: '1. A first file',               link: '/manual/tutorial/01-first-file' },
+      { text: '2. Reading the case file',      link: '/manual/tutorial/02-reading' },
+      { text: '3. Optional settings',          link: '/manual/tutorial/03-defaults' },
+      { text: '4. Walking the file',           link: '/manual/tutorial/04-walking' },
+      { text: '5. Editing and saving',         link: '/manual/tutorial/05-editing' },
+      { text: '6. Writing from scratch',       link: '/manual/tutorial/06-writing' },
+      { text: '7. Other INI dialects',         link: '/manual/tutorial/07-dialects' },
+      { text: '8. Robust input',               link: '/manual/tutorial/08-robust' },
+    ],
+  },
+  {
+    text: 'Recipes',
+    items: [
+      { text: 'Cookbook', link: '/manual/cookbook' },
+    ],
+  },
+  {
+    text: 'Reference',
+    items: [
+      { text: 'Feature map',      link: '/guide/features' },
+      { text: 'The INI syntax',   link: '/guide/syntax' },
+      { text: 'Loading, saving, printing', link: '/guide/files' },
+      { text: 'Reading values',   link: '/guide/reading' },
+      { text: 'Writing values',   link: '/guide/writing' },
+      { text: 'Exploring a file', link: '/guide/exploring' },
+      { text: 'Errors',           link: '/guide/errors' },
+      { text: 'Methods summary',  link: '/guide/api-reference' },
+    ],
+  },
+  {
+    text: 'Project',
+    items: [
+      { text: 'Changelog',         link: '/guide/changelog' },
+      { text: 'Contributing',      link: '/guide/contributing' },
+      { text: 'Coverage analysis', link: '/guide/coverage-analysis' },
+    ],
+  },
+]
+
 export default withMermaid({
   title: 'FiNeR Documentation',
   base: '/FiNeR/',
@@ -31,48 +82,28 @@ export default withMermaid({
     logo: { light: '/logo.svg', dark: '/logo-dark.svg', alt: 'FiNeR' },
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Start here', link: '/guide/', activeMatch: '^/guide/(index|installation)?$' },
+      { text: 'Tutorial', link: '/manual/tutorial/01-first-file', activeMatch: '^/manual/(index|tutorial/)' },
+      { text: 'Cookbook', link: '/manual/cookbook', activeMatch: '^/manual/cookbook' },
       {
-        text: 'Guide',
-        items: [
-          { text: 'About',             link: '/guide/' },
-          { text: 'Features',          link: '/guide/features' },
-          { text: 'Installation',      link: '/guide/installation' },
-          { text: 'Usage',             link: '/guide/usage' },
-          { text: 'API Reference',     link: '/guide/api-reference' },
-          { text: 'Contributing',      link: '/guide/contributing' },
-          { text: 'Coverage Analysis', link: '/guide/coverage-analysis' },
-          { text: 'Changelog',         link: '/guide/changelog' },
-        ],
+        text: 'Reference',
+        link: '/guide/features',
+        activeMatch: '^/guide/(features|syntax|reading|writing|exploring|files|errors|api-reference)',
       },
       { text: 'API', link: '/api/' },
-      { text: 'GitHub', link: 'https://github.com/szaghi/FiNeR' },
+      {
+        text: 'Project',
+        items: [
+          { text: 'Changelog',         link: '/guide/changelog' },
+          { text: 'Contributing',      link: '/guide/contributing' },
+          { text: 'Coverage analysis', link: '/guide/coverage-analysis' },
+          { text: 'GitHub',            link: 'https://github.com/szaghi/FiNeR' },
+        ],
+      },
     ],
     sidebar: {
-      '/guide/': [
-        {
-          text: 'Introduction',
-          items: [
-            { text: 'About',        link: '/guide/' },
-            { text: 'Features',     link: '/guide/features' },
-          ],
-        },
-        {
-          text: 'Getting Started',
-          items: [
-            { text: 'Installation',  link: '/guide/installation' },
-            { text: 'Usage',         link: '/guide/usage' },
-            { text: 'API Reference', link: '/guide/api-reference' },
-          ],
-        },
-        {
-          text: 'Project',
-          items: [
-            { text: 'Contributing',      link: '/guide/contributing' },
-            { text: 'Coverage Analysis', link: '/guide/coverage-analysis' },
-            { text: 'Changelog',         link: '/guide/changelog' },
-          ],
-        },
-      ],
+      '/guide/': sidebarGuide,
+      '/manual/': sidebarGuide,
       '/api/': [
         {
           text: 'API Reference',
@@ -83,6 +114,8 @@ export default withMermaid({
         ...apiSidebar,
       ],
     },
+    socialLinks: [{ icon: 'github', link: 'https://github.com/szaghi/FiNeR' }],
+    outline: { level: [2, 3] },
     search: {
       provider: 'local',
     },

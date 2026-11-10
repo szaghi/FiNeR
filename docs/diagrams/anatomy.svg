@@ -1,0 +1,58 @@
+<svg class="finer-diagram" viewBox="0 0 680 366" role="img" aria-label="The anatomy of an INI file: comment lines, the global section, section headers, options with name, separator and value, inline comments, lists and continuation lines" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+<rect x="10.0" y="10.0" width="660.0" height="346.0" rx="10" class="d-frame"/>
+<text x="26.0" y="34.0" text-anchor="start" class="d-title">heat.ini</text>
+<text x="300.0" y="34.0" text-anchor="start" class="d-title d-muted">what FiNeR reads</text>
+<rect x="18.0" y="42.0" width="644.0" height="26.0" rx="5" class="d-band d-reveal" style="--i:0"/>
+<text x="26.0" y="60.0" text-anchor="start" class="d-mono d-comment d-reveal" style="--i:0">; the case of a heat run</text>
+<line x1="214.0" y1="56.0" x2="288.0" y2="56.0" class="d-leader d-reveal" style="--i:0"/>
+<text x="300.0" y="60.0" text-anchor="start" class="d-note d-reveal" style="--i:0">comment line: skipped</text>
+<rect x="18.0" y="72.0" width="644.0" height="26.0" rx="5" class="d-band d-reveal" style="--i:1"/>
+<text x="26.0" y="90.0" text-anchor="start" class="d-mono d-name d-reveal" style="--i:1">title</text>
+<text x="63.5" y="90.0" text-anchor="start" class="d-mono d-sep d-reveal" style="--i:1"> = </text>
+<text x="86.0" y="90.0" text-anchor="start" class="d-mono d-value d-reveal" style="--i:1">cooling of a copper rod</text>
+<line x1="266.5" y1="86.0" x2="288.0" y2="86.0" class="d-leader d-reveal" style="--i:1"/>
+<text x="300.0" y="90.0" text-anchor="start" class="d-note d-reveal" style="--i:1">before any header: global section &quot;&quot;</text>
+<rect x="18.0" y="102.0" width="644.0" height="26.0" rx="5" class="d-band d-reveal" style="--i:2"/>
+<text x="26.0" y="120.0" text-anchor="start" class="d-mono d-section d-reveal" style="--i:2">[grid]</text>
+<line x1="79.0" y1="116.0" x2="288.0" y2="116.0" class="d-leader d-reveal" style="--i:2"/>
+<text x="300.0" y="120.0" text-anchor="start" class="d-note d-reveal" style="--i:2">section header: a new section</text>
+<rect x="18.0" y="132.0" width="644.0" height="26.0" rx="5" class="d-band d-reveal" style="--i:3"/>
+<text x="26.0" y="150.0" text-anchor="start" class="d-mono d-name d-reveal" style="--i:3">cells</text>
+<text x="63.5" y="150.0" text-anchor="start" class="d-mono d-sep d-reveal" style="--i:3">  = </text>
+<text x="93.5" y="150.0" text-anchor="start" class="d-mono d-value d-reveal" style="--i:3">64</text>
+<line x1="116.5" y1="146.0" x2="288.0" y2="146.0" class="d-leader d-reveal" style="--i:3"/>
+<text x="300.0" y="150.0" text-anchor="start" class="d-note d-reveal" style="--i:3">option: name, separator, value</text>
+<rect x="18.0" y="162.0" width="644.0" height="26.0" rx="5" class="d-band d-reveal" style="--i:4"/>
+<text x="26.0" y="180.0" text-anchor="start" class="d-mono d-name d-reveal" style="--i:4">length</text>
+<text x="71.0" y="180.0" text-anchor="start" class="d-mono d-sep d-reveal" style="--i:4"> = </text>
+<text x="93.5" y="180.0" text-anchor="start" class="d-mono d-value d-reveal" style="--i:4">0.5</text>
+<text x="116.0" y="180.0" text-anchor="start" class="d-mono d-comment d-reveal" style="--i:4">          ; metres</text>
+<line x1="259.0" y1="176.0" x2="288.0" y2="176.0" class="d-leader d-reveal" style="--i:4"/>
+<text x="300.0" y="180.0" text-anchor="start" class="d-note d-reveal" style="--i:4">inline comment after &quot;;&quot;: kept apart</text>
+<rect x="18.0" y="192.0" width="644.0" height="26.0" rx="5" class="d-band d-reveal" style="--i:5"/>
+<text x="26.0" y="210.0" text-anchor="start" class="d-mono d-name d-reveal" style="--i:5">origin</text>
+<text x="71.0" y="210.0" text-anchor="start" class="d-mono d-sep d-reveal" style="--i:5"> = </text>
+<text x="93.5" y="210.0" text-anchor="start" class="d-mono d-value d-reveal" style="--i:5">0.0 0.0 0.0</text>
+<line x1="184.0" y1="206.0" x2="288.0" y2="206.0" class="d-leader d-reveal" style="--i:5"/>
+<text x="300.0" y="210.0" text-anchor="start" class="d-note d-reveal" style="--i:5">a list: values split by blanks</text>
+<rect x="18.0" y="222.0" width="644.0" height="26.0" rx="5" class="d-band d-reveal" style="--i:6"/>
+<text x="26.0" y="240.0" text-anchor="start" class="d-mono d-section d-reveal" style="--i:6">[boundaries]</text>
+<line x1="124.0" y1="236.0" x2="288.0" y2="236.0" class="d-leader d-reveal" style="--i:6"/>
+<text x="300.0" y="240.0" text-anchor="start" class="d-note d-reveal" style="--i:6">another section</text>
+<rect x="18.0" y="252.0" width="644.0" height="26.0" rx="5" class="d-band d-reveal" style="--i:7"/>
+<text x="26.0" y="270.0" text-anchor="start" class="d-mono d-name d-reveal" style="--i:7">probes</text>
+<text x="71.0" y="270.0" text-anchor="start" class="d-mono d-sep d-reveal" style="--i:7"> = </text>
+<text x="93.5" y="270.0" text-anchor="start" class="d-mono d-value d-reveal" style="--i:7">0.1</text>
+<line x1="124.0" y1="266.0" x2="288.0" y2="266.0" class="d-leader d-reveal" style="--i:7"/>
+<text x="300.0" y="270.0" text-anchor="start" class="d-note d-reveal" style="--i:7">a value on several lines...</text>
+<rect x="18.0" y="282.0" width="644.0" height="26.0" rx="5" class="d-band d-reveal" style="--i:8"/>
+<text x="26.0" y="300.0" text-anchor="start" class="d-mono d-sep d-reveal" style="--i:8">         </text>
+<text x="93.5" y="300.0" text-anchor="start" class="d-mono d-value d-reveal" style="--i:8">0.25</text>
+<line x1="131.5" y1="296.0" x2="288.0" y2="296.0" class="d-leader d-reveal" style="--i:8"/>
+<text x="300.0" y="300.0" text-anchor="start" class="d-note d-reveal" style="--i:8">...a line without &quot;=&quot; continues it</text>
+<rect x="18.0" y="312.0" width="644.0" height="26.0" rx="5" class="d-band d-reveal" style="--i:9"/>
+<text x="26.0" y="330.0" text-anchor="start" class="d-mono d-sep d-reveal" style="--i:9">         </text>
+<text x="93.5" y="330.0" text-anchor="start" class="d-mono d-value d-reveal" style="--i:9">0.4</text>
+<line x1="124.0" y1="326.0" x2="288.0" y2="326.0" class="d-leader d-reveal" style="--i:9"/>
+<text x="300.0" y="330.0" text-anchor="start" class="d-note d-reveal" style="--i:9">probes = 0.1 0.25 0.4</text>
+</svg>

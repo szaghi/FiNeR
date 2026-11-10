@@ -1,0 +1,21 @@
+$ cat restart.ini
+title = cooling of a copper rod
+[grid]
+cells = 64
+length = 0.5 ; metres
+origin = 0.0 0.0 0.0
+[time]
+dt = 0.00005
+steps = 4000
+start = 0.2
+[material]
+name = copper
+conductivity = 401.0 ; W/(m K)
+density = 8960.0
+[boundaries]
+left = 350.0
+right = 300.0
+probes = 0.1 0.25 0.4
+[restart]
+from = heat-0002000.vtk
+step = 2000

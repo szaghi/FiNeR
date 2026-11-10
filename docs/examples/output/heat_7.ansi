@@ -1,0 +1,13 @@
+$ heat
+levels = 2, author = the lab
+section ""
+section "mesh.grid"
+section "mesh.refinement"
+  solver = heat
+  version = 3
+  author = the lab
+[mesh.grid]
+  cells = 64
+[mesh.refinement]
+  levels = 2 ; refine twice
+cells from a CRLF file: 64

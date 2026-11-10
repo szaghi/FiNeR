@@ -1,0 +1,5 @@
+$ report_bad_values
+[grid] cells: not a value of that type
+[grid] length: not a value of that type
+[time] steps: missing
+3 bad settings

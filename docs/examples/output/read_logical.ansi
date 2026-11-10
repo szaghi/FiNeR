@@ -1,0 +1,8 @@
+$ read_logical
+a = T
+b = T
+c = T
+d = F
+e = F
+f: not a logical, error 2
+g: not a logical, error 2

@@ -1,0 +1,7 @@
+$ heat
+a rod of 64 cells,  0.50 m long, made of copper
+[grid]
+  cells = 64
+  length = 0.5
+[material]
+  name = copper

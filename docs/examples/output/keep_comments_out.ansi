@@ -1,0 +1,19 @@
+$ cat plain.ini commented.ini
+title = cooling of a copper rod
+[grid]
+cells = 64
+length = 0.5
+origin = 0.0 0.0 0.0
+[material]
+name = copper
+conductivity = 401.0
+density = 8960.0
+title = cooling of a copper rod
+[grid]
+cells = 64
+length = 0.5 ; metres
+origin = 0.0 0.0 0.0
+[material]
+name = copper
+conductivity = 401.0 ; W/(m K)
+density = 8960.0

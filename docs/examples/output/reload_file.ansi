@@ -1,0 +1,2 @@
+$ reload_file
+file counter.ini: steps = 10, error 0

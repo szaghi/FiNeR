@@ -1,0 +1,8 @@
+$ write_arrays
+[arrays]
+  ids = 1 2 3
+  weights = 0.25 0.5 0.25
+  mask = T F T
+  names = inlet outlet
+  z = (1.0,-2.0)
+  zs = (1.0,0.5) (0.0,1.0)

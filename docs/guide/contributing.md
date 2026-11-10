@@ -47,6 +47,22 @@ is welcome. The project follows a KISS (Keep It Simple and Stupid) philosophy.
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 ```
 
+## Documentation
+
+Every code sample of the documentation is a complete program in `docs/examples/src`, and every output it shows is the
+real output of that program. After changing an example, or the library behaviour an example shows:
+
+```bash
+fobis fetch                        # the dependencies, once
+bash scripts/docs_examples.sh      # build and run the examples, regenerate docs/examples/{snippets,output,images}
+python3 scripts/docs_diagrams.py   # only if the diagrams changed
+cd docs && npm run docs:dev        # look at the site
+```
+
+Commit the regenerated files with the change: the *Docs examples* workflow reruns the script and fails if they differ.
+Pages include the snippets (`<<< @/examples/snippets/name.f90`, or `name-region.f90` for a `!region`) and the outputs
+(`<<< @/examples/output/id.ansi{ansi}`); never paste code or output into a page by hand.
+
 ## Commit style
 
 Use [Conventional Commits](https://www.conventionalcommits.org/) so that `CHANGELOG.md` is generated automatically from the git log:

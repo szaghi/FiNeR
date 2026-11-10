@@ -1,0 +1,6 @@
+$ repeated_options
+get: level = 1
+index: first 1, last 3
+  level = 1
+  level = 2
+  level = 3

@@ -1,0 +1,7 @@
+$ cat built.ini
+[grid]
+cells = 128
+length = 1.0
+periodic = F
+[output]
+format = vtk

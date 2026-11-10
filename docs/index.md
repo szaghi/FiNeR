@@ -4,20 +4,23 @@ layout: home
 hero:
   name: FiNeR
   text: Fortran INI ParseR
-  tagline: A pure Fortran 2003+ OOP library for reading and writing INI configuration files.
+  tagline: Read, edit and write INI configuration files from modern Fortran, with typed values and no surprises.
   image:
     light: /hero.svg
     dark: /hero-dark.svg
     alt: FiNeR mark, a section bracket brushed in indigo
   actions:
     - theme: brand
-      text: Guide
-      link: /guide/
+      text: Start the tutorial
+      link: /manual/
     - theme: alt
-      text: API Reference
-      link: /api/
+      text: Cookbook
+      link: /manual/cookbook
     - theme: alt
-      text: View on GitHub
+      text: Reference
+      link: /guide/features
+    - theme: alt
+      text: GitHub
       link: https://github.com/szaghi/FiNeR
 
 features:
@@ -26,85 +29,66 @@ features:
       dark: /icons/parsing-dark.svg
       width: 48
       height: 48
-    title: INI Parsing
-    details: Load INI files from disk or from an in-memory string. Sections and options are auto-detected — no schema required.
+    title: Load files and strings
+    details: Sections, the global section, three comment styles, inline comments, values on several lines, a custom separator, Windows line endings.
+    link: /guide/syntax
+  - icon:
+      light: /icons/get.svg
+      dark: /icons/get-dark.svg
+      width: 48
+      height: 48
+    title: Typed values
+    details: One get for integers, reals (quad precision included), complex numbers, logicals and strings, scalars or lists, with defaults.
+    link: /guide/reading
   - icon:
       light: /icons/generation.svg
       dark: /icons/generation-dark.svg
       width: 48
       height: 48
-    title: INI Generation
-    details: Build INI files programmatically with add/del methods. Save to disk or print to any Fortran unit.
+    title: Edit and write
+    details: One add to create sections and set options of any type; reals written as the shortest text that reads back exactly.
+    link: /guide/writing
   - icon:
       light: /icons/introspection.svg
       dark: /icons/introspection-dark.svg
       width: 48
       height: 48
-    title: Introspection
-    details: Query the presence of sections and options by name, loop over all options, count multi-value entries, and get section/option indices.
+    title: Explore any file
+    details: Sections by number or name, options by name, which section holds an option, positions, counts, loops, every pair at once.
+    link: /guide/exploring
+  - icon:
+      light: /icons/semi.svg
+      dark: /icons/semi-dark.svg
+      width: 48
+      height: 48
+    title: Failures reported, never fatal
+    details: An error or iostat on every call that can fail; a failed get leaves its value untouched, arrays are checked whole.
+    link: /guide/errors
   - icon:
       light: /icons/build.svg
       dark: /icons/build-dark.svg
       width: 48
       height: 48
-    title: Multi Build System
-    details: Build with CMake (preferred), FoBiS.py or fpm. Integrate into your CMake project via add_subdirectory and target_link_libraries.
-  - icon:
-      light: /icons/oop-tdd.svg
-      dark: /icons/oop-tdd-dark.svg
-      width: 48
-      height: 48
-    title: OOP / TDD Designed
-    details: A single file_ini type exposes all functionality as type-bound procedures. Designed with a test-driven approach — each feature is covered by automated tests.
-  - icon:
-      light: /icons/free.svg
-      dark: /icons/free-dark.svg
-      width: 48
-      height: 48
-    title: Free & Open Source
-    details: Multi-licensed — GPLv3 for FOSS projects, BSD 2/3-Clause or MIT for commercial use. Fortran 2003+ standard compliant.
+    title: FoBiS, CMake or fpm
+    details: Build it the way your project does; pure Fortran 2003+, tested with gfortran and nvfortran. GPL v3, or BSD and MIT for any use.
+    link: /guide/installation
 ---
+
+## A tour
+
+`ini`, a command line tool of about 50 lines built on FiNeR
+([`docs/examples/src/tour.f90`](https://github.com/szaghi/FiNeR/blob/master/docs/examples/src/tour.f90)), lists the
+sections of a file, reads a value, changes it and saves the file:
+
+<div class="finer-casts">
+  <img src="./examples/images/tour.svg" alt="An animated terminal session: ini lists the sections of case.ini, reads time.dt, sets it to 5e-5, reads it again, and reports an option that is missing">
+</div>
 
 ## Quick start
 
-Parse an INI source string and retrieve a multi-value option:
+<<< @/examples/snippets/heat_2-load.f90
 
-```fortran
-use finer
-use penf, only: R4P, I4P
-type(file_ini)                :: fini
-character(len=:), allocatable :: source
-real(R4P), allocatable        :: array(:)
-integer(I4P)                  :: error
+<<< @/examples/snippets/heat_2-typed.f90
 
-source = '[section-1]'//new_line('A')// &
-         'option-1 = one'//new_line('A')// &
-         'option-2 = 2.'//new_line('A')// &
-         '           3.'//new_line('A')// &
-         '[section-2]'//new_line('A')// &
-         'option-1 = foo'
-
-call fini%load(source=source)
-allocate(array(1:fini%count_values(section_name='section-1', option_name='option-2')))
-call fini%get(section_name='section-1', option_name='option-2', val=array, error=error)
-if (error == 0) print *, array   ! 2.0  3.0
-```
-
-## Authors
-
-- Stefano Zaghi — [@szaghi](https://github.com/szaghi)
-
-Contributions are welcome — see the [Contributing](/guide/contributing) page.
-
-## Copyrights
-
-FiNeR is distributed under a multi-licensing system:
-
-| Use case | License |
-|----------|---------|
-| FOSS projects | [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html) |
-| Closed source / commercial | [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause) |
-| Closed source / commercial | [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause) |
-| Closed source / commercial | [MIT](http://opensource.org/licenses/MIT) |
-
-> Anyone interested in using, developing, or contributing to FiNeR is welcome — pick the license that best fits your needs.
+The [tutorial](/manual/) builds a complete program from here, chapter by chapter; the [cookbook](/manual/cookbook) has
+a recipe for each everyday task.

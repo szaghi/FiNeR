@@ -1,0 +1,4 @@
+$ quad_precision
+[q]
+  third = 0.3333333333333333333333333333333333
+reads back exactly: T

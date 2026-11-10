@@ -1,0 +1,18 @@
+$ heat
+heat.ini has 6 sections:
+  1: ""
+  2: "grid"
+  3: "time"
+  4: "material"
+  5: "boundaries"
+  6: "output"
+the list holds 6 names
+options of [material]:
+  name -> copper
+  conductivity -> 401.0
+  density -> 8960.0
+the whole file has 16 options
+get_items: 16 pairs, the last is every = 500
+index of [time]: 3
+index of steps in [time]: 2
+values of fields: 2

@@ -1,0 +1,16 @@
+$ delete_options
+sections: 5, [boundaries] still there: T
+  title = cooling of a copper rod
+[grid]
+  cells = 64
+  length = 0.5
+[time]
+  dt = 1.0e-4
+  steps = 2000
+[material]
+  name = copper
+  conductivity = 401.0
+  density = 8960.0
+[boundaries]
+after free_options(): 5 sections, any option: F
+after free(): 0

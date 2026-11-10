@@ -1,0 +1,5 @@
+$ get_items
+cells = 64
+length = 0.5
+dt = 1.0e-4
+steps = 2000

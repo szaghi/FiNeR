@@ -1,0 +1,6 @@
+$ global_section
+version = 2, section 1 is ""
+  version = 2
+  author = the lab
+[grid]
+  cells = 64

@@ -1,0 +1,8 @@
+$ print_prefix
+run started with:
+[log] [grid]
+[log]   cells = 64
+[log]   length = 0.5
+[log] [time]
+[log]   dt = 1.0e-4
+[log]   steps = 2000

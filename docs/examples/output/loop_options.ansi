@@ -1,0 +1,5 @@
+$ loop_options
+dt = 1.0e-4
+steps = 2000
+adaptive = .true.
+the file has 16 options

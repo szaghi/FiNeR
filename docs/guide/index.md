@@ -1,28 +1,42 @@
 ---
-title: About FiNeR
+title: Introduction
 ---
 
-# About FiNeR
+# Introduction
 
-**FiNeR** (Fortran INI ParseR and generator) is a pure Fortran 2003+ library for reading and writing [INI](https://en.wikipedia.org/wiki/INI_file) configuration files. It provides a single OOP-designed `file_ini` type that handles parsing, generation, and introspection of INI data.
+**FiNeR** (Fortran INI ParseR and generator) reads and writes [INI](https://en.wikipedia.org/wiki/INI_file) files from
+modern Fortran: configuration files made of `[sections]` holding `name = value` options. One type, `file_ini`, loads a
+file or a string, converts its values into integers, reals, complex numbers, logicals and strings (scalars or lists),
+edits them, and saves the result.
 
-Modern Fortran (2003+) improved string handling considerably, but Fortran still lacks built-in facilities for structured configuration file I/O. FiNeR fills that gap with a clean, user-friendly API — no external C libraries, no format strings, no hand-written parsers.
+```fortran
+use finer
+use penf, only : I4P, R8P
+type(file_ini) :: case_file
+real(R8P)      :: dt
+integer(I4P)   :: error
 
-## Authors
+call case_file%load(filename='heat.ini', error=error)
+call case_file%get(section_name='time', option_name='dt', val=dt, error=error, default=1.0e-4_R8P)
+call case_file%add(section_name='time', option_name='dt', val=dt/2)
+call case_file%save(filename='restart.ini')
+```
 
-- Stefano Zaghi — [@szaghi](https://github.com/szaghi)
+## Where to go
 
-Contributions are welcome — see the [Contributing](contributing) page.
+| If you want to | Read |
+|---|---|
+| install it, with FoBiS, CMake or fpm | [Installation](./installation) |
+| learn it, one complete program at a time | [the tutorial](/manual/) |
+| solve one task now | [the cookbook](/manual/cookbook) |
+| know exactly what a method does | [the reference](./features#feature-map), from the [feature map](./features) to the [methods summary](./api-reference) |
+| know exactly what an INI file may hold | [The INI syntax](./syntax) |
 
-## Copyrights
+Every code sample of this documentation is a complete program, built and run by `scripts/docs_examples.sh`; every output
+shown is its real output, checked on every push.
 
-FiNeR is distributed under a multi-licensing system:
+## Authors and licenses
 
-| Use case | License |
-|----------|---------|
-| FOSS projects | [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html) |
-| Closed source / commercial | [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause) |
-| Closed source / commercial | [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause) |
-| Closed source / commercial | [MIT](http://opensource.org/licenses/MIT) |
-
-> Anyone interested in using, developing, or contributing to FiNeR is welcome — pick the license that best fits your needs.
+FiNeR is written by Stefano Zaghi ([@szaghi](https://github.com/szaghi)); contributions are welcome, see
+[Contributing](./contributing). It is distributed under the GPL v3 for free and open source projects, and under the BSD
+2-Clause, BSD 3-Clause or MIT license for any other use: pick the one that fits.

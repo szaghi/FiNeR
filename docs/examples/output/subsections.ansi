@@ -1,0 +1,3 @@
+$ subsections
+under solver.linear: solver.linear
+under solver.linear: solver.linear.preconditioner

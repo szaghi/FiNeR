@@ -1,0 +1,11 @@
+call results%add(section_name='', option_name='case', val='heat.ini')                   ! the global section
+call results%add(section_name='summary')
+call results%add(section_name='summary', option_name='steps', val=4000_I4P)
+call results%add(section_name='summary', option_name='cells_updated', val=256000_I8P)
+call results%add(section_name='summary', option_name='time', val=0.4_R8P)
+call results%add(section_name='summary', option_name='residual', val=3.2e-9_R4P)
+call results%add(section_name='summary', option_name='converged', val=.true.)
+call results%add(section_name='probes', option_name='x', val=[0.1_R8P, 0.25_R8P, 0.4_R8P])
+call results%add(section_name='probes', option_name='T', val=[331.25_R8P, 324.5_R8P, 310.125_R8P])
+call results%add(section_name='probes', option_name='names', val=['p1', 'p2', 'p3'])
+call results%add(section_name='spectrum', option_name='mode1', val=(1.5_R8P, -0.25_R8P))

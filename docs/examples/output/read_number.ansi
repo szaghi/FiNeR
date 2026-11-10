@@ -1,0 +1,3 @@
+$ read_number
+cells (I1P) = 64, steps (I8P) = 2000
+dt (R4P) =  9.9999997E-05, dt (R8P) =  1.000000000000000E-04

@@ -1,0 +1,7 @@
+$ list_sections
+1: (the global section)
+2: [grid]
+3: [time]
+4: [material]
+5: [boundaries]
+6: [output]

@@ -1,0 +1,10 @@
+$ real_format
+[reals]
+  a = 0.1
+  b = 0.3333333333333333
+  c = 0.000025
+  d = 6.02214076E+23
+  e = -1.0E-12
+  f = 1.7976931348623157E+308
+  r4 = 0.1
+every R8P value reads back exactly

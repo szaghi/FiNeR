@@ -1,0 +1,10 @@
+$ heat
+load of a missing file: error /= 0 is T
+missing section:     error 3, cells kept: -1
+not an integer:      error 2, cells kept: -1
+out of range (I1P):  error 2, small kept: -1
+array too small:     error 2, origin kept: -1.0 -1.0
+unsupported type:    error 2
+error is err_option_vals
+save without a file name: iostat 7, "file_ini%save: no file name"
+save into a missing directory: iostat /= 0 is T

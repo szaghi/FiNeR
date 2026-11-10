@@ -1,0 +1,7 @@
+$ cat rod-fine.ini
+[grid]
+cells = 64
+length = 0.5
+[time]
+dt = 0.00005
+steps = 4000

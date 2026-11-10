@@ -1,0 +1,2 @@
+$ ini case.ini time dt 5e-5
+time.dt = 5e-5, saved

@@ -1,0 +1,7 @@
+call case_file%get(section_name='grid', option_name='cells', val=cells)
+call case_file%get(section_name='grid', option_name='length', val=length)
+call case_file%get(section_name='time', option_name='dt', val=dt)
+call case_file%get(section_name='time', option_name='steps', val=steps)
+call case_file%get(section_name='time', option_name='adaptive', val=adaptive)
+call case_file%get(section_name='material', option_name='conductivity', val=conductivity)
+call case_file%get(section_name='', option_name='title', val=title)

@@ -143,3 +143,50 @@
   outline: 2px solid var(--finer-seal);
   outline-offset: 2px;
 }
+
+/* ------------------------------------------------------------------------------------------------------------------
+   Documentation figures (not part of the identity bundle above)
+   ------------------------------------------------------------------------------------------------------------------ */
+
+/* diagrams drawn by scripts/docs_diagrams.py (docs/diagrams/*.svg, inlined): colours from the theme tokens */
+.finer-diagram { display: block; width: 100%; height: auto; max-width: 680px; margin: 24px auto; }
+.finer-diagram text { font-family: var(--vp-font-family-base); font-size: 13px; fill: var(--vp-c-text-1); white-space: pre; }
+.finer-diagram .d-title { font-weight: 600; font-size: 14px; }
+.finer-diagram .d-mono, .finer-diagram .d-mono-title { font-family: var(--vp-font-family-mono); }
+.finer-diagram .d-mono { font-size: 12.5px; }
+.finer-diagram .d-muted, .finer-diagram .d-note { fill: var(--vp-c-text-2); }
+.finer-diagram .d-small { font-size: 11.5px; }
+.finer-diagram .d-section { fill: var(--finer-seal); font-weight: 600; }
+.finer-diagram .d-name { fill: var(--vp-c-text-1); font-weight: 600; }
+.finer-diagram .d-sep { fill: var(--vp-c-text-2); }
+.finer-diagram .d-value { fill: var(--finer-seal); }
+.finer-diagram .d-comment { fill: var(--vp-c-text-2); font-style: italic; }
+.finer-diagram .d-frame { fill: none; stroke: var(--vp-c-divider); stroke-width: 1; }
+.finer-diagram .d-band { fill: var(--vp-c-bg-alt); }
+.finer-diagram .d-box { fill: var(--vp-c-bg-alt); stroke: var(--vp-c-divider); stroke-width: 1; }
+.finer-diagram .d-seal-soft { fill: var(--vp-c-brand-soft); stroke: var(--finer-seal); stroke-width: 1.2; }
+.finer-diagram .d-leader { stroke: var(--vp-c-divider); stroke-width: 1; stroke-dasharray: 2 3; }
+.finer-diagram .d-link { stroke: var(--finer-seal); stroke-width: 1.4; }
+.finer-diagram .d-arrowhead { fill: var(--finer-seal); }
+
+/* the parts of a diagram appear one after the other (the step is --i), hold, then fade, and start again */
+.finer-diagram .d-reveal { animation: finer-reveal 14s ease-in-out infinite backwards; animation-delay: calc(var(--i) * 0.45s); }
+@keyframes finer-reveal {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+/* the stages of a pipeline light up in turn */
+.finer-diagram .d-pulse { animation: finer-pulse 6s ease-in-out infinite; animation-delay: calc(var(--i) * 0.75s); }
+@keyframes finer-pulse {
+  0%, 14%, 100% { fill: var(--vp-c-bg-alt); stroke: var(--vp-c-divider); }
+  6% { fill: var(--vp-c-brand-soft); stroke: var(--finer-seal); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .finer-diagram .d-reveal, .finer-diagram .d-pulse { animation: none; opacity: 1; }
+}
+
+/* animated terminal sessions of the examples (docs/examples/images, scripts/ansi2svg.py) */
+.finer-casts { display: flex; justify-content: center; margin: 1.4rem 0; }
+.finer-casts img { max-width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(18, 22, 32, 0.18); }

@@ -1,0 +1,4 @@
+$ default_value
+cfl = 0.90 (default), error 3
+weights = 0.25 0.50 0.25
+scheme = euler

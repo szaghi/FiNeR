@@ -1,0 +1,33 @@
+<svg class="finer-diagram" viewBox="0 0 680 250" role="img" aria-label="The data model: a file_ini holds an array of sections, each section an array of options, each option a name, its values and an inline comment" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+<rect x="14.0" y="30.0" width="196.0" height="190.0" rx="10" class="d-box d-reveal" style="--i:0"/>
+<rect x="14.0" y="30.0" width="196.0" height="40.0" rx="10" class="d-seal-soft d-reveal" style="--i:0"/>
+<text x="112.0" y="56.0" text-anchor="middle" class="d-title d-mono-title d-reveal" style="--i:0">file_ini</text>
+<text x="32.0" y="96.0" text-anchor="start" class="d-mono d-reveal" style="--i:0">filename (public)</text>
+<text x="32.0" y="118.0" text-anchor="start" class="d-mono d-reveal" style="--i:0">sections(:)</text>
+<text x="32.0" y="140.0" text-anchor="start" class="d-mono d-reveal" style="--i:0">separator for load</text>
+<text x="32.0" y="168.0" text-anchor="start" class="d-note d-reveal" style="--i:0">load, save, print</text>
+<text x="32.0" y="186.0" text-anchor="start" class="d-note d-reveal" style="--i:0">get, get_string, add, del</text>
+<text x="32.0" y="204.0" text-anchor="start" class="d-note d-reveal" style="--i:0">loop, index, has_*</text>
+<line x1="212.0" y1="106.0" x2="234.0" y2="106.0" class="d-link d-reveal" style="--i:1"/>
+<path d="M234.0,101 L242.0,106 L234.0,111 Z" class="d-arrowhead d-reveal" style="--i:1"/>
+<text x="228.0" y="96.0" text-anchor="middle" class="d-note">1..n</text>
+<rect x="242.0" y="30.0" width="196.0" height="190.0" rx="10" class="d-box d-reveal" style="--i:1"/>
+<rect x="242.0" y="30.0" width="196.0" height="40.0" rx="10" class="d-seal-soft d-reveal" style="--i:1"/>
+<text x="340.0" y="56.0" text-anchor="middle" class="d-title d-mono-title d-reveal" style="--i:1">section</text>
+<text x="260.0" y="96.0" text-anchor="start" class="d-mono d-reveal" style="--i:1">name (&quot;&quot; = global)</text>
+<text x="260.0" y="118.0" text-anchor="start" class="d-mono d-reveal" style="--i:1">options(:)</text>
+<text x="260.0" y="168.0" text-anchor="start" class="d-note d-reveal" style="--i:1">one per [header]</text>
+<text x="260.0" y="186.0" text-anchor="start" class="d-note d-reveal" style="--i:1">in file order,</text>
+<text x="260.0" y="204.0" text-anchor="start" class="d-note d-reveal" style="--i:1">the global one first</text>
+<line x1="440.0" y1="106.0" x2="462.0" y2="106.0" class="d-link d-reveal" style="--i:2"/>
+<path d="M462.0,101 L470.0,106 L462.0,111 Z" class="d-arrowhead d-reveal" style="--i:2"/>
+<text x="456.0" y="96.0" text-anchor="middle" class="d-note">1..n</text>
+<rect x="470.0" y="30.0" width="196.0" height="190.0" rx="10" class="d-box d-reveal" style="--i:2"/>
+<rect x="470.0" y="30.0" width="196.0" height="40.0" rx="10" class="d-seal-soft d-reveal" style="--i:2"/>
+<text x="568.0" y="56.0" text-anchor="middle" class="d-title d-mono-title d-reveal" style="--i:2">option</text>
+<text x="488.0" y="96.0" text-anchor="start" class="d-mono d-reveal" style="--i:2">name</text>
+<text x="488.0" y="118.0" text-anchor="start" class="d-mono d-reveal" style="--i:2">values (text)</text>
+<text x="488.0" y="140.0" text-anchor="start" class="d-mono d-reveal" style="--i:2">inline comment</text>
+<text x="488.0" y="168.0" text-anchor="start" class="d-note d-reveal" style="--i:2">converted on get,</text>
+<text x="488.0" y="186.0" text-anchor="start" class="d-note d-reveal" style="--i:2">formatted on add</text>
+</svg>

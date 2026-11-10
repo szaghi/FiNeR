@@ -1,0 +1,7 @@
+$ heat
+cfl = 0.90, error 3
+every = 500
+fields = "temperature flux"
+compression = "none"
+has [restart]: F
+density is in [material]

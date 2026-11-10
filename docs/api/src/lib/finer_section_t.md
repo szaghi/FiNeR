@@ -23,6 +23,7 @@ graph LR
 - [free](#free)
 - [free_options](#free-options)
 - [free_option](#free-option)
+- [get_string](#get-string)
 - [option_pairs](#option-pairs)
 - [parse](#parse)
 - [print_section](#print-section)
@@ -44,6 +45,7 @@ graph LR
 - [max_chars_len](#max-chars-len)
 - [name](#name)
 - [options_number](#options-number)
+- [strip_inline_comment](#strip-inline-comment)
 - [section_eq_string](#section-eq-string)
 - [section_eq_character](#section-eq-character)
 - [new_section](#new-section)
@@ -60,6 +62,7 @@ Section data of file INI.
 |------|------|------------|-------------|
 | `sname` | character(len=:) | allocatable | Section name. |
 | `options` | type([option](/api/src/lib/finer_option_t#option)) | allocatable | Section options. |
+| `loop_o` | integer(kind=I4P) |  | Index of the last option returned by the loop method, 0 if no loop is running. |
 
 #### Type-Bound Procedures
 
@@ -71,6 +74,7 @@ Section data of file INI.
 | `free_options` | pass(self) | Free all options. |
 | `free_option` | pass(self) | Free a option. |
 | `get` |  | Get option value (scalar). |
+| `get_string` | pass(self) | Get option value as an allocatable string. |
 | `has_options` | pass(self) | Inquire if section has options. |
 | `index` | pass(self) | Return the index of an option. |
 | `loop` | pass(self) | Loop over options. |
@@ -182,6 +186,35 @@ flowchart TD
   style free_option fill:#3e63dd,stroke:#99b,stroke-width:2px
 ```
 
+### get_string
+
+Get option value as an allocatable string.
+
+ If the option does not exist or has no value, `val` is left unchanged and an error is returned.
+
+```fortran
+subroutine get_string(self, option_name, val, error)
+```
+
+**Arguments**
+
+| Name | Type | Intent | Attributes | Description |
+|------|------|--------|------------|-------------|
+| `self` | class([section](/api/src/lib/finer_section_t#section)) | in |  | Section data. |
+| `option_name` | character(len=*) | in |  | Option name. |
+| `val` | character(len=:) | inout | allocatable | Value. |
+| `error` | integer(kind=I4P) | out | optional | Error code. |
+
+**Call graph**
+
+```mermaid
+flowchart TD
+  get_string["get_string"] --> get_string["get_string"]
+  get_string["get_string"] --> get_string["get_string"]
+  get_string["get_string"] --> get_string["get_string"]
+  style get_string fill:#3e63dd,stroke:#99b,stroke-width:2px
+```
+
 ### option_pairs
 
 Return an option pairs.
@@ -247,7 +280,7 @@ flowchart TD
 Print data with a pretty format.
 
 ```fortran
-subroutine print_section(self, unit, retain_comments, pref, iostat, iomsg)
+subroutine print_section(self, unit, retain_comments, pref, iostat, iomsg, header)
 ```
 
 **Arguments**
@@ -260,13 +293,14 @@ subroutine print_section(self, unit, retain_comments, pref, iostat, iomsg)
 | `pref` | character(len=*) | in | optional | Prefixing string. |
 | `iostat` | integer(kind=I4P) | out | optional | IO error. |
 | `iomsg` | character(len=*) | out | optional | IO error message. |
+| `header` | logical | in | optional | Flag for printing the section header, default true. |
 
 ### save_section
 
 Save data.
 
 ```fortran
-subroutine save_section(self, unit, retain_comments, iostat, iomsg)
+subroutine save_section(self, unit, retain_comments, iostat, iomsg, header)
 ```
 
 **Arguments**
@@ -278,6 +312,7 @@ subroutine save_section(self, unit, retain_comments, iostat, iomsg)
 | `retain_comments` | logical | in |  | Flag for retaining eventual comments. |
 | `iostat` | integer(kind=I4P) | out | optional | IO error. |
 | `iomsg` | character(len=*) | out | optional | IO error message. |
+| `header` | logical | in | optional | Flag for saving the section header, default true. |
 
 ### add_option
 
@@ -442,6 +477,7 @@ subroutine parse_options(self, sep, source, error, token_failed)
 flowchart TD
   parse["parse"] --> parse_options["parse_options"]
   parse_options["parse_options"] --> parse["parse"]
+  parse_options["parse_options"] --> strip_inline_comment["strip_inline_comment"]
   style parse_options fill:#3e63dd,stroke:#99b,stroke-width:2px
 ```
 
@@ -470,6 +506,7 @@ subroutine sanitize_source(sep, source, error)
 ```mermaid
 flowchart TD
   parse["parse"] --> sanitize_source["sanitize_source"]
+  sanitize_source["sanitize_source"] --> strip_inline_comment["strip_inline_comment"]
   style sanitize_source fill:#3e63dd,stroke:#99b,stroke-width:2px
 ```
 
@@ -631,6 +668,9 @@ function index_option(self, option_name, back) result(ind)
 
 Loop returning option name/value defined into section.
 
+ The state of the loop is stored into the section, thus loops over different sections do not interfere. A loop must
+ be completed (until false is returned) before starting a new one over the same section.
+
 **Returns**: `logical`
 
 ```fortran
@@ -641,7 +681,7 @@ function loop(self, option_pairs) result(again)
 
 | Name | Type | Intent | Attributes | Description |
 |------|------|--------|------------|-------------|
-| `self` | class([section](/api/src/lib/finer_section_t#section)) | in |  | Section data. |
+| `self` | class([section](/api/src/lib/finer_section_t#section)) | inout |  | Section data. |
 | `option_pairs` | character(len=:) | out | allocatable | Couples option name/value [1:2]. |
 
 **Call graph**
@@ -685,11 +725,11 @@ flowchart TD
 
 ### name
 
-Return section name.
+Return section name, empty if the section has no name.
 
 **Attributes**: pure
 
-**Returns**: `character(len=len)`
+**Returns**: `character(len=:)`
 
 ```fortran
 function name(self)
@@ -707,7 +747,7 @@ function name(self)
 flowchart TD
   get_sections_list["get_sections_list"] --> name["name"]
   has_option["has_option"] --> name["name"]
-  loop_options["loop_options"] --> name["name"]
+  is_global["is_global"] --> name["name"]
   section_file_ini["section_file_ini"] --> name["name"]
   style name fill:#3e63dd,stroke:#99b,stroke-width:2px
 ```
@@ -736,6 +776,33 @@ function options_number(self)
 flowchart TD
   get_items["get_items"] --> options_number["options_number"]
   style options_number fill:#3e63dd,stroke:#99b,stroke-width:2px
+```
+
+### strip_inline_comment
+
+Return the portion of line before the first comment character.
+
+**Attributes**: elemental
+
+**Returns**: `type(string)`
+
+```fortran
+function strip_inline_comment(line) result(stripped)
+```
+
+**Arguments**
+
+| Name | Type | Intent | Attributes | Description |
+|------|------|--------|------------|-------------|
+| `line` | type(string) | in |  |  |
+
+**Call graph**
+
+```mermaid
+flowchart TD
+  parse_options["parse_options"] --> strip_inline_comment["strip_inline_comment"]
+  sanitize_source["sanitize_source"] --> strip_inline_comment["strip_inline_comment"]
+  style strip_inline_comment fill:#3e63dd,stroke:#99b,stroke-width:2px
 ```
 
 ### section_eq_string

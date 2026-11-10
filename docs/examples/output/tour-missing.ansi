@@ -1,0 +1,2 @@
+$ ini case.ini time cfl
+ini: no option cfl in [time]

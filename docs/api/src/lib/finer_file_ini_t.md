@@ -24,6 +24,7 @@ graph LR
 - [free](#free)
 - [get_items](#get-items)
 - [get_sections_list](#get-sections-list)
+- [get_string](#get-string)
 - [initialize](#initialize)
 - [load](#load)
 - [print_file_ini](#print-file-ini)
@@ -44,8 +45,10 @@ graph LR
 - [has_option](#has-option)
 - [has_section](#has-section)
 - [section_file_ini](#section-file-ini)
+- [sections_number](#sections-number)
 - [index_option](#index-option)
 - [index_section](#index-section)
+- [is_global](#is-global)
 - [loop_options_section](#loop-options-section)
 - [loop_options](#loop-options)
 
@@ -60,9 +63,9 @@ INI file class.
 | Name | Type | Attributes | Description |
 |------|------|------------|-------------|
 | `filename` | character(len=:) | allocatable | File name |
-| `Ns` | integer(kind=I4P) |  | Number of sections. |
 | `opt_sep` | character(len=1) |  | Separator character of option name/value. |
 | `sections` | type([section](/api/src/lib/finer_section_t#section)) | allocatable | Sections. |
+| `loop_s` | integer(kind=I4P) |  | Index of the section of the running loop over all options. |
 
 #### Type-Bound Procedures
 
@@ -76,6 +79,7 @@ INI file class.
 | `get` |  | Get option value (scalar). |
 | `get_items` | pass(self) | Get list of pairs option name/value. |
 | `get_sections_list` | pass(self) | Get sections names list. |
+| `get_string` | pass(self) | Get option value as an allocatable string. |
 | `initialize` | pass(self) | Initialize file. |
 | `has_option` | pass(self) | Inquire the presence of an option. |
 | `has_section` | pass(self) | Inquire the presence of a section. |
@@ -85,6 +89,7 @@ INI file class.
 | `print` | pass(self) | Pretty printing data. |
 | `save` | pass(self) | Save data. |
 | `section` | pass(self) | Get section name once provided an index. |
+| `sections_number` | pass(self) | Return the sections number. |
 | `assignment(=)` |  | Procedure for section assignment overloading. |
 | `add_a_option` | pass(self) | Add an option to a section (array). |
 | `add_option` | pass(self) | Add an option to a section (scalar). |
@@ -97,6 +102,7 @@ INI file class.
 | `get_option` | pass(self) | Get option value (scalar). |
 | `index_option` | pass(self) | Return the index of an option. |
 | `index_section` | pass(self) | Return the index of a section. |
+| `is_global` | pass(self) | Inquire if a section is the global (unnamed) one. |
 | `loop_options` | pass(self) | Loop over all options. |
 | `loop_options_section` | pass(self) | Loop over options of a section. |
 | `parse` | pass(self) | Parse file data. |
@@ -172,7 +178,48 @@ subroutine get_sections_list(self, list)
 flowchart TD
   file_ini_autotest["file_ini_autotest"] --> get_sections_list["get_sections_list"]
   get_sections_list["get_sections_list"] --> name["name"]
+  get_sections_list["get_sections_list"] --> sections_number["sections_number"]
   style get_sections_list fill:#3e63dd,stroke:#99b,stroke-width:2px
+```
+
+### get_string
+
+Get option value as an allocatable string.
+
+ `val` is (re)allocated with the length of the option value: it does not need to be allocated before the call.
+
+ If the option cannot be got (missing section, missing option or option without value) an error is returned and `val` is
+ set to `default`, if passed, otherwise it is left unchanged.
+
+```fortran
+ type(file_ini)                :: fini
+ character(len=:), allocatable :: string
+ call fini%get_string(section_name='section-1', option_name='option-1', val=string)
+```
+
+```fortran
+subroutine get_string(self, section_name, option_name, val, error, default)
+```
+
+**Arguments**
+
+| Name | Type | Intent | Attributes | Description |
+|------|------|--------|------------|-------------|
+| `self` | class([file_ini](/api/src/lib/finer_file_ini_t#file-ini)) | in |  | File data. |
+| `section_name` | character(len=*) | in |  | Section name. |
+| `option_name` | character(len=*) | in |  | Option name. |
+| `val` | character(len=:) | inout | allocatable | Value. |
+| `error` | integer(kind=I4P) | out | optional | Error code. |
+| `default` | character(len=*) | in | optional | Default value, used if the option cannot be got. |
+
+**Call graph**
+
+```mermaid
+flowchart TD
+  get_string["get_string"] --> get_string["get_string"]
+  get_string["get_string"] --> get_string["get_string"]
+  get_string["get_string"] --> get_string["get_string"]
+  style get_string fill:#3e63dd,stroke:#99b,stroke-width:2px
 ```
 
 ### initialize
@@ -252,9 +299,21 @@ subroutine print_file_ini(self, unit, pref, retain_comments, iostat, iomsg)
 | `iostat` | integer(kind=I4P) | out | optional | IO error. |
 | `iomsg` | character(len=*) | out | optional | IO error message. |
 
+**Call graph**
+
+```mermaid
+flowchart TD
+  print_file_ini["print_file_ini"] --> is_global["is_global"]
+  style print_file_ini fill:#3e63dd,stroke:#99b,stroke-width:2px
+```
+
 ### save_file_ini
 
 Save data.
+
+ `iostat` is the status of the first operation (open, write or close) that failed, 0 if none did. Without a file name
+ (neither passed nor set before) nothing is written and `iostat` is `ERR_SOURCE_MISSING`. Without sections nothing is
+ written (the file is neither created nor truncated) and `iostat` is 0.
 
 ```fortran
 subroutine save_file_ini(self, retain_comments, iostat, iomsg, filename)
@@ -269,6 +328,14 @@ subroutine save_file_ini(self, retain_comments, iostat, iomsg, filename)
 | `iostat` | integer(kind=I4P) | out | optional | IO error. |
 | `iomsg` | character(len=*) | out | optional | IO error message. |
 | `filename` | character(len=*) | in | optional | File name. |
+
+**Call graph**
+
+```mermaid
+flowchart TD
+  save_file_ini["save_file_ini"] --> is_global["is_global"]
+  style save_file_ini fill:#3e63dd,stroke:#99b,stroke-width:2px
+```
 
 ### add_a_option
 
@@ -335,6 +402,9 @@ flowchart TD
 Add a section.
 
  If the section already exists, it is left unchanged.
+
+ The section with an empty name is the global one, containing the options not belonging to any named section: it is
+ always the first section, being saved (without header) before all the others.
 
 **Attributes**: pure
 
@@ -446,8 +516,12 @@ subroutine free_section(self, section_name)
 
 Get option value (array)
 
+ If the option cannot be got (missing section, missing option, values that cannot be converted to the type of `val` or
+ that `val` cannot hold) an error is returned and `val` is set to `default`, if passed, otherwise it is left unchanged.
+ `default` must have the same size of `val` and a type that can be assigned to it, otherwise it is ignored.
+
 ```fortran
-subroutine get_a_option(self, section_name, option_name, val, delimiter, error)
+subroutine get_a_option(self, section_name, option_name, val, delimiter, error, default)
 ```
 
 **Arguments**
@@ -460,11 +534,13 @@ subroutine get_a_option(self, section_name, option_name, val, delimiter, error)
 | `val` | class(*) | inout |  | Value. |
 | `delimiter` | character(len=*) | in | optional | Delimiter used for separating values. |
 | `error` | integer(kind=I4P) | out | optional | Error code. |
+| `default` | class(*) | in | optional | Default value, used if the option cannot be got. |
 
 **Call graph**
 
 ```mermaid
 flowchart TD
+  get_a_option["get_a_option"] --> assign_default["assign_default"]
   get_a_option["get_a_option"] --> get["get"]
   style get_a_option fill:#3e63dd,stroke:#99b,stroke-width:2px
 ```
@@ -473,8 +549,12 @@ flowchart TD
 
 Get option value (scalar).
 
+ If the option cannot be got (missing section, missing option or value that cannot be converted to the type of `val`) an
+ error is returned and `val` is set to `default`, if passed, otherwise it is left unchanged. `default` must have a type
+ that can be assigned to `val`, otherwise it is ignored.
+
 ```fortran
-subroutine get_option(self, section_name, option_name, val, error)
+subroutine get_option(self, section_name, option_name, val, error, default)
 ```
 
 **Arguments**
@@ -486,11 +566,13 @@ subroutine get_option(self, section_name, option_name, val, error)
 | `option_name` | character(len=*) | in |  | Option name. |
 | `val` | class(*) | inout |  | Value. |
 | `error` | integer(kind=I4P) | out | optional | Error code. |
+| `default` | class(*) | in | optional | Default value, used if the option cannot be got. |
 
 **Call graph**
 
 ```mermaid
 flowchart TD
+  get_option["get_option"] --> assign_default["assign_default"]
   get_option["get_option"] --> get["get"]
   style get_option fill:#3e63dd,stroke:#99b,stroke-width:2px
 ```
@@ -561,6 +643,7 @@ flowchart TD
   file_ini_autotest["file_ini_autotest"] --> has_section["has_section"]
   file_ini_autotest["file_ini_autotest"] --> load["load"]
   file_ini_autotest["file_ini_autotest"] --> loop["loop"]
+  file_ini_autotest["file_ini_autotest"] --> sections_number["sections_number"]
   style file_ini_autotest fill:#3e63dd,stroke:#99b,stroke-width:2px
 ```
 
@@ -683,6 +766,33 @@ flowchart TD
   style section_file_ini fill:#3e63dd,stroke:#99b,stroke-width:2px
 ```
 
+### sections_number
+
+Return the sections number.
+
+**Attributes**: elemental
+
+**Returns**: `integer(kind=I4P)`
+
+```fortran
+function sections_number(self)
+```
+
+**Arguments**
+
+| Name | Type | Intent | Attributes | Description |
+|------|------|--------|------------|-------------|
+| `self` | class([file_ini](/api/src/lib/finer_file_ini_t#file-ini)) | in |  | File data. |
+
+**Call graph**
+
+```mermaid
+flowchart TD
+  file_ini_autotest["file_ini_autotest"] --> sections_number["sections_number"]
+  get_sections_list["get_sections_list"] --> sections_number["sections_number"]
+  style sections_number fill:#3e63dd,stroke:#99b,stroke-width:2px
+```
+
 ### index_option
 
 Return the index of the option (inside a  section) matching the name(s) passed.
@@ -730,9 +840,43 @@ function index_section(self, back, section_name) result(ind)
 | `back` | logical | in | optional | If back appears with the value true, the last matching index is returned. |
 | `section_name` | character(len=*) | in |  | Section name. |
 
+### is_global
+
+Inquire if a section is the global (unnamed) one, namely the first section if it has an empty name.
+
+ The global section contains the options defined before the first section header: it is saved without header.
+
+**Attributes**: elemental
+
+**Returns**: `logical`
+
+```fortran
+function is_global(self, section_index)
+```
+
+**Arguments**
+
+| Name | Type | Intent | Attributes | Description |
+|------|------|--------|------------|-------------|
+| `self` | class([file_ini](/api/src/lib/finer_file_ini_t#file-ini)) | in |  | File data. |
+| `section_index` | integer(kind=I4P) | in |  | Section index. |
+
+**Call graph**
+
+```mermaid
+flowchart TD
+  print_file_ini["print_file_ini"] --> is_global["is_global"]
+  save_file_ini["save_file_ini"] --> is_global["is_global"]
+  is_global["is_global"] --> name["name"]
+  style is_global fill:#3e63dd,stroke:#99b,stroke-width:2px
+```
+
 ### loop_options_section
 
 Loop returning option name/value defined into section.
+
+ The state of the loop is stored into the file data, thus loops over different sections (or different files) do not
+ interfere. A loop must be completed (until false is returned) before starting a new one over the same section.
 
 **Returns**: `logical`
 
@@ -744,7 +888,7 @@ function loop_options_section(self, section_name, option_pairs) result(again)
 
 | Name | Type | Intent | Attributes | Description |
 |------|------|--------|------------|-------------|
-| `self` | class([file_ini](/api/src/lib/finer_file_ini_t#file-ini)) | in |  | File data. |
+| `self` | class([file_ini](/api/src/lib/finer_file_ini_t#file-ini)) | inout |  | File data. |
 | `section_name` | character(len=*) | in |  | Section name. |
 | `option_pairs` | character(len=:) | out | allocatable | Pairs option name/value [1:2]. |
 
@@ -760,7 +904,8 @@ flowchart TD
 
 Loop returning option name/value defined into all sections.
 
-**Attributes**: recursive
+ The state of the loop is stored into the file data. A loop must be completed (until false is returned) before
+ starting a new one.
 
 **Returns**: `logical`
 
@@ -772,7 +917,7 @@ function loop_options(self, option_pairs) result(again)
 
 | Name | Type | Intent | Attributes | Description |
 |------|------|--------|------------|-------------|
-| `self` | class([file_ini](/api/src/lib/finer_file_ini_t#file-ini)) | in |  | File data. |
+| `self` | class([file_ini](/api/src/lib/finer_file_ini_t#file-ini)) | inout |  | File data. |
 | `option_pairs` | character(len=:) | out | allocatable | Pairs option name/value [1:2]. |
 
 **Call graph**
@@ -780,6 +925,5 @@ function loop_options(self, option_pairs) result(again)
 ```mermaid
 flowchart TD
   loop_options["loop_options"] --> loop["loop"]
-  loop_options["loop_options"] --> name["name"]
   style loop_options fill:#3e63dd,stroke:#99b,stroke-width:2px
 ```

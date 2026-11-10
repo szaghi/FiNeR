@@ -1,0 +1,7 @@
+$ heat
+cooling of a copper rod
+grid: 64 cells over  0.50 m
+time: dt =  1.000E-04, 2000 steps, adaptive = T
+conductivity:  401.0
+origin:  0.0  0.0  0.0
+probes (3):  0.10  0.25  0.40

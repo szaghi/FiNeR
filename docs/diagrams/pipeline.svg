@@ -1,0 +1,31 @@
+<svg class="finer-diagram" viewBox="0 0 680 230" role="img" aria-label="What load does: the source is split into lines (carriage returns dropped), comment lines are skipped, the lines are grouped by section header, continuation lines are joined to their option, and each option is split into name, value and inline comment" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+<rect x="14.0" y="20.0" width="196.0" height="64.0" rx="8" class="d-box d-pulse" style="--i:0"/>
+<text x="112.0" y="47.0" text-anchor="middle" class="d-title">source</text>
+<text x="112.0" y="68.0" text-anchor="middle" class="d-note">a file or a string</text>
+<line x1="214.0" y1="52.0" x2="240.0" y2="52.0" class="d-link"/>
+<path d="M238.0,48.0 L244.0,52.0 L238.0,56.0 Z" class="d-arrowhead"/>
+<rect x="246.0" y="20.0" width="196.0" height="64.0" rx="8" class="d-box d-pulse" style="--i:1"/>
+<text x="344.0" y="47.0" text-anchor="middle" class="d-title">lines</text>
+<text x="344.0" y="68.0" text-anchor="middle" class="d-note">CR dropped, split on LF</text>
+<line x1="446.0" y1="52.0" x2="472.0" y2="52.0" class="d-link"/>
+<path d="M470.0,48.0 L476.0,52.0 L470.0,56.0 Z" class="d-arrowhead"/>
+<rect x="478.0" y="20.0" width="196.0" height="64.0" rx="8" class="d-box d-pulse" style="--i:2"/>
+<text x="576.0" y="47.0" text-anchor="middle" class="d-title">comments</text>
+<text x="576.0" y="68.0" text-anchor="middle" class="d-note">! ; # lines skipped</text>
+<rect x="14.0" y="130.0" width="196.0" height="64.0" rx="8" class="d-box d-pulse" style="--i:3"/>
+<text x="112.0" y="157.0" text-anchor="middle" class="d-title">sections</text>
+<text x="112.0" y="178.0" text-anchor="middle" class="d-note">split at [headers]</text>
+<line x1="214.0" y1="162.0" x2="240.0" y2="162.0" class="d-link"/>
+<path d="M238.0,158.0 L244.0,162.0 L238.0,166.0 Z" class="d-arrowhead"/>
+<rect x="246.0" y="130.0" width="196.0" height="64.0" rx="8" class="d-box d-pulse" style="--i:4"/>
+<text x="344.0" y="157.0" text-anchor="middle" class="d-title">continuations</text>
+<text x="344.0" y="178.0" text-anchor="middle" class="d-note">joined to their option</text>
+<line x1="446.0" y1="162.0" x2="472.0" y2="162.0" class="d-link"/>
+<path d="M470.0,158.0 L476.0,162.0 L470.0,166.0 Z" class="d-arrowhead"/>
+<rect x="478.0" y="130.0" width="196.0" height="64.0" rx="8" class="d-box d-pulse" style="--i:5"/>
+<text x="576.0" y="157.0" text-anchor="middle" class="d-title">options</text>
+<text x="576.0" y="178.0" text-anchor="middle" class="d-note">name = value ; comment</text>
+<path d="M576.0,88 L576.0,106.0 L112.0,106.0 L112.0,120" class="d-link" fill="none"/>
+<path d="M108.0,118 L112.0,124 L116.0,118 Z" class="d-arrowhead"/>
+<text x="340.0" y="218.0" text-anchor="middle" class="d-note">the result replaces the sections of the file_ini; values stay text until get converts them</text>
+</svg>

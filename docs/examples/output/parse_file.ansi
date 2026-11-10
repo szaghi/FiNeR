@@ -1,0 +1,3 @@
+$ parse_file
+heat.ini: 6 sections
+missing.ini: cannot load it
