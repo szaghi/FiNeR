@@ -647,20 +647,31 @@ contains
   type is(real(R4P))
     if (is_numeric(source)) read(source, *, iostat=ios) r4
     if (ios == 0 .and. assign) val = r4
+  ! integers are scanned by hand: a list-directed read of `3.5`, `1e3` or an out of range value into an integer is an
+  ! error for gfortran, but nvfortran accepts it (truncating or wrapping) without error
   type is(integer(I8P))
-    if (is_numeric(source)) read(source, *, iostat=ios) i8
+    call scan_integer(source, i8, ios)
     if (ios == 0 .and. assign) val = i8
   type is(integer(I4P))
-    if (is_numeric(source)) read(source, *, iostat=ios) i4
-    if (ios == 0 .and. assign) val = i4
+    call scan_integer(source, i8, ios)
+    if (ios == 0) then
+      if (i8 < -int(huge(i4), I8P) - 1_I8P .or. i8 > int(huge(i4), I8P)) ios = 1
+    endif
+    if (ios == 0 .and. assign) val = int(i8, I4P)
 #ifndef _NVF
   type is(integer(I2P))
-    if (is_numeric(source)) read(source, *, iostat=ios) i2
-    if (ios == 0 .and. assign) val = i2
+    call scan_integer(source, i8, ios)
+    if (ios == 0) then
+      if (i8 < -int(huge(i2), I8P) - 1_I8P .or. i8 > int(huge(i2), I8P)) ios = 1
+    endif
+    if (ios == 0 .and. assign) val = int(i8, I2P)
 #endif
   type is(integer(I1P))
-    if (is_numeric(source)) read(source, *, iostat=ios) i1
-    if (ios == 0 .and. assign) val = i1
+    call scan_integer(source, i8, ios)
+    if (ios == 0) then
+      if (i8 < -int(huge(i1), I8P) - 1_I8P .or. i8 > int(huge(i1), I8P)) ios = 1
+    endif
+    if (ios == 0 .and. assign) val = int(i8, I1P)
 #ifdef PENF_R16P
   type is(complex(R16P))
     if (split_parts(source)) read(re, *, iostat=ios) r16
@@ -694,6 +705,41 @@ contains
 
     is_numeric = len_trim(string) > 0 .and. verify(string, ' 0123456789+-.eEdDqQ') == 0
     endfunction is_numeric
+
+    subroutine scan_integer(string, n, ios)
+    !< Convert a string into an integer (I8P): an optional sign and decimal digits, with blanks around.
+    !<
+    !< Only the first blank-delimited value is converted, as a list-directed read does.
+    !<
+    !< `ios` is not zero, and `n` is undefined, if the string is not an integer or is out of the range of I8P.
+    character(*), intent(in)      :: string !< String to be converted.
+    integer(I8P), intent(out)     :: n      !< Converted value.
+    integer,      intent(out)     :: ios    !< Status: 0 if converted.
+    character(len=:), allocatable :: buffer !< String without leading and trailing blanks.
+    integer                       :: c      !< Characters counter.
+    integer                       :: first  !< Position of the first digit.
+    integer(I8P)                  :: d      !< Digit value.
+
+    ios = 1
+    n = 0_I8P
+    buffer = trim(adjustl(string))
+    if (len(buffer) == 0) return
+    c = index(buffer, ' ') ; if (c > 0) buffer = buffer(:c-1) ! only the first value, as the list-directed read did
+    first = 1 ; if (buffer(1:1) == '-' .or. buffer(1:1) == '+') first = 2
+    if (first > len(buffer)) return
+    ! accumulate as a negative number: the range of I8P is one larger on the negative side
+    do c=first, len(buffer)
+      d = int(index('0123456789', buffer(c:c)) - 1, I8P)
+      if (d < 0_I8P) return
+      if (n < (-huge(n) - 1_I8P + d) / 10_I8P) return ! n*10 - d would overflow
+      n = n * 10_I8P - d
+    enddo
+    if (buffer(1:1) /= '-') then
+      if (n == -huge(n) - 1_I8P) return ! |n| does not fit as a positive number
+      n = -n
+    endif
+    ios = 0
+    endsubroutine scan_integer
 
     function split_parts(string)
     !< Split a complex value in the Fortran notation, `(re,im)`, into its real and imaginary parts.
