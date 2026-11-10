@@ -4,6 +4,31 @@ All notable changes to this project are documented here.
 Versions follow [Semantic Versioning](https://semver.org/).
 Format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.3.1] — 2026-11-10
+### Changed
+- **file_ini**: Drop the Ns counter, the sections array is the only count
+
+
+### Documentation
+- Adopt the Aizome identity, the Kakko section-bracket mark
+
+- **claude**: Record the documentation identity and where its assets live
+
+- **api**: Document the status returned by save and print
+
+
+### Fixed
+- **parse**: CRLF line endings, every CR dropped before the source is split into lines
+
+- **add**: Find the section by its normalised name, padded names no longer drop options
+
+- **io**: Save and print always define iostat and report the first failure
+
+- **section**: Name() of a section without a name is an empty string
+
+- **get**: Scan integers by hand, nvfortran no longer accepts 3.5 or overflows
+
+
 ## [2.3.0] — 2026-10-08
 ### Added
 - **build**: Add fpm support
