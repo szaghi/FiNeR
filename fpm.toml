@@ -7,10 +7,11 @@ description = "Fortran INI ParseR and generator"
 maintainer = "Stefano Zaghi"
 homepage = "https://github.com/szaghi/FiNeR"
 
-# pinned to the commits of src/third_party/fobos.lock: update both together
+# pinned to the default-branch commits that `fobis fetch` resolves (fobos does not pin them, and
+# src/third_party/fobos.lock is local and git-ignored): bump them when PENF or StringiFor move
 [dependencies]
-PENF = { git="https://github.com/szaghi/PENF.git", rev="592259d24ff39fa5e4b387d46286120ee60e7cff" }
-StringiFor = { git="https://github.com/szaghi/StringiFor.git", rev="bd218de71aea6218edbfce7bb46c40b4668dc3e2" }
+PENF = { git="https://github.com/szaghi/PENF.git", rev="d2bc5e10cc15aff633bdc88fffd643e8f0402cb2" }
+StringiFor = { git="https://github.com/szaghi/StringiFor.git", rev="aaa7da6aefc92da0fb297c1b52ba71602923fbe2" }
 
 [library]
 source-dir = "src/lib"

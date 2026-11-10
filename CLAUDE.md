@@ -47,7 +47,9 @@ fpm test <test_name>     # a single test
 ```
 fpm fetches its own dependencies (PENF, StringiFor) from `fpm.toml`. The manifest is explicit and can drift from the tree:
 - `auto-tests = false`: every new `src/tests/finer_test_*.f90` needs a `[[test]]` entry (CMake and FoBiS pick it up automatically);
-- the PENF/StringiFor `rev` pins must match the commits in `src/third_party/fobos.lock` (update both together);
+- the PENF/StringiFor `rev` pins are the default-branch commits that `fobis fetch` resolves: fobos does not pin
+  them, and `src/third_party/fobos.lock` is local (git-ignored), so check with `git ls-remote <url> HEAD` and bump the
+  pins when the dependencies move;
 - `scripts/release.sh` bumps the `version` of `fpm.toml`.
 
 ## Code Architecture
