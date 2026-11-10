@@ -120,3 +120,12 @@ On any `get` failure (missing section/option, value not convertible to the type 
 Test sources are in `src/tests/`. Each test prints `"Are all tests passed? T"` on success. The CMake test system registers each `finer_test_*.f90` as a separate CTest.
 
 The `.F90` extension (uppercase) indicates files that use C preprocessor directives (e.g., `#ifndef __GFORTRAN__` in `finer_file_ini_t.F90` to work around gfortran/ifort differences with `stringifor`).
+
+## Documentation
+
+VitePress site in `docs/` (`npm run docs:build` from `docs/`; it first runs `formal` to regenerate `docs/api/`).
+Identity: Sumi family, the *Kakko* mark (the section bracket `[ · ]`) in the *Aizome* palette (indigo ink on washi,
+pale indigo on night). Assets in `docs/public/` (`hero`, `logo`, `favicon*`, `icons/<name>{,-dark}.svg`: the 6 home
+features plus `get`, `add`, `lines`, `semi` for guide pages); the palette is the token block at the top of
+`docs/.vitepress/theme/custom.css`. The SVGs are generated geometry: never hand-edit them. The generator is not in this
+repository; it ships in the `source/` folder of the identity kit (`finer-identity.zip`).
