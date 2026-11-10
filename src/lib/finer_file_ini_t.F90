@@ -17,7 +17,6 @@ type :: file_ini
   !< INI file class.
   private
   character(len=:), allocatable, public :: filename              !< File name
-  integer(I4P)                          :: Ns = 0                !< Number of sections.
   character(1)                          :: opt_sep = DEF_OPT_SEP !< Separator character of option name/value.
   type(section), allocatable            :: sections(:)           !< Sections.
   integer(I4P)                          :: loop_s = 0            !< Index of the section of the running loop over all options.
@@ -105,7 +104,6 @@ contains
     call self%sections%free
     deallocate(self%sections)
   endif
-  self%Ns = 0
   self%loop_s = 0
   self%opt_sep = def_opt_sep
   endsubroutine free
@@ -155,12 +153,12 @@ contains
 
   if (allocated(self%sections)) then
     max_len = MinI_P
-    do s=1, self%Ns
+    do s=1, self%sections_number()
       max_len = max(max_len, len(self%sections(s)%name()))
     enddo
-    if (self%Ns>0) then ! the name of the global section has zero length
-      allocate(character(len=max(max_len, 0)) :: list(1:self%Ns))
-      do s=1, self%Ns
+    if (self%sections_number()>0) then ! the name of the global section has zero length
+      allocate(character(len=max(max_len, 0)) :: list(1:self%sections_number()))
+      do s=1, self%sections_number()
         list(s) = self%sections(s)%name()
       enddo
     endif
@@ -439,12 +437,10 @@ contains
         sections(size(self%sections, dim=1)+1) = section(section_name=trim(adjustl(section_name)))
       endif
       call move_alloc(sections, self%sections)
-      self%Ns = self%Ns + 1
     endif
   else
     allocate(self%sections(1:1))
     self%sections(1) = section(section_name=trim(adjustl(section_name)))
-    self%Ns = self%Ns + 1
   endif
   if (self%index(section_name=section_name)>0) errd = 0
   if (present(error)) error = errd
@@ -497,7 +493,6 @@ contains
       sections(s:  ) = self%sections(s+1:)
     endif
     call move_alloc(sections, self%sections)
-    self%Ns = self%Ns - 1
   endif
   endsubroutine free_section
 
@@ -767,8 +762,9 @@ contains
         endif
       endif
     enddo
+  elseif (allocated(self%sections)) then
+    deallocate(self%sections) ! a source without sections leaves none, as a source with sections replaces them all
   endif
-  self%Ns = Ns
 
   if (present(error)) error = errd
   endsubroutine parse
@@ -785,7 +781,6 @@ contains
     allocate(lhs%sections(1:size(rhs%sections, dim=1)))
     lhs%sections = rhs%sections
   endif
-  lhs%Ns = rhs%Ns
   lhs%opt_sep = rhs%opt_sep
   endsubroutine assign_file_ini
 
@@ -868,7 +863,7 @@ contains
   enddo
   print "(A)", ''
   print "(A)", "Testing loop method over options of a section:"
-  do s=1, fini%Ns
+  do s=1, fini%sections_number()
     print "(A)", fini%section(s)
     do while(fini%loop(section_name=fini%section(s), option_pairs=item))
       print "(A)", '  '//trim(item(1))//' = '//trim(item(2))
@@ -876,7 +871,7 @@ contains
   enddo
   print "(A)", "Testing sections names list inquire:"
   call fini%get_sections_list(list)
-  do s=1, fini%Ns
+  do s=1, fini%sections_number()
     print "(A)", 'Sec. '//trim(str(s, .true.))//': '//trim(list(s))
   enddo
   print "(A)", ''
