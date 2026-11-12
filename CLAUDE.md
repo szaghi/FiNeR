@@ -123,6 +123,13 @@ Test sources are in `src/tests/`. Each test prints `"Are all tests passed? T"` o
 
 The `.F90` extension (uppercase) indicates files that use C preprocessor directives (e.g., `#ifndef __GFORTRAN__` in `finer_file_ini_t.F90` to work around gfortran/ifort differences with `stringifor`).
 
+## CI
+
+`ci.yml` (tests, coverage) and the build job of `docs.yml` run in the container
+`ghcr.io/szaghi/fortran-toolchains:gnu-16.2` (repo `~/fortran/fortran-toolchains`: gfortran 16.2, Open MPI 5.0.11,
+FoBiS, formal), set by `[scaffold] toolchain_image` in `fobos` and synced with `fobis scaffold sync`. On the bare runner:
+`docs-examples.yml` (project-owned, gfortran 14 via `setup-build-env`), `install.yml`, `release.yml`.
+
 ## Documentation
 
 VitePress site in `docs/` (`npm run docs:build` from `docs/`; it first runs `formal` to regenerate `docs/api/`).
