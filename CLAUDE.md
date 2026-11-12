@@ -127,8 +127,12 @@ The `.F90` extension (uppercase) indicates files that use C preprocessor directi
 
 `ci.yml` (tests, coverage) and the build job of `docs.yml` run in the container
 `ghcr.io/szaghi/fortran-toolchains:gnu-16.2` (repo `~/fortran/fortran-toolchains`: gfortran 16.2, Open MPI 5.0.11,
-FoBiS, formal), set by `[scaffold] toolchain_image` in `fobos` and synced with `fobis scaffold sync`. On the bare runner:
-`docs-examples.yml` (project-owned, gfortran 14 via `setup-build-env`), `install.yml`, `release.yml`.
+FoBiS, formal), set by `[scaffold] toolchain_image` in `fobos` and synced with `fobis scaffold sync`; the project-owned
+`docs-examples.yml` runs in the same image. On the bare runner: `install.yml`, `release.yml`.
+
+Minimum gfortran is 14.3: 13.3 and 14.2 (tested) miscompile `class(*)` character arrays (`set_a_option` writes `p1 1p p2` for
+`['p1','p2','p3']`). Compiler bug, fixed upstream: deliberately NOT worked around in the code (owner's decision,
+2026-11-12); the supported compilers are stated in `docs/guide/installation.md`.
 
 ## Documentation
 
@@ -142,7 +146,7 @@ Every code sample is a program in `docs/examples/src/*.f90`, never pasted into a
 `output` (`*.ansi`) and `images` (terminal casts, `scripts/ansi2svg.py`). Markers: `!run ID CMD`, `!region NAME` ...
 `!endregion NAME`, `!as NAME`, `!image ID`, `!cast NAME ID...`. Pages include them with `<<< @/examples/snippets/X.f90` and
 `<<< @/examples/output/ID.ansi{ansi}`. Outputs must not depend on the compiler (explicit formats; no `stop` codes, which
-print compiler-specific text). The `docs-examples` workflow reruns the script (gfortran 14) and fails if the committed
+print compiler-specific text). The `docs-examples` workflow reruns the script (gfortran 16.2, toolchain image) and fails if the committed
 files differ: rerun it and commit its outputs after any change to the examples or to the library behaviour they show.
 Diagrams: `python3 scripts/docs_diagrams.py` writes `docs/diagrams/*.svg`, inlined with `<!--@include: -->`, coloured and
 animated by the `.finer-diagram` rules of `custom.css` (CSS animations, off under `prefers-reduced-motion`).

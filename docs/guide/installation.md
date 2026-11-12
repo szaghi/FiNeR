@@ -10,9 +10,15 @@ A Fortran 2003+ compiler. FiNeR is tested with:
 
 | Compiler | Versions | Where |
 |----------|----------|-------|
-| GNU gfortran | 14 | CI (tests and documentation examples) |
-| GNU gfortran | 16.2 | development: FoBiS, CMake and fpm builds |
+| GNU gfortran | 16.2 | CI (tests and documentation examples); development: FoBiS, CMake and fpm builds |
 | NVIDIA nvfortran | 26.9 | development: CMake build |
+
+::: warning gfortran 14.3 or newer
+gfortran 13.3 and 14.2 (the versions tested) miscompile the elements of a `class(*)` character array: `add` with a character array value
+writes wrong values (`['p1','p2','p3']` is saved as `p1 1p p2`), with no error. The bug is in the compiler, fixed in
+gfortran 14.3; FiNeR does not work around it. Ubuntu 24.04 ships gfortran 13.3 as `gfortran` and 14.2 as `gfortran-14`:
+use a newer compiler.
+:::
 
 The fobos file also has modes for the Intel compilers (`tests-intel`, `finer-static-intel`, ...), not tested recently.
 FiNeR is developed on GNU/Linux.
