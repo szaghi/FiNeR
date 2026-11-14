@@ -9,7 +9,10 @@
 # the config file is generatet in the build and install directories
 
 cmake_minimum_required(VERSION 3.13)
-project(FiNeR VERSION 2.0.3 LANGUAGES Fortran)
+# the version is read from the VERSION file (vX.Y.Z), updated by scripts/release.sh
+file(STRINGS "${CMAKE_CURRENT_LIST_DIR}/VERSION" finer_version LIMIT_COUNT 1)
+string(REGEX REPLACE "^v" "" finer_version "${finer_version}")
+project(FiNeR VERSION ${finer_version} LANGUAGES Fortran)
 
 # seach path for additional cmake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/cmake/Modules)
