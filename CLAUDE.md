@@ -125,10 +125,13 @@ The `.F90` extension (uppercase) indicates files that use C preprocessor directi
 
 ## CI
 
-`ci.yml` (tests, coverage) and the build job of `docs.yml` run in the container
-`ghcr.io/szaghi/fortran-toolchains:gnu-16.2` (repo `~/fortran/fortran-toolchains`: gfortran 16.2, Open MPI 5.0.11,
-FoBiS, formal), set by `[scaffold] toolchain_image` in `fobos` and synced with `fobis scaffold sync`; the project-owned
-`docs-examples.yml` runs in the same image. On the bare runner: `install.yml`, `release.yml`.
+Every workflow is a thin caller of a reusable workflow of `szaghi/fortran-toolchains` pinned at `@v1` (repo
+`~/fortran/fortran-toolchains`), rendered by `fobis scaffold sync` from the `fobos` `[scaffold]` section:
+`toolchain = linux-gnu` (the `gnu-16.2` image: gfortran 16.2, Open MPI 5.0.11, FoBiS, formal) runs `ci.yml` (tests,
+coverage), `docs.yml`, `fpm.yml` (`fpm = true`: `fpm build` and `fpm test`) and `docs-examples.yml`
+(`docs_examples = docs/examples`: `scripts/docs_examples.sh` must leave that directory unchanged). `release.yml`
+publishes the tag's release, then `install.yml` installs it on a fresh runner with make, CMake, FoBiS and fpm.
+CMake reads the version from `VERSION`, which `scripts/release.sh` updates (never write it into `project()`).
 
 Minimum gfortran is 14.3: 13.3 and 14.2 (tested) miscompile `class(*)` character arrays (`set_a_option` writes `p1 1p p2` for
 `['p1','p2','p3']`). Compiler bug, fixed upstream: deliberately NOT worked around in the code (owner's decision,
