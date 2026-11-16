@@ -23,6 +23,21 @@ use a newer compiler.
 The fobos file also has modes for the Intel compilers (`tests-intel`, `finer-static-intel`, ...), not tested recently.
 FiNeR is developed on GNU/Linux.
 
+## One-line install
+
+```bash
+curl -fsSL https://github.com/szaghi/FiNeR/releases/latest/download/install.sh | bash
+```
+
+It installs the latest release into `~/.local` with the build system you choose among those FiNeR ships
+(`--build fobis|fpm|cmake`: a menu asks when you do not say), the compiler you name (`--fc`, `--gnu`, `--intel`,
+`--nvidia`), one install per compiler (`lib/finer/<compiler>-<version>/`, `include/finer/<compiler>-<version>/`),
+and makes it usable through pkg-config (`pkg-config --cflags --libs finer`, with
+`PKG_CONFIG_PATH=$HOME/.local/lib/pkgconfig`). The release carries FiNeR's dependencies, so CMake needs no network.
+Pass options after `bash -s --`, e.g. `... | bash -s -- --build cmake --prefix /opt/finer`; `--help` lists them all,
+`--uninstall` removes the install. The installer is FoBiS's
+([One-line installer](https://szaghi.github.io/FoBiS/cookbook/installer)).
+
 ## Download
 
 Clone the repository:
