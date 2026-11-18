@@ -4,6 +4,17 @@ All notable changes to this project are documented here.
 Versions follow [Semantic Versioning](https://semver.org/).
 Format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [2.4.0] — 2026-11-18
+### Added
+- **install**: The one-line installer
+
+- **file_ini**: Unused_options lists the options never read through get
+
+
+### Documentation
+- Rewrite the documentation as tutorial, cookbook and reference
+
+
 ## [2.3.1] — 2026-11-10
 ### Changed
 - **file_ini**: Drop the Ns counter, the sections array is the only count
