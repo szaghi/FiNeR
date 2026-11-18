@@ -253,6 +253,15 @@ Sections are flat: `[solver.linear]` is one name. A prefix test finds the subsec
 
 `ERR_OPTION_VALS` means the value is there but is not of the type asked; any other non-zero `error` means it is missing.
 
+### Find the options nobody read
+
+<<< @/examples/snippets/find_typos.f90
+
+<<< @/examples/output/find_typos.ansi{ansi}
+
+A misspelled key is not an error for `get`: the program asks for `cfl`, finds it, and never sees `CLF`. After the settings
+are read, `unused_options` lists every option that no `get` (or `get_string`) touched since the file was loaded.
+
 ### Check that a file was saved
 
 <<< @/examples/snippets/save_errors.f90

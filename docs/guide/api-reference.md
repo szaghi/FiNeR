@@ -61,6 +61,7 @@ endtype file_ini
 | `has_option` | `option_name`, `[section_name]` | function: is the option in some section, and in which; [details](./exploring#options) |
 | `index` | `section_name`, `[option_name]`, `[back]` | function: the position of a section, or of an option in its section |
 | `get_items` | `items` | subroutine: every name and value |
+| `unused_options` | `items` | subroutine: the section and the name of every option never read; [details](./exploring#options) |
 | `loop` | `[section_name]`, `option_pairs` | function: the next name and value, `.false.` at the end; [details](./exploring#loop) |
 
 ## Argument types

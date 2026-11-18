@@ -24,6 +24,12 @@ The global section, when there is one, is the section `1` and its name is `''`.
 | `fini%index(section_name=, option_name= [, back=])` | the position of the option inside its section, `0` if missing; with `back=.true.`, the last option with that name in the last section with that name |
 | `fini%count_values(section_name=, option_name= [, delimiter=])` | the number of items of the value (see [Arrays](./reading#arrays)), `0` if missing |
 | `call fini%get_items(items)` | `items(1:n, 1:2)`, `character(len=:), allocatable`: the name and the value of every option of every section, in order |
+| `call fini%unused_options(items)` | `items(1:n, 1:2)`, `character(len=:), allocatable`: the section and the name of every option never read by `get` or `get_string` since the file was loaded, in order; `n = 0` when every option was read |
+
+An option counts as read once `get` (scalar or array) or `get_string` has been called on it, even when its value does not
+convert to the type asked. `load` starts the record afresh, assignment copies it, `free` drops it; a file built with `add`
+and never loaded keeps no record, so all its options are listed. Of a repeated section only the first is reachable by
+`get`, so the options of the others that the first does not have stay unused.
 
 ## Loops {#loop}
 
@@ -51,4 +57,5 @@ enddo
 - Cookbook: [check that a section or an option exists](/manual/cookbook#check-that-a-section-or-an-option-exists-and-find-its-section),
   [list the sections](/manual/cookbook#list-the-sections), [loops](/manual/cookbook#loop-over-the-options-of-a-section-or-of-the-whole-file),
   [every pair at once](/manual/cookbook#get-every-option-name-and-value-at-once),
-  [repeated options](/manual/cookbook#repeated-options-the-first-one-wins).
+  [repeated options](/manual/cookbook#repeated-options-the-first-one-wins),
+  [the options nobody read](/manual/cookbook#find-the-options-nobody-read).

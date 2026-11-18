@@ -113,3 +113,8 @@ main = "finer_test_silent_failures.f90"
 name = "finer_test_update_option"
 source-dir = "src/tests"
 main = "finer_test_update_option.f90"
+
+[[test]]
+name = "finer_test_unused_options"
+source-dir = "src/tests"
+main = "finer_test_unused_options.f90"

@@ -13,6 +13,12 @@ private
 public :: file_ini
 public :: file_ini_autotest
 
+type :: access_log
+  !< Options read through `get`: one key per section/option pair, the section name, achar(0), the option name.
+  type(string), allocatable :: keys(:) !< Keys of the options read.
+  integer(I4P)              :: n = 0   !< Number of keys stored.
+endtype access_log
+
 type :: file_ini
   !< INI file class.
   private
@@ -20,6 +26,8 @@ type :: file_ini
   character(1)                          :: opt_sep = DEF_OPT_SEP !< Separator character of option name/value.
   type(section), allocatable            :: sections(:)           !< Sections.
   integer(I4P)                          :: loop_s = 0            !< Index of the section of the running loop over all options.
+  type(access_log), pointer             :: reads => null()       !< Options read through get (see unused_options): a pointer, so
+                                                                 !< that get, whose self is intent(in), can record a read.
   contains
     ! public methods
     generic               :: add          => add_section, &             !< Add a section.
@@ -49,6 +57,7 @@ type :: file_ini
     procedure, pass(self) :: save         => save_file_ini              !< Save data.
     procedure, pass(self) :: section      => section_file_ini           !< Get section name once provided an index.
     procedure, pass(self) :: sections_number                            !< Return the sections number.
+    procedure, pass(self) :: unused_options                             !< Get the options never read through get.
     ! operators overloading
     generic :: assignment(=) => assign_file_ini !< Procedure for section assignment overloading.
     ! private methods
@@ -66,6 +75,7 @@ type :: file_ini
     procedure, private, pass(self) :: is_global               !< Inquire if a section is the global (unnamed) one.
     procedure, private, pass(self) :: loop_options            !< Loop over all options.
     procedure, private, pass(self) :: loop_options_section    !< Loop over options of a section.
+    procedure, private, pass(self) :: mark_read               !< Record that an option has been read.
     procedure, private, pass(self) :: parse                   !< Parse file data.
     ! assignments
     procedure, private, pass(lhs) :: assign_file_ini !< Assignment overloading.
@@ -104,6 +114,7 @@ contains
     call self%sections%free
     deallocate(self%sections)
   endif
+  if (associated(self%reads)) deallocate(self%reads)
   self%loop_s = 0
   self%opt_sep = def_opt_sep
   endsubroutine free
@@ -189,7 +200,10 @@ contains
 
   errd = ERR_OPTION
   s = self%index(section_name=section_name)
-  if (s > 0) call self%sections(s)%get_string(option_name=option_name, val=val, error=errd)
+  if (s > 0) then
+    call self%sections(s)%get_string(option_name=option_name, val=val, error=errd)
+    call self%mark_read(section_index=s, option_name=option_name)
+  endif
   if (errd /= 0 .and. present(default)) val = default
   if (present(error)) error = errd
   endsubroutine get_string
@@ -367,6 +381,70 @@ contains
   if (allocated(self%sections)) sections_number = size(self%sections, dim=1)
   endfunction sections_number
 
+  subroutine unused_options(self, items)
+  !< Get the options never read through `get` (or `get_string`) since the file was loaded.
+  !<
+  !< `items(o, 1)` is the section name (empty for the global section) and `items(o, 2)` the option name, in file order; no
+  !< unused option gives `size(items, dim=1) == 0`. An option counts as read once `get` has been called on it, even if its
+  !< value did not convert to the type asked for. Options of a duplicated section are matched by name, so they count as
+  !< read when the same option of the first section with that name was read (the one `get` returns).
+  !<
+  !<```fortran
+  !< type(file_ini)                :: fini
+  !< character(len=:), allocatable :: items(:,:)
+  !< integer                       :: o
+  !< call fini%load(source='[s] used = 1'//new_line('a')//'typo = 2')
+  !< call fini%get(section_name='s', option_name='used', val=o)
+  !< call fini%unused_options(items=items)
+  !< print '(A)', trim(items(1, 1))//'.'//trim(items(1, 2))
+  !<```
+  class(file_ini),               intent(in)  :: self       !< File data.
+  character(len=:), allocatable, intent(out) :: items(:,:) !< Unused options, pairs section name/option name [1:No,1:2].
+  character(len=:), allocatable              :: pairs(:)   !< Option name/values pairs.
+  integer(I4P)                               :: mx_chars   !< Longest section or option name.
+  integer(I4P)                               :: No         !< Number of unused options.
+  integer(I4P)                               :: pass       !< 1: count and measure, 2: fill.
+  integer(I4P)                               :: o          !< Counter.
+  integer(I4P)                               :: s          !< Counter.
+
+  mx_chars = 1
+  No = 0
+  do pass=1, 2
+    if (pass == 2) allocate(character(mx_chars) :: items(1:No, 1:2))
+    No = 0
+    if (.not.allocated(self%sections)) cycle
+    do s=1, size(self%sections, dim=1)
+      if (.not.self%sections(s)%has_options()) cycle
+      do o=1, self%sections(s)%options_number()
+        call self%sections(s)%option_pairs(option_index=o, pairs=pairs)
+        if (was_read(self%sections(s)%name()//achar(0)//trim(adjustl(pairs(1))))) cycle
+        No = No + 1
+        if (pass == 1) then
+          mx_chars = max(mx_chars, len(self%sections(s)%name()), len_trim(adjustl(pairs(1))))
+        else
+          items(No, 1) = self%sections(s)%name()
+          items(No, 2) = trim(adjustl(pairs(1)))
+        endif
+      enddo
+    enddo
+  enddo
+  contains
+    logical function was_read(key)
+    !< True if the key is in the access log.
+    character(*), intent(in) :: key !< Section name, achar(0), option name.
+    integer(I4P)             :: k   !< Counter.
+
+    was_read = .false.
+    if (.not.associated(self%reads)) return
+    do k=1, self%reads%n
+      if (self%reads%keys(k) == key) then
+        was_read = .true.
+        return
+      endif
+    enddo
+    endfunction was_read
+  endsubroutine unused_options
+
   ! private methods
   pure subroutine add_a_option(self, error, section_name, option_name, val)
   !< Add an option (with array value).
@@ -521,6 +599,7 @@ contains
     do s=1, size(self%sections, dim=1)
       if (self%sections(s) == trim(adjustl(section_name))) then
         call self%sections(s)%get(delimiter=dlm, error=errd, option_name=option_name, val=val)
+        call self%mark_read(section_index=s, option_name=option_name)
         exit
       endif
     enddo
@@ -557,6 +636,7 @@ contains
     do s=1, size(self%sections, dim=1)
       if (self%sections(s) == trim(adjustl(section_name))) then
         call self%sections(s)%get(error=errd, option_name=option_name, val=val)
+        call self%mark_read(section_index=s, option_name=option_name)
         exit
       endif
     enddo
@@ -564,6 +644,33 @@ contains
   if (errd /= 0 .and. present(default)) call assign_default(val=val, default=default, error=errdef)
   if (present(error)) error = errd
   endsubroutine get_option
+
+  subroutine mark_read(self, section_index, option_name)
+  !< Record in the access log that an option of a section has been read (nothing when the option is not in the section).
+  !<
+  !< `self` is intent(in), as in `get`: the log is the target of a pointer component, which `get` may update.
+  class(file_ini), intent(in)   :: self          !< File data.
+  integer(I4P),    intent(in)   :: section_index !< Index of the section.
+  character(*),    intent(in)   :: option_name   !< Option name.
+  character(len=:), allocatable :: key           !< Section name, achar(0), option name.
+  type(string), allocatable     :: grown(:)      !< Log keys, enlarged.
+  integer(I4P)                  :: k             !< Counter.
+
+  if (.not.associated(self%reads)) return
+  if (self%sections(section_index)%index(option_name=trim(adjustl(option_name))) <= 0) return
+  key = self%sections(section_index)%name()//achar(0)//trim(adjustl(option_name))
+  do k=1, self%reads%n
+    if (self%reads%keys(k) == key) return
+  enddo
+  if (.not.allocated(self%reads%keys)) allocate(self%reads%keys(1:16))
+  if (self%reads%n == size(self%reads%keys, dim=1)) then
+    allocate(grown(1:2*self%reads%n))
+    grown(1:self%reads%n) = self%reads%keys(1:self%reads%n)
+    call move_alloc(from=grown, to=self%reads%keys)
+  endif
+  self%reads%n = self%reads%n + 1
+  self%reads%keys(self%reads%n) = key
+  endsubroutine mark_read
 
   elemental function index_option(self, back, section_name, option_name) result(ind)
   !< Return the index of the option (inside a  section) matching the name(s) passed.
@@ -691,6 +798,9 @@ contains
   integer(I4P)                            :: ss           !< Counter.
 
   errd = err_source_missing
+  ! a new source: no option of it has been read yet
+  if (.not.associated(self%reads)) allocate(self%reads)
+  self%reads%n = 0
   ! CR+LF (Windows) line endings: drop every CR, so that no value ends with one. Whether a formatted read keeps the CR
   ! at the end of a record is processor dependent (gfortran drops it, nvfortran keeps it), and a source string keeps it.
   lf_source = source%replace(old=achar(13), new='')
@@ -782,6 +892,10 @@ contains
     lhs%sections = rhs%sections
   endif
   lhs%opt_sep = rhs%opt_sep
+  if (associated(rhs%reads)) then
+    allocate(lhs%reads)
+    lhs%reads = rhs%reads
+  endif
   endsubroutine assign_file_ini
 
   ! non TBP methods
