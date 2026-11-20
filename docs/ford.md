@@ -5,8 +5,6 @@ exclude_dir: ../src/third_party/
              ../src/third_party/BeFoR64/src/third_party/
              ../src/third_party/BeFoR64/docs/api/src/third_party/
              ../src/third_party/StringiFor/src/third_party/
-             ../src/third_party/FLAP/src/third_party/
-             ../src/third_party/FLAP/docs/api/src/third_party/
 output_dir: /tmp/formal_ford_out
 docmark: <
 display: public

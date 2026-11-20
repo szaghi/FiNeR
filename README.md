@@ -89,7 +89,7 @@ Pass options after `bash -s --`, e.g. `... | bash -s -- --build cmake --prefix /
 
 ```bash
 git clone https://github.com/szaghi/FiNeR && cd FiNeR
-fobis fetch                           # fetch BeFoR64, FACE, FLAP, PENF, StringiFor
+fobis fetch                           # fetch BeFoR64, FACE, PENF, StringiFor
 fobis build --mode finer-static-gnu   # build static library
 ```
 
@@ -115,7 +115,7 @@ Add to your `fpm.toml` (pin a release with `tag = "vX.Y.Z"`; fpm support starts 
 FiNeR = { git = "https://github.com/szaghi/FiNeR" }
 ```
 
-`fpm build` fetches FiNeR, PENF and StringiFor (with BeFoR64 and FACE). To build and test FiNeR itself:
+`fpm build` fetches FiNeR and its dependencies: PENF, FACE, BeFoR64 and StringiFor. To build and test FiNeR itself:
 
 ```bash
 git clone https://github.com/szaghi/FiNeR && cd FiNeR
@@ -128,7 +128,7 @@ The dependencies are not git submodules: fetch them into `src/third_party/` befo
 
 ```bash
 git clone https://github.com/szaghi/FiNeR && cd FiNeR
-fobis fetch --no-build   # or clone the five dependencies into src/third_party/ by hand
+fobis fetch --no-build   # or clone the four dependencies into src/third_party/ by hand
 cmake -B build && cmake --build build && ctest --test-dir build
 ```
 

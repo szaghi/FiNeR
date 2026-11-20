@@ -57,7 +57,7 @@ fobis fetch --no-build   # clone the dependencies into src/third_party/
 Without FoBiS.py, clone them by hand:
 
 ```bash
-for dep in BeFoR64 FACE FLAP PENF StringiFor; do
+for dep in BeFoR64 FACE PENF StringiFor; do
   git clone https://github.com/szaghi/$dep src/third_party/$dep
 done
 ```
@@ -71,7 +71,6 @@ The dependencies live under `src/third_party/`:
 | [PENF](https://github.com/szaghi/PENF) | Portable numeric kind parameters (`I4P`, `R8P`, etc.) |
 | [StringiFor](https://github.com/szaghi/StringiFor) | `string` type used throughout for string operations |
 | [FACE](https://github.com/szaghi/FACE) | ANSI terminal color/style support |
-| [FLAP](https://github.com/szaghi/FLAP) | Fortran command-line argument parser |
 | [BeFoR64](https://github.com/szaghi/BeFoR64) | Base64 encoding |
 
 ## Build with CMake (preferred)
@@ -108,8 +107,8 @@ target_link_libraries(your_target FiNeR::FiNeR)
 
 ## Build with fpm
 
-[fpm](https://fpm.fortran-lang.org) fetches the dependencies itself from `fpm.toml` (PENF and StringiFor, which brings
-BeFoR64 and FACE), so `src/third_party/` is not needed. To use FiNeR in an fpm project, add to its `fpm.toml`:
+[fpm](https://fpm.fortran-lang.org) fetches the dependencies itself from `fpm.toml` (PENF, FACE, BeFoR64 and StringiFor, each
+at the head of its default branch, as `fobis fetch` does), so `src/third_party/` is not needed. To use FiNeR in an fpm project, add to its `fpm.toml`:
 
 ```toml
 [dependencies]
