@@ -16,7 +16,7 @@ add_library(${LIB}
         finer_section_t.f90
         )
 add_library(${NAMESPACE}${LIB} ALIAS ${LIB})
-target_link_libraries(${LIB} PENF::PENF FACE::FACE FLAP::FLAP BeFoR64::BeFoR64 StringiFor::StringiFor)
+target_link_libraries(${LIB} PENF::PENF FACE::FACE BeFoR64::BeFoR64 StringiFor::StringiFor)
 
 target_include_directories(${LIB}
     INTERFACE

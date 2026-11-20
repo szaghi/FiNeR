@@ -31,10 +31,6 @@ if(NOT TARGET FACE)
     add_subdirectory(src/third_party/FACE) # has no other linking deps
 endif()
 
-if(NOT TARGET FLAP)
-    add_subdirectory(src/third_party/FLAP) # depends on PENF, FACE
-endif()
-
 if(NOT TARGET BeFoR64)
     add_subdirectory(src/third_party/BeFoR64) # depends on PENF
 endif()
